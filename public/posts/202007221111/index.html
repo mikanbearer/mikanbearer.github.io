@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html><head>
+  <title>腦袋空空日記</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://mikanbearer.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://mikanbearer.github.io/css/code-block.css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  
+</head>
+<body>
+<div id="app">
+  <v-app id="inspire">
+    <v-app id="inspire">
+      
+
+<v-app-bar
+app
+clipped-left
+color="secondary"
+dense
+>
+
+<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+<v-toolbar-title class="mr-12 align-center">
+  <span class="title"></span>
+</v-toolbar-title>
+<v-spacer></v-spacer>
+<v-row
+  align="center"
+  style="max-width: 650px"
+>
+
+
+    <v-autocomplete
+      v-model="model"
+      :items="items"
+      :search-input.sync="search"
+      dense
+      hide-no-data
+      hide-details
+      item-text="title"
+      item-value="url"
+      placeholder="Search for a Title..."
+      prepend-inner-icon="mdi-database-search"
+      return-object
+      solo
+    >
+    </v-autocomplete>
+  </v-row>
+</v-app-bar>
+
+
+
+
+<v-dialog v-model="model" v-if="model" max-width="600">
+  <v-card class="secondary lighten-1">
+    <v-card-title>
+      [[ model.title ]]
+    </v-card-title>
+    <v-card-subtitle>
+      [[ model.date ]]
+      <a  v-for="category in model.categories">[[ category ]]</a>
+      <div>
+        <v-chip
+          v-for="tag in model.tags"
+          v-bind:key="tag.id"
+          color="blue-grey"
+          label
+          text-color="white"
+          x-small
+          :href="'https://mikanbearer.github.io/tags/' + tag"
+          class="mr-1"
+        >
+          [[ tag ]]
+        </v-chip>
+      </div>
+      <v-divider></v-divider>
+    </v-card-subtitle>
+    <v-card-text v-html="model.summary"></v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+  
+      <v-btn
+        color="primary"
+        text
+        @click="model = null"
+      >
+        Clear
+      </v-btn>
+
+      <v-btn
+        color="primary"
+        text
+        :href="model.url"
+      >
+        Go to the Page 
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
+      
+<v-navigation-drawer
+  v-model="drawer"
+  app
+  fixed
+  clipped
+>
+
+  
+  <v-list-item link href="https://mikanbearer.github.io/about">
+    <v-list-item-action>
+      <v-icon color="grey">mdi-information</v-icon>
+    </v-list-item-action>
+    <v-list-item-title class="grey--text">About</v-list-item-title>
+  </v-list-item>
+
+  <v-divider></v-divider>
+
+  <v-list-item link href="https://mikanbearer.github.io/">
+    <v-list-item-action>
+      <v-icon color="grey">mdi-home</v-icon>
+    </v-list-item-action>
+    <v-list-item-title class="grey--text">Home</v-list-item-title>
+  </v-list-item>
+      <v-list-item link href="https://mikanbearer.github.io/tags">
+        <v-list-item-action>
+          <v-icon color="grey">mdi-tag-multiple</v-icon>
+        </v-list-item-action>
+        <v-list-item-title class="grey--text">Tags</v-list-item-title>
+      </v-list-item>
+      <v-list-item link href="https://mikanbearer.github.io/categories">
+        <v-list-item-action>
+          <v-icon color="grey">mdi-folder-multiple</v-icon>
+        </v-list-item-action>
+        <v-list-item-title class="grey--text">Categories</v-list-item-title>
+      </v-list-item>
+
+
+      <v-divider></v-divider>
+
+
+
+
+  </v-list>
+</v-navigation-drawer>
+
+
+
+    
+      <v-main>
+        <v-container fluid style="width: 800px">
+          <v-row dense>
+            <v-col>
+              <v-card>
+                <v-card-title>
+                  <div class="text-h5">
+                    使用Django &#43; Celery進行異步處理
+                  </div>
+                </v-card-title>
+                <v-card-subtitle>
+                  <div>
+                    2020-07-22
+                    
+                      
+                        <a href="https://mikanbearer.github.io//categories/%E5%BE%8C%E7%AB%AF%E7%AD%86%E8%A8%98/">後端筆記</a>
+                      
+                    
+                  </div>
+                  <div>
+                    
+                    
+                      <v-chip
+                        color="blue-grey"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io//tags/Python/"
+                      >
+                        Python
+                      </v-chip>
+                    
+                      <v-chip
+                        color="blue-grey"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io//tags/Django/"
+                      >
+                        Django
+                      </v-chip>
+                    
+                      <v-chip
+                        color="blue-grey"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io//tags/Celery/"
+                      >
+                        Celery
+                      </v-chip>
+                    
+                  
+
+                  </div>
+                <v-divider></v-divider>
+                </v-card-subtitle>
+
+                <v-card-text>
+                  <p>本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，
+目前只提供簡單的範例，不包含異步任務的情境應用</p>
+<p>source code一樣放在github
+<a href="https://github.com/mikanbearer/django_celery_example"><a href="https://github.com/mikanbearer/django_celery_example">https://github.com/mikanbearer/django_celery_example</a></a>
+這次需要這幾個包</p>
+<pre><code>pip install django celery django-celery-results
+</code></pre><p>目前環境如下</p>
+<pre><code>$ python --version
+Python 3.6.8
+
+$ pip list
+...
+celery                  4.4.1
+Django                  3.0
+django-celery-results   1.2.1
+...
+</code></pre><p>首先在settings中加上celery及django_celery_results需要的設定</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:django_celery_example/settings.py" data-lang=":django_celery_example/settings.py">INSTALLED_APPS <span style="color:#f92672">=</span> [
+    <span style="color:#e6db74">&#39;django.contrib.admin&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.auth&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.contenttypes&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.sessions&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.messages&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.staticfiles&#39;</span>,
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#e6db74">&#39;django_celery_results&#39;</span>,
+</span>]
+</code></pre></td></tr></table>
+</div>
+</div><p>網路上的資料多半是redis，那這次個人就用amqp，部屬就不贅述</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:django_celery_example/settings.py" data-lang=":django_celery_example/settings.py"><span style="display:block;width:100%;background-color:#3c3d38">CELERY_BROKER_URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;amqp://guest:guest@127.0.0.1&#39;</span>
+</span>
+<span style="display:block;width:100%;background-color:#3c3d38">CELERY_RESULT_BACKEND <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;django-db&#39;</span>
+</span>
+<span style="display:block;width:100%;background-color:#3c3d38">CELERY_CACHE_BACKEND <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;django-cache&#39;</span>
+</span></code></pre></td></tr></table>
+</div>
+</div><p>建立table</p>
+<pre><code>$ python manage.py migrate
+</code></pre><p><a href="https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html"><a href="https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html">https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html</a></a></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:django_celery_example/celery.py" data-lang=":django_celery_example/celery.py"><span style="color:#f92672">from</span> __future__ <span style="color:#f92672">import</span> absolute_import, unicode_literals
+
+<span style="color:#f92672">import</span> os
+
+<span style="color:#f92672">from</span> celery <span style="color:#f92672">import</span> Celery
+
+<span style="color:#75715e"># set the default Django settings module for the &#39;celery&#39; program.</span>
+os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>setdefault(<span style="color:#e6db74">&#39;DJANGO_SETTINGS_MODULE&#39;</span>, <span style="color:#e6db74">&#39;django_celery_example.settings&#39;</span>)
+
+app <span style="color:#f92672">=</span> Celery(<span style="color:#e6db74">&#39;django_celery_example&#39;</span>)
+
+<span style="color:#75715e"># Using a string here means the worker doesn&#39;t have to serialize</span>
+<span style="color:#75715e"># the configuration object to child processes.</span>
+<span style="color:#75715e"># - namespace=&#39;CELERY&#39; means all celery-related configuration keys</span>
+<span style="color:#75715e">#   should have a `CELERY_` prefix.</span>
+app<span style="color:#f92672">.</span>config_from_object(<span style="color:#e6db74">&#39;django.conf:settings&#39;</span>, namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;CELERY&#39;</span>)
+
+<span style="color:#75715e"># Load task modules from all registered Django app configs.</span>
+app<span style="color:#f92672">.</span>autodiscover_tasks()
+
+
+<span style="color:#a6e22e">@app.task</span>(bind<span style="color:#f92672">=</span>True)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">debug_task</span>(self):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Request: {0!r}&#39;</span><span style="color:#f92672">.</span>format(self<span style="color:#f92672">.</span>request))
+</code></pre></td></tr></table>
+</div>
+</div><pre><code>celery -A django_celery_example worker --pool=solo -l info
+</code></pre><p>可以用django shell測試</p>
+<pre><code>$ python manage.py shell
+</code></pre><p>可以用sync的方式直接執行django_celery_example/celery.py當初裡面的debug_task</p>
+<pre><code>&gt;&gt;&gt; from django_celery_example.celery import debug_task
+&gt;&gt;&gt; debug_task()
+Request: &lt;Context: {'args': (), 'kwargs': {}}&gt;
+</code></pre><p>也可以使用async方式執行，只要使用delay這個method，並使用TaskResult這個model來看結果</p>
+<pre><code>&gt;&gt;&gt; debug_task.delay()
+&lt;AsyncResult: d988824b-5613-4f2d-8034-e3eb69a43fd7&gt;
+&gt;&gt;&gt; from django_celery_results.models import TaskResult
+&gt;&gt;&gt; TaskResults.objects.all()
+&lt;QuerySet [&lt;TaskResult: &lt;Task: d988824b-5613-4f2d-8034-e3eb69a43fd7 (SUCCESS)&gt;&gt;]&gt;
+</code></pre><p>而celery的stdout也會有相應的info</p>
+<pre><code>[2020-07-22 14:12:01,565: INFO/MainProcess] Received task: django_celery_example.celery.debug_task[d988824b-5613-4f2d-8034-e3eb69a43fd7]
+[2020-07-22 14:12:01,566: WARNING/MainProcess] Request: &lt;Context: {'lang': 'py', 'task': 'django_celery_example.celery.debug_task', 'id': 'd988824b-5613-4f2d-8034-e3eb69a43fd7', 'shadow': None, 'eta': None, 'ex
+pires': None, 'group': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd988824b-5613-4f2d-8034-e3eb69a43fd7', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen10892@ABRACADABRA'
+, 'reply_to': '57a2696a-9b60-32f2-8cbc-66ec2fb60cea', 'correlation_id': 'd988824b-5613-4f2d-8034-e3eb69a43fd7', 'hostname': 'celery@ABRACADABRA', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'prio
+rity': 0, 'redelivered': False}, 'args': [], 'kwargs': {}, 'is_eager': False, 'callbacks': None, 'errbacks': None, 'chain': None, 'chord': None, 'called_directly': False, '_protected': 1}&gt;
+[2020-07-22 14:12:01,587: INFO/MainProcess] Task django_celery_example.celery.debug_task[d988824b-5613-4f2d-8034-e3eb69a43fd7] succeeded in 0.01599999999962165s: None
+</code></pre><p>這樣就能確定我們的task queue在正常運作了</p>
+<p>接下來要在自己的app內登錄task，首先建立app</p>
+<pre><code>$ python manage.py startapp demoapp
+</code></pre><p>加進settings.py</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:django_celery_example/settings.py" data-lang=":django_celery_example/settings.py">INSTALLED_APPS <span style="color:#f92672">=</span> [
+    <span style="color:#e6db74">&#39;django.contrib.admin&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.auth&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.contenttypes&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.sessions&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.messages&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.staticfiles&#39;</span>,
+    <span style="color:#e6db74">&#39;django_celery_results&#39;</span>,
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#e6db74">&#39;demoapp&#39;</span>,
+</span>]
+</code></pre></td></tr></table>
+</div>
+</div><p>一樣在celery.py加上剛才建立的app</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:django_celery_example/celery.py" data-lang=":django_celery_example/celery.py">app<span style="color:#f92672">.</span>config_from_object(<span style="color:#e6db74">&#39;django.conf:settings&#39;</span>, namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;CELERY&#39;</span>)
+
+<span style="color:#75715e"># Load task modules from all registered Django app configs.</span>
+<span style="display:block;width:100%;background-color:#3c3d38">app<span style="color:#f92672">.</span>autodiscover_tasks([<span style="color:#e6db74">&#39;demoapp&#39;</span>])
+</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在__init__.py增加以下內容，這樣才會讀取加上@shared_task這個decotator的task</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:django_celery_example/__init__.py" data-lang=":django_celery_example/__init__.py"><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#f92672">from</span> __future__ <span style="color:#f92672">import</span> absolute_import, unicode_literals
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#75715e"># This will make sure the app is always imported when</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#75715e"># Django starts so that shared_task will use this app.</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#f92672">from</span> .celery <span style="color:#f92672">import</span> app <span style="color:#66d9ef">as</span> celery_app
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">__all__ <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;celery_app&#39;</span>,)
+</span></code></pre></td></tr></table>
+</div>
+</div><p>接下來建立task，先偷懶不使用model</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:demoapp/tasks.py" data-lang=":demoapp/tasks.py"><span style="color:#75715e"># Create your tasks here</span>
+<span style="color:#f92672">from</span> __future__ <span style="color:#f92672">import</span> absolute_import, unicode_literals
+
+<span style="color:#f92672">from</span> celery <span style="color:#f92672">import</span> shared_task
+
+
+<span style="color:#a6e22e">@shared_task</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(x, y):
+    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> y
+
+
+<span style="color:#a6e22e">@shared_task</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mul</span>(x, y):
+    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">*</span> y
+
+
+<span style="color:#a6e22e">@shared_task</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">xsum</span>(numbers):
+    <span style="color:#66d9ef">return</span> sum(numbers)
+</code></pre></td></tr></table>
+</div>
+</div><p>再啟動celery，就會發現多出不同的東西了</p>
+<pre><code>$ celery -A django_celery_example worker --pool=solo -l info
+...
+[tasks]
+  . demoapp.tasks.add
+  . demoapp.tasks.mul
+  . demoapp.tasks.xsum
+  . django_celery_example.celery.debug_task
+
+...
+</code></pre><p>剛才的task已經進來了，接下來就能用shell測試</p>
+<pre><code>&gt;&gt;&gt; from demoapp import tasks
+&gt;&gt;&gt; tasks.add.delay(1, 1)
+&lt;AsyncResult: 9729c417-9fb1-4868-a884-eeeea4faa125&gt;
+&gt;&gt;&gt; tasks.mul.delay(9, 9)
+&lt;AsyncResult: 1ac747d8-bff1-46ef-8b0b-0efdeb1f925c&gt;
+&gt;&gt;&gt; from django_celery_results.models import TaskResult
+&gt;&gt;&gt; TaskResult.objects.all()
+&lt;QuerySet [&lt;TaskResult: &lt;Task: 1ac747d8-bff1-46ef-8b0b-0efdeb1f925c (SUCCESS)&gt;&gt;, &lt;TaskResult: &lt;Task: 9729c417-9fb1-4868-a884-eeeea4faa125 (SUCCESS)&gt;&gt;]&gt;
+</code></pre><p>也能很簡單的取出結果</p>
+<pre><code>&gt;&gt;&gt; TaskResult.objects.get(task_id='1ac747d8-bff1-46ef-8b0b-0efdeb1f925c').result
+'81'
+</code></pre><p>完</p>
+                </v-card-text>
+
+
+              </v-card>
+              
+
+              
+              <div class="d-flex justify-space-between mt-5">
+                
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      href="https://mikanbearer.github.io/posts/202007211516/"
+                      target="_blank"
+                      v-on="on"
+                      text
+                    >
+                      <v-icon>mdi-arrow-left</v-icon>
+                      Prev
+                    </v-btn>
+                  </template>
+                  <span>用VBA在Excel中使用nslookup</span>
+                </v-tooltip>
+              
+              
+        
+              
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    href="https://mikanbearer.github.io/posts/202007241554/"
+                    target="_blank"
+                    v-on="on"
+                    text
+                  >
+                    Next
+                    <v-icon>mdi-arrow-right</v-icon>
+                  </v-btn>
+                </template>
+                <span>[未解決]在EVE-NG上部屬vEOS LAB</span>
+              </v-tooltip>
+              
+              </div>
+
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>          
+    </v-app>
+  </v-app>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/vue-router@3.4.2/dist/vue-router.js"></script>
+
+
+
+<script>
+  var vm = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app',
+    vuetify: new Vuetify(),
+    props: {
+    },
+    data: {
+      drawer: false,
+      panel: [],
+      page: null,
+      tab: null,
+      model: null,
+      search: null,
+
+
+      tags: null,
+      posts: null,
+      seltags: null,
+      filteredposts: null,
+      
+    },
+    computed: {
+
+      items () {
+        if (this.search){
+          console.log(this.model)
+          return this.posts
+        }else{
+          return []
+        }
+        
+
+      },
+    },
+    
+    created () {
+      this.$vuetify.theme.dark = true
+    },
+
+
+    methods: {
+      remove (item) {
+        this.seltags.splice(this.seltags.indexOf(item), 1)
+        this.seltags = [...this.seltags]
+      },
+    }
+  })
+
+
+  vm.$vuetify.theme.themes.dark.primary = '#ee7942'
+
+
+
+var posts = [
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202008100108\/',
+    
+      title: '202008100108',
+    
+    
+      summary: '',
+    
+    
+      date: '2020-08-10',
+    
+    
+      tags: ' ',
+    
+    
+      categories: ' ',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202008070930\/',
+    
+      title: '新主題上線！',
+    
+    
+      summary: '\u003cp\u003e原本使用\u003ca href=\u0022https:\/\/github.com\/halogenica\/beautifulhugo\u0022\u003eBeautifulhugo\u003c\/a\u003e(個人蠻喜歡的)，但發現會有一些小問題…\u003c\/p\u003e\n\u003cp\u003e這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…\u003c\/p\u003e',
+    
+    
+      date: '2020-08-07',
+    
+    
+      tags: '[Hugo Vue.js Vuetify]',
+    
+    
+      categories: '[雜記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007301419\/',
+    
+      title: '在Nginx或Apache上設定CORS',
+    
+    
+      summary: '\u003cp\u003eWeb Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用\u003ca href=\u0022https:\/\/mikanbearer.github.io\/myblog\/posts\/202007291642\/\u0022\u003e這篇\u003c\/a\u003e來實作，本篇包含Nginx及Apache的設定範例\u003c\/p\u003e',
+    
+    
+      date: '2020-07-30',
+    
+    
+      tags: '[Nginx Apache]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007291642\/',
+    
+      title: '使用docker-compose部屬Nginx \u002b uWSGI \u002b Django',
+    
+    
+      summary: '\u003cp\u003e雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…\u003c\/p\u003e\n\u003cp\u003e這次使用以下兩篇舊文的範例來練習\u003c\/p\u003e',
+    
+    
+      date: '2020-07-29',
+    
+    
+      tags: '[Docker Nginx uWSGI]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007262314\/',
+    
+      title: '使用製作Vue.js \u002b Vuetify製作SPA登入畫面',
+    
+    
+      summary: '\u003cp\u003e利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，\n往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…\u003c\/p\u003e',
+    
+    
+      date: '2020-07-26',
+    
+    
+      tags: '[Vue.js JavaScript]',
+    
+    
+      categories: '[前端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007241554\/',
+    
+      title: '[未解決]在EVE-NG上部屬vEOS LAB',
+    
+    
+      summary: '\u003cp\u003e第一篇挫折紀錄，通篇鬼打牆…\n原本想在EVE-NG上做個簡單的LAB，沒想到問題還真不少…\u003c\/p\u003e',
+    
+    
+      date: '2020-07-24',
+    
+    
+      tags: '[EVE-NG Arista]',
+    
+    
+      categories: '[挫折紀錄]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007221111\/',
+    
+      title: '使用Django \u002b Celery進行異步處理',
+    
+    
+      summary: '\u003cp\u003e本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，\n目前只提供簡單的範例，不包含異步任務的情境應用\u003c\/p\u003e',
+    
+    
+      date: '2020-07-22',
+    
+    
+      tags: '[Python Django Celery]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007211516\/',
+    
+      title: '用VBA在Excel中使用nslookup',
+    
+    
+      summary: '\u003cp\u003e工作中常常用到的功能，不筆記會忘記，\n主要是在Excel Macro調用Wshshell，把A欄的結果輸出到B欄\u003c\/p\u003e',
+    
+    
+      date: '2020-07-21',
+    
+    
+      tags: '[Excel VBA]',
+    
+    
+      categories: '[雜記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007201501\/',
+    
+      title: '使用Django REST framework超高速部屬RESTful API (2)',
+    
+    
+      summary: '\u003cp\u003e承之前的範例，這次要用JSON Web Token驗證，並加上Cross-Origin Resource Sharing\u003c\/p\u003e',
+    
+    
+      date: '2020-07-20',
+    
+    
+      tags: '[Python Django]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007201139\/',
+    
+      title: 'watch multiple properties for single callback',
+    
+    
+      summary: '\u003cp\u003e想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法\u003c\/p\u003e',
+    
+    
+      date: '2020-07-20',
+    
+    
+      tags: '[Vue.js JavaScript]',
+    
+    
+      categories: '[前端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007161628\/',
+    
+      title: '使用Django REST framework超高速部屬RESTful API (1)',
+    
+    
+      summary: '\u003cp\u003e這次作為複習，利用djangorestframework製作一個陽春的REST API\n何謂RESTful就不贅述了，直接開始實做\u003c\/p\u003e',
+    
+    
+      date: '2020-07-16',
+    
+    
+      tags: '[Python Django]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007151013\/',
+    
+      title: '使用Django超高速部屬CRUD',
+    
+    
+      summary: '\u003cp\u003e這次僅是做一個超級簡易，能做到Create、Read、Update、Delete的Web App，\u003cbr\u003e\n為了避免版面過長，此篇僅有陽春的Template View，並沒有做Filter及Pagenation…\u003c\/p\u003e',
+    
+    
+      date: '2020-07-15',
+    
+    
+      tags: '[Python Django]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007141604\/',
+    
+      title: '使用VBScript定期送出按鍵',
+    
+    
+      summary: '\u003cp\u003e在客戶環境中操作，並需要客戶代為登入的情況下給自己用的小筆記，\n免得一不注意就被policy弄到進入省電模式\/登出，到時候又要請客戶的人來幫忙key帳號密碼…\n在不變更任何設定的情況下，VBScript還是很好用的東西，\u003cbr\u003e\n尤其是這個安全無害的method，\u003cstrong\u003eSendKeys\u003c\/strong\u003e\u003c\/p\u003e',
+    
+    
+      date: '2020-07-14',
+    
+    
+      tags: '[Windows VBScript]',
+    
+    
+      categories: '[雜記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007101327\/',
+    
+      title: '紀念用的第一篇',
+    
+    
+      summary: '\u003cp\u003e最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣，\n就到\u003cstrong\u003e\u003ca href=\u0022https:\/\/www.staticgen.com\/\u0022\u003e\u003ca href=\u0022https:\/\/www.staticgen.com\/\u0022\u003ehttps:\/\/www.staticgen.com\/\u003c\/a\u003e\u003c\/a\u003e\u003c\/strong\u003e找個人氣度高的來用，之後就選上了這個\u003cstrong\u003eHugo\u003c\/strong\u003e，\n雖然這個Beautiful Hugo的theme挺好看的，之後還是要改一下，首先還是先搞定code block…\u003c\/p\u003e',
+    
+    
+      date: '2020-07-10',
+    
+    
+      tags: '[Hugo]',
+    
+    
+      categories: '[雜記]',
+    
+    
+      author: '',
+    
+  },
+
+]
+
+posts.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
+posts.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
+
+vm.$set(vm.$data, 'posts', posts)
+</script>
+
+<script src="https://mikanbearer.github.io/js/code-title.js"></script>
+ 
+
+
+  </body>
+</html>

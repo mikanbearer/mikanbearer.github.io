@@ -1,0 +1,117 @@
+{{ define "main" }}
+<div id="app">
+  <v-app id="inspire">
+    <v-app id="inspire">
+      {{ partial "header.html" . }}
+      {{ partial "navbar" . }}
+      <v-main>
+        <v-container fluid style="width: 800px">
+          <v-row dense>
+            <v-col>
+              <v-card>
+                <v-card-title>
+                  <div class="text-h5">
+                    {{ .Title }}
+                  </div>
+                </v-card-title>
+                <v-card-subtitle>
+                  <div>
+                    {{ .Date.Format "2006-01-02" }}
+                    {{ if .Params.Categories }}
+                      {{ range .Params.Categories }}
+                        <a href="{{ $.Site.LanguagePrefix | absURL }}/categories/{{ . | urlize }}/">{{ . }}</a>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                  <div>
+                    {{ if .Params.tags }}
+                    {{ range .Params.tags }}
+                      <v-chip
+                        color="blue-grey"
+                        label
+                        text-color="white"
+                        x-small
+                        href="{{ $.Site.LanguagePrefix | absURL }}/tags/{{ . | urlize }}/"
+                      >
+                        {{ . }}
+                      </v-chip>
+                    {{ end }}
+                  {{ end }}
+
+                  </div>
+                <v-divider></v-divider>
+                </v-card-subtitle>
+
+                <v-card-text>
+                  {{ .Content }}
+                </v-card-text>
+
+
+              </v-card>
+              
+
+              
+              <div class="d-flex justify-space-between mt-5">
+                {{ if .PrevInSection }}
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      href="{{ .PrevInSection.Permalink }}"
+                      target="_blank"
+                      v-on="on"
+                      text
+                    >
+                      <v-icon>mdi-arrow-left</v-icon>
+                      Prev
+                    </v-btn>
+                  </template>
+                  <span>{{ .PrevInSection.Title }}</span>
+                </v-tooltip>
+              {{ else }}
+                <v-btn
+                 text
+                 disabled
+                >
+                <v-icon>mdi-arrow-left</v-icon>
+                  Prev
+                </v-btn>
+              {{ end }}
+              
+        
+              {{ if .NextInSection }}
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    href="{{ .NextInSection.Permalink }}"
+                    target="_blank"
+                    v-on="on"
+                    text
+                  >
+                    Next
+                    <v-icon>mdi-arrow-right</v-icon>
+                  </v-btn>
+                </template>
+                <span>{{ .NextInSection.Title }}</span>
+              </v-tooltip>
+              {{ else }}
+              <v-btn
+               text
+               disabled
+              >
+              Next
+              <v-icon>mdi-arrow-right</v-icon>
+              </v-btn>
+              {{ end }}
+              </div>
+
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>          
+    </v-app>
+  </v-app>
+</div>
+{{ partial "footer" . }}
+{{ end }}
+
+

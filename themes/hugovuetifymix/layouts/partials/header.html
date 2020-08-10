@@ -1,0 +1,88 @@
+
+
+<v-app-bar
+app
+clipped-left
+color="secondary"
+dense
+>
+
+<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+<v-toolbar-title class="mr-12 align-center">
+  <span class="title"></span>
+</v-toolbar-title>
+<v-spacer></v-spacer>
+<v-row
+  align="center"
+  style="max-width: 650px"
+>
+
+
+    <v-autocomplete
+      v-model="model"
+      :items="items"
+      :search-input.sync="search"
+      dense
+      hide-no-data
+      hide-details
+      item-text="title"
+      item-value="url"
+      placeholder="Search for a Title..."
+      prepend-inner-icon="mdi-database-search"
+      return-object
+      solo
+    >
+    </v-autocomplete>
+  </v-row>
+</v-app-bar>
+
+
+
+
+<v-dialog v-model="model" v-if="model" max-width="600">
+  <v-card class="secondary lighten-1">
+    <v-card-title>
+      [[ model.title ]]
+    </v-card-title>
+    <v-card-subtitle>
+      [[ model.date ]]
+      <a  v-for="category in model.categories">[[ category ]]</a>
+      <div>
+        <v-chip
+          v-for="tag in model.tags"
+          v-bind:key="tag.id"
+          color="blue-grey"
+          label
+          text-color="white"
+          x-small
+          :href="'{{ "" | absLangURL }}tags/' + tag"
+          class="mr-1"
+        >
+          [[ tag ]]
+        </v-chip>
+      </div>
+      <v-divider></v-divider>
+    </v-card-subtitle>
+    <v-card-text v-html="model.summary"></v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+  
+      <v-btn
+        color="primary"
+        text
+        @click="model = null"
+      >
+        Clear
+      </v-btn>
+
+      <v-btn
+        color="primary"
+        text
+        :href="model.url"
+      >
+        Go to the Page 
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>

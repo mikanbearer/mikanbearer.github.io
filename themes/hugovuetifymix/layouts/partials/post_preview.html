@@ -1,0 +1,36 @@
+<div class="grey--text text--lighten-1 text-body-2">
+{{ .Date.Format "2006-01-02" }}
+{{ if .Params.Categories }}
+  {{ range .Params.Categories }}
+  <a href="{{ $.Site.LanguagePrefix | absURL }}/categories/{{ . | urlize }}/">{{ . }}</a>
+  {{ end }}
+{{ end }}
+</div>
+
+<div>
+{{ if .Params.tags }}
+  {{ range .Params.tags }}
+  <v-chip
+    color="blue-grey"
+    label
+    text-color="white"
+    x-small
+    href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/"
+    
+  >
+    {{ . }}
+  </v-chip>
+  {{ end }}
+{{ end }}
+</div>
+
+<v-divider></v-divider>
+
+<div class="grey--text text--lighten-1 text-body-2">
+{{ if .Truncated }}
+  {{ .Summary }}
+  <v-btn href="{{ .Permalink }}" color="primary" small>more</v-btn>
+{{ else }}
+  {{ .Content }}
+{{ end }}    
+</div>

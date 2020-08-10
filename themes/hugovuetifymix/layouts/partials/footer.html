@@ -1,0 +1,106 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/vue-router@3.4.2/dist/vue-router.js"></script>
+
+
+
+<script>
+  var vm = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app',
+    vuetify: new Vuetify(),
+    props: {
+    },
+    data: {
+      drawer: false,
+      panel: [],
+      page: null,
+      tab: null,
+      model: null,
+      search: null,
+
+
+      tags: null,
+      posts: null,
+      seltags: null,
+      filteredposts: null,
+      
+    },
+    computed: {
+
+      items () {
+        if (this.search){
+          console.log(this.model)
+          return this.posts
+        }else{
+          return []
+        }
+        
+
+      },
+    },
+    
+    created () {
+      this.$vuetify.theme.dark = true
+    },
+
+
+    methods: {
+      remove (item) {
+        this.seltags.splice(this.seltags.indexOf(item), 1)
+        this.seltags = [...this.seltags]
+      },
+    }
+  })
+
+
+  vm.$vuetify.theme.themes.dark.primary = '#ee7942'
+
+
+
+var posts = [
+{{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {
+    url: '{{ .Permalink }}',
+    {{if .Title }}
+      title: '{{ .Title }}',
+    {{ else }}
+      title: '',
+    {{ end }}
+    {{ if .Truncated }}
+      summary: '{{ .Summary }}',
+    {{ else }}
+      summary: '',
+    {{ end }}
+    {{ if .Params.Date }}
+      date: '{{ .Params.Date.Format "2006-01-02" }}',
+    {{ else }}
+      date: '',
+    {{ end }}
+    {{ if .Params.Tags }}
+      tags: '{{ .Params.Tags }}',
+    {{ else }}
+      tags: ' ',
+    {{ end }}
+    {{ if .Params.Categories }}
+      categories: '{{ .Params.Categories }}',
+    {{ else }}
+      categories: ' ',
+    {{ end }}
+    {{ if .Params.Author }}
+      author: '{{ .Params.Author }}',
+    {{ else }}
+      author: '',
+    {{ end }}
+  },
+{{ end }}
+]
+
+posts.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
+posts.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
+
+vm.$set(vm.$data, 'posts', posts)
+</script>
+
+<script src="{{ "js/code-title.js" | absURL }}"></script>
+ 

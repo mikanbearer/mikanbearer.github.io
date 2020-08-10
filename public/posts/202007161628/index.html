@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html><head>
+  <title>腦袋空空日記</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://mikanbearer.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://mikanbearer.github.io/css/code-block.css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  
+</head>
+<body>
+<div id="app">
+  <v-app id="inspire">
+    <v-app id="inspire">
+      
+
+<v-app-bar
+app
+clipped-left
+color="secondary"
+dense
+>
+
+<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+<v-toolbar-title class="mr-12 align-center">
+  <span class="title"></span>
+</v-toolbar-title>
+<v-spacer></v-spacer>
+<v-row
+  align="center"
+  style="max-width: 650px"
+>
+
+
+    <v-autocomplete
+      v-model="model"
+      :items="items"
+      :search-input.sync="search"
+      dense
+      hide-no-data
+      hide-details
+      item-text="title"
+      item-value="url"
+      placeholder="Search for a Title..."
+      prepend-inner-icon="mdi-database-search"
+      return-object
+      solo
+    >
+    </v-autocomplete>
+  </v-row>
+</v-app-bar>
+
+
+
+
+<v-dialog v-model="model" v-if="model" max-width="600">
+  <v-card class="secondary lighten-1">
+    <v-card-title>
+      [[ model.title ]]
+    </v-card-title>
+    <v-card-subtitle>
+      [[ model.date ]]
+      <a  v-for="category in model.categories">[[ category ]]</a>
+      <div>
+        <v-chip
+          v-for="tag in model.tags"
+          v-bind:key="tag.id"
+          color="blue-grey"
+          label
+          text-color="white"
+          x-small
+          :href="'https://mikanbearer.github.io/tags/' + tag"
+          class="mr-1"
+        >
+          [[ tag ]]
+        </v-chip>
+      </div>
+      <v-divider></v-divider>
+    </v-card-subtitle>
+    <v-card-text v-html="model.summary"></v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+  
+      <v-btn
+        color="primary"
+        text
+        @click="model = null"
+      >
+        Clear
+      </v-btn>
+
+      <v-btn
+        color="primary"
+        text
+        :href="model.url"
+      >
+        Go to the Page 
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
+      
+<v-navigation-drawer
+  v-model="drawer"
+  app
+  fixed
+  clipped
+>
+
+  
+  <v-list-item link href="https://mikanbearer.github.io/about">
+    <v-list-item-action>
+      <v-icon color="grey">mdi-information</v-icon>
+    </v-list-item-action>
+    <v-list-item-title class="grey--text">About</v-list-item-title>
+  </v-list-item>
+
+  <v-divider></v-divider>
+
+  <v-list-item link href="https://mikanbearer.github.io/">
+    <v-list-item-action>
+      <v-icon color="grey">mdi-home</v-icon>
+    </v-list-item-action>
+    <v-list-item-title class="grey--text">Home</v-list-item-title>
+  </v-list-item>
+      <v-list-item link href="https://mikanbearer.github.io/tags">
+        <v-list-item-action>
+          <v-icon color="grey">mdi-tag-multiple</v-icon>
+        </v-list-item-action>
+        <v-list-item-title class="grey--text">Tags</v-list-item-title>
+      </v-list-item>
+      <v-list-item link href="https://mikanbearer.github.io/categories">
+        <v-list-item-action>
+          <v-icon color="grey">mdi-folder-multiple</v-icon>
+        </v-list-item-action>
+        <v-list-item-title class="grey--text">Categories</v-list-item-title>
+      </v-list-item>
+
+
+      <v-divider></v-divider>
+
+
+
+
+  </v-list>
+</v-navigation-drawer>
+
+
+
+    
+      <v-main>
+        <v-container fluid style="width: 800px">
+          <v-row dense>
+            <v-col>
+              <v-card>
+                <v-card-title>
+                  <div class="text-h5">
+                    使用Django REST framework超高速部屬RESTful API (1)
+                  </div>
+                </v-card-title>
+                <v-card-subtitle>
+                  <div>
+                    2020-07-16
+                    
+                      
+                        <a href="https://mikanbearer.github.io//categories/%E5%BE%8C%E7%AB%AF%E7%AD%86%E8%A8%98/">後端筆記</a>
+                      
+                    
+                  </div>
+                  <div>
+                    
+                    
+                      <v-chip
+                        color="blue-grey"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io//tags/Python/"
+                      >
+                        Python
+                      </v-chip>
+                    
+                      <v-chip
+                        color="blue-grey"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io//tags/Django/"
+                      >
+                        Django
+                      </v-chip>
+                    
+                  
+
+                  </div>
+                <v-divider></v-divider>
+                </v-card-subtitle>
+
+                <v-card-text>
+                  <p>這次作為複習，利用djangorestframework製作一個陽春的REST API
+何謂RESTful就不贅述了，直接開始實做</p>
+<p>code放在一樣放在GitHub上
+<a href="https://github.com/mikanbearer/django_rest_example"><a href="https://github.com/mikanbearer/django_rest_example">https://github.com/mikanbearer/django_rest_example</a></a></p>
+<p>環境大概是以下這樣</p>
+<pre><code>$ python --version
+Python 3.8.4
+$ pip list
+...
+Django                  3.0
+djangorestframework     3.11.0
+</code></pre><p>初期的幾個指令</p>
+<pre><code>django-admin startproject django_rest_example
+cd django_rest_example
+python manage.py startapp api
+python manage.py migrate
+</code></pre><p>完成後的樹狀圖</p>
+<pre><code>.
+│  db.sqlite3
+│  manage.py
+│
+├─django_rest_example
+│  │  asgi.py
+│  │  settings.py
+│  │  urls.py
+│  │  wsgi.py
+│  │  __init__.py
+│  │
+│  └─__pycache__
+│          settings.cpython-36.pyc
+│          urls.cpython-36.pyc
+│          __init__.cpython-36.pyc
+│
+└─api
+    │  admin.py
+    │  apps.py
+    │  models.py
+    │  tests.py
+    │  views.py
+    │  __init__.py
+    │
+    ├─migrations
+    │      __init__.py
+    │
+    └─__pycache__
+            __init__.cpython-36.pyc
+
+</code></pre><p>settings.py追加剛才建立的app</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:django_rest_example/settings.py" data-lang=":django_rest_example/settings.py">
+INSTALLED_APPS <span style="color:#f92672">=</span> [
+    <span style="color:#e6db74">&#39;django.contrib.admin&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.auth&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.contenttypes&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.sessions&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.messages&#39;</span>,
+    <span style="color:#e6db74">&#39;django.contrib.staticfiles&#39;</span>,
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#e6db74">&#39;rest_framework&#39;</span>, <span style="color:#75715e"># 追加</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#e6db74">&#39;api&#39;</span>, <span style="color:#75715e"># 追加</span>
+</span>]
+
+</code></pre></td></tr></table>
+</div>
+</div><p>追加以下設定，可以指定一頁最多幾個object</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:django_rest_example/settings.py" data-lang=":django_rest_example/settings.py">
+<span style="display:block;width:100%;background-color:#3c3d38">REST_FRAMEWORK <span style="color:#f92672">=</span> {
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#e6db74">&#39;DEFAULT_PAGINATION_CLASS&#39;</span>: <span style="color:#e6db74">&#39;rest_framework.pagination.PageNumberPagination&#39;</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#e6db74">&#39;PAGE_SIZE&#39;</span>: <span style="color:#ae81ff">10</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">}
+</span></code></pre></td></tr></table>
+</div>
+</div><p>修改models.py</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:api/models.py" data-lang=":api/models.py"><span style="color:#f92672">from</span> django.db <span style="color:#f92672">import</span> models
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#f92672">from</span> django.core <span style="color:#f92672">import</span> validators
+</span>
+<span style="color:#75715e"># Create your models here.</span>
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Linkman</span>(models<span style="color:#f92672">.</span>Model):
+</span><span style="display:block;width:100%;background-color:#3c3d38">    SEX_CHOICES <span style="color:#f92672">=</span> (
+</span><span style="display:block;width:100%;background-color:#3c3d38">        (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;男&#39;</span>),
+</span><span style="display:block;width:100%;background-color:#3c3d38">        (<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;女&#39;</span>),
+</span><span style="display:block;width:100%;background-color:#3c3d38">    )
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    name <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>CharField(
+</span><span style="display:block;width:100%;background-color:#3c3d38">        verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;姓名&#39;</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">        max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    )
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    sex <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>IntegerField(
+</span><span style="display:block;width:100%;background-color:#3c3d38">        verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;性別&#39;</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">        choices<span style="color:#f92672">=</span>SEX_CHOICES,
+</span><span style="display:block;width:100%;background-color:#3c3d38">        default<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    )
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    tel <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>CharField(
+</span><span style="display:block;width:100%;background-color:#3c3d38">        verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;電話&#39;</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">        max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    )
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    email <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>EmailField(
+</span><span style="display:block;width:100%;background-color:#3c3d38">        verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;電子郵件&#39;</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">        validators<span style="color:#f92672">=</span>[validators<span style="color:#f92672">.</span>EmailValidator]
+</span><span style="display:block;width:100%;background-color:#3c3d38">    )
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    created_at <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>DateTimeField(
+</span><span style="display:block;width:100%;background-color:#3c3d38">        verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;建立日&#39;</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">        auto_now_add<span style="color:#f92672">=</span>True
+</span><span style="display:block;width:100%;background-color:#3c3d38">    )
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    updated_at <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>DateTimeField(
+</span><span style="display:block;width:100%;background-color:#3c3d38">        verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;更新日&#39;</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">        auto_now<span style="color:#f92672">=</span>True
+</span><span style="display:block;width:100%;background-color:#3c3d38">    )
+</span></code></pre></td></tr></table>
+</div>
+</div><p>使用以下兩個指令生成migration並建立table</p>
+<pre><code>python manage.py makemigrations
+python manage.py migrate
+</code></pre><p>接下來建立關鍵的Serializer，就之於html用的forms，在使用json的情況下則是用serializers來進行序列化，
+和ModelForm不同的是，serializer也會用於view的response</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:api/serializers.py" data-lang=":api/serializers.py"><span style="color:#f92672">from</span> rest_framework <span style="color:#f92672">import</span> serializers
+<span style="color:#f92672">from</span> .models <span style="color:#f92672">import</span> Linkman
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LinkmanSerializer</span>(serializers<span style="color:#f92672">.</span>HyperlinkedModelSerializer):
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Meta</span>:
+        model <span style="color:#f92672">=</span> Linkman
+        fields <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;sex&#39;</span>, <span style="color:#e6db74">&#39;tel&#39;</span>, <span style="color:#e6db74">&#39;email&#39;</span>, <span style="color:#e6db74">&#39;created_at&#39;</span>, <span style="color:#e6db74">&#39;updated_at&#39;</span>]
+</code></pre></td></tr></table>
+</div>
+</div><p>接下來就是處理view了，雖然一般會用以下的寫法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LinkmanList</span>(APIView):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get</span>(self, request, format<span style="color:#f92672">=</span>None):
+        <span style="color:#f92672">...</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">post</span>(self, request, format<span style="color:#f92672">=</span>None):
+        <span style="color:#f92672">...</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LinkDetail</span>(APIView):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get</span>(self, request, pk, format<span style="color:#f92672">=</span>None):
+        <span style="color:#f92672">...</span>
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">put</span>(self, request, pk, format<span style="color:#f92672">=</span>None):
+        <span style="color:#f92672">...</span>
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delete</span>(self, request, pk, format<span style="color:#f92672">=</span>None):
+        <span style="color:#f92672">...</span>
+</code></pre></div><p>和相應的urlpattern
+urls.py也能用以下寫法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">urlpatterns <span style="color:#f92672">=</span> [
+    path(<span style="color:#e6db74">&#39;&#39;</span>, views<span style="color:#f92672">.</span>LinkmanList<span style="color:#f92672">.</span>as_view()),
+    path(<span style="color:#e6db74">&#39;&lt;int:pk&gt;/&#39;</span>, LinkmanDetail<span style="color:#f92672">.</span>as_view()),
+]
+</code></pre></div><p>但為了求快，view直接選擇可使用多種method的viewsets，而urlpattern選用routers</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:api/views.py" data-lang=":api/views.py"><span style="color:#f92672">from</span> django.shortcuts <span style="color:#f92672">import</span> render
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#f92672">from</span> rest_framework <span style="color:#f92672">import</span> viewsets
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#f92672">from</span> rest_framework <span style="color:#f92672">import</span> permissions
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#f92672">from</span> .models <span style="color:#f92672">import</span> Linkman
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#f92672">from</span> .serializers <span style="color:#f92672">import</span> LinkmanSerializer
+</span>
+<span style="color:#75715e"># Create your views here.</span>
+
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LinkmanViewSet</span>(viewsets<span style="color:#f92672">.</span>ModelViewSet):
+</span><span style="display:block;width:100%;background-color:#3c3d38">    queryset <span style="color:#f92672">=</span> Linkman<span style="color:#f92672">.</span>objects<span style="color:#f92672">.</span>all()
+</span><span style="display:block;width:100%;background-color:#3c3d38">    serializer_class <span style="color:#f92672">=</span> LinkmanSerializer
+</span><span style="display:block;width:100%;background-color:#3c3d38">    permission_classes <span style="color:#f92672">=</span> [permissions<span style="color:#f92672">.</span>IsAuthenticated]
+</span></code></pre></td></tr></table>
+</div>
+</div><p>使用router的urls如下</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:api/urls.py" data-lang=":api/urls.py"><span style="color:#f92672">from</span> django.urls <span style="color:#f92672">import</span> include, path
+<span style="color:#f92672">from</span> rest_framework <span style="color:#f92672">import</span> routers
+<span style="color:#f92672">from</span> .views <span style="color:#f92672">import</span> LinkmanViewSet
+
+router <span style="color:#f92672">=</span> routers<span style="color:#f92672">.</span>DefaultRouter()
+router<span style="color:#f92672">.</span>register(<span style="color:#e6db74">&#39;linkman&#39;</span>, LinkmanViewSet)
+
+urlpatterns <span style="color:#f92672">=</span> [
+    path(<span style="color:#e6db74">&#39;&#39;</span>, include(router<span style="color:#f92672">.</span>urls)),
+    path(<span style="color:#e6db74">&#39;api-auth/&#39;</span>, include(<span style="color:#e6db74">&#39;rest_framework.urls&#39;</span>))
+]
+</code></pre></td></tr></table>
+</div>
+</div><p>既然viewsets已經包含了這麼多method，那現在的pattern到底會是怎樣呢？其實可以從router一窺究竟,
+使用django shell</p>
+<pre><code>python manage.py shell
+</code></pre><p>照剛才的寫法，這就是urlpatterns中「''」include的內容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">from</span> api <span style="color:#f92672">import</span> urls
+<span style="color:#f92672">&gt;&gt;&gt;</span> urls<span style="color:#f92672">.</span>router<span style="color:#f92672">.</span>__dict__
+{<span style="color:#e6db74">&#39;root_renderers&#39;</span>: [<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">rest_framework</span><span style="color:#f92672">.</span>renderers<span style="color:#f92672">.</span>JSONRenderer<span style="color:#e6db74">&#39;&gt;, &lt;class &#39;</span>rest_framework<span style="color:#f92672">.</span>rende
+rers<span style="color:#f92672">.</span>BrowsableAPIRenderer<span style="color:#e6db74">&#39;&gt;], &#39;</span>trailing_slash<span style="color:#e6db74">&#39;: &#39;</span><span style="color:#f92672">/</span><span style="color:#e6db74">&#39;, &#39;</span>registry<span style="color:#e6db74">&#39;: [(&#39;</span>linkman<span style="color:#e6db74">&#39;, &lt;class &#39;</span>api<span style="color:#f92672">.</span>views<span style="color:#f92672">.</span>L
+inkmanViewSet<span style="color:#e6db74">&#39;&gt;, &#39;</span>linkman<span style="color:#e6db74">&#39;)], &#39;</span>_urls<span style="color:#e6db74">&#39;: [&lt;URLPattern &#39;</span><span style="color:#f92672">^</span>linkman<span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#e6db74">&#39; [name=&#39;</span>linkman<span style="color:#f92672">-</span>list<span style="color:#e6db74">&#39;]&gt;, &lt;URLPatt</span>
+ern <span style="color:#e6db74">&#39;^linkman\.(?P&lt;format&gt;[a-z0-9]+)/?$&#39;</span> [name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;linkman-list&#39;</span>]<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>URLPattern <span style="color:#e6db74">&#39;^linkman/(?P&lt;pk&gt;[^/</span>
+<span style="color:#f92672">.</span>]<span style="color:#f92672">+</span>)<span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#e6db74">&#39; [name=&#39;</span>linkman<span style="color:#f92672">-</span>detail<span style="color:#e6db74">&#39;]&gt;, &lt;URLPattern &#39;</span><span style="color:#f92672">^</span>linkman<span style="color:#f92672">/</span>(<span style="color:#960050;background-color:#1e0010">?</span>P<span style="color:#f92672">&lt;</span>pk<span style="color:#f92672">&gt;</span>[<span style="color:#f92672">^/.</span>]<span style="color:#f92672">+</span>)\<span style="color:#f92672">.</span>(<span style="color:#960050;background-color:#1e0010">?</span>P<span style="color:#f92672">&lt;</span>format<span style="color:#f92672">&gt;</span>[a<span style="color:#f92672">-</span>z0<span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">+</span>)<span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">?$</span><span style="color:#e6db74">&#39;</span>
+ [name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;linkman-detail&#39;</span>]<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>URLPattern <span style="color:#e6db74">&#39;^$&#39;</span> [name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;api-root&#39;</span>]<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>URLPattern <span style="color:#e6db74">&#39;^\.(?P&lt;format&gt;[a-z0-</span>
+<span style="color:#ae81ff">9</span>]<span style="color:#f92672">+</span>)<span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">?$</span><span style="color:#e6db74">&#39; [name=&#39;</span>api<span style="color:#f92672">-</span>root<span style="color:#e6db74">&#39;]&gt;]}</span>
+
+</code></pre></div><p>project的urls.py要記得include app的urls.py，接下來就大功告成</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:django_rest_example/urls.py" data-lang=":django_rest_example/urls.py"><span style="color:#f92672">from</span> django.contrib <span style="color:#f92672">import</span> admin
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#f92672">from</span> django.urls <span style="color:#f92672">import</span> path, include
+</span>
+urlpatterns <span style="color:#f92672">=</span> [
+    path(<span style="color:#e6db74">&#39;admin/&#39;</span>, admin<span style="color:#f92672">.</span>site<span style="color:#f92672">.</span>urls),
+<span style="display:block;width:100%;background-color:#3c3d38">    path(<span style="color:#e6db74">&#39;&#39;</span>, include(<span style="color:#e6db74">&#39;api.urls&#39;</span>)),
+</span>]
+</code></pre></td></tr></table>
+</div>
+</div><p>一樣用runserver這個指令來啟動WSGI</p>
+<pre><code>python manage.py runserver
+</code></pre><p>因為permission有指定IsAuthenticated，所以沒有加上user:password的話會失敗</p>
+<pre><code>$ curl http://127.0.0.1:8000/api/linkman/
+{&quot;detail&quot;:&quot;Authentication credentials were not provided.&quot;}
+</code></pre><p>post</p>
+<pre><code>$ curl http://127.0.0.1:8000/api/linkman/ -u admin:123 -X POST -H 'Content-Type: application/json' 
+    \ -d '{&quot;name&quot;:&quot;orz&quot;,&quot;sex&quot;:1,&quot;tel&quot;:&quot;123&quot;,&quot;email&quot;:&quot;qq@qq.qq&quot;}'
+{&quot;name&quot;:&quot;orz&quot;,&quot;sex&quot;:1,&quot;tel&quot;:&quot;123&quot;,&quot;email&quot;:&quot;qq@qq.qq&quot;,&quot;created_at&quot;:&quot;2020-07-18T18:11:11.137940Z&quot;,&quot;updated_at&quot;:&quot;2020-07-18T18:48:53.737802Z&quot;}
+</code></pre><p>get</p>
+<pre><code>$ curl http://127.0.0.1:8000/api/linkman/ -u admin:123
+[{&quot;name&quot;:&quot;orz&quot;,&quot;sex&quot;:1,&quot;tel&quot;:&quot;123&quot;,&quot;email&quot;:&quot;qq@qq.qq&quot;,&quot;created_at&quot;:&quot;2020-07-18T18:11:11.137940Z&quot;,&quot;updated_at&quot;:&quot;2020-07-18T18:48:53.737802Z&quot;}] 
+</code></pre><p>get detail</p>
+<pre><code>$ curl http://127.0.0.1:8000/api/linkman/1/ -u admin:123
+{&quot;name&quot;:&quot;orz&quot;,&quot;sex&quot;:1,&quot;tel&quot;:&quot;123&quot;,&quot;email&quot;:&quot;qq@qq.qq&quot;,&quot;created_at&quot;:&quot;2020-07-18T18:11:11.137940Z&quot;,&quot;updated_at&quot;:&quot;2020-07-18T18:52:39.098101Z&quot;}
+</code></pre><p>put</p>
+<pre><code>$ curl http://127.0.0.1:8000/api/linkman/ -u admin:123 -X POST -H 'Content-Type: application/json' 
+    \ -d '{&quot;name&quot;:&quot;orz&quot;,&quot;sex&quot;:1,&quot;tel&quot;:&quot;123&quot;,&quot;email&quot;:&quot;qq@qq.qq&quot;}'
+{&quot;name&quot;:&quot;orz&quot;,&quot;sex&quot;:1,&quot;tel&quot;:&quot;123&quot;,&quot;email&quot;:&quot;qq@qq.qq&quot;,&quot;created_at&quot;:&quot;2020-07-18T18:11:11.137940Z&quot;,&quot;updated_at&quot;:&quot;2020-07-18T18:48:53.737802Z&quot;}
+</code></pre><p>patch</p>
+<pre><code>$ curl http://127.0.0.1:8000/api/linkman/ -u admin:123 -X POST -H 'Content-Type: application/json' 
+    \ -d '{&quot;sex&quot;:2}'
+{&quot;name&quot;:&quot;orz&quot;,&quot;sex&quot;:2,&quot;tel&quot;:&quot;123&quot;,&quot;email&quot;:&quot;qq@qq.qq&quot;,&quot;created_at&quot;:&quot;2020-07-18T18:11:11.137940Z&quot;,&quot;updated_at&quot;:&quot;2020-07-18T18:52:53.737802Z&quot;}
+</code></pre><p>也有web可以提供使用</p>
+<img style="display:inline;" width="150" src="1.png">
+<img style="display:inline;" width="150" src="2.png">
+<img style="display:inline;" width="150" src="3.png">
+                </v-card-text>
+
+
+              </v-card>
+              
+
+              
+              <div class="d-flex justify-space-between mt-5">
+                
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      href="https://mikanbearer.github.io/posts/202007151013/"
+                      target="_blank"
+                      v-on="on"
+                      text
+                    >
+                      <v-icon>mdi-arrow-left</v-icon>
+                      Prev
+                    </v-btn>
+                  </template>
+                  <span>使用Django超高速部屬CRUD</span>
+                </v-tooltip>
+              
+              
+        
+              
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    href="https://mikanbearer.github.io/posts/202007201139/"
+                    target="_blank"
+                    v-on="on"
+                    text
+                  >
+                    Next
+                    <v-icon>mdi-arrow-right</v-icon>
+                  </v-btn>
+                </template>
+                <span>watch multiple properties for single callback</span>
+              </v-tooltip>
+              
+              </div>
+
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>          
+    </v-app>
+  </v-app>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/vue-router@3.4.2/dist/vue-router.js"></script>
+
+
+
+<script>
+  var vm = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app',
+    vuetify: new Vuetify(),
+    props: {
+    },
+    data: {
+      drawer: false,
+      panel: [],
+      page: null,
+      tab: null,
+      model: null,
+      search: null,
+
+
+      tags: null,
+      posts: null,
+      seltags: null,
+      filteredposts: null,
+      
+    },
+    computed: {
+
+      items () {
+        if (this.search){
+          console.log(this.model)
+          return this.posts
+        }else{
+          return []
+        }
+        
+
+      },
+    },
+    
+    created () {
+      this.$vuetify.theme.dark = true
+    },
+
+
+    methods: {
+      remove (item) {
+        this.seltags.splice(this.seltags.indexOf(item), 1)
+        this.seltags = [...this.seltags]
+      },
+    }
+  })
+
+
+  vm.$vuetify.theme.themes.dark.primary = '#ee7942'
+
+
+
+var posts = [
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202008100108\/',
+    
+      title: '202008100108',
+    
+    
+      summary: '',
+    
+    
+      date: '2020-08-10',
+    
+    
+      tags: ' ',
+    
+    
+      categories: ' ',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202008070930\/',
+    
+      title: '新主題上線！',
+    
+    
+      summary: '\u003cp\u003e原本使用\u003ca href=\u0022https:\/\/github.com\/halogenica\/beautifulhugo\u0022\u003eBeautifulhugo\u003c\/a\u003e(個人蠻喜歡的)，但發現會有一些小問題…\u003c\/p\u003e\n\u003cp\u003e這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…\u003c\/p\u003e',
+    
+    
+      date: '2020-08-07',
+    
+    
+      tags: '[Hugo Vue.js Vuetify]',
+    
+    
+      categories: '[雜記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007301419\/',
+    
+      title: '在Nginx或Apache上設定CORS',
+    
+    
+      summary: '\u003cp\u003eWeb Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用\u003ca href=\u0022https:\/\/mikanbearer.github.io\/myblog\/posts\/202007291642\/\u0022\u003e這篇\u003c\/a\u003e來實作，本篇包含Nginx及Apache的設定範例\u003c\/p\u003e',
+    
+    
+      date: '2020-07-30',
+    
+    
+      tags: '[Nginx Apache]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007291642\/',
+    
+      title: '使用docker-compose部屬Nginx \u002b uWSGI \u002b Django',
+    
+    
+      summary: '\u003cp\u003e雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…\u003c\/p\u003e\n\u003cp\u003e這次使用以下兩篇舊文的範例來練習\u003c\/p\u003e',
+    
+    
+      date: '2020-07-29',
+    
+    
+      tags: '[Docker Nginx uWSGI]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007262314\/',
+    
+      title: '使用製作Vue.js \u002b Vuetify製作SPA登入畫面',
+    
+    
+      summary: '\u003cp\u003e利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，\n往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…\u003c\/p\u003e',
+    
+    
+      date: '2020-07-26',
+    
+    
+      tags: '[Vue.js JavaScript]',
+    
+    
+      categories: '[前端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007241554\/',
+    
+      title: '[未解決]在EVE-NG上部屬vEOS LAB',
+    
+    
+      summary: '\u003cp\u003e第一篇挫折紀錄，通篇鬼打牆…\n原本想在EVE-NG上做個簡單的LAB，沒想到問題還真不少…\u003c\/p\u003e',
+    
+    
+      date: '2020-07-24',
+    
+    
+      tags: '[EVE-NG Arista]',
+    
+    
+      categories: '[挫折紀錄]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007221111\/',
+    
+      title: '使用Django \u002b Celery進行異步處理',
+    
+    
+      summary: '\u003cp\u003e本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，\n目前只提供簡單的範例，不包含異步任務的情境應用\u003c\/p\u003e',
+    
+    
+      date: '2020-07-22',
+    
+    
+      tags: '[Python Django Celery]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007211516\/',
+    
+      title: '用VBA在Excel中使用nslookup',
+    
+    
+      summary: '\u003cp\u003e工作中常常用到的功能，不筆記會忘記，\n主要是在Excel Macro調用Wshshell，把A欄的結果輸出到B欄\u003c\/p\u003e',
+    
+    
+      date: '2020-07-21',
+    
+    
+      tags: '[Excel VBA]',
+    
+    
+      categories: '[雜記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007201501\/',
+    
+      title: '使用Django REST framework超高速部屬RESTful API (2)',
+    
+    
+      summary: '\u003cp\u003e承之前的範例，這次要用JSON Web Token驗證，並加上Cross-Origin Resource Sharing\u003c\/p\u003e',
+    
+    
+      date: '2020-07-20',
+    
+    
+      tags: '[Python Django]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007201139\/',
+    
+      title: 'watch multiple properties for single callback',
+    
+    
+      summary: '\u003cp\u003e想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法\u003c\/p\u003e',
+    
+    
+      date: '2020-07-20',
+    
+    
+      tags: '[Vue.js JavaScript]',
+    
+    
+      categories: '[前端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007161628\/',
+    
+      title: '使用Django REST framework超高速部屬RESTful API (1)',
+    
+    
+      summary: '\u003cp\u003e這次作為複習，利用djangorestframework製作一個陽春的REST API\n何謂RESTful就不贅述了，直接開始實做\u003c\/p\u003e',
+    
+    
+      date: '2020-07-16',
+    
+    
+      tags: '[Python Django]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007151013\/',
+    
+      title: '使用Django超高速部屬CRUD',
+    
+    
+      summary: '\u003cp\u003e這次僅是做一個超級簡易，能做到Create、Read、Update、Delete的Web App，\u003cbr\u003e\n為了避免版面過長，此篇僅有陽春的Template View，並沒有做Filter及Pagenation…\u003c\/p\u003e',
+    
+    
+      date: '2020-07-15',
+    
+    
+      tags: '[Python Django]',
+    
+    
+      categories: '[後端筆記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007141604\/',
+    
+      title: '使用VBScript定期送出按鍵',
+    
+    
+      summary: '\u003cp\u003e在客戶環境中操作，並需要客戶代為登入的情況下給自己用的小筆記，\n免得一不注意就被policy弄到進入省電模式\/登出，到時候又要請客戶的人來幫忙key帳號密碼…\n在不變更任何設定的情況下，VBScript還是很好用的東西，\u003cbr\u003e\n尤其是這個安全無害的method，\u003cstrong\u003eSendKeys\u003c\/strong\u003e\u003c\/p\u003e',
+    
+    
+      date: '2020-07-14',
+    
+    
+      tags: '[Windows VBScript]',
+    
+    
+      categories: '[雜記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202007101327\/',
+    
+      title: '紀念用的第一篇',
+    
+    
+      summary: '\u003cp\u003e最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣，\n就到\u003cstrong\u003e\u003ca href=\u0022https:\/\/www.staticgen.com\/\u0022\u003e\u003ca href=\u0022https:\/\/www.staticgen.com\/\u0022\u003ehttps:\/\/www.staticgen.com\/\u003c\/a\u003e\u003c\/a\u003e\u003c\/strong\u003e找個人氣度高的來用，之後就選上了這個\u003cstrong\u003eHugo\u003c\/strong\u003e，\n雖然這個Beautiful Hugo的theme挺好看的，之後還是要改一下，首先還是先搞定code block…\u003c\/p\u003e',
+    
+    
+      date: '2020-07-10',
+    
+    
+      tags: '[Hugo]',
+    
+    
+      categories: '[雜記]',
+    
+    
+      author: '',
+    
+  },
+
+]
+
+posts.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
+posts.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
+
+vm.$set(vm.$data, 'posts', posts)
+</script>
+
+<script src="https://mikanbearer.github.io/js/code-title.js"></script>
+ 
+
+
+  </body>
+</html>

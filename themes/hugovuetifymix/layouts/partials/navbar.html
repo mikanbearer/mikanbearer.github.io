@@ -1,0 +1,49 @@
+
+<v-navigation-drawer
+  v-model="drawer"
+  app
+  fixed
+  clipped
+>
+
+  
+  <v-list-item link href="{{ "about" | absLangURL }}">
+    <v-list-item-action>
+      <v-icon color="grey">mdi-information</v-icon>
+    </v-list-item-action>
+    <v-list-item-title class="grey--text">About</v-list-item-title>
+  </v-list-item>
+
+  <v-divider></v-divider>
+
+  <v-list-item link href="{{ "" | absLangURL }}">
+    <v-list-item-action>
+      <v-icon color="grey">mdi-home</v-icon>
+    </v-list-item-action>
+    <v-list-item-title class="grey--text">Home</v-list-item-title>
+  </v-list-item>
+      <v-list-item link href="{{ "tags" | absLangURL }}">
+        <v-list-item-action>
+          <v-icon color="grey">mdi-tag-multiple</v-icon>
+        </v-list-item-action>
+        <v-list-item-title class="grey--text">Tags</v-list-item-title>
+      </v-list-item>
+      <v-list-item link href="{{ "categories" | absLangURL }}">
+        <v-list-item-action>
+          <v-icon color="grey">mdi-folder-multiple</v-icon>
+        </v-list-item-action>
+        <v-list-item-title class="grey--text">Categories</v-list-item-title>
+      </v-list-item>
+
+
+      <v-divider></v-divider>
+
+
+
+
+  </v-list>
+</v-navigation-drawer>
+
+
+
+    
