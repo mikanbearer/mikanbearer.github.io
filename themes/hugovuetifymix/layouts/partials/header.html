@@ -1,88 +1,196 @@
 
 
 <v-app-bar
-app
-clipped-left
-color="secondary"
-dense
+  app
+  clipped-left
+  dense
+  dark
 >
 
-<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+  <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-<v-toolbar-title class="mr-12 align-center">
-  <span class="title"></span>
-</v-toolbar-title>
-<v-spacer></v-spacer>
-<v-row
-  align="center"
-  style="max-width: 650px"
->
-
-
-    <v-autocomplete
-      v-model="model"
-      :items="items"
-      :search-input.sync="search"
-      dense
-      hide-no-data
-      hide-details
-      item-text="title"
-      item-value="url"
-      placeholder="Search for a Title..."
-      prepend-inner-icon="mdi-database-search"
-      return-object
-      solo
-    >
-    </v-autocomplete>
-  </v-row>
+  <v-toolbar-title class="mr-12 align-center">
+    <span class="title"></span>
+  </v-toolbar-title>
+  <v-spacer></v-spacer>
+  <v-btn icon @click.stop="dialog = !dialog">
+    <v-icon>mdi-magnify</v-icon>
+  </v-btn>
 </v-app-bar>
 
 
 
 
-<v-dialog v-model="model" v-if="model" max-width="600">
-  <v-card class="secondary lighten-1">
-    <v-card-title>
-      [[ model.title ]]
-    </v-card-title>
-    <v-card-subtitle>
-      [[ model.date ]]
-      <a  v-for="category in model.categories">[[ category ]]</a>
-      <div>
-        <v-chip
-          v-for="tag in model.tags"
-          v-bind:key="tag.id"
-          color="blue-grey"
-          label
-          text-color="white"
-          x-small
-          :href="'{{ "" | absLangURL }}tags/' + tag"
-          class="mr-1"
-        >
-          [[ tag ]]
-        </v-chip>
-      </div>
-      <v-divider></v-divider>
-    </v-card-subtitle>
-    <v-card-text v-html="model.summary"></v-card-text>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-  
-      <v-btn
-        color="primary"
-        text
-        @click="model = null"
-      >
-        Clear
-      </v-btn>
 
-      <v-btn
-        color="primary"
-        text
-        :href="model.url"
-      >
-        Go to the Page 
-      </v-btn>
-    </v-card-actions>
+
+
+
+
+<v-dialog v-model="dialog" max-width="600">
+  <v-card>
+    <v-card-title>
+      Search Posts
+    </v-card-title>
+    <v-tabs 
+      v-model="tab"
+      background-color="transparent"
+      class="mb-3"
+    >
+      <v-tab>
+        Title
+      </v-tab>
+      <v-tab>
+        Tag
+      </v-tab>
+    </v-tabs>
+
+    <v-tabs-items v-model="tab" style="background-color: transparent;">
+      <v-tab-item>
+        <v-card-text>
+          <v-autocomplete
+            v-model="model"
+            :items="items"
+            :search-input.sync="search"
+            hide-no-data
+            hide-details
+            item-text="title"
+            item-value="url"
+            prepend-icon="mdi-magnify"
+            return-object
+          >
+          </v-autocomplete>
+        </v-card-text>
+        <v-card-text>
+          <v-expand-transition>
+            <div v-if="model">
+            <v-divider></v-divider>
+            <v-card-title class="text-h6 grey--text text--darken-4">
+              [[ model.title ]]
+            </v-card-title>
+            <v-card-subtitle class="grey--text text--darken-3 text-body-1">
+              [[ model.date ]]
+              <a  v-for="category in model.categories">[[ category ]]</a>
+              <div>
+                <v-chip
+                  v-for="tag in model.tags"
+                  v-bind:key="tag.id"
+                  color="secondary"
+                  label
+                  text-color="white"
+                  x-small
+                  :href="'{{ "" | absLangURL }}tags/' + tag"
+                  class="mr-1"
+                >
+                  [[ tag ]]
+                </v-chip>
+              </div>
+              <v-divider></v-divider>
+            </v-card-subtitle>
+            <v-card-text v-html="model.summary" class="grey--text text--darken-3 text-body-1"></v-card-text>
+            <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              :disabled="!model"
+              color="error"
+              @click="model = null"
+              small
+            >
+              Clear
+              <v-icon right small>mdi-close-circle</v-icon>
+            </v-btn>
+            <v-btn
+              v-if="model"
+              color="primary"
+              :href="model.url"
+              small
+            >
+              Go to the Post
+            </v-btn>
+            <v-btn
+              v-else
+              color="primary"
+              disabled
+              small
+            >
+              Continue Reading
+            </v-btn>
+            </v-card-actions>
+            </div>
+          </v-expand-transition>
+        </v-card-text>
+      </v-tab-item>
+
+      <v-tab-item>
+        <v-card-text>
+          <v-combobox 
+            v-model="seltags"
+            :items="tags"
+            chips
+            clearable
+            multiple
+            hide-selected
+            prepend-icon="mdi-tag-multiple"
+          >
+            <template v-slot:selection="{ attrs, item, select, selected }">
+              <v-chip
+                color="error"
+                v-bind="attrs"
+                :input-value="selected"
+                close
+                @click:close="remove(item)"
+              >
+               [[ item ]]
+              </v-chip>
+            </template>              
+          </v-combobox>
+        </v-card-text>
+        </v-card-text>
+          <v-expand-transition>
+            <v-simple-table v-if="filteredposts.length">
+              <template>
+                <thead>
+                  <tr>
+                    <th class="text-left">Date</th>
+                    <th class="text-left">Tags</th>
+                    <th class="text-left">Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="post in filteredposts">
+                    <td>[[ post.date ]]</td>
+                    <td>
+                      <div v-for="tag in post.tags" class="d-inline">
+                        <v-chip
+                          v-if="seltags.includes(tag)"
+                          color="error"
+                          label
+                          x-small
+                          :href="'{{ "" | absLangURL }}tags/' + tag"
+                          class="mr-1"
+                        >
+                          [[ tag ]]
+                        </v-chip>
+                        <v-chip
+                          v-else
+                          color="secondary"
+                          text-color="white"
+                          label
+                          x-small
+                          :href="'{{ "" | absLangURL }}tags/' + tag"
+                          class="mr-1"
+                        >
+                          [[ tag ]]
+                        </v-chip>
+                      </div>
+                    </td>
+                    <td><a :href="post.url">[[ post.title ]]</a></td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </v-expand-transition>
+        </v-card-text>
+      </v-tab-item>
+    </v-tabs-items>
   </v-card>
 </v-dialog>

@@ -1,4 +1,4 @@
-<div class="grey--text text--lighten-1 text-body-2">
+<div class="text-body-1">
 {{ .Date.Format "2006-01-02" }}
 {{ if .Params.Categories }}
   {{ range .Params.Categories }}
@@ -11,7 +11,7 @@
 {{ if .Params.tags }}
   {{ range .Params.tags }}
   <v-chip
-    color="blue-grey"
+    color="secondary"
     label
     text-color="white"
     x-small
@@ -26,10 +26,13 @@
 
 <v-divider></v-divider>
 
-<div class="grey--text text--lighten-1 text-body-2">
+<div class="text-body-1">
 {{ if .Truncated }}
   {{ .Summary }}
-  <v-btn href="{{ .Permalink }}" color="primary" small>more</v-btn>
+  <div>
+    <v-btn href="{{ .Permalink }}" color="primary" small>Read More</v-btn>
+  </div>
+  
 {{ else }}
   {{ .Content }}
 {{ end }}    

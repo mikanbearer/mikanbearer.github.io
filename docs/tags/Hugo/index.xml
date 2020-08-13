@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo on 腦袋空空日記</title>
+    <title>Hugo on 活到老學到死</title>
     <link>https://mikanbearer.github.io/tags/Hugo/</link>
-    <description>Recent content in Hugo on 腦袋空空日記</description>
+    <description>Recent content in Hugo on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 07 Aug 2020 09:30:55 +0800</lastBuildDate>
@@ -28,7 +28,7 @@
       
       <guid>https://mikanbearer.github.io/posts/202007101327/</guid>
       <description>&lt;p&gt;最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣，
-就到&lt;strong&gt;&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;https://www.staticgen.com/&lt;/a&gt;&lt;/a&gt;&lt;/strong&gt;找個人氣度高的來用，之後就選上了這個&lt;strong&gt;Hugo&lt;/strong&gt;，
+就到&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;https://www.staticgen.com/&lt;/a&gt;找個人氣度高的來用，之後就選上了這個&lt;strong&gt;Hugo&lt;/strong&gt;，
 雖然這個Beautiful Hugo的theme挺好看的，之後還是要改一下，首先還是先搞定code block…&lt;/p&gt;</description>
     </item>
     

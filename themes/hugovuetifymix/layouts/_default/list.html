@@ -2,28 +2,28 @@
 <div id="app">
   <v-app id="inspire">
 {{ partial "header.html" . }}
-{{ partial "navbar" . }}
+{{ partial "navigation" . }}
     <v-app id="inspire">
       <v-main>
         <v-container fluid style="width: 800px">
           <v-row dense>
             <v-col>
-              <div class="text-h5">
+              <div class="text-h5 grey--text text--darken-4">
                 {{ .Title }}
               </div>
               <div class="mt-3">
-                <v-expansion-panels v-model="panel" focusable multiple popout>
+                <v-expansion-panels v-model="panel" focusable multiple popout dark>
                   {{ $pag := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) }}
                       {{ range $pag.Pages }}
                   <v-expansion-panel>
-                    <v-expansion-panel-header>
+                    <v-expansion-panel-header >
                       {{ if .Params.Title }}
-                      <div class="text-h6">
+                      <div class="text-h6 white--text">
                         {{ .Params.Title }}
                       </div>
                       {{ end }}
                     </v-expansion-panel-header>
-                    <v-expansion-panel-content>
+                    <v-expansion-panel-content style="background-color: #ffffff;">
                       {{ partial "post_preview" . }}
                     </v-expansion-panel-content>
                   </v-expansion-panel>

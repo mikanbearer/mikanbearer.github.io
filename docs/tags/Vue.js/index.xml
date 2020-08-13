@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Vue.js on 腦袋空空日記</title>
+    <title>Vue.js on 活到老學到死</title>
     <link>https://mikanbearer.github.io/tags/Vue.js/</link>
-    <description>Recent content in Vue.js on 腦袋空空日記</description>
+    <description>Recent content in Vue.js on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 07 Aug 2020 09:30:55 +0800</lastBuildDate>
@@ -32,7 +32,7 @@
     </item>
     
     <item>
-      <title>watch multiple properties for single callback</title>
+      <title>使用watch監控的一些寫法</title>
       <link>https://mikanbearer.github.io/posts/202007201139/</link>
       <pubDate>Mon, 20 Jul 2020 11:39:17 +0800</pubDate>
       

@@ -12,16 +12,17 @@
   font-weight: normal;
   background-color: #272822;
   color: #f8f8f2;
+  padding: 0px;
 }
 
-div.v-card pre {
+pre {
   background-color: #272822;
   color: #f8f8f2;
   padding: 10px;
   border-radius: 4px;
 }
 
-div.v-card table pre {
+table pre {
   background-color: #272822;
   color: #f8f8f2;
   padding: 6px;
@@ -29,7 +30,7 @@ div.v-card table pre {
 }
 
 
-div.v-card code {
+code {
   background-color: #272822;
   color: #f8f8f2;
   padding: 0px;
@@ -37,15 +38,15 @@ div.v-card code {
 }
 
 
-div.v-card div.highlight div {
+div.highlight div {
   border-radius: 4px;
 }
 
-div.v-card div.highlight table code {
+div.highlight table code {
   padding: 0px;
 }
 
-div.v-card div.highlight div.code-name {
+div.highlight div.code-name {
   margin-top: 7px;
   margin-left: 6px;
   margin-bottom: 0px;

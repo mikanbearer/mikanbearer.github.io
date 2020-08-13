@@ -1,15 +1,69 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 腦袋空空日記</title>
+    <title>Tags on 活到老學到死</title>
     <link>https://mikanbearer.github.io/tags/</link>
-    <description>Recent content in Tags on 腦袋空空日記</description>
+    <description>Recent content in Tags on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2020 09:30:55 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2020 01:08:04 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Channels</title>
+      <link>https://mikanbearer.github.io/tags/Channels/</link>
+      <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/tags/Channels/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Django</title>
+      <link>https://mikanbearer.github.io/tags/Django/</link>
+      <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/tags/Django/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://mikanbearer.github.io/tags/Python/</link>
+      <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/tags/Python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RabbitMQ</title>
+      <link>https://mikanbearer.github.io/tags/RabbitMQ/</link>
+      <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/tags/RabbitMQ/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Echarts</title>
+      <link>https://mikanbearer.github.io/tags/Echarts/</link>
+      <pubDate>Sun, 09 Aug 2020 20:21:46 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/tags/Echarts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>https://mikanbearer.github.io/tags/JavaScript/</link>
+      <pubDate>Sun, 09 Aug 2020 20:21:46 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/tags/JavaScript/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Hugo</title>
@@ -75,24 +129,6 @@
     </item>
     
     <item>
-      <title>JavaScript</title>
-      <link>https://mikanbearer.github.io/tags/JavaScript/</link>
-      <pubDate>Sun, 26 Jul 2020 23:14:14 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/tags/JavaScript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Arista</title>
-      <link>https://mikanbearer.github.io/tags/Arista/</link>
-      <pubDate>Fri, 24 Jul 2020 15:54:30 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/tags/Arista/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>EVE-NG</title>
       <link>https://mikanbearer.github.io/tags/EVE-NG/</link>
       <pubDate>Fri, 24 Jul 2020 15:54:30 +0800</pubDate>
@@ -107,24 +143,6 @@
       <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/tags/Celery/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Django</title>
-      <link>https://mikanbearer.github.io/tags/Django/</link>
-      <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/tags/Django/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>https://mikanbearer.github.io/tags/Python/</link>
-      <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/tags/Python/</guid>
       <description></description>
     </item>
     
