@@ -6,16 +6,36 @@
     <description>Recent content in Tags on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Aug 2020 01:08:04 +0800</lastBuildDate>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
+    <lastBuildDate>Fri, 14 Aug 2020 09:13:49 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Prometheus</title>
+      <link>https://mikanbearer.github.io/tags/Prometheus/</link>
+      <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/Prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RabbitMQ</title>
+      <link>https://mikanbearer.github.io/tags/RabbitMQ/</link>
+      <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/RabbitMQ/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Channels</title>
       <link>https://mikanbearer.github.io/tags/Channels/</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Channels/</guid>
       <description></description>
     </item>
@@ -24,7 +44,7 @@
       <title>Django</title>
       <link>https://mikanbearer.github.io/tags/Django/</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Django/</guid>
       <description></description>
     </item>
@@ -33,17 +53,8 @@
       <title>Python</title>
       <link>https://mikanbearer.github.io/tags/Python/</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>RabbitMQ</title>
-      <link>https://mikanbearer.github.io/tags/RabbitMQ/</link>
-      <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/tags/RabbitMQ/</guid>
       <description></description>
     </item>
     
@@ -51,7 +62,7 @@
       <title>Echarts</title>
       <link>https://mikanbearer.github.io/tags/Echarts/</link>
       <pubDate>Sun, 09 Aug 2020 20:21:46 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Echarts/</guid>
       <description></description>
     </item>
@@ -60,7 +71,7 @@
       <title>JavaScript</title>
       <link>https://mikanbearer.github.io/tags/JavaScript/</link>
       <pubDate>Sun, 09 Aug 2020 20:21:46 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/JavaScript/</guid>
       <description></description>
     </item>
@@ -69,7 +80,7 @@
       <title>Hugo</title>
       <link>https://mikanbearer.github.io/tags/Hugo/</link>
       <pubDate>Fri, 07 Aug 2020 09:30:55 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Hugo/</guid>
       <description></description>
     </item>
@@ -78,7 +89,7 @@
       <title>Vue.js</title>
       <link>https://mikanbearer.github.io/tags/Vue.js/</link>
       <pubDate>Fri, 07 Aug 2020 09:30:55 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Vue.js/</guid>
       <description></description>
     </item>
@@ -87,7 +98,7 @@
       <title>Vuetify</title>
       <link>https://mikanbearer.github.io/tags/Vuetify/</link>
       <pubDate>Fri, 07 Aug 2020 09:30:55 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Vuetify/</guid>
       <description></description>
     </item>
@@ -96,7 +107,7 @@
       <title>Apache</title>
       <link>https://mikanbearer.github.io/tags/Apache/</link>
       <pubDate>Thu, 30 Jul 2020 14:19:49 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Apache/</guid>
       <description></description>
     </item>
@@ -105,7 +116,7 @@
       <title>Nginx</title>
       <link>https://mikanbearer.github.io/tags/Nginx/</link>
       <pubDate>Thu, 30 Jul 2020 14:19:49 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Nginx/</guid>
       <description></description>
     </item>
@@ -114,7 +125,7 @@
       <title>Docker</title>
       <link>https://mikanbearer.github.io/tags/Docker/</link>
       <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Docker/</guid>
       <description></description>
     </item>
@@ -123,7 +134,7 @@
       <title>uWSGI</title>
       <link>https://mikanbearer.github.io/tags/uWSGI/</link>
       <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/uWSGI/</guid>
       <description></description>
     </item>
@@ -132,7 +143,7 @@
       <title>EVE-NG</title>
       <link>https://mikanbearer.github.io/tags/EVE-NG/</link>
       <pubDate>Fri, 24 Jul 2020 15:54:30 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/EVE-NG/</guid>
       <description></description>
     </item>
@@ -141,7 +152,7 @@
       <title>Celery</title>
       <link>https://mikanbearer.github.io/tags/Celery/</link>
       <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Celery/</guid>
       <description></description>
     </item>
@@ -150,7 +161,7 @@
       <title>Excel</title>
       <link>https://mikanbearer.github.io/tags/Excel/</link>
       <pubDate>Tue, 21 Jul 2020 15:16:46 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Excel/</guid>
       <description></description>
     </item>
@@ -159,7 +170,7 @@
       <title>VBA</title>
       <link>https://mikanbearer.github.io/tags/VBA/</link>
       <pubDate>Tue, 21 Jul 2020 15:16:46 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/VBA/</guid>
       <description></description>
     </item>
@@ -168,7 +179,7 @@
       <title>VBScript</title>
       <link>https://mikanbearer.github.io/tags/VBScript/</link>
       <pubDate>Tue, 14 Jul 2020 16:04:42 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/VBScript/</guid>
       <description></description>
     </item>
@@ -177,7 +188,7 @@
       <title>Windows</title>
       <link>https://mikanbearer.github.io/tags/Windows/</link>
       <pubDate>Tue, 14 Jul 2020 16:04:42 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Windows/</guid>
       <description></description>
     </item>

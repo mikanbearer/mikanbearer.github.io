@@ -6,16 +6,28 @@
     <description>Recent content in RabbitMQ on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Aug 2020 01:08:04 +0800</lastBuildDate>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
+    <lastBuildDate>Fri, 14 Aug 2020 09:13:49 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/RabbitMQ/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>202008140913</title>
+      <link>https://mikanbearer.github.io/posts/202008140913/</link>
+      <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008140913/</guid>
+      <description>&lt;p&gt;因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，&lt;/p&gt;
+&lt;p&gt;而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>使用WebSocket部屬簡易聊天室</title>
       <link>https://mikanbearer.github.io/posts/202008100108/</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008100108/</guid>
       <description>&lt;p&gt;製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，
 剛好可作為Message Queue及Web Socket的練習。&lt;/p&gt;
@@ -26,7 +38,7 @@
       <title>使用Django &#43; Celery進行異步處理</title>
       <link>https://mikanbearer.github.io/posts/202007221111/</link>
       <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007221111/</guid>
       <description>&lt;p&gt;本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，
 目前只提供簡單的範例，不包含異步任務的情境應用&lt;/p&gt;</description>

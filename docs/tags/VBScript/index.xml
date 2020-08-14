@@ -6,6 +6,8 @@
     <description>Recent content in VBScript on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Tue, 14 Jul 2020 16:04:42 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/VBScript/index.xml" rel="self" type="application/rss+xml" />
@@ -15,7 +17,7 @@
       <title>使用VBScript定期送出按鍵</title>
       <link>https://mikanbearer.github.io/posts/202007141604/</link>
       <pubDate>Tue, 14 Jul 2020 16:04:42 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007141604/</guid>
       <description>&lt;p&gt;在客戶環境中操作，並需要客戶代為登入的情況下給自己用的小筆記，
 免得一不注意就被policy弄到進入省電模式/登出，到時候又要請客戶的人來幫忙key帳號密碼…

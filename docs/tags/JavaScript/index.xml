@@ -6,6 +6,8 @@
     <description>Recent content in JavaScript on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Sun, 09 Aug 2020 20:21:46 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/JavaScript/index.xml" rel="self" type="application/rss+xml" />
@@ -15,7 +17,7 @@
       <title>動態更新Echarts</title>
       <link>https://mikanbearer.github.io/posts/202008092021/</link>
       <pubDate>Sun, 09 Aug 2020 20:21:46 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008092021/</guid>
       <description>&lt;p&gt;之前工作上需要一個前端的圖表庫，最後就相中了百度的Echarts，像是要做監控的話，前端的圖表要動態更新就變得很重要了&lt;/p&gt;</description>
     </item>
@@ -24,7 +26,7 @@
       <title>使用製作Vue.js &#43; Vuetify製作SPA登入畫面</title>
       <link>https://mikanbearer.github.io/posts/202007262314/</link>
       <pubDate>Sun, 26 Jul 2020 23:14:14 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007262314/</guid>
       <description>&lt;p&gt;利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，
 往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…&lt;/p&gt;</description>
@@ -34,7 +36,7 @@
       <title>使用watch監控的一些寫法</title>
       <link>https://mikanbearer.github.io/posts/202007201139/</link>
       <pubDate>Mon, 20 Jul 2020 11:39:17 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007201139/</guid>
       <description>&lt;p&gt;想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法&lt;/p&gt;</description>
     </item>

@@ -6,6 +6,8 @@
     <description>Recent content in Hugo on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Fri, 07 Aug 2020 09:30:55 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/Hugo/index.xml" rel="self" type="application/rss+xml" />
@@ -15,7 +17,7 @@
       <title>新主題上線！</title>
       <link>https://mikanbearer.github.io/posts/202008070930/</link>
       <pubDate>Fri, 07 Aug 2020 09:30:55 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008070930/</guid>
       <description>&lt;p&gt;原本使用&lt;a href=&#34;https://github.com/halogenica/beautifulhugo&#34;&gt;Beautifulhugo&lt;/a&gt;(個人蠻喜歡的)，但發現會有一些小問題…&lt;/p&gt;
 &lt;p&gt;這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…&lt;/p&gt;</description>
@@ -25,7 +27,7 @@
       <title>紀念用的第一篇</title>
       <link>https://mikanbearer.github.io/posts/202007101327/</link>
       <pubDate>Fri, 10 Jul 2020 13:27:20 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007101327/</guid>
       <description>&lt;p&gt;最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣，
 就到&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;https://www.staticgen.com/&lt;/a&gt;找個人氣度高的來用，之後就選上了這個&lt;strong&gt;Hugo&lt;/strong&gt;，

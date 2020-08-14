@@ -34,13 +34,12 @@
           </v-row>
         </v-container>
         <v-pagination v-model="page" :length="{{ .Paginator.TotalPages }}"></v-pagination>
-      </v-main> 
+      </v-main>
+      {{ partial "footer" . }}
     </v-app>
   </v-app>  
 </div>
-
-{{ partial "footer" . }}
-
+{{ partial "footer_script" . }}
 
 <script>
   vm.page = {{ .Paginator.PageNumber }}

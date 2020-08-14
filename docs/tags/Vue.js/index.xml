@@ -6,6 +6,8 @@
     <description>Recent content in Vue.js on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Fri, 07 Aug 2020 09:30:55 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/Vue.js/index.xml" rel="self" type="application/rss+xml" />
@@ -15,7 +17,7 @@
       <title>新主題上線！</title>
       <link>https://mikanbearer.github.io/posts/202008070930/</link>
       <pubDate>Fri, 07 Aug 2020 09:30:55 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008070930/</guid>
       <description>&lt;p&gt;原本使用&lt;a href=&#34;https://github.com/halogenica/beautifulhugo&#34;&gt;Beautifulhugo&lt;/a&gt;(個人蠻喜歡的)，但發現會有一些小問題…&lt;/p&gt;
 &lt;p&gt;這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…&lt;/p&gt;</description>
@@ -25,7 +27,7 @@
       <title>使用製作Vue.js &#43; Vuetify製作SPA登入畫面</title>
       <link>https://mikanbearer.github.io/posts/202007262314/</link>
       <pubDate>Sun, 26 Jul 2020 23:14:14 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007262314/</guid>
       <description>&lt;p&gt;利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，
 往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…&lt;/p&gt;</description>
@@ -35,7 +37,7 @@
       <title>使用watch監控的一些寫法</title>
       <link>https://mikanbearer.github.io/posts/202007201139/</link>
       <pubDate>Mon, 20 Jul 2020 11:39:17 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007201139/</guid>
       <description>&lt;p&gt;想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法&lt;/p&gt;</description>
     </item>

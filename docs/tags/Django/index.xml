@@ -6,6 +6,8 @@
     <description>Recent content in Django on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Mon, 10 Aug 2020 01:08:04 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/Django/index.xml" rel="self" type="application/rss+xml" />
@@ -15,7 +17,7 @@
       <title>使用WebSocket部屬簡易聊天室</title>
       <link>https://mikanbearer.github.io/posts/202008100108/</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008100108/</guid>
       <description>&lt;p&gt;製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，
 剛好可作為Message Queue及Web Socket的練習。&lt;/p&gt;
@@ -26,7 +28,7 @@
       <title>使用Django &#43; Celery進行異步處理</title>
       <link>https://mikanbearer.github.io/posts/202007221111/</link>
       <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007221111/</guid>
       <description>&lt;p&gt;本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，
 目前只提供簡單的範例，不包含異步任務的情境應用&lt;/p&gt;</description>
@@ -36,7 +38,7 @@
       <title>使用Django REST framework超高速部屬RESTful API (2)</title>
       <link>https://mikanbearer.github.io/posts/202007201501/</link>
       <pubDate>Mon, 20 Jul 2020 15:01:14 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007201501/</guid>
       <description>&lt;p&gt;承之前的範例，這次要用JSON Web Token驗證，並加上Cross-Origin Resource Sharing&lt;/p&gt;</description>
     </item>
@@ -45,7 +47,7 @@
       <title>使用Django REST framework超高速部屬RESTful API (1)</title>
       <link>https://mikanbearer.github.io/posts/202007161628/</link>
       <pubDate>Thu, 16 Jul 2020 16:28:26 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007161628/</guid>
       <description>&lt;p&gt;這次作為複習，利用djangorestframework製作一個陽春的REST API
 何謂RESTful就不贅述了，直接開始實做&lt;/p&gt;</description>
@@ -55,7 +57,7 @@
       <title>使用Django超高速部屬CRUD</title>
       <link>https://mikanbearer.github.io/posts/202007151013/</link>
       <pubDate>Wed, 15 Jul 2020 10:14:15 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202007151013/</guid>
       <description>&lt;p&gt;這次僅是做一個超級簡易，能做到Create、Read、Update、Delete的Web App，&lt;br&gt;
 為了避免版面過長，此篇僅有陽春的Template View，並沒有做Filter及Pagenation…&lt;/p&gt;</description>

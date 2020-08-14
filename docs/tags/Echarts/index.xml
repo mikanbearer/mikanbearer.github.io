@@ -6,6 +6,8 @@
     <description>Recent content in Echarts on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Sun, 09 Aug 2020 20:21:46 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/Echarts/index.xml" rel="self" type="application/rss+xml" />
@@ -15,7 +17,7 @@
       <title>動態更新Echarts</title>
       <link>https://mikanbearer.github.io/posts/202008092021/</link>
       <pubDate>Sun, 09 Aug 2020 20:21:46 +0800</pubDate>
-      
+      <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008092021/</guid>
       <description>&lt;p&gt;之前工作上需要一個前端的圖表庫，最後就相中了百度的Echarts，像是要做監控的話，前端的圖表要動態更新就變得很重要了&lt;/p&gt;</description>
     </item>
