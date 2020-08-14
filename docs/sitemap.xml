@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mikanbearer.github.io/posts/202008140913/</loc>
-    <lastmod>2020-08-14T09:13:49+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mikanbearer.github.io/categories/</loc>
     <lastmod>2020-08-14T09:13:49+08:00</lastmod>
   </url>
@@ -29,6 +24,11 @@
   
   <url>
     <loc>https://mikanbearer.github.io/tags/</loc>
+    <lastmod>2020-08-14T09:13:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/posts/202008140913/</loc>
     <lastmod>2020-08-14T09:13:49+08:00</lastmod>
   </url>
   
