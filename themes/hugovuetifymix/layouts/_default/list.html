@@ -12,23 +12,55 @@
                 {{ .Title }}
               </div>
               <div class="mt-3">
-                <v-expansion-panels v-model="panel" focusable multiple popout dark>
-                  {{ $pag := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) }}
-                      {{ range $pag.Pages }}
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
-                      {{ if .Params.Title }}
-                      <div class="text-h6 white--text">
-                        {{ .Params.Title }}
-                      </div>
+                <v-simple-table dense>
+                  <template>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Tags</th>
+                        <th>Title</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                  {{ $pag := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) 250 }}
+                  {{ range $pag.Pages }}
+                  <tr>
+                    <td>{{ .Date.Format "2006-01-02" }}</td>
+                    <td>
+                      {{ if .Params.Categories }}
+                      {{ range .Params.Categories }}
+                      <a
+                        href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/"
+                      >
+                        {{ . }}
+                      </a>
                       {{ end }}
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      {{ partial "post_preview" . }}
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
+                    {{ end }}
+                    </td>
+                    <td>
+                      {{ if .Params.Tags }}
+                      {{ range .Params.Tags }}
+                      <v-chip
+                        color="blue-grey"
+                        label
+                        text-color="white"
+                        x-small
+                        href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/"
+                      >
+                        {{ . }}
+                    </v-chip>
+                      {{ end }}
+                    {{ end }}
+                    </td>
+                    <td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
+                  </tr>
+
+
                   {{ end }}
-                </v-expansion-panels>
+                    </tbody>
+                  </template>
+                </v-simple-table>
               </div>
             </v-col>
           </v-row>

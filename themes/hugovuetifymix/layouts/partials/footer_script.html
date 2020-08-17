@@ -22,9 +22,12 @@
       search: null,
 
       tags: null,
+      categories: null,
       posts: null,
       seltags: null,
-      filteredposts: [],
+      selcategories: null,
+      tfilteredposts: [],
+      cfilteredposts: [],
       
     },
 
@@ -118,6 +121,21 @@ vm.$set(vm.$data, 'posts', posts)
   vm.$set(vm.$data, 'tags', alltags.sort())
 
 
+
+{{ $taxonomy := .Site.Taxonomies.categories }}
+  var allcategories = [
+  {{ range $key, $value := $taxonomy }}
+  '{{ $key }}',
+  {{ end }}
+
+  ]
+
+  vm.$set(vm.$data, 'categories', allcategories.sort())
+
+
+
+
+
   vm.$watch(() => vm.seltags, (tags)=>{
     var filteredposts = []
     if (tags.length > 0) {
@@ -127,11 +145,27 @@ vm.$set(vm.$data, 'posts', posts)
               filteredposts.push(post)
          }
       }
-      vm.$set(vm.$data, 'filteredposts', filteredposts)
+      vm.$set(vm.$data, 'tfilteredposts', filteredposts)
     }else{
-      vm.$set(vm.$data, 'filteredposts', [])
+      vm.$set(vm.$data, 'tfilteredposts', [])
     }
-})
+  })
+
+
+  vm.$watch(() => vm.selcategories, (categories)=>{
+    var filteredposts = []
+    if (categories) {
+      for (const post of vm.posts) {
+          let checker = (arr, target) => arr.includes(target)
+         if (checker(post.categories, categories)) {
+              filteredposts.push(post)
+         }
+      }
+      vm.$set(vm.$data, 'cfilteredposts', filteredposts)
+    }else{
+      vm.$set(vm.$data, 'cfilteredposts', [])
+    }
+  })
 
 
 </script>

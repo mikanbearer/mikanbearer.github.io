@@ -14,17 +14,16 @@
     
     
     <item>
-      <title>使用Prometheus監控RabbitMQ</title>
+      <title>使用Textfile Collector取得自訂的metrics</title>
       <link>https://mikanbearer.github.io/posts/202008140913/</link>
       <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008140913/</guid>
-      <description>&lt;p&gt;因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，&lt;/p&gt;
-&lt;p&gt;而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看&lt;/p&gt;</description>
+      <description>&lt;p&gt;作為往後可能需要自訂Exporter的預習，就試著拿Prometheus client libraries來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>輕鬆做一遍Prometheus</title>
+      <title>使用Prometheus監控RabbitMQ之從頭動手</title>
       <link>https://mikanbearer.github.io/posts/202008131707/</link>
       <pubDate>Thu, 13 Aug 2020 17:07:15 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>

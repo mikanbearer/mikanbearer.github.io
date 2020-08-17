@@ -8,19 +8,23 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Fri, 14 Aug 2020 09:13:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2020 17:07:15 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/RabbitMQ/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>使用Prometheus監控RabbitMQ</title>
-      <link>https://mikanbearer.github.io/posts/202008140913/</link>
-      <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
+      <title>使用Prometheus監控RabbitMQ之從頭動手</title>
+      <link>https://mikanbearer.github.io/posts/202008131707/</link>
+      <pubDate>Thu, 13 Aug 2020 17:07:15 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202008140913/</guid>
-      <description>&lt;p&gt;因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，&lt;/p&gt;
-&lt;p&gt;而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看&lt;/p&gt;</description>
+      <guid>https://mikanbearer.github.io/posts/202008131707/</guid>
+      <description>&lt;p&gt;Prometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prometheus：監控方，定期收集資料並存在資料庫&lt;/li&gt;
+&lt;li&gt;Exporter：被監控方，回傳監控方需要的資料&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;為了往後學習方便，先來實作一遍這個方便利用的工具&lt;/p&gt;</description>
     </item>
     
     <item>

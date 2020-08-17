@@ -1,0 +1,186 @@
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/vue-router@3.4.2/dist/vue-router.js"></script>
+
+
+
+<script>
+  var vm = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app',
+    vuetify: new Vuetify(),
+    props: {
+    },
+    data: {
+      drawer: false,
+      panel: [],
+      page: null,
+      tab: null,
+      dialog: null,
+      model: null,
+      search: null,
+
+      tags: null,
+      categories: null,
+      posts: null,
+      seltags: null,
+      selcategories: null,
+      tfilteredposts: [],
+      cfilteredposts: [],
+      
+    },
+
+    
+    created () {
+      this.$vuetify.theme.dark = true
+    },
+
+    computed: {
+      items () {
+        if (this.search) {
+          return this.posts
+        }else{
+          return []
+        }
+      },
+    },
+
+
+    methods: {
+      remove (item) {
+        this.seltags.splice(this.seltags.indexOf(item), 1)
+        this.seltags = [...this.seltags]
+      },
+    }
+  })
+
+  vm.$vuetify.theme.themes.light.primary = '#007C8A'
+  vm.$vuetify.theme.themes.light.secondary = '#44617B'
+  vm.$vuetify.theme.themes.light.accent = '#009BAC'
+  vm.$vuetify.theme.themes.light.error = '#D7003A'
+  vm.$vuetify.theme.themes.light.warning = '#F08300'
+
+
+  vm.$vuetify.theme.themes.dark.primary = '#F08300'
+  vm.$vuetify.theme.themes.dark.secondary = '#006e54'
+  vm.$vuetify.theme.themes.dark.warning = '#d3381c'
+  vm.$vuetify.theme.themes.dark.error = '#D7003A'
+  vm.$vuetify.theme.themes.dark.accent = '#00a381'
+
+
+  vm.$vuetify.theme.themes.dark.header = '#1f3134'
+  vm.$vuetify.theme.themes.dark.content = '#333a40'
+
+
+
+
+var posts = [
+{{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {
+    url: '{{ .Permalink }}',
+    {{if .Title }}
+      title: '{{ .Title }}',
+    {{ else }}
+      title: '',
+    {{ end }}
+    {{ if .Truncated }}
+      summary: '{{ .Summary }}',
+      content: '{{ .Content }}',
+    {{ else }}
+      summary: '',
+      content: '{{ .Content }}',
+    {{ end }}
+    {{ if .Params.Date }}
+      date: '{{ .Params.Date.Format "2006-01-02" }}',
+    {{ else }}
+      date: '',
+    {{ end }}
+    {{ if .Params.Tags }}
+      tags: '{{ .Params.Tags }}',
+    {{ else }}
+      tags: ' ',
+    {{ end }}
+    {{ if .Params.Categories }}
+      categories: '{{ .Params.Categories }}',
+    {{ else }}
+      categories: ' ',
+    {{ end }}
+    {{ if .Params.Author }}
+      author: '{{ .Params.Author }}',
+    {{ else }}
+      author: '',
+    {{ end }}
+  },
+{{ end }}
+]
+
+posts.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
+posts.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
+
+vm.$set(vm.$data, 'posts', posts)
+
+
+
+{{ $taxonomy := .Site.Taxonomies.tags }}
+  var alltags = [
+  {{ range $key, $value := $taxonomy }}
+  '{{ $key }}',
+  {{ end }}
+
+  ]
+
+  vm.$set(vm.$data, 'tags', alltags.sort())
+
+
+
+{{ $taxonomy := .Site.Taxonomies.categories }}
+  var allcategories = [
+  {{ range $key, $value := $taxonomy }}
+  '{{ $key }}',
+  {{ end }}
+
+  ]
+
+  vm.$set(vm.$data, 'categories', allcategories.sort())
+
+
+
+
+
+  vm.$watch(() => vm.seltags, (tags)=>{
+    var filteredposts = []
+    if (tags.length > 0) {
+      for (const post of vm.posts) {
+          let checker = (arr, target) => target.every(v => arr.includes(v))
+         if (checker(post.tags, tags)) {
+              filteredposts.push(post)
+         }
+      }
+      vm.$set(vm.$data, 'tfilteredposts', filteredposts)
+    }else{
+      vm.$set(vm.$data, 'tfilteredposts', [])
+    }
+  })
+
+
+  vm.$watch(() => vm.selcategories, (categories)=>{
+    var filteredposts = []
+    if (categories) {
+      for (const post of vm.posts) {
+          let checker = (arr, target) => arr.includes(target)
+         if (checker(post.categories, categories)) {
+              filteredposts.push(post)
+         }
+      }
+      vm.$set(vm.$data, 'cfilteredposts', filteredposts)
+    }else{
+      vm.$set(vm.$data, 'cfilteredposts', [])
+    }
+  })
+
+
+</script>
+
+<script src="{{ "js/code-block.js" | absURL }}"></script>
+ 

@@ -8,10 +8,19 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Mon, 10 Aug 2020 01:08:04 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2020 09:13:49 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/Python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用Textfile Collector取得自訂的metrics</title>
+      <link>https://mikanbearer.github.io/posts/202008140913/</link>
+      <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008140913/</guid>
+      <description>&lt;p&gt;作為往後可能需要自訂Exporter的預習，就試著拿Prometheus client libraries來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用WebSocket部屬簡易聊天室</title>

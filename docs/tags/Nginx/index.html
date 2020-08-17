@@ -19,30 +19,27 @@
       left: 0;
       background-size: cover;
       
-      background-color: #f6f6f4;
+      background-color: #272727;
       
 
 
       
     }
 
-#inspire {
-  background: none;
-}
+    #inspire {
+      background: none;
+    }
   </style>
 
 </head>
 <body>
 <div id="app">
   <v-app id="inspire">
-
-
 <v-app-bar
   app
   clipped-left
   dense
   dark
-  hide-on-scroll
 >
 
   <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -50,10 +47,13 @@
   <v-toolbar-title class="mr-12 align-center">
     <span class="title"></span>
   </v-toolbar-title>
+
   <v-spacer></v-spacer>
   <v-btn icon @click.stop="dialog = !dialog">
     <v-icon>mdi-magnify</v-icon>
   </v-btn>
+
+
 </v-app-bar>
 
 
@@ -73,12 +73,16 @@
       v-model="tab"
       background-color="transparent"
       class="mb-3"
+      
     >
       <v-tab>
         Title
       </v-tab>
       <v-tab>
         Tag
+      </v-tab>
+      <v-tab>
+        Category
       </v-tab>
     </v-tabs>
 
@@ -93,26 +97,28 @@
             hide-details
             item-text="title"
             item-value="url"
-            prepend-icon="mdi-magnify"
+            prepend-inner-icon="mdi-magnify"
             return-object
+            clearble
+            height="42"
           >
           </v-autocomplete>
         </v-card-text>
-        <v-card-text>
-          <v-expand-transition>
+        <v-expand-transition>
+          <v-card-text v-if="model">
             <div v-if="model">
             <v-divider></v-divider>
-            <v-card-title class="text-h6 grey--text text--darken-4">
+            <v-card-title class="text-h6">
               [[ model.title ]]
             </v-card-title>
-            <v-card-subtitle class="grey--text text--darken-3 text-body-1">
+            <v-card-subtitle class="text-body-1">
               [[ model.date ]]
               <a  v-for="category in model.categories">[[ category ]]</a>
               <div>
                 <v-chip
                   v-for="tag in model.tags"
                   v-bind:key="tag.id"
-                  color="secondary"
+                  color="accent"
                   label
                   text-color="white"
                   x-small
@@ -124,7 +130,7 @@
               </div>
               <v-divider></v-divider>
             </v-card-subtitle>
-            <v-card-text v-html="model.summary" class="grey--text text--darken-3 text-body-1"></v-card-text>
+            <v-card-text v-html="model.summary" class="text-body-1"></v-card-text>
             <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
@@ -154,8 +160,8 @@
             </v-btn>
             </v-card-actions>
             </div>
-          </v-expand-transition>
-        </v-card-text>
+          </v-card-text>
+        </v-expand-transition>
       </v-tab-item>
 
       <v-tab-item>
@@ -167,11 +173,12 @@
             clearable
             multiple
             hide-selected
-            prepend-icon="mdi-tag-multiple"
+            hide-details
+            prepend-inner-icon="mdi-tag-multiple"
           >
             <template v-slot:selection="{ attrs, item, select, selected }">
               <v-chip
-                color="error"
+                color="accent"
                 v-bind="attrs"
                 :input-value="selected"
                 close
@@ -182,9 +189,10 @@
             </template>              
           </v-combobox>
         </v-card-text>
-        </v-card-text>
-          <v-expand-transition>
-            <v-simple-table v-if="filteredposts.length">
+        
+        <v-expand-transition >
+          <v-card-text v-if="tfilteredposts.length">
+            <v-simple-table v-if="tfilteredposts.length">
               <template>
                 <thead>
                   <tr>
@@ -194,13 +202,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="post in filteredposts">
+                  <tr v-for="post in tfilteredposts">
                     <td>[[ post.date ]]</td>
                     <td>
                       <div v-for="tag in post.tags" class="d-inline">
                         <v-chip
                           v-if="seltags.includes(tag)"
-                          color="error"
+                          color="accent"
                           label
                           x-small
                           :href="'https://mikanbearer.github.io/tags/' + tag"
@@ -211,7 +219,7 @@
                         <v-chip
                           v-else
                           color="secondary"
-                          text-color="white"
+                          text-color="grey"
                           label
                           x-small
                           :href="'https://mikanbearer.github.io/tags/' + tag"
@@ -226,9 +234,54 @@
                 </tbody>
               </template>
             </v-simple-table>
+            </v-card-text>
           </v-expand-transition>
-        </v-card-text>
       </v-tab-item>
+
+      <v-tab-item>
+        <v-card-text>
+          <v-autocomplete
+            v-model="selcategories"
+            :items="categories"
+            clearable
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-folder"
+            height="42"
+          >
+          </v-autocomplete>
+        </v-card-text>
+        
+        <v-expand-transition>
+          <v-card-text v-if="cfilteredposts.length">
+            <v-simple-table v-if="cfilteredposts.length">
+              <template>
+                <thead>
+                  <tr>
+                    <th class="text-left">Date</th>
+                    <th class="text-left">Categories</th>
+                    <th class="text-left">Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="post in cfilteredposts">
+                    <td>[[ post.date ]]</td>
+                    <td>
+                      <div v-for="category in post.categories" class="d-inline">
+                        <a :href="'https://mikanbearer.github.io/categories/' + category">
+                          [[ category ]]
+                        </v-chip>
+                      </div>
+                    </td>
+                    <td><a :href="post.url">[[ post.title ]]</a></td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </v-card-text>
+        </v-expand-transition>
+      </v-tab-item>
+
     </v-tabs-items>
   </v-card>
 </v-dialog>
@@ -265,7 +318,7 @@
 
     <v-list-item link href="https://mikanbearer.github.io/posts">
       <v-list-item-action>
-        <v-icon>mdi-tag-multiple</v-icon>
+        <v-icon>mdi-file-document-multiple</v-icon>
       </v-list-item-action>
       <v-list-item-title>Posts</v-list-item-title>
     </v-list-item>
@@ -307,674 +360,810 @@
                 Nginx
               </div>
               <div class="mt-3">
-                <v-expansion-panels v-model="panel" focusable multiple popout dark>
+                <v-simple-table dense>
+                  <template>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Tags</th>
+                        <th>Title</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                   
-                      
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
-                      
-                      <div class="text-h6 white--text">
-                        使用Prometheus監控RabbitMQ
-                      </div>
-                      
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-08-14
-
-  
-  <a href="https://mikanbearer.github.io//categories/%E7%9B%A3%E6%8E%A7%E5%B7%A5%E5%85%B7/">監控工具</a>
-  
-
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Prometheus/"
-    
-  >
-    Prometheus
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/RabbitMQ/"
-    
-  >
-    RabbitMQ
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，</p>
-<p>而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202008140913/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
+                  <tr>
+                    <td>2020-08-14</td>
+                    <td>
                       
-                      <div class="text-h6 white--text">
-                        輕鬆做一遍Prometheus
-                      </div>
                       
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-08-13
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%9B%A3%E6%8E%A7%E5%B7%A5%E5%85%B7/"
+                      >
+                        監控工具
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Prometheus/"
+                      >
+                        Prometheus
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Python/"
+                      >
+                        Python
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202008140913/">使用Textfile Collector取得自訂的metrics</a></td>
+                  </tr>
 
-  
-  <a href="https://mikanbearer.github.io//categories/%E7%9B%A3%E6%8E%A7%E5%B7%A5%E5%85%B7/">監控工具</a>
-  
 
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Prometheus/"
-    
-  >
-    Prometheus
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>Prometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：</p>
-<ul>
-<li>Prometheus：監控方，定期收集資料並存在資料庫</li>
-<li>Exporter：被監控方，回傳監控方需要的資料</li>
-</ul>
-<p>為了往後學習方便，先來實作一遍這個方便利用的工具</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202008131707/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
+                  <tr>
+                    <td>2020-08-13</td>
+                    <td>
                       
-                      <div class="text-h6 white--text">
-                        使用WebSocket部屬簡易聊天室
-                      </div>
                       
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-08-10
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%9B%A3%E6%8E%A7%E5%B7%A5%E5%85%B7/"
+                      >
+                        監控工具
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Prometheus/"
+                      >
+                        Prometheus
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/RabbitMQ/"
+                      >
+                        RabbitMQ
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202008131707/">使用Prometheus監控RabbitMQ之從頭動手</a></td>
+                  </tr>
 
-  
-  <a href="https://mikanbearer.github.io//categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">網頁開發</a>
-  
 
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Python/"
-    
-  >
-    Python
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Django/"
-    
-  >
-    Django
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Channels/"
-    
-  >
-    Channels
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/RabbitMQ/"
-    
-  >
-    RabbitMQ
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，
-剛好可作為Message Queue及Web Socket的練習。</p>
-<p>本篇Message Queue使用RabbitMQ，Framework使用Django，並且由Channels來實現Web Socket</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202008100108/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
+                  <tr>
+                    <td>2020-08-10</td>
+                    <td>
                       
-                      <div class="text-h6 white--text">
-                        動態更新Echarts
-                      </div>
                       
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-08-09
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Python/"
+                      >
+                        Python
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Django/"
+                      >
+                        Django
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Channels/"
+                      >
+                        Channels
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/RabbitMQ/"
+                      >
+                        RabbitMQ
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202008100108/">使用WebSocket部屬簡易聊天室</a></td>
+                  </tr>
 
-  
-  <a href="https://mikanbearer.github.io//categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">網頁開發</a>
-  
 
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/JavaScript/"
-    
-  >
-    JavaScript
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Echarts/"
-    
-  >
-    Echarts
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>之前工作上需要一個前端的圖表庫，最後就相中了百度的Echarts，像是要做監控的話，前端的圖表要動態更新就變得很重要了</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202008092021/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
+                  <tr>
+                    <td>2020-08-09</td>
+                    <td>
                       
-                      <div class="text-h6 white--text">
-                        新主題上線！
-                      </div>
                       
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-08-07
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/JavaScript/"
+                      >
+                        JavaScript
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Echarts/"
+                      >
+                        Echarts
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202008092021/">動態更新Echarts</a></td>
+                  </tr>
 
-  
-  <a href="https://mikanbearer.github.io//categories/%E9%9B%9C%E8%A8%98/">雜記</a>
-  
 
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Hugo/"
-    
-  >
-    Hugo
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Vue.js/"
-    
-  >
-    Vue.js
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Vuetify/"
-    
-  >
-    Vuetify
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>原本使用<a href="https://github.com/halogenica/beautifulhugo">Beautifulhugo</a>(個人蠻喜歡的)，但發現會有一些小問題…</p>
-<p>這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202008070930/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
+                  <tr>
+                    <td>2020-08-07</td>
+                    <td>
                       
-                      <div class="text-h6 white--text">
-                        在Nginx或Apache上設定CORS
-                      </div>
                       
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-07-30
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E9%9B%9C%E8%A8%98/"
+                      >
+                        雜記
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Hugo/"
+                      >
+                        Hugo
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Vue.js/"
+                      >
+                        Vue.js
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Vuetify/"
+                      >
+                        Vuetify
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202008070930/">新主題上線！</a></td>
+                  </tr>
 
-  
-  <a href="https://mikanbearer.github.io//categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">網頁開發</a>
-  
 
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Nginx/"
-    
-  >
-    Nginx
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Apache/"
-    
-  >
-    Apache
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>Web Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用<a href="https://mikanbearer.github.io/myblog/posts/202007291642/">這篇</a>來實作，本篇包含Nginx及Apache的設定範例</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202007301419/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
+                  <tr>
+                    <td>2020-07-30</td>
+                    <td>
                       
-                      <div class="text-h6 white--text">
-                        使用docker-compose部屬Nginx &#43; uWSGI &#43; Django
-                      </div>
                       
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-07-29
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Nginx/"
+                      >
+                        Nginx
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Apache/"
+                      >
+                        Apache
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007301419/">在Nginx或Apache上設定CORS</a></td>
+                  </tr>
 
-  
-  <a href="https://mikanbearer.github.io//categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">網頁開發</a>
-  
 
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Docker/"
-    
-  >
-    Docker
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Nginx/"
-    
-  >
-    Nginx
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/uWSGI/"
-    
-  >
-    uWSGI
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…</p>
-<p>這次使用以下兩篇舊文的範例來練習</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202007291642/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
+                  <tr>
+                    <td>2020-07-29</td>
+                    <td>
                       
-                      <div class="text-h6 white--text">
-                        使用製作Vue.js &#43; Vuetify製作SPA登入畫面
-                      </div>
                       
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-07-26
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Docker/"
+                      >
+                        Docker
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/docker-compose/"
+                      >
+                        docker-compose
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Nginx/"
+                      >
+                        Nginx
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/uWSGI/"
+                      >
+                        uWSGI
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007291642/">使用docker-compose部屬Nginx &#43; uWSGI &#43; Django</a></td>
+                  </tr>
 
-  
-  <a href="https://mikanbearer.github.io//categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">網頁開發</a>
-  
 
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Vue.js/"
-    
-  >
-    Vue.js
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/JavaScript/"
-    
-  >
-    JavaScript
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，
-往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202007262314/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
+                  <tr>
+                    <td>2020-07-26</td>
+                    <td>
                       
-                      <div class="text-h6 white--text">
-                        [2020/07/25解決]在EVE-NG上部屬vEOS LAB
-                      </div>
                       
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-07-24
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Vue.js/"
+                      >
+                        Vue.js
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/JavaScript/"
+                      >
+                        JavaScript
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007262314/">使用製作Vue.js &#43; Vuetify製作SPA登入畫面</a></td>
+                  </tr>
 
-  
-  <a href="https://mikanbearer.github.io//categories/%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/">問題紀錄</a>
-  
 
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/EVE-NG/"
-    
-  >
-    EVE-NG
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>第一篇挫折問題紀錄，各種鬼打牆…
-原本想在EVE-NG上做個簡單的LAB，沒想到問題還真不少…</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202007241554/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header >
+                  <tr>
+                    <td>2020-07-24</td>
+                    <td>
                       
-                      <div class="text-h6 white--text">
-                        使用Django &#43; Celery進行異步處理
-                      </div>
                       
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content style="background-color: #ffffff;">
-                      <div class="text-body-1">
-2020-07-22
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/"
+                      >
+                        問題紀錄
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/EVE-NG/"
+                      >
+                        EVE-NG
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007241554/">[2020/07/25解決]在EVE-NG上部屬vEOS LAB</a></td>
+                  </tr>
 
-  
-  <a href="https://mikanbearer.github.io//categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">網頁開發</a>
-  
 
-</div>
-
-<div>
-
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Python/"
-    
-  >
-    Python
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Django/"
-    
-  >
-    Django
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/Celery/"
-    
-  >
-    Celery
-  </v-chip>
-  
-  <v-chip
-    color="secondary"
-    label
-    text-color="white"
-    x-small
-    href="https://mikanbearer.github.io/tags/RabbitMQ/"
-    
-  >
-    RabbitMQ
-  </v-chip>
-  
-
-</div>
-
-<v-divider></v-divider>
-
-<div class="text-body-1">
-
-  <p>本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，
-目前只提供簡單的範例，不包含異步任務的情境應用</p>
-  <div>
-    <v-btn href="https://mikanbearer.github.io/posts/202007221111/" color="primary" small>Read More</v-btn>
-  </div>
-  
-    
-</div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
                   
-                </v-expansion-panels>
+                  <tr>
+                    <td>2020-07-22</td>
+                    <td>
+                      
+                      
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Python/"
+                      >
+                        Python
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Django/"
+                      >
+                        Django
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Celery/"
+                      >
+                        Celery
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/RabbitMQ/"
+                      >
+                        RabbitMQ
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007221111/">使用Django &#43; Celery進行異步處理</a></td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td>2020-07-21</td>
+                    <td>
+                      
+                      
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/"
+                      >
+                        小技巧
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Excel/"
+                      >
+                        Excel
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/VBA/"
+                      >
+                        VBA
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007211516/">用VBA在Excel中使用nslookup</a></td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td>2020-07-20</td>
+                    <td>
+                      
+                      
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Python/"
+                      >
+                        Python
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Django/"
+                      >
+                        Django
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007201501/">使用Django REST framework超高速部屬RESTful API (2)</a></td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td>2020-07-20</td>
+                    <td>
+                      
+                      
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Vue.js/"
+                      >
+                        Vue.js
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/JavaScript/"
+                      >
+                        JavaScript
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007201139/">使用watch監控的一些寫法</a></td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td>2020-07-16</td>
+                    <td>
+                      
+                      
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Python/"
+                      >
+                        Python
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Django/"
+                      >
+                        Django
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007161628/">使用Django REST framework超高速部屬RESTful API (1)</a></td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td>2020-07-15</td>
+                    <td>
+                      
+                      
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/"
+                      >
+                        網頁開發
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Python/"
+                      >
+                        Python
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Django/"
+                      >
+                        Django
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007151013/">使用Django超高速部屬CRUD</a></td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td>2020-07-14</td>
+                    <td>
+                      
+                      
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/"
+                      >
+                        小技巧
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Windows/"
+                      >
+                        Windows
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/VBScript/"
+                      >
+                        VBScript
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007141604/">使用VBScript定期送出按鍵</a></td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td>2020-07-10</td>
+                    <td>
+                      
+                      
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E9%9B%9C%E8%A8%98/"
+                      >
+                        雜記
+                      </a>
+                      
+                    
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Hugo/"
+                      >
+                        Hugo
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202007101327/">紀念用的第一篇</a></td>
+                  </tr>
+
+
+                  
+                    </tbody>
+                  </template>
+                </v-simple-table>
               </div>
             </v-col>
           </v-row>
         </v-container>
-        <v-pagination v-model="page" :length="2"></v-pagination>
+        <v-pagination v-model="page" :length="1"></v-pagination>
       </v-main>
-      <v-footer padless class="mt-5">
+      <v-footer padless color="transparent" class="mt-5">
   <v-col
     class="text-center text-body-2"
     cols="12"
@@ -1019,15 +1208,18 @@
       search: null,
 
       tags: null,
+      categories: null,
       posts: null,
       seltags: null,
-      filteredposts: [],
+      selcategories: null,
+      tfilteredposts: [],
+      cfilteredposts: [],
       
     },
 
     
     created () {
-      
+      this.$vuetify.theme.dark = true
     },
 
     computed: {
@@ -1056,23 +1248,35 @@
   vm.$vuetify.theme.themes.light.warning = '#F08300'
 
 
+  vm.$vuetify.theme.themes.dark.primary = '#F08300'
+  vm.$vuetify.theme.themes.dark.secondary = '#006e54'
+  vm.$vuetify.theme.themes.dark.warning = '#d3381c'
+  vm.$vuetify.theme.themes.dark.error = '#D7003A'
+  vm.$vuetify.theme.themes.dark.accent = '#00a381'
+
+
+  vm.$vuetify.theme.themes.dark.header = '#1f3134'
+  vm.$vuetify.theme.themes.dark.content = '#333a40'
+
+
+
 
 var posts = [
 
   {
     url: 'https:\/\/mikanbearer.github.io\/posts\/202008140913\/',
     
-      title: '使用Prometheus監控RabbitMQ',
+      title: '使用Textfile Collector取得自訂的metrics',
     
     
-      summary: '\u003cp\u003e因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，\u003c\/p\u003e\n\u003cp\u003e而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看\u003c\/p\u003e',
-      content: '\u003cp\u003e因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，\u003c\/p\u003e\n\u003cp\u003e而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/github.com\/rabbitmq\/rabbitmq-prometheus\u0022\u003erabbitmq-prometheus的repository\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e一樣求方便使用docker-compose，寫個陽春的Dockerfile會比較方便\u003c\/p\u003e\n\u003cp\u003e為了使用內建的pulgin，直接用3.8.0以後的image，並且RUN啟用的command\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-Dockerfile\u0022 data-lang=\u0022Dockerfile\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eFROM\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e rabbitmq:3.8.6-management\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\u003c\/span\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eRUN\u003c\/span\u003e rabbitmq-plugins enable rabbitmq_prometheus\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncompose file增加port 15692\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:docker-compose.yml\u0022 data-lang=\u0022:docker-compose.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eversion\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;3\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eservices\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003emy-queue\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003econtainer_name\u003c\/span\u003e: rabbitmq\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003ebuild\u003c\/span\u003e: .\/\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003eports\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;5672:5672\u0026#39;\u003c\/span\u003e\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15672:15672\u0026#39;\u003c\/span\u003e\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15692:15692\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n      - rabbitmq-data:\/var\/lib\/rabbitmq\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003erabbitmq-data\u003c\/span\u003e:\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來就能在host上用cURL測試了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl -v -H \u0026quot;Accept:text\/plain\u0026quot; \u0026quot;http:\/\/localhost:15692\/metrics\u0026quot;\n...\n# TYPE rabbitmq_consumers gauge\n# HELP rabbitmq_consumers Consumers currently connected\nrabbitmq_consumers 0\n# TYPE rabbitmq_queues gauge\n# HELP rabbitmq_queues Queues available\nrabbitmq_queues 0\n# TYPE rabbitmq_build_info untyped\n# HELP rabbitmq_build_info RabbitMQ \u0026amp; Erlang\/OTP version info\nrabbitmq_build_info{rabbitmq_version=\u0026quot;3.8.6\u0026quot;,prometheus_plugin_version=\u0026quot;3.8.6\u0026quot;,prometheus_client_version=\u0026quot;4.6.0\u0026quot;,erlang_version=\u0026quot;23.0.3\u0026quot;} 1\n# TYPE rabbitmq_identity_info untyped\n# HELP rabbitmq_identity_info RabbitMQ node \u0026amp; cluster identity info\nrabbitmq_identity_info{rabbitmq_node=\u0026quot;rabbit@7f33446fce98\u0026quot;,rabbitmq_cluster=\u0026quot;rabbit@7f33446fce98\u0026quot;} 1\n# TYPE telemetry_scrape_duration_seconds summary\n# HELP telemetry_scrape_duration_seconds Scrape duration\n# TYPE telemetry_scrape_size_bytes summary\n# HELP telemetry_scrape_size_bytes Scrape size, not encoded\n# TYPE telemetry_scrape_encoded_size_bytes summary\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e巴拉巴拉一大堆\n\u003cbr\u003e\u003c\/br\u003e\n適當增加一下prometheus的config，反正只是測試一下，就姑且用static config吧\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-yaml\u0022 data-lang=\u0022yaml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n...\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter\u0026#39;\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 60s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_timeout\u003c\/span\u003e: 59s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e:\n          - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter:15692\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n能看到endpoint增加了\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n這樣就能用Prometheus監控RabbitMQ了\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e',
+      summary: '\u003cp\u003e作為往後可能需要自訂Exporter的預習，就試著拿Prometheus client libraries來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter\u003c\/p\u003e',
+      content: '\u003cp\u003e作為往後可能需要自訂Exporter的預習，就試著拿Prometheus client libraries來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter\u003c\/p\u003e\n\u003cp\u003e這次環境是debian 9及python 3.5.3\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$  cat \/etc\/*-release\nPRETTY_NAME=\u0026quot;Debian GNU\/Linux 9 (stretch)\u0026quot;\nNAME=\u0026quot;Debian GNU\/Linux\u0026quot;\nVERSION_ID=\u0026quot;9\u0026quot;\nVERSION=\u0026quot;9 (stretch)\u0026quot;\nID=debian\nHOME_URL=\u0026quot;https:\/\/www.debian.org\/\u0026quot;\nSUPPORT_URL=\u0026quot;https:\/\/www.debian.org\/support\u0026quot;\nBUG_REPORT_URL=\u0026quot;https:\/\/bugs.debian.org\/\u0026quot;\n\n$ python --version\nPython 3.5.3\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n先用一下好久沒碰的Pipenv，避免環境弄亂\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ pip3 install -U pipenv\n$ pipenv --python 3\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n下載prometheus client，然後用shell\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ pipenv install prometheus-client\n$ pipenv shell\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n\u003ca href=\u0022https:\/\/github.com\/prometheus\/node_exporter\/\u0022\u003ereadme.md\u003c\/a\u003e中的範例，是使用start_http_server，因為本身就是一個頗為簡短的script，\n使用while True來持續執行\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e start_http_server, Summary\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e random\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e time\n\n\u003cspan style=\u0022color:#75715e\u0022\u003e# Create a metric to track time spent and requests made.\u003c\/span\u003e\nREQUEST_TIME \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e Summary(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;request_processing_seconds\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;Time spent processing request\u0026#39;\u003c\/span\u003e)\n\n\u003cspan style=\u0022color:#75715e\u0022\u003e# Decorate function with metric.\u003c\/span\u003e\n\u003cspan style=\u0022color:#a6e22e\u0022\u003e@REQUEST_TIME.time\u003c\/span\u003e()\n\u003cspan style=\u0022color:#66d9ef\u0022\u003edef\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003eprocess_request\u003c\/span\u003e(t):\n    \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#34;\u0026#34;\u0026#34;A dummy function that takes some time.\u0026#34;\u0026#34;\u0026#34;\u003c\/span\u003e\n    time\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003esleep(t)\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eif\u003c\/span\u003e __name__ \u003cspan style=\u0022color:#f92672\u0022\u003e==\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;__main__\u0026#39;\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Start up the server to expose the metrics.\u003c\/span\u003e\n    start_http_server(\u003cspan style=\u0022color:#ae81ff\u0022\u003e8000\u003c\/span\u003e)\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Generate some requests.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003ewhile\u003c\/span\u003e True:\n        process_request(random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandom())\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n來看看是start_http_server的廬山真面目\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026gt;\u0026gt;\u0026gt; import prometheus_client\n\u0026gt;\u0026gt;\u0026gt; import inspect\n\n\u0026gt;\u0026gt;\u0026gt; print(inspect.getsource(prometheus_client.start_http_server))\ndef start_wsgi_server(port, addr=\u0027\u0027, registry=REGISTRY):\n    \u0026quot;\u0026quot;\u0026quot;Starts a WSGI server for prometheus metrics as a daemon thread.\u0026quot;\u0026quot;\u0026quot;\n    app = make_wsgi_app(registry)\n    httpd = make_server(addr, port, app, ThreadingWSGIServer, handler_class=_SilentHandler)\n    t = threading.Thread(target=httpd.serve_forever)\n    t.daemon = True\n    t.start()\n\n\u0026gt;\u0026gt;\u0026gt; print(inspect.getsource(prometheus_client.start_wsgi_server))\ndef start_wsgi_server(port, addr=\u0027\u0027, registry=REGISTRY):\n    \u0026quot;\u0026quot;\u0026quot;Starts a WSGI server for prometheus metrics as a daemon thread.\u0026quot;\u0026quot;\u0026quot;\n    app = make_wsgi_app(registry)\n    httpd = make_server(addr, port, app, ThreadingWSGIServer, handler_class=_SilentHandler)\n    t = threading.Thread(target=httpd.serve_forever)\n    t.daemon = True\n    t.start()\n\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e由此可見start_http_server和start_wsgi_server是同一個function，當這支script執行完了後，Thread也一併結束\n\u003cbr\u003e\u003c\/br\u003e\n執行後一樣cURL測試一下取得的metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:8000\n# HELP process_virtual_memory_bytes Virtual memory size in bytes.\n# TYPE process_virtual_memory_bytes gauge\nprocess_virtual_memory_bytes 2.17821184e\u002b08\n# HELP process_resident_memory_bytes Resident memory size in bytes.\n# TYPE process_resident_memory_bytes gauge\nprocess_resident_memory_bytes 2.0774912e\u002b07\n# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.\n# TYPE process_start_time_seconds gauge\nprocess_start_time_seconds 1.59764690706e\u002b09\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n當然也可以用custom collector，記得要用REGISTRY.register將collector註冊\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client.core \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e GaugeMetricFamily, REGISTRY\n\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e start_http_server\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e random\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e time\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eclass\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003eCustomCollector\u003c\/span\u003e(object):\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003edef\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003ecollect\u003c\/span\u003e(self):\n        g \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e GaugeMetricFamily(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;my_Gauge\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;Help text\u0026#39;\u003c\/span\u003e, labels\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;foo\u0026#39;\u003c\/span\u003e])\n        g\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eadd_metric([\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;bar\u0026#39;\u003c\/span\u003e], random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandint(\u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e, \u003cspan style=\u0022color:#ae81ff\u0022\u003e100\u003c\/span\u003e))\n        g\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eadd_metric([\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;baz\u0026#39;\u003c\/span\u003e], random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandom())\n        \u003cspan style=\u0022color:#66d9ef\u0022\u003eyield\u003c\/span\u003e g\n\nREGISTRY\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eregister(CustomCollector())\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eif\u003c\/span\u003e __name__ \u003cspan style=\u0022color:#f92672\u0022\u003e==\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;__main__\u0026#39;\u003c\/span\u003e:\n    start_http_server(\u003cspan style=\u0022color:#ae81ff\u0022\u003e8000\u003c\/span\u003e)\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003ewhile\u003c\/span\u003e True:\n        time\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003esleep(\u003cspan style=\u0022color:#ae81ff\u0022\u003e10\u003c\/span\u003e)\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n可以看到metrics包含剛才測試的custom collector了，看得出start_http_server是指向REGISTRY，而REGISTRY又包含了collector，所以server每pull一次，就會執行一次註冊到REGISTRY的collector\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$  curl localhost:8000 \n# HELP my_Gauge Help text\n# TYPE my_Gauge gauge\nmy_Gauge{foo=\u0026quot;bar\u0026quot;} 84.0\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n大致上是這樣，雖然能動，但單單是這樣似乎有點不太夠，畢竟單獨使用的話功能實在有點陽春，在不繼續coding的情況下，\u003ca href=\u0022https:\/\/github.com\/prometheus\/node_exporter\u0022\u003eNode exporter\u003c\/a\u003e出馬的時候又到了，Node Exporter的Textfile collector就能在此發揮作用\u003c\/p\u003e\n\u003cp\u003e現在更改剛才測試用的.py如下\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client.core \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e GaugeMetricFamily, REGISTRY\n\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e write_to_textfile\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e random\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eclass\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003eCustomCollector\u003c\/span\u003e(object):\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003edef\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003ecollect\u003c\/span\u003e(self):\n        g \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e GaugeMetricFamily(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;my_Gauge\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;Help text\u0026#39;\u003c\/span\u003e, labels\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;foo\u0026#39;\u003c\/span\u003e])\n        g\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eadd_metric([\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;bar\u0026#39;\u003c\/span\u003e], random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandint(\u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e, \u003cspan style=\u0022color:#ae81ff\u0022\u003e100\u003c\/span\u003e))\n        g\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eadd_metric([\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;baz\u0026#39;\u003c\/span\u003e], random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandom())\n        \u003cspan style=\u0022color:#66d9ef\u0022\u003eyield\u003c\/span\u003e g\n\nREGISTRY\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eregister(CustomCollector())\n\nwrite_to_textfile(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;test.prom\u0026#39;\u003c\/span\u003e, REGISTRY)\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e這樣就會將registry的中的metrics通通輸出到一個叫做\u0026quot;test.prom\u0026quot;的file裡了\u003c\/p\u003e\n\u003cp\u003e之後Node exporter再使用\u0026ndash;collector.textfile.directory這個flag就能取得指定目錄下*.prom的metrics了，如此一來不只能用crontab之類的來排程，甚至在其他程式裡加上write_to_textfile，到時候只需要讓node_exporter去指定目錄抓就好，彈性又便利\u003c\/p\u003e',
     
     
       date: '2020-08-14',
     
     
-      tags: '[Prometheus RabbitMQ]',
+      tags: '[Prometheus Python]',
     
     
       categories: '[監控工具]',
@@ -1085,17 +1289,17 @@ var posts = [
   {
     url: 'https:\/\/mikanbearer.github.io\/posts\/202008131707\/',
     
-      title: '輕鬆做一遍Prometheus',
+      title: '使用Prometheus監控RabbitMQ之從頭動手',
     
     
       summary: '\u003cp\u003ePrometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003ePrometheus：監控方，定期收集資料並存在資料庫\u003c\/li\u003e\n\u003cli\u003eExporter：被監控方，回傳監控方需要的資料\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e為了往後學習方便，先來實作一遍這個方便利用的工具\u003c\/p\u003e',
-      content: '\u003cp\u003ePrometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003ePrometheus：監控方，定期收集資料並存在資料庫\u003c\/li\u003e\n\u003cli\u003eExporter：被監控方，回傳監控方需要的資料\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e為了往後學習方便，先來實作一遍這個方便利用的工具\u003c\/p\u003e\n\u003cp\u003ePrometheus的基礎運用架構很單純，大在就像下圖：\n\u003cimg src=\u00220.png\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cp\u003e從圖中可見，Prometheus收集時間序列資料(metrics)都是由自己主動向Exporter發起的，這次大概會做這些：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\u0022#1\u0022\u003e啟動Prometheus\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#2\u0022\u003e啟動Exporter\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#3\u0022\u003e使用static config監控\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#4\u0022 \u003e使用file-based service discovery監控\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=1\u003e啟動Prometheus\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n部屬Prometheus非常簡單，就只是binary配上一個設定檔，指令如下：\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ wget https:\/\/github.com\/prometheus\/prometheus\/releases\/download\/v2.20.1\/prometheus-2.20.1.linux-amd64.tar.gz\n$ tzr zxvf prometheus-2.20.1.linux-amd64.tar.gz\n$ cd tzr zxvf prometheus-2.20.1.linux-amd64\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n因為預設的prometheus.yml已經定義好自己了，所以馬上就能用了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ .\/prometheus --config.file=prometheus.yml\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n使用cURL測試一下metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:9090\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 8.412e-06\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 6.8151e-05\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0.000435588\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0.000661594\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0.001019489\ngo_gc_duration_seconds_sum 0.002193234\ngo_gc_duration_seconds_count 5\n# HELP go_goroutines Number of goroutines that currently exist.\n# TYPE go_goroutines gauge\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cstrong\u003e就算加上下載，整個過程也不到五分鐘…\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e拿到metrics就是這麼快速，也能進web看看graph，在瀏覽器打上http:\/\/prometheus_ip:9090\/graph就能看到了，\ntab選擇graph也能看到些簡單的圖表\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00222\u0022\u003e啟動Exporter\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n既然Prometheus已經起來了，那麼來試著監控些什麼，就下載個node exporter來測試\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003ewget https:\/\/github.com\/prometheus\/node_exporter\/releases\/download\/v1.0.1\/node_exporter-1.0.1.linux-amd64.tar.gz\ntar zxvf node_exporter-1.0.1.linux-amd64.tar.gz\ncd node_exporter-1.0.1.linux-amd64\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n裡面一樣是個binary file，執行下去\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e .\/node_exporter --web.listen-address 127.0.0.1:8080\ncurl 127.0.0.1:8080\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0\ngo_gc_duration_seconds_sum 0\ngo_gc_duration_seconds_count 0\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncURL測試metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:8080\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 9.31e-06\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 5.488e-05\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0.000112915\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0.000194093\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0.004481425\ngo_gc_duration_seconds_sum 0.175059981\ngo_gc_duration_seconds_count 957\n# HELP go_goroutines Number of goroutines that currently exist.\n# TYPE go_goroutines gauge\ngo_goroutines 8\n# HELP go_info Information about the Go environment.\n# TYPE go_info gauge\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e一樣簡單快速\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00223\u0022\u003e使用static config進行監控\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n既然exporter沒問題，那麼是時候建立一個job來get metrics了，就依照\u003ca href=\u0022https:\/\/prometheus.io\/docs\/prometheus\/latest\/getting_started\/\u0022\u003e這裡的範例\u003c\/a\u003e，一步步操作吧\u003c\/p\u003e\n\u003cp\u003e依照範例，建立prometheus.rules.yml，用於依照需求控制紀錄的方式，能降低監控造成的負擔，此範例是記錄下五分鐘平均的cpu狀態\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e5\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.rules.yml\u0022 data-lang=\u0022:prometheus.rules.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003egroups\u003c\/span\u003e:\n- \u003cspan style=\u0022color:#66d9ef\u0022\u003ename\u003c\/span\u003e: cpu-node\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003erules\u003c\/span\u003e:\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003erecord\u003c\/span\u003e: job_instance_mode:node_cpu_seconds:avg_rate5m\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003eexpr\u003c\/span\u003e: avg by (job, instance, mode) (rate(node_cpu_seconds_total[5m]))\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n然後修改prometheus.yml，除了增加rule，也新增job，並\u003ca href=\u0022\u0022\u003e之前\u003c\/a\u003e啟動的exporter\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e16\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e17\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e18\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e19\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e20\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e21\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e22\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e23\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e24\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e25\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e26\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e27\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e28\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e29\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e30\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e31\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e32\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e33\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.yml\u0022 data-lang=\u0022:prometheus.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eglobal\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e:     15s \u003cspan style=\u0022color:#75715e\u0022\u003e# By default, scrape targets every 15 seconds.\u003c\/span\u003e\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003eevaluation_interval\u003c\/span\u003e: 15s \u003cspan style=\u0022color:#75715e\u0022\u003e# Evaluate rules every 15 seconds.\u003c\/span\u003e\n\n  \u003cspan style=\u0022color:#75715e\u0022\u003e# Attach these extra labels to all timeseries collected by this Prometheus instance.\u003c\/span\u003e\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003eexternal_labels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003emonitor\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;codelab-monitor\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003erule_files\u003c\/span\u003e:\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e  - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;prometheus.rules.yml\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\n\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;prometheus\u0026#39;\u003c\/span\u003e\n\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:9090\u0026#39;\u003c\/span\u003e]\n\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e:       \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;node\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8080\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8081\u0026#39;\u003c\/span\u003e]\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e          \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;production\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8082\u0026#39;\u003c\/span\u003e]\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e          \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;canary\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n重新啟動prometheus後，就能用去query job instance了\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00224\u0022\u003e使用file-based service discovery監控\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n在實務上，不可能每增加個exporter就重新啟動一次，這時候file-based service discovery就很重要，\n這種方式和static config不同，只要修改檔案讓prometheus能去讀取就行，不需要reload\u003c\/p\u003e\n\u003cp\u003e先在目錄中建立一個空的file_sd.yml，並修改prometheus.yml\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e21\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e22\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e23\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e24\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e25\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e26\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e27\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e28\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.yml\u0022 data-lang=\u0022:prometheus.yml\u0022\u003e  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e:       \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;node\u0026#39;\u003c\/span\u003e\n\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003efile_sd_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003efiles\u003c\/span\u003e:\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        - .\/file_sd.yml\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e重新啟動prometheus後，就發現targets回到空空如也的狀態了\n\u003cimg src=\u00223.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e接下來就是要用file來增加targets了，把前版的prometheus.yml中的static config放到file_sd.yml\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e5\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e6\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e7\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:file_sd.yml\u0022 data-lang=\u0022:file_sd.yml\u0022\u003e- \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8080\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8081\u0026#39;\u003c\/span\u003e]\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;production\u0026#39;\u003c\/span\u003e\n\n- \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8082\u0026#39;\u003c\/span\u003e]\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;canary\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e接下來不需要重新啟動prometheus，也能新增targets了\n\u003cimg src=\u00224.png\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n完\u003c\/p\u003e',
+      content: '\u003cp\u003ePrometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003ePrometheus：監控方，定期收集資料並存在資料庫\u003c\/li\u003e\n\u003cli\u003eExporter：被監控方，回傳監控方需要的資料\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e為了往後學習方便，先來實作一遍這個方便利用的工具\u003c\/p\u003e\n\u003cp\u003ePrometheus的基礎運用架構很單純，大在就像下圖：\n\u003cimg src=\u00220.png\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cp\u003e從圖中可見，Prometheus收集時間序列資料(metrics)都是由自己主動向Exporter發起的，這次大概會做這些：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\u0022#1\u0022\u003e啟動Prometheus\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#2\u0022\u003e啟動Exporter\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#3\u0022\u003e使用static config監控\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#4\u0022 \u003e使用file-based service discovery監控\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#5\u0022\u003e監控RabbitMQ\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=1\u003e啟動Prometheus\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n部屬Prometheus非常簡單，就只是binary配上一個設定檔，指令如下：\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ wget https:\/\/github.com\/prometheus\/prometheus\/releases\/download\/v2.20.1\/prometheus-2.20.1.linux-amd64.tar.gz\n$ tzr zxvf prometheus-2.20.1.linux-amd64.tar.gz\n$ cd tzr zxvf prometheus-2.20.1.linux-amd64\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n因為預設的prometheus.yml已經定義好自己了，所以馬上就能用了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ .\/prometheus --config.file=prometheus.yml\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n使用cURL測試一下metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:9090\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 8.412e-06\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 6.8151e-05\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0.000435588\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0.000661594\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0.001019489\ngo_gc_duration_seconds_sum 0.002193234\ngo_gc_duration_seconds_count 5\n# HELP go_goroutines Number of goroutines that currently exist.\n# TYPE go_goroutines gauge\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cstrong\u003e就算加上下載，整個過程也不到五分鐘…\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e拿到metrics就是這麼快速，也能進web看看graph，在瀏覽器打上http:\/\/prometheus_ip:9090\/graph就能看到了，\ntab選擇graph也能看到些簡單的圖表\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00222\u0022\u003e啟動Exporter\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n既然Prometheus已經起來了，那麼來試著監控些什麼，就下載個node exporter來測試\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003ewget https:\/\/github.com\/prometheus\/node_exporter\/releases\/download\/v1.0.1\/node_exporter-1.0.1.linux-amd64.tar.gz\ntar zxvf node_exporter-1.0.1.linux-amd64.tar.gz\ncd node_exporter-1.0.1.linux-amd64\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n裡面一樣是個binary file，執行下去\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e .\/node_exporter --web.listen-address 127.0.0.1:8080\ncurl 127.0.0.1:8080\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0\ngo_gc_duration_seconds_sum 0\ngo_gc_duration_seconds_count 0\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncURL測試metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:8080\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 9.31e-06\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 5.488e-05\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0.000112915\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0.000194093\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0.004481425\ngo_gc_duration_seconds_sum 0.175059981\ngo_gc_duration_seconds_count 957\n# HELP go_goroutines Number of goroutines that currently exist.\n# TYPE go_goroutines gauge\ngo_goroutines 8\n# HELP go_info Information about the Go environment.\n# TYPE go_info gauge\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e一樣簡單快速\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00223\u0022\u003e使用static config進行監控\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n既然exporter沒問題，那麼是時候建立一個job來get metrics了，就依照\u003ca href=\u0022https:\/\/prometheus.io\/docs\/prometheus\/latest\/getting_started\/\u0022\u003e這裡的範例\u003c\/a\u003e，一步步操作吧\u003c\/p\u003e\n\u003cp\u003e依照範例，建立prometheus.rules.yml，用於依照需求控制紀錄的方式，能降低監控造成的負擔，此範例是記錄下五分鐘平均的cpu狀態\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e5\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.rules.yml\u0022 data-lang=\u0022:prometheus.rules.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003egroups\u003c\/span\u003e:\n- \u003cspan style=\u0022color:#66d9ef\u0022\u003ename\u003c\/span\u003e: cpu-node\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003erules\u003c\/span\u003e:\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003erecord\u003c\/span\u003e: job_instance_mode:node_cpu_seconds:avg_rate5m\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003eexpr\u003c\/span\u003e: avg by (job, instance, mode) (rate(node_cpu_seconds_total[5m]))\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n然後修改prometheus.yml，除了增加rule，也新增job，並\u003ca href=\u0022\u0022\u003e之前\u003c\/a\u003e啟動的exporter\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e16\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e17\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e18\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e19\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e20\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e21\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e22\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e23\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e24\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e25\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e26\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e27\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e28\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e29\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e30\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e31\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e32\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e33\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.yml\u0022 data-lang=\u0022:prometheus.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eglobal\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e:     15s \u003cspan style=\u0022color:#75715e\u0022\u003e# By default, scrape targets every 15 seconds.\u003c\/span\u003e\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003eevaluation_interval\u003c\/span\u003e: 15s \u003cspan style=\u0022color:#75715e\u0022\u003e# Evaluate rules every 15 seconds.\u003c\/span\u003e\n\n  \u003cspan style=\u0022color:#75715e\u0022\u003e# Attach these extra labels to all timeseries collected by this Prometheus instance.\u003c\/span\u003e\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003eexternal_labels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003emonitor\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;codelab-monitor\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003erule_files\u003c\/span\u003e:\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e  - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;prometheus.rules.yml\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\n\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;prometheus\u0026#39;\u003c\/span\u003e\n\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:9090\u0026#39;\u003c\/span\u003e]\n\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e:       \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;node\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8080\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8081\u0026#39;\u003c\/span\u003e]\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e          \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;production\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8082\u0026#39;\u003c\/span\u003e]\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e          \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;canary\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n重新啟動prometheus後，就能用去query job instance了\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00224\u0022\u003e使用file-based service discovery監控\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n在實務上，不可能每增加個exporter就重新啟動一次，這時候file-based service discovery就很重要，\n這種方式和static config不同，只要修改檔案讓prometheus能去讀取就行，不需要reload\u003c\/p\u003e\n\u003cp\u003e先在目錄中建立一個空的file_sd.yml，並修改prometheus.yml\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e21\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e22\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e23\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e24\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e25\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e26\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e27\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e28\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.yml\u0022 data-lang=\u0022:prometheus.yml\u0022\u003e  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e:       \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;node\u0026#39;\u003c\/span\u003e\n\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003efile_sd_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003efiles\u003c\/span\u003e:\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        - .\/file_sd.yml\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e重新啟動prometheus後，就發現targets回到空空如也的狀態了\n\u003cimg src=\u00223.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e接下來就是要用file來增加targets了，把前版的prometheus.yml中的static config放到file_sd.yml\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e5\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e6\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e7\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:file_sd.yml\u0022 data-lang=\u0022:file_sd.yml\u0022\u003e- \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8080\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8081\u0026#39;\u003c\/span\u003e]\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;production\u0026#39;\u003c\/span\u003e\n\n- \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8082\u0026#39;\u003c\/span\u003e]\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;canary\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e接下來不需要重新啟動prometheus，也能新增targets了\n\u003cimg src=\u00224.png\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=5\u003e監控RabbitMQ\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，\u003c\/p\u003e\n\u003cp\u003e而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看，當作實務運用的練習\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/github.com\/rabbitmq\/rabbitmq-prometheus\u0022\u003erabbitmq-prometheus的repository\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e一樣求方便使用docker-compose，寫個陽春的Dockerfile會比較方便\u003c\/p\u003e\n\u003cp\u003e為了使用內建的pulgin，直接用3.8.0以後的image，並且RUN啟用的command\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-Dockerfile\u0022 data-lang=\u0022Dockerfile\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eFROM\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e rabbitmq:3.8.6-management\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\u003c\/span\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eRUN\u003c\/span\u003e rabbitmq-plugins enable rabbitmq_prometheus\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncompose file增加port 15692\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:docker-compose.yml\u0022 data-lang=\u0022:docker-compose.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eversion\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;3\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eservices\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003emy-queue\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003econtainer_name\u003c\/span\u003e: rabbitmq\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003ebuild\u003c\/span\u003e: .\/\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003eports\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;5672:5672\u0026#39;\u003c\/span\u003e\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15672:15672\u0026#39;\u003c\/span\u003e\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15692:15692\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n      - rabbitmq-data:\/var\/lib\/rabbitmq\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003erabbitmq-data\u003c\/span\u003e:\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來就能在host上用cURL測試了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl -v -H \u0026quot;Accept:text\/plain\u0026quot; \u0026quot;http:\/\/localhost:15692\/metrics\u0026quot;\n...\n# TYPE rabbitmq_consumers gauge\n# HELP rabbitmq_consumers Consumers currently connected\nrabbitmq_consumers 0\n# TYPE rabbitmq_queues gauge\n# HELP rabbitmq_queues Queues available\nrabbitmq_queues 0\n# TYPE rabbitmq_build_info untyped\n# HELP rabbitmq_build_info RabbitMQ \u0026amp; Erlang\/OTP version info\nrabbitmq_build_info{rabbitmq_version=\u0026quot;3.8.6\u0026quot;,prometheus_plugin_version=\u0026quot;3.8.6\u0026quot;,prometheus_client_version=\u0026quot;4.6.0\u0026quot;,erlang_version=\u0026quot;23.0.3\u0026quot;} 1\n# TYPE rabbitmq_identity_info untyped\n# HELP rabbitmq_identity_info RabbitMQ node \u0026amp; cluster identity info\nrabbitmq_identity_info{rabbitmq_node=\u0026quot;rabbit@7f33446fce98\u0026quot;,rabbitmq_cluster=\u0026quot;rabbit@7f33446fce98\u0026quot;} 1\n# TYPE telemetry_scrape_duration_seconds summary\n# HELP telemetry_scrape_duration_seconds Scrape duration\n# TYPE telemetry_scrape_size_bytes summary\n# HELP telemetry_scrape_size_bytes Scrape size, not encoded\n# TYPE telemetry_scrape_encoded_size_bytes summary\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e巴拉巴拉一大堆\n\u003cbr\u003e\u003c\/br\u003e\n適當增加一下prometheus的config，反正只是測試一下，就姑且用static config吧\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-yaml\u0022 data-lang=\u0022yaml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n...\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter\u0026#39;\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 60s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_timeout\u003c\/span\u003e: 59s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e:\n          - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter:15692\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n能看到endpoint增加了\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n這樣就能用Prometheus監控RabbitMQ了\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e',
     
     
       date: '2020-08-13',
     
     
-      tags: '[Prometheus]',
+      tags: '[Prometheus RabbitMQ]',
     
     
       categories: '[監控工具]',
@@ -1210,7 +1414,7 @@ var posts = [
       date: '2020-07-29',
     
     
-      tags: '[Docker Nginx uWSGI]',
+      tags: '[Docker docker-compose Nginx uWSGI]',
     
     
       categories: '[網頁開發]',
@@ -1305,7 +1509,7 @@ var posts = [
       tags: '[Excel VBA]',
     
     
-      categories: '[工作小技巧]',
+      categories: '[小技巧]',
     
     
       author: '',
@@ -1420,7 +1624,7 @@ var posts = [
       tags: '[Windows VBScript]',
     
     
-      categories: '[工作小技巧]',
+      categories: '[小技巧]',
     
     
       author: '',
@@ -1500,12 +1704,37 @@ vm.$set(vm.$data, 'posts', posts)
   
   'Windows',
   
+  'docker-compose',
+  
   'uWSGI',
   
 
   ]
 
   vm.$set(vm.$data, 'tags', alltags.sort())
+
+
+
+
+  var allcategories = [
+  
+  '問題紀錄',
+  
+  '小技巧',
+  
+  '監控工具',
+  
+  '網頁開發',
+  
+  '雜記',
+  
+
+  ]
+
+  vm.$set(vm.$data, 'categories', allcategories.sort())
+
+
+
 
 
   vm.$watch(() => vm.seltags, (tags)=>{
@@ -1517,11 +1746,27 @@ vm.$set(vm.$data, 'posts', posts)
               filteredposts.push(post)
          }
       }
-      vm.$set(vm.$data, 'filteredposts', filteredposts)
+      vm.$set(vm.$data, 'tfilteredposts', filteredposts)
     }else{
-      vm.$set(vm.$data, 'filteredposts', [])
+      vm.$set(vm.$data, 'tfilteredposts', [])
     }
-})
+  })
+
+
+  vm.$watch(() => vm.selcategories, (categories)=>{
+    var filteredposts = []
+    if (categories) {
+      for (const post of vm.posts) {
+          let checker = (arr, target) => arr.includes(target)
+         if (checker(post.categories, categories)) {
+              filteredposts.push(post)
+         }
+      }
+      vm.$set(vm.$data, 'cfilteredposts', filteredposts)
+    }else{
+      vm.$set(vm.$data, 'cfilteredposts', [])
+    }
+  })
 
 
 </script>
@@ -1532,7 +1777,7 @@ vm.$set(vm.$data, 'posts', posts)
 
 <script>
   vm.page =  1 
-  vm.panel = [...Array( 10 ).keys()]
+  vm.panel = [...Array( 250 ).keys()]
   vm.$watch(() => vm.page, (newPage)=>{window.location.href = 'https:\/\/mikanbearer.github.io\/tags\/Nginx\/page/' + newPage})
 </script>
 

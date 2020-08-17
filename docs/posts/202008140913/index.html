@@ -19,16 +19,16 @@
       left: 0;
       background-size: cover;
       
-      background-color: #f6f6f4;
+      background-color: #272727;
       
 
 
       
     }
 
-#inspire {
-  background: none;
-}
+    #inspire {
+      background: none;
+    }
   </style>
 
 </head>
@@ -36,14 +36,11 @@
 <div id="app">
   <v-app id="inspire">
     <v-app id="inspire">
-      
-
-<v-app-bar
+      <v-app-bar
   app
   clipped-left
   dense
   dark
-  hide-on-scroll
 >
 
   <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -51,10 +48,13 @@
   <v-toolbar-title class="mr-12 align-center">
     <span class="title"></span>
   </v-toolbar-title>
+
   <v-spacer></v-spacer>
   <v-btn icon @click.stop="dialog = !dialog">
     <v-icon>mdi-magnify</v-icon>
   </v-btn>
+
+
 </v-app-bar>
 
 
@@ -74,12 +74,16 @@
       v-model="tab"
       background-color="transparent"
       class="mb-3"
+      
     >
       <v-tab>
         Title
       </v-tab>
       <v-tab>
         Tag
+      </v-tab>
+      <v-tab>
+        Category
       </v-tab>
     </v-tabs>
 
@@ -94,26 +98,28 @@
             hide-details
             item-text="title"
             item-value="url"
-            prepend-icon="mdi-magnify"
+            prepend-inner-icon="mdi-magnify"
             return-object
+            clearble
+            height="42"
           >
           </v-autocomplete>
         </v-card-text>
-        <v-card-text>
-          <v-expand-transition>
+        <v-expand-transition>
+          <v-card-text v-if="model">
             <div v-if="model">
             <v-divider></v-divider>
-            <v-card-title class="text-h6 grey--text text--darken-4">
+            <v-card-title class="text-h6">
               [[ model.title ]]
             </v-card-title>
-            <v-card-subtitle class="grey--text text--darken-3 text-body-1">
+            <v-card-subtitle class="text-body-1">
               [[ model.date ]]
               <a  v-for="category in model.categories">[[ category ]]</a>
               <div>
                 <v-chip
                   v-for="tag in model.tags"
                   v-bind:key="tag.id"
-                  color="secondary"
+                  color="accent"
                   label
                   text-color="white"
                   x-small
@@ -125,7 +131,7 @@
               </div>
               <v-divider></v-divider>
             </v-card-subtitle>
-            <v-card-text v-html="model.summary" class="grey--text text--darken-3 text-body-1"></v-card-text>
+            <v-card-text v-html="model.summary" class="text-body-1"></v-card-text>
             <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
@@ -155,8 +161,8 @@
             </v-btn>
             </v-card-actions>
             </div>
-          </v-expand-transition>
-        </v-card-text>
+          </v-card-text>
+        </v-expand-transition>
       </v-tab-item>
 
       <v-tab-item>
@@ -168,11 +174,12 @@
             clearable
             multiple
             hide-selected
-            prepend-icon="mdi-tag-multiple"
+            hide-details
+            prepend-inner-icon="mdi-tag-multiple"
           >
             <template v-slot:selection="{ attrs, item, select, selected }">
               <v-chip
-                color="error"
+                color="accent"
                 v-bind="attrs"
                 :input-value="selected"
                 close
@@ -183,9 +190,10 @@
             </template>              
           </v-combobox>
         </v-card-text>
-        </v-card-text>
-          <v-expand-transition>
-            <v-simple-table v-if="filteredposts.length">
+        
+        <v-expand-transition >
+          <v-card-text v-if="tfilteredposts.length">
+            <v-simple-table v-if="tfilteredposts.length">
               <template>
                 <thead>
                   <tr>
@@ -195,13 +203,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="post in filteredposts">
+                  <tr v-for="post in tfilteredposts">
                     <td>[[ post.date ]]</td>
                     <td>
                       <div v-for="tag in post.tags" class="d-inline">
                         <v-chip
                           v-if="seltags.includes(tag)"
-                          color="error"
+                          color="accent"
                           label
                           x-small
                           :href="'https://mikanbearer.github.io/tags/' + tag"
@@ -212,7 +220,7 @@
                         <v-chip
                           v-else
                           color="secondary"
-                          text-color="white"
+                          text-color="grey"
                           label
                           x-small
                           :href="'https://mikanbearer.github.io/tags/' + tag"
@@ -227,9 +235,54 @@
                 </tbody>
               </template>
             </v-simple-table>
+            </v-card-text>
           </v-expand-transition>
-        </v-card-text>
       </v-tab-item>
+
+      <v-tab-item>
+        <v-card-text>
+          <v-autocomplete
+            v-model="selcategories"
+            :items="categories"
+            clearable
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-folder"
+            height="42"
+          >
+          </v-autocomplete>
+        </v-card-text>
+        
+        <v-expand-transition>
+          <v-card-text v-if="cfilteredposts.length">
+            <v-simple-table v-if="cfilteredposts.length">
+              <template>
+                <thead>
+                  <tr>
+                    <th class="text-left">Date</th>
+                    <th class="text-left">Categories</th>
+                    <th class="text-left">Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="post in cfilteredposts">
+                    <td>[[ post.date ]]</td>
+                    <td>
+                      <div v-for="category in post.categories" class="d-inline">
+                        <a :href="'https://mikanbearer.github.io/categories/' + category">
+                          [[ category ]]
+                        </v-chip>
+                      </div>
+                    </td>
+                    <td><a :href="post.url">[[ post.title ]]</a></td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </v-card-text>
+        </v-expand-transition>
+      </v-tab-item>
+
     </v-tabs-items>
   </v-card>
 </v-dialog>
@@ -266,7 +319,7 @@
 
     <v-list-item link href="https://mikanbearer.github.io/posts">
       <v-list-item-action>
-        <v-icon>mdi-tag-multiple</v-icon>
+        <v-icon>mdi-file-document-multiple</v-icon>
       </v-list-item-action>
       <v-list-item-title>Posts</v-list-item-title>
     </v-list-item>
@@ -304,10 +357,10 @@
           <v-row dense>
             <v-col cols=12>
               <div>
-                <v-card>
-                  <v-card-title class="grey darken-3 text-h6 white--text">
+                <v-card class="content">
+                  <v-card-title class="text-h6 grey--text text--lighten-4" style="background-color: #556265;">
                     <div>
-                      使用Prometheus監控RabbitMQ
+                      使用Textfile Collector取得自訂的metrics
                     </div>
                   </v-card-title>
                   <v-card-subtitle class="text-body-1 mt-0">
@@ -323,7 +376,7 @@
                       
                       
                         <v-chip
-                          color="blue-grey"
+                          color="accent"
                           label
                           text-color="white"
                           x-small
@@ -333,13 +386,13 @@
                         </v-chip>
                       
                         <v-chip
-                          color="blue-grey"
+                          color="accent"
                           label
                           text-color="white"
                           x-small
-                          href="https://mikanbearer.github.io//tags/RabbitMQ/"
+                          href="https://mikanbearer.github.io//tags/Python/"
                         >
-                          RabbitMQ
+                          Python
                         </v-chip>
                       
                     
@@ -349,91 +402,132 @@
                   </v-card-subtitle>
   
                   <v-card-text class="text-body-1">
-                    <p>因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，</p>
-<p>而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看</p>
-<p><a href="https://github.com/rabbitmq/rabbitmq-prometheus">rabbitmq-prometheus的repository</a></p>
-<p>一樣求方便使用docker-compose，寫個陽春的Dockerfile會比較方便</p>
-<p>為了使用內建的pulgin，直接用3.8.0以後的image，並且RUN啟用的command</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> rabbitmq:3.8.6-management</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> rabbitmq-plugins enable rabbitmq_prometheus<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p><br></br>
-compose file增加port 15692</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-compose.yml" data-lang=":docker-compose.yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+                    <p>作為往後可能需要自訂Exporter的預習，就試著拿Prometheus client libraries來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter</p>
+<p>這次環境是debian 9及python 3.5.3</p>
+<pre><code>$  cat /etc/*-release
+PRETTY_NAME=&quot;Debian GNU/Linux 9 (stretch)&quot;
+NAME=&quot;Debian GNU/Linux&quot;
+VERSION_ID=&quot;9&quot;
+VERSION=&quot;9 (stretch)&quot;
+ID=debian
+HOME_URL=&quot;https://www.debian.org/&quot;
+SUPPORT_URL=&quot;https://www.debian.org/support&quot;
+BUG_REPORT_URL=&quot;https://bugs.debian.org/&quot;
 
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">my-queue</span>:
-    <span style="color:#66d9ef">container_name</span>: rabbitmq
-<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">build</span>: ./
-</span>    <span style="color:#66d9ef">ports</span>:
-      - <span style="color:#e6db74">&#39;5672:5672&#39;</span>
-      - <span style="color:#e6db74">&#39;15672:15672&#39;</span>
-<span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#e6db74">&#39;15692:15692&#39;</span>
-</span>    <span style="color:#66d9ef">volumes</span>:
-      - rabbitmq-data:/var/lib/rabbitmq
+$ python --version
+Python 3.5.3
+</code></pre><p><br></br>
+先用一下好久沒碰的Pipenv，避免環境弄亂</p>
+<pre><code>$ pip3 install -U pipenv
+$ pipenv --python 3
+</code></pre><p><br></br>
+下載prometheus client，然後用shell</p>
+<pre><code>$ pipenv install prometheus-client
+$ pipenv shell
+</code></pre><p><br></br>
+<a href="https://github.com/prometheus/node_exporter/">readme.md</a>中的範例，是使用start_http_server，因為本身就是一個頗為簡短的script，
+使用while True來持續執行</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> start_http_server, Summary
+<span style="color:#f92672">import</span> random
+<span style="color:#f92672">import</span> time
 
-<span style="color:#66d9ef">volumes</span>:
-    <span style="color:#66d9ef">rabbitmq-data</span>:
-</code></pre></td></tr></table>
-</div>
-</div><p><br></br>
-接下來就能在host上用cURL測試了</p>
-<pre><code>$ curl -v -H &quot;Accept:text/plain&quot; &quot;http://localhost:15692/metrics&quot;
-...
-# TYPE rabbitmq_consumers gauge
-# HELP rabbitmq_consumers Consumers currently connected
-rabbitmq_consumers 0
-# TYPE rabbitmq_queues gauge
-# HELP rabbitmq_queues Queues available
-rabbitmq_queues 0
-# TYPE rabbitmq_build_info untyped
-# HELP rabbitmq_build_info RabbitMQ &amp; Erlang/OTP version info
-rabbitmq_build_info{rabbitmq_version=&quot;3.8.6&quot;,prometheus_plugin_version=&quot;3.8.6&quot;,prometheus_client_version=&quot;4.6.0&quot;,erlang_version=&quot;23.0.3&quot;} 1
-# TYPE rabbitmq_identity_info untyped
-# HELP rabbitmq_identity_info RabbitMQ node &amp; cluster identity info
-rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cluster=&quot;rabbit@7f33446fce98&quot;} 1
-# TYPE telemetry_scrape_duration_seconds summary
-# HELP telemetry_scrape_duration_seconds Scrape duration
-# TYPE telemetry_scrape_size_bytes summary
-# HELP telemetry_scrape_size_bytes Scrape size, not encoded
-# TYPE telemetry_scrape_encoded_size_bytes summary
-...
-</code></pre><p>巴拉巴拉一大堆
-<br></br>
-適當增加一下prometheus的config，反正只是測試一下，就姑且用static config吧</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">scrape_configs</span>:
-...
-  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;rabbitmq-exporter&#39;</span>
-    <span style="color:#66d9ef">scrape_interval</span>: 60s
-    <span style="color:#66d9ef">scrape_timeout</span>: 59s
-    <span style="color:#66d9ef">static_configs</span>:
-      - <span style="color:#66d9ef">targets</span>:
-          - <span style="color:#e6db74">&#39;rabbitmq-exporter:15692&#39;</span>
+<span style="color:#75715e"># Create a metric to track time spent and requests made.</span>
+REQUEST_TIME <span style="color:#f92672">=</span> Summary(<span style="color:#e6db74">&#39;request_processing_seconds&#39;</span>, <span style="color:#e6db74">&#39;Time spent processing request&#39;</span>)
+
+<span style="color:#75715e"># Decorate function with metric.</span>
+<span style="color:#a6e22e">@REQUEST_TIME.time</span>()
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_request</span>(t):
+    <span style="color:#e6db74">&#34;&#34;&#34;A dummy function that takes some time.&#34;&#34;&#34;</span>
+    time<span style="color:#f92672">.</span>sleep(t)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    <span style="color:#75715e"># Start up the server to expose the metrics.</span>
+    start_http_server(<span style="color:#ae81ff">8000</span>)
+    <span style="color:#75715e"># Generate some requests.</span>
+    <span style="color:#66d9ef">while</span> True:
+        process_request(random<span style="color:#f92672">.</span>random())
 </code></pre></div><p><br></br>
-能看到endpoint增加了
-<img src="1.png" alt="">
+來看看是start_http_server的廬山真面目</p>
+<pre><code>&gt;&gt;&gt; import prometheus_client
+&gt;&gt;&gt; import inspect
+
+&gt;&gt;&gt; print(inspect.getsource(prometheus_client.start_http_server))
+def start_wsgi_server(port, addr='', registry=REGISTRY):
+    &quot;&quot;&quot;Starts a WSGI server for prometheus metrics as a daemon thread.&quot;&quot;&quot;
+    app = make_wsgi_app(registry)
+    httpd = make_server(addr, port, app, ThreadingWSGIServer, handler_class=_SilentHandler)
+    t = threading.Thread(target=httpd.serve_forever)
+    t.daemon = True
+    t.start()
+
+&gt;&gt;&gt; print(inspect.getsource(prometheus_client.start_wsgi_server))
+def start_wsgi_server(port, addr='', registry=REGISTRY):
+    &quot;&quot;&quot;Starts a WSGI server for prometheus metrics as a daemon thread.&quot;&quot;&quot;
+    app = make_wsgi_app(registry)
+    httpd = make_server(addr, port, app, ThreadingWSGIServer, handler_class=_SilentHandler)
+    t = threading.Thread(target=httpd.serve_forever)
+    t.daemon = True
+    t.start()
+
+</code></pre><p>由此可見start_http_server和start_wsgi_server是同一個function，當這支script執行完了後，Thread也一併結束
 <br></br>
-<img src="2.png" alt="">
-這樣就能用Prometheus監控RabbitMQ了
-<br></br></p>
+執行後一樣cURL測試一下取得的metrics</p>
+<pre><code>$ curl localhost:8000
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 2.17821184e+08
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 2.0774912e+07
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.59764690706e+09
+</code></pre><p><br></br>
+當然也可以用custom collector，記得要用REGISTRY.register將collector註冊</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> prometheus_client.core <span style="color:#f92672">import</span> GaugeMetricFamily, REGISTRY
+<span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> start_http_server
+<span style="color:#f92672">import</span> random
+<span style="color:#f92672">import</span> time
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomCollector</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect</span>(self):
+        g <span style="color:#f92672">=</span> GaugeMetricFamily(<span style="color:#e6db74">&#39;my_Gauge&#39;</span>, <span style="color:#e6db74">&#39;Help text&#39;</span>, labels<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;foo&#39;</span>])
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;bar&#39;</span>], random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span>))
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;baz&#39;</span>], random<span style="color:#f92672">.</span>random())
+        <span style="color:#66d9ef">yield</span> g
+
+REGISTRY<span style="color:#f92672">.</span>register(CustomCollector())
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    start_http_server(<span style="color:#ae81ff">8000</span>)
+    <span style="color:#66d9ef">while</span> True:
+        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">10</span>)
+</code></pre></div><p><br></br>
+可以看到metrics包含剛才測試的custom collector了，看得出start_http_server是指向REGISTRY，而REGISTRY又包含了collector，所以server每pull一次，就會執行一次註冊到REGISTRY的collector</p>
+<pre><code>$  curl localhost:8000 
+# HELP my_Gauge Help text
+# TYPE my_Gauge gauge
+my_Gauge{foo=&quot;bar&quot;} 84.0
+...
+</code></pre><p><br></br>
+大致上是這樣，雖然能動，但單單是這樣似乎有點不太夠，畢竟單獨使用的話功能實在有點陽春，在不繼續coding的情況下，<a href="https://github.com/prometheus/node_exporter">Node exporter</a>出馬的時候又到了，Node Exporter的Textfile collector就能在此發揮作用</p>
+<p>現在更改剛才測試用的.py如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> prometheus_client.core <span style="color:#f92672">import</span> GaugeMetricFamily, REGISTRY
+<span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> write_to_textfile
+<span style="color:#f92672">import</span> random
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomCollector</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect</span>(self):
+        g <span style="color:#f92672">=</span> GaugeMetricFamily(<span style="color:#e6db74">&#39;my_Gauge&#39;</span>, <span style="color:#e6db74">&#39;Help text&#39;</span>, labels<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;foo&#39;</span>])
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;bar&#39;</span>], random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span>))
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;baz&#39;</span>], random<span style="color:#f92672">.</span>random())
+        <span style="color:#66d9ef">yield</span> g
+
+REGISTRY<span style="color:#f92672">.</span>register(CustomCollector())
+
+write_to_textfile(<span style="color:#e6db74">&#39;test.prom&#39;</span>, REGISTRY)
+</code></pre></div><p>這樣就會將registry的中的metrics通通輸出到一個叫做&quot;test.prom&quot;的file裡了</p>
+<p>之後Node exporter再使用&ndash;collector.textfile.directory這個flag就能取得指定目錄下*.prom的metrics了，如此一來不只能用crontab之類的來排程，甚至在其他程式裡加上write_to_textfile，到時候只需要讓node_exporter去指定目錄抓就好，彈性又便利</p>
                   </v-card-text>
   
   
@@ -458,7 +552,7 @@ rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cl
                       Prev Post
                     </v-btn>
                   </template>
-                  <span>輕鬆做一遍Prometheus</span>
+                  <span>使用Prometheus監控RabbitMQ之從頭動手</span>
                 </v-tooltip>
               
               
@@ -484,7 +578,7 @@ rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cl
 
                   
             
-                  <v-card class="mt-5">
+                  <v-card color="#333a40" class="mt-5">
                     <v-card-title>
                       See Also
                     </v-card-title>
@@ -492,7 +586,7 @@ rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cl
                     
                     <v-list-item>
                       <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202008131707/">輕鬆做一遍Prometheus</a></v-list-item-title>
+                        <v-list-item-title><a href="/posts/202008131707/">使用Prometheus監控RabbitMQ之從頭動手</a></v-list-item-title>
                         <v-list-item-subtitle><p>Prometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：</p>
 <ul>
 <li>Prometheus：監控方，定期收集資料並存在資料庫</li>
@@ -522,6 +616,23 @@ rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cl
                     </v-list-item>
                     <v-divider></v-divider>
                     
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title><a href="/posts/202007201501/">使用Django REST framework超高速部屬RESTful API (2)</a></v-list-item-title>
+                        <v-list-item-subtitle><p>承之前的範例，這次要用JSON Web Token驗證，並加上Cross-Origin Resource Sharing</p></v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-divider></v-divider>
+                    
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title><a href="/posts/202007161628/">使用Django REST framework超高速部屬RESTful API (1)</a></v-list-item-title>
+                        <v-list-item-subtitle><p>這次作為複習，利用djangorestframework製作一個陽春的REST API
+何謂RESTful就不贅述了，直接開始實做</p></v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-divider></v-divider>
+                    
                   </v-card>
 
                   
@@ -547,7 +658,7 @@ rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cl
 
         </v-container>
       </v-main>        
-      <v-footer padless class="mt-5">
+      <v-footer padless color="transparent" class="mt-5">
   <v-col
     class="text-center text-body-2"
     cols="12"
@@ -592,15 +703,18 @@ rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cl
       search: null,
 
       tags: null,
+      categories: null,
       posts: null,
       seltags: null,
-      filteredposts: [],
+      selcategories: null,
+      tfilteredposts: [],
+      cfilteredposts: [],
       
     },
 
     
     created () {
-      
+      this.$vuetify.theme.dark = true
     },
 
     computed: {
@@ -629,23 +743,35 @@ rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cl
   vm.$vuetify.theme.themes.light.warning = '#F08300'
 
 
+  vm.$vuetify.theme.themes.dark.primary = '#F08300'
+  vm.$vuetify.theme.themes.dark.secondary = '#006e54'
+  vm.$vuetify.theme.themes.dark.warning = '#d3381c'
+  vm.$vuetify.theme.themes.dark.error = '#D7003A'
+  vm.$vuetify.theme.themes.dark.accent = '#00a381'
+
+
+  vm.$vuetify.theme.themes.dark.header = '#1f3134'
+  vm.$vuetify.theme.themes.dark.content = '#333a40'
+
+
+
 
 var posts = [
 
   {
     url: 'https:\/\/mikanbearer.github.io\/posts\/202008140913\/',
     
-      title: '使用Prometheus監控RabbitMQ',
+      title: '使用Textfile Collector取得自訂的metrics',
     
     
-      summary: '\u003cp\u003e因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，\u003c\/p\u003e\n\u003cp\u003e而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看\u003c\/p\u003e',
-      content: '\u003cp\u003e因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，\u003c\/p\u003e\n\u003cp\u003e而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/github.com\/rabbitmq\/rabbitmq-prometheus\u0022\u003erabbitmq-prometheus的repository\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e一樣求方便使用docker-compose，寫個陽春的Dockerfile會比較方便\u003c\/p\u003e\n\u003cp\u003e為了使用內建的pulgin，直接用3.8.0以後的image，並且RUN啟用的command\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-Dockerfile\u0022 data-lang=\u0022Dockerfile\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eFROM\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e rabbitmq:3.8.6-management\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\u003c\/span\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eRUN\u003c\/span\u003e rabbitmq-plugins enable rabbitmq_prometheus\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncompose file增加port 15692\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:docker-compose.yml\u0022 data-lang=\u0022:docker-compose.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eversion\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;3\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eservices\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003emy-queue\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003econtainer_name\u003c\/span\u003e: rabbitmq\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003ebuild\u003c\/span\u003e: .\/\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003eports\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;5672:5672\u0026#39;\u003c\/span\u003e\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15672:15672\u0026#39;\u003c\/span\u003e\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15692:15692\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n      - rabbitmq-data:\/var\/lib\/rabbitmq\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003erabbitmq-data\u003c\/span\u003e:\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來就能在host上用cURL測試了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl -v -H \u0026quot;Accept:text\/plain\u0026quot; \u0026quot;http:\/\/localhost:15692\/metrics\u0026quot;\n...\n# TYPE rabbitmq_consumers gauge\n# HELP rabbitmq_consumers Consumers currently connected\nrabbitmq_consumers 0\n# TYPE rabbitmq_queues gauge\n# HELP rabbitmq_queues Queues available\nrabbitmq_queues 0\n# TYPE rabbitmq_build_info untyped\n# HELP rabbitmq_build_info RabbitMQ \u0026amp; Erlang\/OTP version info\nrabbitmq_build_info{rabbitmq_version=\u0026quot;3.8.6\u0026quot;,prometheus_plugin_version=\u0026quot;3.8.6\u0026quot;,prometheus_client_version=\u0026quot;4.6.0\u0026quot;,erlang_version=\u0026quot;23.0.3\u0026quot;} 1\n# TYPE rabbitmq_identity_info untyped\n# HELP rabbitmq_identity_info RabbitMQ node \u0026amp; cluster identity info\nrabbitmq_identity_info{rabbitmq_node=\u0026quot;rabbit@7f33446fce98\u0026quot;,rabbitmq_cluster=\u0026quot;rabbit@7f33446fce98\u0026quot;} 1\n# TYPE telemetry_scrape_duration_seconds summary\n# HELP telemetry_scrape_duration_seconds Scrape duration\n# TYPE telemetry_scrape_size_bytes summary\n# HELP telemetry_scrape_size_bytes Scrape size, not encoded\n# TYPE telemetry_scrape_encoded_size_bytes summary\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e巴拉巴拉一大堆\n\u003cbr\u003e\u003c\/br\u003e\n適當增加一下prometheus的config，反正只是測試一下，就姑且用static config吧\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-yaml\u0022 data-lang=\u0022yaml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n...\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter\u0026#39;\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 60s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_timeout\u003c\/span\u003e: 59s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e:\n          - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter:15692\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n能看到endpoint增加了\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n這樣就能用Prometheus監控RabbitMQ了\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e',
+      summary: '\u003cp\u003e作為往後可能需要自訂Exporter的預習，就試著拿Prometheus client libraries來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter\u003c\/p\u003e',
+      content: '\u003cp\u003e作為往後可能需要自訂Exporter的預習，就試著拿Prometheus client libraries來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter\u003c\/p\u003e\n\u003cp\u003e這次環境是debian 9及python 3.5.3\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$  cat \/etc\/*-release\nPRETTY_NAME=\u0026quot;Debian GNU\/Linux 9 (stretch)\u0026quot;\nNAME=\u0026quot;Debian GNU\/Linux\u0026quot;\nVERSION_ID=\u0026quot;9\u0026quot;\nVERSION=\u0026quot;9 (stretch)\u0026quot;\nID=debian\nHOME_URL=\u0026quot;https:\/\/www.debian.org\/\u0026quot;\nSUPPORT_URL=\u0026quot;https:\/\/www.debian.org\/support\u0026quot;\nBUG_REPORT_URL=\u0026quot;https:\/\/bugs.debian.org\/\u0026quot;\n\n$ python --version\nPython 3.5.3\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n先用一下好久沒碰的Pipenv，避免環境弄亂\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ pip3 install -U pipenv\n$ pipenv --python 3\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n下載prometheus client，然後用shell\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ pipenv install prometheus-client\n$ pipenv shell\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n\u003ca href=\u0022https:\/\/github.com\/prometheus\/node_exporter\/\u0022\u003ereadme.md\u003c\/a\u003e中的範例，是使用start_http_server，因為本身就是一個頗為簡短的script，\n使用while True來持續執行\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e start_http_server, Summary\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e random\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e time\n\n\u003cspan style=\u0022color:#75715e\u0022\u003e# Create a metric to track time spent and requests made.\u003c\/span\u003e\nREQUEST_TIME \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e Summary(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;request_processing_seconds\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;Time spent processing request\u0026#39;\u003c\/span\u003e)\n\n\u003cspan style=\u0022color:#75715e\u0022\u003e# Decorate function with metric.\u003c\/span\u003e\n\u003cspan style=\u0022color:#a6e22e\u0022\u003e@REQUEST_TIME.time\u003c\/span\u003e()\n\u003cspan style=\u0022color:#66d9ef\u0022\u003edef\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003eprocess_request\u003c\/span\u003e(t):\n    \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#34;\u0026#34;\u0026#34;A dummy function that takes some time.\u0026#34;\u0026#34;\u0026#34;\u003c\/span\u003e\n    time\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003esleep(t)\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eif\u003c\/span\u003e __name__ \u003cspan style=\u0022color:#f92672\u0022\u003e==\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;__main__\u0026#39;\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Start up the server to expose the metrics.\u003c\/span\u003e\n    start_http_server(\u003cspan style=\u0022color:#ae81ff\u0022\u003e8000\u003c\/span\u003e)\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Generate some requests.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003ewhile\u003c\/span\u003e True:\n        process_request(random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandom())\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n來看看是start_http_server的廬山真面目\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026gt;\u0026gt;\u0026gt; import prometheus_client\n\u0026gt;\u0026gt;\u0026gt; import inspect\n\n\u0026gt;\u0026gt;\u0026gt; print(inspect.getsource(prometheus_client.start_http_server))\ndef start_wsgi_server(port, addr=\u0027\u0027, registry=REGISTRY):\n    \u0026quot;\u0026quot;\u0026quot;Starts a WSGI server for prometheus metrics as a daemon thread.\u0026quot;\u0026quot;\u0026quot;\n    app = make_wsgi_app(registry)\n    httpd = make_server(addr, port, app, ThreadingWSGIServer, handler_class=_SilentHandler)\n    t = threading.Thread(target=httpd.serve_forever)\n    t.daemon = True\n    t.start()\n\n\u0026gt;\u0026gt;\u0026gt; print(inspect.getsource(prometheus_client.start_wsgi_server))\ndef start_wsgi_server(port, addr=\u0027\u0027, registry=REGISTRY):\n    \u0026quot;\u0026quot;\u0026quot;Starts a WSGI server for prometheus metrics as a daemon thread.\u0026quot;\u0026quot;\u0026quot;\n    app = make_wsgi_app(registry)\n    httpd = make_server(addr, port, app, ThreadingWSGIServer, handler_class=_SilentHandler)\n    t = threading.Thread(target=httpd.serve_forever)\n    t.daemon = True\n    t.start()\n\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e由此可見start_http_server和start_wsgi_server是同一個function，當這支script執行完了後，Thread也一併結束\n\u003cbr\u003e\u003c\/br\u003e\n執行後一樣cURL測試一下取得的metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:8000\n# HELP process_virtual_memory_bytes Virtual memory size in bytes.\n# TYPE process_virtual_memory_bytes gauge\nprocess_virtual_memory_bytes 2.17821184e\u002b08\n# HELP process_resident_memory_bytes Resident memory size in bytes.\n# TYPE process_resident_memory_bytes gauge\nprocess_resident_memory_bytes 2.0774912e\u002b07\n# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.\n# TYPE process_start_time_seconds gauge\nprocess_start_time_seconds 1.59764690706e\u002b09\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n當然也可以用custom collector，記得要用REGISTRY.register將collector註冊\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client.core \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e GaugeMetricFamily, REGISTRY\n\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e start_http_server\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e random\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e time\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eclass\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003eCustomCollector\u003c\/span\u003e(object):\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003edef\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003ecollect\u003c\/span\u003e(self):\n        g \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e GaugeMetricFamily(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;my_Gauge\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;Help text\u0026#39;\u003c\/span\u003e, labels\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;foo\u0026#39;\u003c\/span\u003e])\n        g\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eadd_metric([\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;bar\u0026#39;\u003c\/span\u003e], random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandint(\u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e, \u003cspan style=\u0022color:#ae81ff\u0022\u003e100\u003c\/span\u003e))\n        g\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eadd_metric([\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;baz\u0026#39;\u003c\/span\u003e], random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandom())\n        \u003cspan style=\u0022color:#66d9ef\u0022\u003eyield\u003c\/span\u003e g\n\nREGISTRY\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eregister(CustomCollector())\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eif\u003c\/span\u003e __name__ \u003cspan style=\u0022color:#f92672\u0022\u003e==\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;__main__\u0026#39;\u003c\/span\u003e:\n    start_http_server(\u003cspan style=\u0022color:#ae81ff\u0022\u003e8000\u003c\/span\u003e)\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003ewhile\u003c\/span\u003e True:\n        time\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003esleep(\u003cspan style=\u0022color:#ae81ff\u0022\u003e10\u003c\/span\u003e)\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n可以看到metrics包含剛才測試的custom collector了，看得出start_http_server是指向REGISTRY，而REGISTRY又包含了collector，所以server每pull一次，就會執行一次註冊到REGISTRY的collector\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$  curl localhost:8000 \n# HELP my_Gauge Help text\n# TYPE my_Gauge gauge\nmy_Gauge{foo=\u0026quot;bar\u0026quot;} 84.0\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n大致上是這樣，雖然能動，但單單是這樣似乎有點不太夠，畢竟單獨使用的話功能實在有點陽春，在不繼續coding的情況下，\u003ca href=\u0022https:\/\/github.com\/prometheus\/node_exporter\u0022\u003eNode exporter\u003c\/a\u003e出馬的時候又到了，Node Exporter的Textfile collector就能在此發揮作用\u003c\/p\u003e\n\u003cp\u003e現在更改剛才測試用的.py如下\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client.core \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e GaugeMetricFamily, REGISTRY\n\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e prometheus_client \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e write_to_textfile\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e random\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eclass\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003eCustomCollector\u003c\/span\u003e(object):\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003edef\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003ecollect\u003c\/span\u003e(self):\n        g \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e GaugeMetricFamily(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;my_Gauge\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;Help text\u0026#39;\u003c\/span\u003e, labels\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;foo\u0026#39;\u003c\/span\u003e])\n        g\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eadd_metric([\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;bar\u0026#39;\u003c\/span\u003e], random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandint(\u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e, \u003cspan style=\u0022color:#ae81ff\u0022\u003e100\u003c\/span\u003e))\n        g\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eadd_metric([\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;baz\u0026#39;\u003c\/span\u003e], random\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003erandom())\n        \u003cspan style=\u0022color:#66d9ef\u0022\u003eyield\u003c\/span\u003e g\n\nREGISTRY\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eregister(CustomCollector())\n\nwrite_to_textfile(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;test.prom\u0026#39;\u003c\/span\u003e, REGISTRY)\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e這樣就會將registry的中的metrics通通輸出到一個叫做\u0026quot;test.prom\u0026quot;的file裡了\u003c\/p\u003e\n\u003cp\u003e之後Node exporter再使用\u0026ndash;collector.textfile.directory這個flag就能取得指定目錄下*.prom的metrics了，如此一來不只能用crontab之類的來排程，甚至在其他程式裡加上write_to_textfile，到時候只需要讓node_exporter去指定目錄抓就好，彈性又便利\u003c\/p\u003e',
     
     
       date: '2020-08-14',
     
     
-      tags: '[Prometheus RabbitMQ]',
+      tags: '[Prometheus Python]',
     
     
       categories: '[監控工具]',
@@ -658,17 +784,17 @@ var posts = [
   {
     url: 'https:\/\/mikanbearer.github.io\/posts\/202008131707\/',
     
-      title: '輕鬆做一遍Prometheus',
+      title: '使用Prometheus監控RabbitMQ之從頭動手',
     
     
       summary: '\u003cp\u003ePrometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003ePrometheus：監控方，定期收集資料並存在資料庫\u003c\/li\u003e\n\u003cli\u003eExporter：被監控方，回傳監控方需要的資料\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e為了往後學習方便，先來實作一遍這個方便利用的工具\u003c\/p\u003e',
-      content: '\u003cp\u003ePrometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003ePrometheus：監控方，定期收集資料並存在資料庫\u003c\/li\u003e\n\u003cli\u003eExporter：被監控方，回傳監控方需要的資料\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e為了往後學習方便，先來實作一遍這個方便利用的工具\u003c\/p\u003e\n\u003cp\u003ePrometheus的基礎運用架構很單純，大在就像下圖：\n\u003cimg src=\u00220.png\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cp\u003e從圖中可見，Prometheus收集時間序列資料(metrics)都是由自己主動向Exporter發起的，這次大概會做這些：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\u0022#1\u0022\u003e啟動Prometheus\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#2\u0022\u003e啟動Exporter\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#3\u0022\u003e使用static config監控\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#4\u0022 \u003e使用file-based service discovery監控\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=1\u003e啟動Prometheus\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n部屬Prometheus非常簡單，就只是binary配上一個設定檔，指令如下：\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ wget https:\/\/github.com\/prometheus\/prometheus\/releases\/download\/v2.20.1\/prometheus-2.20.1.linux-amd64.tar.gz\n$ tzr zxvf prometheus-2.20.1.linux-amd64.tar.gz\n$ cd tzr zxvf prometheus-2.20.1.linux-amd64\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n因為預設的prometheus.yml已經定義好自己了，所以馬上就能用了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ .\/prometheus --config.file=prometheus.yml\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n使用cURL測試一下metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:9090\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 8.412e-06\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 6.8151e-05\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0.000435588\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0.000661594\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0.001019489\ngo_gc_duration_seconds_sum 0.002193234\ngo_gc_duration_seconds_count 5\n# HELP go_goroutines Number of goroutines that currently exist.\n# TYPE go_goroutines gauge\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cstrong\u003e就算加上下載，整個過程也不到五分鐘…\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e拿到metrics就是這麼快速，也能進web看看graph，在瀏覽器打上http:\/\/prometheus_ip:9090\/graph就能看到了，\ntab選擇graph也能看到些簡單的圖表\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00222\u0022\u003e啟動Exporter\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n既然Prometheus已經起來了，那麼來試著監控些什麼，就下載個node exporter來測試\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003ewget https:\/\/github.com\/prometheus\/node_exporter\/releases\/download\/v1.0.1\/node_exporter-1.0.1.linux-amd64.tar.gz\ntar zxvf node_exporter-1.0.1.linux-amd64.tar.gz\ncd node_exporter-1.0.1.linux-amd64\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n裡面一樣是個binary file，執行下去\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e .\/node_exporter --web.listen-address 127.0.0.1:8080\ncurl 127.0.0.1:8080\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0\ngo_gc_duration_seconds_sum 0\ngo_gc_duration_seconds_count 0\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncURL測試metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:8080\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 9.31e-06\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 5.488e-05\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0.000112915\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0.000194093\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0.004481425\ngo_gc_duration_seconds_sum 0.175059981\ngo_gc_duration_seconds_count 957\n# HELP go_goroutines Number of goroutines that currently exist.\n# TYPE go_goroutines gauge\ngo_goroutines 8\n# HELP go_info Information about the Go environment.\n# TYPE go_info gauge\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e一樣簡單快速\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00223\u0022\u003e使用static config進行監控\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n既然exporter沒問題，那麼是時候建立一個job來get metrics了，就依照\u003ca href=\u0022https:\/\/prometheus.io\/docs\/prometheus\/latest\/getting_started\/\u0022\u003e這裡的範例\u003c\/a\u003e，一步步操作吧\u003c\/p\u003e\n\u003cp\u003e依照範例，建立prometheus.rules.yml，用於依照需求控制紀錄的方式，能降低監控造成的負擔，此範例是記錄下五分鐘平均的cpu狀態\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e5\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.rules.yml\u0022 data-lang=\u0022:prometheus.rules.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003egroups\u003c\/span\u003e:\n- \u003cspan style=\u0022color:#66d9ef\u0022\u003ename\u003c\/span\u003e: cpu-node\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003erules\u003c\/span\u003e:\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003erecord\u003c\/span\u003e: job_instance_mode:node_cpu_seconds:avg_rate5m\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003eexpr\u003c\/span\u003e: avg by (job, instance, mode) (rate(node_cpu_seconds_total[5m]))\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n然後修改prometheus.yml，除了增加rule，也新增job，並\u003ca href=\u0022\u0022\u003e之前\u003c\/a\u003e啟動的exporter\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e16\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e17\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e18\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e19\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e20\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e21\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e22\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e23\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e24\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e25\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e26\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e27\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e28\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e29\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e30\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e31\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e32\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e33\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.yml\u0022 data-lang=\u0022:prometheus.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eglobal\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e:     15s \u003cspan style=\u0022color:#75715e\u0022\u003e# By default, scrape targets every 15 seconds.\u003c\/span\u003e\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003eevaluation_interval\u003c\/span\u003e: 15s \u003cspan style=\u0022color:#75715e\u0022\u003e# Evaluate rules every 15 seconds.\u003c\/span\u003e\n\n  \u003cspan style=\u0022color:#75715e\u0022\u003e# Attach these extra labels to all timeseries collected by this Prometheus instance.\u003c\/span\u003e\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003eexternal_labels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003emonitor\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;codelab-monitor\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003erule_files\u003c\/span\u003e:\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e  - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;prometheus.rules.yml\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\n\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;prometheus\u0026#39;\u003c\/span\u003e\n\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:9090\u0026#39;\u003c\/span\u003e]\n\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e:       \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;node\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8080\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8081\u0026#39;\u003c\/span\u003e]\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e          \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;production\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8082\u0026#39;\u003c\/span\u003e]\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e          \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;canary\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n重新啟動prometheus後，就能用去query job instance了\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00224\u0022\u003e使用file-based service discovery監控\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n在實務上，不可能每增加個exporter就重新啟動一次，這時候file-based service discovery就很重要，\n這種方式和static config不同，只要修改檔案讓prometheus能去讀取就行，不需要reload\u003c\/p\u003e\n\u003cp\u003e先在目錄中建立一個空的file_sd.yml，並修改prometheus.yml\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e21\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e22\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e23\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e24\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e25\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e26\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e27\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e28\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.yml\u0022 data-lang=\u0022:prometheus.yml\u0022\u003e  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e:       \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;node\u0026#39;\u003c\/span\u003e\n\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003efile_sd_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003efiles\u003c\/span\u003e:\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        - .\/file_sd.yml\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e重新啟動prometheus後，就發現targets回到空空如也的狀態了\n\u003cimg src=\u00223.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e接下來就是要用file來增加targets了，把前版的prometheus.yml中的static config放到file_sd.yml\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e5\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e6\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e7\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:file_sd.yml\u0022 data-lang=\u0022:file_sd.yml\u0022\u003e- \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8080\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8081\u0026#39;\u003c\/span\u003e]\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;production\u0026#39;\u003c\/span\u003e\n\n- \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8082\u0026#39;\u003c\/span\u003e]\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;canary\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e接下來不需要重新啟動prometheus，也能新增targets了\n\u003cimg src=\u00224.png\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n完\u003c\/p\u003e',
+      content: '\u003cp\u003ePrometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003ePrometheus：監控方，定期收集資料並存在資料庫\u003c\/li\u003e\n\u003cli\u003eExporter：被監控方，回傳監控方需要的資料\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e為了往後學習方便，先來實作一遍這個方便利用的工具\u003c\/p\u003e\n\u003cp\u003ePrometheus的基礎運用架構很單純，大在就像下圖：\n\u003cimg src=\u00220.png\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cp\u003e從圖中可見，Prometheus收集時間序列資料(metrics)都是由自己主動向Exporter發起的，這次大概會做這些：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\u0022#1\u0022\u003e啟動Prometheus\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#2\u0022\u003e啟動Exporter\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#3\u0022\u003e使用static config監控\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#4\u0022 \u003e使用file-based service discovery監控\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#5\u0022\u003e監控RabbitMQ\u003c\/a\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=1\u003e啟動Prometheus\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n部屬Prometheus非常簡單，就只是binary配上一個設定檔，指令如下：\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ wget https:\/\/github.com\/prometheus\/prometheus\/releases\/download\/v2.20.1\/prometheus-2.20.1.linux-amd64.tar.gz\n$ tzr zxvf prometheus-2.20.1.linux-amd64.tar.gz\n$ cd tzr zxvf prometheus-2.20.1.linux-amd64\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n因為預設的prometheus.yml已經定義好自己了，所以馬上就能用了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ .\/prometheus --config.file=prometheus.yml\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n使用cURL測試一下metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:9090\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 8.412e-06\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 6.8151e-05\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0.000435588\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0.000661594\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0.001019489\ngo_gc_duration_seconds_sum 0.002193234\ngo_gc_duration_seconds_count 5\n# HELP go_goroutines Number of goroutines that currently exist.\n# TYPE go_goroutines gauge\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cstrong\u003e就算加上下載，整個過程也不到五分鐘…\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e拿到metrics就是這麼快速，也能進web看看graph，在瀏覽器打上http:\/\/prometheus_ip:9090\/graph就能看到了，\ntab選擇graph也能看到些簡單的圖表\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00222\u0022\u003e啟動Exporter\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n既然Prometheus已經起來了，那麼來試著監控些什麼，就下載個node exporter來測試\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003ewget https:\/\/github.com\/prometheus\/node_exporter\/releases\/download\/v1.0.1\/node_exporter-1.0.1.linux-amd64.tar.gz\ntar zxvf node_exporter-1.0.1.linux-amd64.tar.gz\ncd node_exporter-1.0.1.linux-amd64\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n裡面一樣是個binary file，執行下去\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e .\/node_exporter --web.listen-address 127.0.0.1:8080\ncurl 127.0.0.1:8080\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0\ngo_gc_duration_seconds_sum 0\ngo_gc_duration_seconds_count 0\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncURL測試metrics\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl localhost:8080\/metrics\n# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\u0026quot;0\u0026quot;} 9.31e-06\ngo_gc_duration_seconds{quantile=\u0026quot;0.25\u0026quot;} 5.488e-05\ngo_gc_duration_seconds{quantile=\u0026quot;0.5\u0026quot;} 0.000112915\ngo_gc_duration_seconds{quantile=\u0026quot;0.75\u0026quot;} 0.000194093\ngo_gc_duration_seconds{quantile=\u0026quot;1\u0026quot;} 0.004481425\ngo_gc_duration_seconds_sum 0.175059981\ngo_gc_duration_seconds_count 957\n# HELP go_goroutines Number of goroutines that currently exist.\n# TYPE go_goroutines gauge\ngo_goroutines 8\n# HELP go_info Information about the Go environment.\n# TYPE go_info gauge\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e一樣簡單快速\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00223\u0022\u003e使用static config進行監控\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n既然exporter沒問題，那麼是時候建立一個job來get metrics了，就依照\u003ca href=\u0022https:\/\/prometheus.io\/docs\/prometheus\/latest\/getting_started\/\u0022\u003e這裡的範例\u003c\/a\u003e，一步步操作吧\u003c\/p\u003e\n\u003cp\u003e依照範例，建立prometheus.rules.yml，用於依照需求控制紀錄的方式，能降低監控造成的負擔，此範例是記錄下五分鐘平均的cpu狀態\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e5\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.rules.yml\u0022 data-lang=\u0022:prometheus.rules.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003egroups\u003c\/span\u003e:\n- \u003cspan style=\u0022color:#66d9ef\u0022\u003ename\u003c\/span\u003e: cpu-node\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003erules\u003c\/span\u003e:\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003erecord\u003c\/span\u003e: job_instance_mode:node_cpu_seconds:avg_rate5m\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003eexpr\u003c\/span\u003e: avg by (job, instance, mode) (rate(node_cpu_seconds_total[5m]))\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n然後修改prometheus.yml，除了增加rule，也新增job，並\u003ca href=\u0022\u0022\u003e之前\u003c\/a\u003e啟動的exporter\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e16\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e17\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e18\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e19\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e20\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e21\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e22\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e23\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e24\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e25\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e26\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e27\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e28\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e29\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e30\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e31\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e32\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e33\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.yml\u0022 data-lang=\u0022:prometheus.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eglobal\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e:     15s \u003cspan style=\u0022color:#75715e\u0022\u003e# By default, scrape targets every 15 seconds.\u003c\/span\u003e\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003eevaluation_interval\u003c\/span\u003e: 15s \u003cspan style=\u0022color:#75715e\u0022\u003e# Evaluate rules every 15 seconds.\u003c\/span\u003e\n\n  \u003cspan style=\u0022color:#75715e\u0022\u003e# Attach these extra labels to all timeseries collected by this Prometheus instance.\u003c\/span\u003e\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003eexternal_labels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003emonitor\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;codelab-monitor\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003erule_files\u003c\/span\u003e:\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e  - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;prometheus.rules.yml\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\n\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;prometheus\u0026#39;\u003c\/span\u003e\n\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:9090\u0026#39;\u003c\/span\u003e]\n\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e:       \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;node\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8080\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8081\u0026#39;\u003c\/span\u003e]\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e          \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;production\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8082\u0026#39;\u003c\/span\u003e]\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e          \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;canary\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n重新啟動prometheus後，就能用去query job instance了\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=\u00224\u0022\u003e使用file-based service discovery監控\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n在實務上，不可能每增加個exporter就重新啟動一次，這時候file-based service discovery就很重要，\n這種方式和static config不同，只要修改檔案讓prometheus能去讀取就行，不需要reload\u003c\/p\u003e\n\u003cp\u003e先在目錄中建立一個空的file_sd.yml，並修改prometheus.yml\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e21\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e22\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e23\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e24\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e25\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e26\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e27\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e28\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:prometheus.yml\u0022 data-lang=\u0022:prometheus.yml\u0022\u003e  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e:       \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;node\u0026#39;\u003c\/span\u003e\n\n    \u003cspan style=\u0022color:#75715e\u0022\u003e# Override the global default and scrape targets from this job every 5 seconds.\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 5s\n\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003efile_sd_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003efiles\u003c\/span\u003e:\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e        - .\/file_sd.yml\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e重新啟動prometheus後，就發現targets回到空空如也的狀態了\n\u003cimg src=\u00223.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e接下來就是要用file來增加targets了，把前版的prometheus.yml中的static config放到file_sd.yml\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e5\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e6\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e7\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:file_sd.yml\u0022 data-lang=\u0022:file_sd.yml\u0022\u003e- \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8080\u0026#39;\u003c\/span\u003e, \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8081\u0026#39;\u003c\/span\u003e]\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;production\u0026#39;\u003c\/span\u003e\n\n- \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e: [\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;localhost:8082\u0026#39;\u003c\/span\u003e]\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003elabels\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003egroup\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;canary\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e接下來不需要重新啟動prometheus，也能新增targets了\n\u003cimg src=\u00224.png\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003ch3 id=5\u003e監控RabbitMQ\u003c\/h3\u003e\n\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，\u003c\/p\u003e\n\u003cp\u003e而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看，當作實務運用的練習\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/github.com\/rabbitmq\/rabbitmq-prometheus\u0022\u003erabbitmq-prometheus的repository\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e一樣求方便使用docker-compose，寫個陽春的Dockerfile會比較方便\u003c\/p\u003e\n\u003cp\u003e為了使用內建的pulgin，直接用3.8.0以後的image，並且RUN啟用的command\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-Dockerfile\u0022 data-lang=\u0022Dockerfile\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eFROM\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e rabbitmq:3.8.6-management\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\u003c\/span\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eRUN\u003c\/span\u003e rabbitmq-plugins enable rabbitmq_prometheus\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncompose file增加port 15692\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:docker-compose.yml\u0022 data-lang=\u0022:docker-compose.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eversion\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;3\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eservices\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003emy-queue\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003econtainer_name\u003c\/span\u003e: rabbitmq\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003ebuild\u003c\/span\u003e: .\/\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003eports\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;5672:5672\u0026#39;\u003c\/span\u003e\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15672:15672\u0026#39;\u003c\/span\u003e\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15692:15692\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n      - rabbitmq-data:\/var\/lib\/rabbitmq\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003erabbitmq-data\u003c\/span\u003e:\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來就能在host上用cURL測試了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl -v -H \u0026quot;Accept:text\/plain\u0026quot; \u0026quot;http:\/\/localhost:15692\/metrics\u0026quot;\n...\n# TYPE rabbitmq_consumers gauge\n# HELP rabbitmq_consumers Consumers currently connected\nrabbitmq_consumers 0\n# TYPE rabbitmq_queues gauge\n# HELP rabbitmq_queues Queues available\nrabbitmq_queues 0\n# TYPE rabbitmq_build_info untyped\n# HELP rabbitmq_build_info RabbitMQ \u0026amp; Erlang\/OTP version info\nrabbitmq_build_info{rabbitmq_version=\u0026quot;3.8.6\u0026quot;,prometheus_plugin_version=\u0026quot;3.8.6\u0026quot;,prometheus_client_version=\u0026quot;4.6.0\u0026quot;,erlang_version=\u0026quot;23.0.3\u0026quot;} 1\n# TYPE rabbitmq_identity_info untyped\n# HELP rabbitmq_identity_info RabbitMQ node \u0026amp; cluster identity info\nrabbitmq_identity_info{rabbitmq_node=\u0026quot;rabbit@7f33446fce98\u0026quot;,rabbitmq_cluster=\u0026quot;rabbit@7f33446fce98\u0026quot;} 1\n# TYPE telemetry_scrape_duration_seconds summary\n# HELP telemetry_scrape_duration_seconds Scrape duration\n# TYPE telemetry_scrape_size_bytes summary\n# HELP telemetry_scrape_size_bytes Scrape size, not encoded\n# TYPE telemetry_scrape_encoded_size_bytes summary\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e巴拉巴拉一大堆\n\u003cbr\u003e\u003c\/br\u003e\n適當增加一下prometheus的config，反正只是測試一下，就姑且用static config吧\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-yaml\u0022 data-lang=\u0022yaml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n...\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter\u0026#39;\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 60s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_timeout\u003c\/span\u003e: 59s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e:\n          - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter:15692\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n能看到endpoint增加了\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n這樣就能用Prometheus監控RabbitMQ了\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e',
     
     
       date: '2020-08-13',
     
     
-      tags: '[Prometheus]',
+      tags: '[Prometheus RabbitMQ]',
     
     
       categories: '[監控工具]',
@@ -783,7 +909,7 @@ var posts = [
       date: '2020-07-29',
     
     
-      tags: '[Docker Nginx uWSGI]',
+      tags: '[Docker docker-compose Nginx uWSGI]',
     
     
       categories: '[網頁開發]',
@@ -878,7 +1004,7 @@ var posts = [
       tags: '[Excel VBA]',
     
     
-      categories: '[工作小技巧]',
+      categories: '[小技巧]',
     
     
       author: '',
@@ -993,7 +1119,7 @@ var posts = [
       tags: '[Windows VBScript]',
     
     
-      categories: '[工作小技巧]',
+      categories: '[小技巧]',
     
     
       author: '',
@@ -1073,12 +1199,37 @@ vm.$set(vm.$data, 'posts', posts)
   
   'Windows',
   
+  'docker-compose',
+  
   'uWSGI',
   
 
   ]
 
   vm.$set(vm.$data, 'tags', alltags.sort())
+
+
+
+
+  var allcategories = [
+  
+  '問題紀錄',
+  
+  '小技巧',
+  
+  '監控工具',
+  
+  '網頁開發',
+  
+  '雜記',
+  
+
+  ]
+
+  vm.$set(vm.$data, 'categories', allcategories.sort())
+
+
+
 
 
   vm.$watch(() => vm.seltags, (tags)=>{
@@ -1090,11 +1241,27 @@ vm.$set(vm.$data, 'posts', posts)
               filteredposts.push(post)
          }
       }
-      vm.$set(vm.$data, 'filteredposts', filteredposts)
+      vm.$set(vm.$data, 'tfilteredposts', filteredposts)
     }else{
-      vm.$set(vm.$data, 'filteredposts', [])
+      vm.$set(vm.$data, 'tfilteredposts', [])
     }
-})
+  })
+
+
+  vm.$watch(() => vm.selcategories, (categories)=>{
+    var filteredposts = []
+    if (categories) {
+      for (const post of vm.posts) {
+          let checker = (arr, target) => arr.includes(target)
+         if (checker(post.categories, categories)) {
+              filteredposts.push(post)
+         }
+      }
+      vm.$set(vm.$data, 'cfilteredposts', filteredposts)
+    }else{
+      vm.$set(vm.$data, 'cfilteredposts', [])
+    }
+  })
 
 
 </script>
