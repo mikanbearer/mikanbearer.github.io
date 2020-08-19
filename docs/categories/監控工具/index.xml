@@ -8,22 +8,41 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Fri, 14 Aug 2020 09:13:49 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2020 16:09:08 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/categories/%E7%9B%A3%E6%8E%A7%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>使用Textfile Collector取得自訂的metrics</title>
+      <title>使用Prometheus監控RabbitMQ</title>
+      <link>https://mikanbearer.github.io/posts/202008181609/</link>
+      <pubDate>Tue, 18 Aug 2020 16:09:08 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008181609/</guid>
+      <description>&lt;p&gt;因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，&lt;/p&gt;
+&lt;p&gt;而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看，當作實務運用的練習&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Prometheus client library自訂metrics</title>
+      <link>https://mikanbearer.github.io/posts/202008171709/</link>
+      <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008171709/</guid>
+      <description>&lt;p&gt;作為往後可能需要自訂Exporter的預習，就試著拿&lt;a href=&#34;https://prometheus.io/docs/instrumenting/clientlibs/&#34;&gt;Prometheus client library&lt;/a&gt;來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Prometheus &#43; Pushgateway進行監控</title>
       <link>https://mikanbearer.github.io/posts/202008140913/</link>
       <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008140913/</guid>
-      <description>&lt;p&gt;作為往後可能需要自訂Exporter的預習，就試著拿Prometheus client libraries來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter&lt;/p&gt;</description>
+      <description>&lt;p&gt;Prometheus在設計上是採用pull的模式，但在網路架構的規劃上，並不是所有的target能讓Prometheus去pull，這時候就是Pushgateway出馬的時候了&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>使用Prometheus監控RabbitMQ之從頭動手</title>
+      <title>從零開始Prometheus</title>
       <link>https://mikanbearer.github.io/posts/202008131707/</link>
       <pubDate>Thu, 13 Aug 2020 17:07:15 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
