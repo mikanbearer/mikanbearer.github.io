@@ -8,10 +8,20 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Tue, 18 Aug 2020 16:09:08 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2020 10:04:45 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/Prometheus/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>將Prometheus API取得的資料用Echarts &#43; Vue.js製作動態圖表</title>
+      <link>https://mikanbearer.github.io/posts/202008241004/</link>
+      <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008241004/</guid>
+      <description>&lt;p&gt;個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheis，
+就用這好用的工具來做個練習，將來有需要也能做個好看的Dashboard&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用Prometheus監控RabbitMQ</title>
