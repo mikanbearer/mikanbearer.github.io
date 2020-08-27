@@ -19,7 +19,7 @@
       <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008241004/</guid>
-      <description>&lt;p&gt;個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheis，
+      <description>&lt;p&gt;個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheus，
 就用這好用的工具來做個練習，將來有需要也能做個好看的Dashboard&lt;/p&gt;</description>
     </item>
     

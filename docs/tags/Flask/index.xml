@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flask on 活到老學到死</title>
+    <link>https://mikanbearer.github.io/tags/Flask/</link>
+    <description>Recent content in Flask on 活到老學到死</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
+    <lastBuildDate>Wed, 19 Aug 2020 13:54:41 +0800</lastBuildDate>
+    
+	<atom:link href="https://mikanbearer.github.io/tags/Flask/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Flask初體驗</title>
+      <link>https://mikanbearer.github.io/posts/202008191354/</link>
+      <pubDate>Wed, 19 Aug 2020 13:54:41 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008191354/</guid>
+      <description>&lt;p&gt;以往用的framework都是Django，但總不可能靠一招就打天下…所以便來轉戰Flask了，這次只有最基礎的練習&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -19,8 +19,17 @@
       <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008241004/</guid>
-      <description>&lt;p&gt;個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheis，
+      <description>&lt;p&gt;個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheus，
 就用這好用的工具來做個練習，將來有需要也能做個好看的Dashboard&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Flask初體驗</title>
+      <link>https://mikanbearer.github.io/posts/202008191354/</link>
+      <pubDate>Wed, 19 Aug 2020 13:54:41 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008191354/</guid>
+      <description>&lt;p&gt;以往用的framework都是Django，但總不可能靠一招就打天下…所以便來轉戰Flask了，這次只有最基礎的練習&lt;/p&gt;</description>
     </item>
     
     <item>
