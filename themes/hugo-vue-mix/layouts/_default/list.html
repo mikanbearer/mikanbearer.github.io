@@ -23,8 +23,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                  {{ $pag := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) 250 }}
-                  {{ range $pag.Pages }}
+                  {{ range .Paginator.Pages }}
                   <tr>
                     <td>{{ .Date.Format "2006-01-02" }}</td>
                     <td>
