@@ -8,10 +8,29 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Fri, 28 Aug 2020 17:26:08 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2020 14:56:05 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用Ansible部屬Docker Swarm</title>
+      <link>https://mikanbearer.github.io/posts/202009031456/</link>
+      <pubDate>Thu, 03 Sep 2020 14:56:05 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202009031456/</guid>
+      <description>&lt;p&gt;偶然看到這個&lt;a href=&#34;https://github.com/atosatto/ansible-dockerswarm&#34;&gt;Ansible Role: Docker&lt;/a&gt;就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ansible超入門實作</title>
+      <link>https://mikanbearer.github.io/posts/202009011649/</link>
+      <pubDate>Tue, 01 Sep 2020 16:49:15 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202009011649/</guid>
+      <description>&lt;p&gt;雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就最低限度練習一遍，以後方便以後多一些實作演練，主要目標是playbook&lt;/p&gt;
+&lt;p&gt;參考文件：&lt;a href=&#34;https://docs.ansible.com/&#34;&gt;https://docs.ansible.com/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>從Scrapy開始玩爬蟲</title>

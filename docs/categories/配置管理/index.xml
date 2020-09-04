@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docker on 活到老學到死</title>
-    <link>https://mikanbearer.github.io/tags/Docker/</link>
-    <description>Recent content in Docker on 活到老學到死</description>
+    <title>配置管理 on 活到老學到死</title>
+    <link>https://mikanbearer.github.io/categories/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/</link>
+    <description>Recent content in 配置管理 on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Thu, 03 Sep 2020 14:56:05 +0800</lastBuildDate>
     
-	<atom:link href="https://mikanbearer.github.io/tags/Docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikanbearer.github.io/categories/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -23,13 +23,13 @@
     </item>
     
     <item>
-      <title>使用docker-compose部屬Nginx &#43; uWSGI &#43; Django</title>
-      <link>https://mikanbearer.github.io/posts/202007291642/</link>
-      <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
+      <title>Ansible超入門實作</title>
+      <link>https://mikanbearer.github.io/posts/202009011649/</link>
+      <pubDate>Tue, 01 Sep 2020 16:49:15 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202007291642/</guid>
-      <description>&lt;p&gt;雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…&lt;/p&gt;
-&lt;p&gt;這次使用以下兩篇舊文的範例來練習&lt;/p&gt;</description>
+      <guid>https://mikanbearer.github.io/posts/202009011649/</guid>
+      <description>&lt;p&gt;雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就最低限度練習一遍，以後方便以後多一些實作演練，主要目標是playbook&lt;/p&gt;
+&lt;p&gt;參考文件：&lt;a href=&#34;https://docs.ansible.com/&#34;&gt;https://docs.ansible.com/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

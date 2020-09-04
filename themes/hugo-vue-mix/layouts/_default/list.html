@@ -23,7 +23,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                  {{ range .Paginator.Pages }}
+                  {{ range (.Paginator 50).Pages }}
                   <tr>
                     <td>{{ .Date.Format "2006-01-02" }}</td>
                     <td>

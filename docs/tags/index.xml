@@ -8,10 +8,28 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Fri, 28 Aug 2020 17:26:08 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2020 14:56:05 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ansible</title>
+      <link>https://mikanbearer.github.io/tags/Ansible/</link>
+      <pubDate>Thu, 03 Sep 2020 14:56:05 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/Ansible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://mikanbearer.github.io/tags/Docker/</link>
+      <pubDate>Thu, 03 Sep 2020 14:56:05 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/Docker/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Python</title>
@@ -154,24 +172,6 @@
       <pubDate>Thu, 30 Jul 2020 14:19:49 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Nginx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>https://mikanbearer.github.io/tags/Docker/</link>
-      <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker-compose</title>
-      <link>https://mikanbearer.github.io/tags/docker-compose/</link>
-      <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/docker-compose/</guid>
       <description></description>
     </item>
     
