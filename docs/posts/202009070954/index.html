@@ -362,15 +362,15 @@
                 <v-card class="content">
                   <v-card-title class="text-h6 grey--text text--lighten-4" style="background-color: #556265;">
                     <div>
-                      動態更新Echarts
+                      使用Scrapy爬取PTT貼文
                     </div>
                   </v-card-title>
                   <v-card-subtitle class="text-body-1 mt-0">
                     <div>
-                      2020-08-09
+                      2020-09-07
                       
                         
-                          <a href="https://mikanbearer.github.io//categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">網頁開發</a>
+                          <a href="https://mikanbearer.github.io//categories/%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2/">網路爬蟲</a>
                         
                       
                     </div>
@@ -382,9 +382,9 @@
                           label
                           text-color="white"
                           x-small
-                          href="https://mikanbearer.github.io//tags/JavaScript/"
+                          href="https://mikanbearer.github.io//tags/Python/"
                         >
-                          JavaScript
+                          Python
                         </v-chip>
                       
                         <v-chip
@@ -392,9 +392,9 @@
                           label
                           text-color="white"
                           x-small
-                          href="https://mikanbearer.github.io//tags/Echarts/"
+                          href="https://mikanbearer.github.io//tags/Scrapy/"
                         >
-                          Echarts
+                          Scrapy
                         </v-chip>
                       
                     
@@ -404,8 +404,188 @@
                   </v-card-subtitle>
   
                   <v-card-text class="text-body-1">
-                    <p>之前工作上需要一個前端的圖表庫，最後就相中了百度的Echarts，像是要做監控的話，前端的圖表要動態更新就變得很重要了</p>
-<p>如同<a href="https://echarts.apache.org/en/tutorial.html#Get%20Started%20with%20ECharts%20in%205%20minutes">這裡</a>的範例，Echarts會在使用<code>setOption</code>的時候layout</p>
+                    <p>前一篇練習比較陽春，沒有做到換頁的部分，</p>
+<p>這次索性來做複雜一點，爬取媒體最愛的PTT，雖然本人不太逛PTT就是了…</p>
+<p>完成的souce code已放上github：<a href="https://github.com/mikanbearer/scrapy_sample">https://github.com/mikanbearer/scrapy_sample</a></p>
+<p>一樣先把環境部屬好</p>
+<pre><code>$ scrapy startproject scrapy_sample
+$ cd scrapy_sample/scrapy_sample/spiders
+$ scrapy genspider ptt_gossiping www.ptt.cc/bbs/Gossiping
+</code></pre><p><br></br>
+編輯第一個spider</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py"><span style="color:#f92672">import</span> scrapy
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PttGossipingSpider</span>(scrapy<span style="color:#f92672">.</span>Spider):
+    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ptt_gossiping&#39;</span>
+    allowed_domains <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;www.ptt.cc/bbs/Gossiping&#39;</span>]
+    start_urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;http://www.ptt.cc/bbs/Gossiping&#39;</span>]
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse</span>(self, response):
+        <span style="color:#66d9ef">print</span>(response<span style="color:#f92672">.</span>text)
+</code></pre></td></tr></table>
+</div>
+</div><p>當然ptt的網站第一個會出現的就是確認年齡的頁面，之後要再改改
+<br></br>
+年齡確認用了一個form，會post兩種value，yes和no，就直接post了，省時省力</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py"><span style="color:#f92672">import</span> scrapy
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PttGossipingSpider</span>(scrapy<span style="color:#f92672">.</span>Spider):
+    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ptt_gossiping&#39;</span>
+    allowed_domains <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;www.ptt.cc/bbs/Gossiping&#39;</span>]
+    start_urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;http://www.ptt.cc/bbs/Gossiping&#39;</span>]
+
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse</span>(self, response):
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">return</span> scrapy<span style="color:#f92672">.</span>FormRequest<span style="color:#f92672">.</span>from_response(
+</span><span style="display:block;width:100%;background-color:#3c3d38">            response,
+</span><span style="display:block;width:100%;background-color:#3c3d38">            formdata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;yes&#39;</span>: <span style="color:#e6db74">&#39;yes&#39;</span>},
+</span><span style="display:block;width:100%;background-color:#3c3d38">            callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>after_ask,
+</span><span style="display:block;width:100%;background-color:#3c3d38">            dont_filter<span style="color:#f92672">=</span>True
+</span><span style="display:block;width:100%;background-color:#3c3d38">        )
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">after_ask</span>(self, response):
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">print</span>(response<span style="color:#f92672">.</span>text)
+</span></code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+再來就要開始換頁，把spider改成這樣，頁是最好先限制一下，不然好幾萬頁有點吃不消</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py"><span style="color:#f92672">import</span> scrapy
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PttGossipingSpider</span>(scrapy<span style="color:#f92672">.</span>Spider):
+    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ptt_gossiping&#39;</span>
+    allowed_domains <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;www.ptt.cc/bbs/Gossiping&#39;</span>]
+    start_urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;http://www.ptt.cc/bbs/Gossiping&#39;</span>]
+
+<span style="display:block;width:100%;background-color:#3c3d38">    max_page <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e">#最大頁數</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    page_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">#計數用</span>
+</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse</span>(self, response):
+        <span style="color:#66d9ef">return</span> scrapy<span style="color:#f92672">.</span>FormRequest<span style="color:#f92672">.</span>from_response(
+            response,
+            formdata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;yes&#39;</span>: <span style="color:#e6db74">&#39;yes&#39;</span>},
+            callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>after_ask,
+            dont_filter<span style="color:#f92672">=</span>True
+        )
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">after_ask</span>(self, response):
+<span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>page_count <span style="color:#f92672">&lt;</span> self<span style="color:#f92672">.</span>max_page:
+</span><span style="display:block;width:100%;background-color:#3c3d38">            next <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>xpath(
+</span><span style="display:block;width:100%;background-color:#3c3d38">                <span style="color:#e6db74">&#39;//div[@id=&#34;action-bar-container&#34;]//a[contains(text(), &#34;上頁&#34;)]/@href&#39;</span>)<span style="color:#f92672">.</span>get(default<span style="color:#f92672">=</span>None) <span style="color:#75715e">#抓innertext為&#34;上頁&#34;的element</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">if</span> next:
+</span><span style="display:block;width:100%;background-color:#3c3d38">                url <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>urljoin(next)
+</span><span style="display:block;width:100%;background-color:#3c3d38">                <span style="color:#66d9ef">print</span>(url)
+</span><span style="display:block;width:100%;background-color:#3c3d38">                self<span style="color:#f92672">.</span>page_count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">                <span style="color:#66d9ef">yield</span> scrapy<span style="color:#f92672">.</span>Request(url<span style="color:#f92672">=</span>url, callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>after_ask, dont_filter<span style="color:#f92672">=</span>True) <span style="color:#75715e">#再call一次after_ask</span>
+</span></code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+接下來再小小修改一下after_ask()，使用一個for來多開幾個Reuqest，callback為parse_post</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">after_ask</span>(self, response):
+<span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">for</span> href <span style="color:#f92672">in</span> response<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;div.r-ent div.title a::attr(href)&#39;</span>)<span style="color:#f92672">.</span>getall():
+</span><span style="display:block;width:100%;background-color:#3c3d38">            url <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>urljoin(href)
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">yield</span> scrapy<span style="color:#f92672">.</span>Request(url<span style="color:#f92672">=</span>url, callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>parse_post, dont_filter<span style="color:#f92672">=</span>True)
+</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>page_count <span style="color:#f92672">&lt;</span> self<span style="color:#f92672">.</span>max_page:
+            next <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>xpath(
+                <span style="color:#e6db74">&#39;//div[@id=&#34;action-bar-container&#34;]//a[contains(text(), &#34;上頁&#34;)]/@href&#39;</span>)<span style="color:#f92672">.</span>get(default<span style="color:#f92672">=</span>None)
+            <span style="color:#66d9ef">if</span> next:
+                self<span style="color:#f92672">.</span>page_count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                url <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>urljoin(next)
+                <span style="color:#66d9ef">yield</span> scrapy<span style="color:#f92672">.</span>Request(url<span style="color:#f92672">=</span>url, callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>after_ask, dont_filter<span style="color:#f92672">=</span>True)
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+先定義這個簡單的function，就能看到response.url是個標題的網址，如此一來就可以開始抓內容了</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse_post</span>(self, response):
+        <span style="color:#66d9ef">print</span>(response<span style="color:#f92672">.</span>url)
+</code></pre></div><p><br></br>
+準備好items</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -420,132 +600,110 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/items.py" data-lang=":scrapy_sample/items.py"><span style="color:#f92672">import</span> scrapy
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostItem</span>(scrapy<span style="color:#f92672">.</span>Item):
+    url <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    title <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    author <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    date <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    content <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    comments <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    score <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+接下來回到spider，修改成下列的樣子就大功告成啦</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
-    &lt;<span style="color:#f92672">title</span>&gt;ECharts&lt;/<span style="color:#f92672">title</span>&gt;
-    <span style="color:#75715e">&lt;!-- including ECharts file --&gt;</span>
-    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;echarts.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-    <span style="color:#75715e">&lt;!-- prepare a DOM container with width and height --&gt;</span>
-    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;main&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 600px;height:400px;&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
-    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
-        <span style="color:#75715e">// based on prepared DOM, initialize echarts instance
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myChart</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">echarts</span>.<span style="color:#a6e22e">init</span>(document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;main&#39;</span>));
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse_post</span>(self, response):
+        item <span style="color:#f92672">=</span> PostItem()
+        item[<span style="color:#e6db74">&#39;title&#39;</span>] <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;meta[property=&#34;og:title&#34;]::attr(content)&#39;</span>)<span style="color:#f92672">.</span>get()
+        item[<span style="color:#e6db74">&#39;author&#39;</span>] <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>xpath(
+            <span style="color:#e6db74">&#39;//div[@class=&#34;article-metaline&#34;]/span[text()=&#34;作者&#34;]/following-sibling::span[1]/text()&#39;</span>)<span style="color:#f92672">.</span>get()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39; &#39;</span>)[<span style="color:#ae81ff">0</span>]
 
-        <span style="color:#75715e">// specify chart configuration item and data
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">option</span> <span style="color:#f92672">=</span> {
-            <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ECharts entry example&#39;</span>
-            },
-            <span style="color:#a6e22e">tooltip</span><span style="color:#f92672">:</span> {},
-            <span style="color:#a6e22e">legend</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#39;Sales&#39;</span>]
-            },
-            <span style="color:#a6e22e">xAxis</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;shirt&#34;</span>,<span style="color:#e6db74">&#34;cardign&#34;</span>,<span style="color:#e6db74">&#34;chiffon shirt&#34;</span>,<span style="color:#e6db74">&#34;pants&#34;</span>,<span style="color:#e6db74">&#34;heels&#34;</span>,<span style="color:#e6db74">&#34;socks&#34;</span>]
-            },
-            <span style="color:#a6e22e">yAxis</span><span style="color:#f92672">:</span> {},
-            <span style="color:#a6e22e">series</span><span style="color:#f92672">:</span> [{
-                <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sales&#39;</span>,
-                <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bar&#39;</span>,
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>]
-            }]
-        };
+        datetime_str <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>xpath(
+            <span style="color:#e6db74">&#39;//div[@class=&#34;article-metaline&#34;]/span[text()=&#34;時間&#34;]/following-sibling::span[1]/text()&#39;</span>)<span style="color:#f92672">.</span>get()
+        item[<span style="color:#e6db74">&#39;date&#39;</span>] <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>strptime(datetime_str, <span style="color:#e6db74">&#39;%a %b </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> %H:%M:%S %Y&#39;</span>)
+        item[<span style="color:#e6db74">&#39;content&#39;</span>] <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;div#main-content::text&#39;</span>)<span style="color:#f92672">.</span>get()
+        comments <span style="color:#f92672">=</span> []
+        score_total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 
-        <span style="color:#75715e">// use configuration item and data specified to show chart
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">myChart</span>.<span style="color:#a6e22e">setOption</span>(<span style="color:#a6e22e">option</span>);
-    &lt;/<span style="color:#f92672">script</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;
+        <span style="color:#66d9ef">for</span> comment <span style="color:#f92672">in</span> response<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;div.push&#39;</span>):
+            tag <span style="color:#f92672">=</span> comment<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;span.push-tag::text&#39;</span>)<span style="color:#f92672">.</span>get()
+            user <span style="color:#f92672">=</span> comment<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;span.push-userid::text&#39;</span>)<span style="color:#f92672">.</span>get()
+            content <span style="color:#f92672">=</span> comment<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;span.push-content::text&#39;</span>)<span style="color:#f92672">.</span>get()
+
+            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;推&#39;</span> <span style="color:#f92672">in</span> tag:
+                score <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">elif</span> <span style="color:#e6db74">&#39;噓&#39;</span> <span style="color:#f92672">in</span> tag:
+                score <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                score <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+            score_total <span style="color:#f92672">+=</span> score
+
+            comments<span style="color:#f92672">.</span>append({
+                <span style="color:#e6db74">&#39;user&#39;</span>: user,
+                <span style="color:#e6db74">&#39;score&#39;</span>: score,
+                <span style="color:#e6db74">&#39;content&#39;</span>: content
+            })
+
+        item[<span style="color:#e6db74">&#39;comments&#39;</span>] <span style="color:#f92672">=</span> comments
+        item[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">=</span> score_total
+        item[<span style="color:#e6db74">&#39;url&#39;</span>] <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>url
+
+        <span style="color:#66d9ef">yield</span> item
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br>
-如果是要異步更新的話，只要更新option中的這個部分</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">option</span> <span style="color:#f92672">=</span> {
-            <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ECharts entry example&#39;</span>
-            },
-            <span style="color:#a6e22e">tooltip</span><span style="color:#f92672">:</span> {},
-            <span style="color:#a6e22e">legend</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#39;Sales&#39;</span>]
-            },
-            <span style="color:#a6e22e">xAxis</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;shirt&#34;</span>,<span style="color:#e6db74">&#34;cardign&#34;</span>,<span style="color:#e6db74">&#34;chiffon shirt&#34;</span>,<span style="color:#e6db74">&#34;pants&#34;</span>,<span style="color:#e6db74">&#34;heels&#34;</span>,<span style="color:#e6db74">&#34;socks&#34;</span>]
-            },
-            <span style="color:#a6e22e">yAxis</span><span style="color:#f92672">:</span> {},
-            <span style="color:#a6e22e">series</span><span style="color:#f92672">:</span> [{
-                <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sales&#39;</span>,
-                <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bar&#39;</span>,
-<span style="display:block;width:100%;background-color:#3c3d38">                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>]
-</span>            }]
-        };
-
-</code></pre></td></tr></table>
-</div>
-</div><p><br></br>
-下列是一個動態更新的範例</p>
-<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="aergfaerfaerg" data-slug-hash="RwaWrMp" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Echarts Updating Data">
-  <span>See the Pen <a href="https://codepen.io/aergfaerfaerg/pen/RwaWrMp">
-  Echarts Updating Data</a> by rgsergreg (<a href="https://codepen.io/aergfaerfaerg">@aergfaerfaerg</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+完成輸入指令，就能看到貼文被抓下來啦</p>
+<pre><code>$ scrapy crawl ptt_gossiping -o test.json
+</code></pre>
                   </v-card-text>
   
   
@@ -561,7 +719,7 @@
                 <v-tooltip top>
                   <template v-slot:activator="{ on }">
                     <v-btn
-                      href="https://mikanbearer.github.io/posts/202008070930/"
+                      href="https://mikanbearer.github.io/posts/202009031456/"
                       target="_blank"
                       v-on="on"
                       text
@@ -570,26 +728,19 @@
                       Prev Post
                     </v-btn>
                   </template>
-                  <span>新主題上線！</span>
+                  <span>使用Ansible部屬Docker Swarm</span>
                 </v-tooltip>
               
               
         
               
-              <v-tooltip top>
-                <template v-slot:activator="{ on }">
-                  <v-btn
-                    href="https://mikanbearer.github.io/posts/202008100108/"
-                    target="_blank"
-                    v-on="on"
-                    text
-                  >
-                    Next Post
-                    <v-icon>mdi-arrow-right</v-icon>
-                  </v-btn>
-                </template>
-                <span>使用WebSocket部屬簡易聊天室</span>
-              </v-tooltip>
+                <v-btn
+                  text
+                  disabled
+                >
+                Next Post
+                  <v-icon>mdi-arrow-right</v-icon>
+                </v-btn>
               
               </div>
 
@@ -611,34 +762,45 @@
                     
                     <v-list-item>
                       <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202008241004/">將Prometheus API取得的資料用Echarts &#43; Vue.js製作動態圖表</a></v-list-item-title>
-                        <v-list-item-subtitle><p>個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheus，
-就用這好用的工具來做個練習，將來有需要也能做個好看的Dashboard</p></v-list-item-subtitle>
+                        <v-list-item-title><a href="/posts/202008281726/">從Scrapy開始玩爬蟲</a></v-list-item-title>
+                        <v-list-item-subtitle><p>為了之後的學習方向做準備，來練習一下Scrapy，Scrapy就是處理response的工具，並從中取得自己需要的資料，</p>
+<p>這次就做個最低限度的練習</p></v-list-item-subtitle>
                       </v-list-item-content>
                     </v-list-item>
                     <v-divider></v-divider>
                     
                     <v-list-item>
                       <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202008151135/">使用Moment.js處理日期時間</a></v-list-item-title>
-                        <v-list-item-subtitle><p>一個處理時間的library，覺得蠻好用得所以筆記一下</p></v-list-item-subtitle>
+                        <v-list-item-title><a href="/posts/202008271612/">在Flask中導入SQLAlchemy進行ORM操作</a></v-list-item-title>
+                        <v-list-item-subtitle><p>Flask本身沒自帶ORM略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個<a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/">Flask-SQLAlchemy</a>可使用，大大縮短coding時間</p></v-list-item-subtitle>
                       </v-list-item-content>
                     </v-list-item>
                     <v-divider></v-divider>
                     
                     <v-list-item>
                       <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202007262314/">使用Vue.js &#43; Vuetify製作SPA登入畫面</a></v-list-item-title>
-                        <v-list-item-subtitle><p>利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，
-往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…</p></v-list-item-subtitle>
+                        <v-list-item-title><a href="/posts/202008191354/">從今天開始學Flask</a></v-list-item-title>
+                        <v-list-item-subtitle><p>以往用的framework都是Django，但總不可能靠一招就打天下…所以便來轉戰Flask了，畢竟在某些情境下，使用這種輕量化的framework會更合適</p>
+<p>和Django不同，Flask不像Django這麼複雜，預設也只有最低限度的功能，也不像Django自帶ORM，
+因此是個自由度相當高的framework，接下來就開始動手練習</p></v-list-item-subtitle>
                       </v-list-item-content>
                     </v-list-item>
                     <v-divider></v-divider>
                     
                     <v-list-item>
                       <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202007201139/">使用watch監控的一些寫法</a></v-list-item-title>
-                        <v-list-item-subtitle><p>想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法</p></v-list-item-subtitle>
+                        <v-list-item-title><a href="/posts/202008171709/">使用Prometheus client library自訂metrics</a></v-list-item-title>
+                        <v-list-item-subtitle><p>作為往後可能需要自訂Exporter的預習，就試著拿<a href="https://prometheus.io/docs/instrumenting/clientlibs/">Prometheus client library</a>來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter</p></v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-divider></v-divider>
+                    
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title><a href="/posts/202008100108/">使用WebSocket部屬簡易聊天室</a></v-list-item-title>
+                        <v-list-item-subtitle><p>製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，
+剛好可作為Message Queue及Web Socket的練習。</p>
+<p>本篇Message Queue使用RabbitMQ，Framework使用Django，並且由Channels來實現Web Socket</p></v-list-item-subtitle>
                       </v-list-item-content>
                     </v-list-item>
                     <v-divider></v-divider>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Scrapy on 活到老學到死</title>
-    <link>https://mikanbearer.github.io/tags/Scrapy/</link>
-    <description>Recent content in Scrapy on 活到老學到死</description>
+    <title>網路爬蟲 on 活到老學到死</title>
+    <link>https://mikanbearer.github.io/categories/%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2/</link>
+    <description>Recent content in 網路爬蟲 on 活到老學到死</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Mon, 07 Sep 2020 09:54:48 +0800</lastBuildDate>
     
-	<atom:link href="https://mikanbearer.github.io/tags/Scrapy/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikanbearer.github.io/categories/%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,16 +21,6 @@
       <guid>https://mikanbearer.github.io/posts/202009070954/</guid>
       <description>&lt;p&gt;前一篇練習比較陽春，沒有做到換頁的部分，&lt;/p&gt;
 &lt;p&gt;這次索性來做複雜一點，爬取媒體最愛的PTT，雖然本人不太逛PTT就是了…&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>從Scrapy開始玩爬蟲</title>
-      <link>https://mikanbearer.github.io/posts/202008281726/</link>
-      <pubDate>Fri, 28 Aug 2020 17:26:08 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202008281726/</guid>
-      <description>&lt;p&gt;為了之後的學習方向做準備，來練習一下Scrapy，Scrapy就是處理response的工具，並從中取得自己需要的資料，&lt;/p&gt;
-&lt;p&gt;這次就做個最低限度的練習&lt;/p&gt;</description>
     </item>
     
   </channel>

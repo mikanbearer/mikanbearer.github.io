@@ -35,8 +35,7 @@
 <body>
 <div id="app">
   <v-app id="inspire">
-    <v-app id="inspire">
-      <v-app-bar
+<v-app-bar
   app
   clipped-left
   dense
@@ -287,7 +286,7 @@
     </v-tabs-items>
   </v-card>
 </v-dialog>
-      
+
 <v-navigation-drawer
   v-model="drawer"
   app
@@ -354,320 +353,79 @@
 
 
     
+    <v-app id="inspire">
       <v-main>
         <v-container fluid style="width: 800px">
           <v-row dense>
-            <v-col cols=12>
-              <div>
-                <v-card class="content">
-                  <v-card-title class="text-h6 grey--text text--lighten-4" style="background-color: #556265;">
-                    <div>
-                      動態更新Echarts
-                    </div>
-                  </v-card-title>
-                  <v-card-subtitle class="text-body-1 mt-0">
-                    <div>
-                      2020-08-09
+            <v-col>
+              <div class="text-h5">
+                網路爬蟲
+              </div>
+              <div class="mt-3">
+                <v-simple-table dense>
+                  <template>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Tags</th>
+                        <th>Title</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                  
+                  <tr>
+                    <td>2020-09-07</td>
+                    <td>
                       
-                        
-                          <a href="https://mikanbearer.github.io//categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/">網頁開發</a>
-                        
                       
-                    </div>
-                    <div>
-                      
-                      
-                        <v-chip
-                          color="accent"
-                          label
-                          text-color="white"
-                          x-small
-                          href="https://mikanbearer.github.io//tags/JavaScript/"
-                        >
-                          JavaScript
-                        </v-chip>
-                      
-                        <v-chip
-                          color="accent"
-                          label
-                          text-color="white"
-                          x-small
-                          href="https://mikanbearer.github.io//tags/Echarts/"
-                        >
-                          Echarts
-                        </v-chip>
+                      <a
+                        href="https://mikanbearer.github.io/tags/%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2/"
+                      >
+                        網路爬蟲
+                      </a>
                       
                     
-  
-                    </div>
-                  <v-divider></v-divider>
-                  </v-card-subtitle>
-  
-                  <v-card-text class="text-body-1">
-                    <p>之前工作上需要一個前端的圖表庫，最後就相中了百度的Echarts，像是要做監控的話，前端的圖表要動態更新就變得很重要了</p>
-<p>如同<a href="https://echarts.apache.org/en/tutorial.html#Get%20Started%20with%20ECharts%20in%205%20minutes">這裡</a>的範例，Echarts會在使用<code>setOption</code>的時候layout</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
-    &lt;<span style="color:#f92672">title</span>&gt;ECharts&lt;/<span style="color:#f92672">title</span>&gt;
-    <span style="color:#75715e">&lt;!-- including ECharts file --&gt;</span>
-    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;echarts.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-    <span style="color:#75715e">&lt;!-- prepare a DOM container with width and height --&gt;</span>
-    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;main&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 600px;height:400px;&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
-    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
-        <span style="color:#75715e">// based on prepared DOM, initialize echarts instance
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myChart</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">echarts</span>.<span style="color:#a6e22e">init</span>(document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;main&#39;</span>));
-
-        <span style="color:#75715e">// specify chart configuration item and data
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">option</span> <span style="color:#f92672">=</span> {
-            <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ECharts entry example&#39;</span>
-            },
-            <span style="color:#a6e22e">tooltip</span><span style="color:#f92672">:</span> {},
-            <span style="color:#a6e22e">legend</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#39;Sales&#39;</span>]
-            },
-            <span style="color:#a6e22e">xAxis</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;shirt&#34;</span>,<span style="color:#e6db74">&#34;cardign&#34;</span>,<span style="color:#e6db74">&#34;chiffon shirt&#34;</span>,<span style="color:#e6db74">&#34;pants&#34;</span>,<span style="color:#e6db74">&#34;heels&#34;</span>,<span style="color:#e6db74">&#34;socks&#34;</span>]
-            },
-            <span style="color:#a6e22e">yAxis</span><span style="color:#f92672">:</span> {},
-            <span style="color:#a6e22e">series</span><span style="color:#f92672">:</span> [{
-                <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sales&#39;</span>,
-                <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bar&#39;</span>,
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>]
-            }]
-        };
-
-        <span style="color:#75715e">// use configuration item and data specified to show chart
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">myChart</span>.<span style="color:#a6e22e">setOption</span>(<span style="color:#a6e22e">option</span>);
-    &lt;/<span style="color:#f92672">script</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><p><br></br>
-如果是要異步更新的話，只要更新option中的這個部分</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">option</span> <span style="color:#f92672">=</span> {
-            <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ECharts entry example&#39;</span>
-            },
-            <span style="color:#a6e22e">tooltip</span><span style="color:#f92672">:</span> {},
-            <span style="color:#a6e22e">legend</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#39;Sales&#39;</span>]
-            },
-            <span style="color:#a6e22e">xAxis</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;shirt&#34;</span>,<span style="color:#e6db74">&#34;cardign&#34;</span>,<span style="color:#e6db74">&#34;chiffon shirt&#34;</span>,<span style="color:#e6db74">&#34;pants&#34;</span>,<span style="color:#e6db74">&#34;heels&#34;</span>,<span style="color:#e6db74">&#34;socks&#34;</span>]
-            },
-            <span style="color:#a6e22e">yAxis</span><span style="color:#f92672">:</span> {},
-            <span style="color:#a6e22e">series</span><span style="color:#f92672">:</span> [{
-                <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Sales&#39;</span>,
-                <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bar&#39;</span>,
-<span style="display:block;width:100%;background-color:#3c3d38">                <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>]
-</span>            }]
-        };
-
-</code></pre></td></tr></table>
-</div>
-</div><p><br></br>
-下列是一個動態更新的範例</p>
-<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="aergfaerfaerg" data-slug-hash="RwaWrMp" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Echarts Updating Data">
-  <span>See the Pen <a href="https://codepen.io/aergfaerfaerg/pen/RwaWrMp">
-  Echarts Updating Data</a> by rgsergreg (<a href="https://codepen.io/aergfaerfaerg">@aergfaerfaerg</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-                  </v-card-text>
-  
-  
-                </v-card>
+                    </td>
+                    <td>
+                      
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Python/"
+                      >
+                        Python
+                    </v-chip>
+                      
+                      <v-chip
+                        color="accent"
+                        label
+                        text-color="white"
+                        x-small
+                        href="https://mikanbearer.github.io/tags/Scrapy/"
+                      >
+                        Scrapy
+                    </v-chip>
+                      
+                    
+                    </td>
+                    <td><a href="https://mikanbearer.github.io/posts/202009070954/">使用Scrapy爬取PTT貼文</a></td>
+                  </tr>
 
 
-
-
-
-              
-              <div class="d-flex justify-space-between mt-5">
-                
-                <v-tooltip top>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      href="https://mikanbearer.github.io/posts/202008070930/"
-                      target="_blank"
-                      v-on="on"
-                      text
-                    >
-                      <v-icon>mdi-arrow-left</v-icon>
-                      Prev Post
-                    </v-btn>
+                  
+                    </tbody>
                   </template>
-                  <span>新主題上線！</span>
-                </v-tooltip>
-              
-              
-        
-              
-              <v-tooltip top>
-                <template v-slot:activator="{ on }">
-                  <v-btn
-                    href="https://mikanbearer.github.io/posts/202008100108/"
-                    target="_blank"
-                    v-on="on"
-                    text
-                  >
-                    Next Post
-                    <v-icon>mdi-arrow-right</v-icon>
-                  </v-btn>
-                </template>
-                <span>使用WebSocket部屬簡易聊天室</span>
-              </v-tooltip>
-              
+                </v-simple-table>
               </div>
-
-
-
-            
-                
-                  
-                    
-                  
-
-                  
-            
-                  <v-card color="#333a40" class="mt-5">
-                    <v-card-title>
-                      See Also
-                    </v-card-title>
-                    
-                    
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202008241004/">將Prometheus API取得的資料用Echarts &#43; Vue.js製作動態圖表</a></v-list-item-title>
-                        <v-list-item-subtitle><p>個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheus，
-就用這好用的工具來做個練習，將來有需要也能做個好看的Dashboard</p></v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-divider></v-divider>
-                    
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202008151135/">使用Moment.js處理日期時間</a></v-list-item-title>
-                        <v-list-item-subtitle><p>一個處理時間的library，覺得蠻好用得所以筆記一下</p></v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-divider></v-divider>
-                    
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202007262314/">使用Vue.js &#43; Vuetify製作SPA登入畫面</a></v-list-item-title>
-                        <v-list-item-subtitle><p>利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，
-往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…</p></v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-divider></v-divider>
-                    
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202007201139/">使用watch監控的一些寫法</a></v-list-item-title>
-                        <v-list-item-subtitle><p>想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法</p></v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-divider></v-divider>
-                    
-                  </v-card>
-
-                  
-                
-
-
-
-
-
-
-          
-              </div>
-
             </v-col>
           </v-row>
-
-
-
-
-
-
-
-
         </v-container>
-      </v-main>        
+        <v-pagination v-model="page" :length="1"></v-pagination>
+      </v-main>
       <v-footer padless color="transparent" class="mt-5">
   <v-col
     class="text-center text-body-2"
@@ -687,7 +445,7 @@
 
 
     </v-app>
-  </v-app>
+  </v-app>  
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
@@ -1527,40 +1285,10 @@ vm.$set(vm.$data, 'posts', posts)
 
 
 <script>
-  
-  vm.panel = [0]
-  vm.$watch(() => vm.panel, ()=>{
-    var list = document.body.getElementsByClassName("highlight")
-    for(i=0; i <= list.length-1; i++){
-      var table = list[i].firstElementChild.firstElementChild
-      if (table.nodeName == 'TABLE') {
-        var code = table.firstElementChild.firstElementChild.childNodes[2].firstElementChild.firstElementChild
-        var codeName =  code ? code.className.split(":")[1] : null
-      if(codeName) {
-        var div = document.createElement('div')
-        div.textContent = codeName
-        div.classList.add('code-name')
-        table.parentNode.insertBefore(div, table)
-      }
-      }else {
-        var code = table
-        var codeName =  code ? code.className.split(":")[1] : null
-
-        if(codeName) {
-          var div = document.createElement('div')
-          div.textContent = codeName
-          div.classList.add('code-name')
-          code.parentNode.insertBefore(div, code)
-        }
-      }
-    }
-  })
-
-
-
-
+  vm.page =  1 
+  vm.panel = [...Array( 50 ).keys()]
+  vm.$watch(() => vm.page, (newPage)=>{window.location.href = 'https:\/\/mikanbearer.github.io\/categories\/%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2\/page/' + newPage})
 </script>
-
 
   </body>
 </html>
