@@ -1142,6 +1142,89 @@
                     <v-expansion-panel-header>
                       <div class="text-h6 grey--text text--lighten-5">
                         <v-badge content="2" color="warning">
+                          網頁爬蟲
+                        </v-badge>
+                      </div>
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                      <v-simple-table class="mt-2">
+                        <template>
+                          <tbody>
+                            
+                            <tr>
+                              <td>2020-09-07</td>
+                              <td>
+                                
+                                
+                                <v-chip
+                                color="accent"
+                                label
+                                text-color="white"
+                                x-small
+                                href="https://mikanbearer.github.io/tags/Python/"
+                                
+                              >
+                                Python
+                              </v-chip>
+                                
+                                <v-chip
+                                color="accent"
+                                label
+                                text-color="white"
+                                x-small
+                                href="https://mikanbearer.github.io/tags/Scrapy/"
+                                
+                              >
+                                Scrapy
+                              </v-chip>
+                                
+                              
+                              </td>
+                              <td><a href="https://mikanbearer.github.io/posts/202009070954/">使用Scrapy爬取PTT貼文</a></td>
+                            </tr>
+                            
+                            <tr>
+                              <td>2020-08-28</td>
+                              <td>
+                                
+                                
+                                <v-chip
+                                color="accent"
+                                label
+                                text-color="white"
+                                x-small
+                                href="https://mikanbearer.github.io/tags/Scrapy/"
+                                
+                              >
+                                Scrapy
+                              </v-chip>
+                                
+                                <v-chip
+                                color="accent"
+                                label
+                                text-color="white"
+                                x-small
+                                href="https://mikanbearer.github.io/tags/Python/"
+                                
+                              >
+                                Python
+                              </v-chip>
+                                
+                              
+                              </td>
+                              <td><a href="https://mikanbearer.github.io/posts/202008281726/">從Scrapy開始玩爬蟲</a></td>
+                            </tr>
+                            
+                          </tbody>
+                          </template>
+                      </v-simple-table>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+                  
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>
+                      <div class="text-h6 grey--text text--lighten-5">
+                        <v-badge content="2" color="warning">
                           配置管理
                         </v-badge>
                       </div>
@@ -1333,108 +1416,6 @@
                     </v-expansion-panel-content>
                   </v-expansion-panel>
                   
-                  <v-expansion-panel>
-                    <v-expansion-panel-header>
-                      <div class="text-h6 grey--text text--lighten-5">
-                        <v-badge content="1" color="warning">
-                          網路爬蟲
-                        </v-badge>
-                      </div>
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content>
-                      <v-simple-table class="mt-2">
-                        <template>
-                          <tbody>
-                            
-                            <tr>
-                              <td>2020-09-07</td>
-                              <td>
-                                
-                                
-                                <v-chip
-                                color="accent"
-                                label
-                                text-color="white"
-                                x-small
-                                href="https://mikanbearer.github.io/tags/Python/"
-                                
-                              >
-                                Python
-                              </v-chip>
-                                
-                                <v-chip
-                                color="accent"
-                                label
-                                text-color="white"
-                                x-small
-                                href="https://mikanbearer.github.io/tags/Scrapy/"
-                                
-                              >
-                                Scrapy
-                              </v-chip>
-                                
-                              
-                              </td>
-                              <td><a href="https://mikanbearer.github.io/posts/202009070954/">使用Scrapy爬取PTT貼文</a></td>
-                            </tr>
-                            
-                          </tbody>
-                          </template>
-                      </v-simple-table>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-                  
-                  <v-expansion-panel>
-                    <v-expansion-panel-header>
-                      <div class="text-h6 grey--text text--lighten-5">
-                        <v-badge content="1" color="warning">
-                          網頁爬蟲
-                        </v-badge>
-                      </div>
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content>
-                      <v-simple-table class="mt-2">
-                        <template>
-                          <tbody>
-                            
-                            <tr>
-                              <td>2020-08-28</td>
-                              <td>
-                                
-                                
-                                <v-chip
-                                color="accent"
-                                label
-                                text-color="white"
-                                x-small
-                                href="https://mikanbearer.github.io/tags/Scrapy/"
-                                
-                              >
-                                Scrapy
-                              </v-chip>
-                                
-                                <v-chip
-                                color="accent"
-                                label
-                                text-color="white"
-                                x-small
-                                href="https://mikanbearer.github.io/tags/Python/"
-                                
-                              >
-                                Python
-                              </v-chip>
-                                
-                              
-                              </td>
-                              <td><a href="https://mikanbearer.github.io/posts/202008281726/">從Scrapy開始玩爬蟲</a></td>
-                            </tr>
-                            
-                          </tbody>
-                          </template>
-                      </v-simple-table>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-                  
                 </v-expansion-panels>
               </div>
             </v-col>
@@ -1557,7 +1538,7 @@ var posts = [
       tags: '[Python Scrapy]',
     
     
-      categories: '[網路爬蟲]',
+      categories: '[網頁爬蟲]',
     
     
       author: '',
@@ -2241,8 +2222,6 @@ vm.$set(vm.$data, 'posts', posts)
   '小技巧',
   
   '監控工具',
-  
-  '網路爬蟲',
   
   '網頁爬蟲',
   
