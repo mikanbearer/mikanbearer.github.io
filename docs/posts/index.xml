@@ -8,10 +8,28 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Mon, 07 Sep 2020 09:54:48 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2020 11:38:55 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>結巴分詞工具的簡單筆記</title>
+      <link>https://mikanbearer.github.io/posts/202009081138/</link>
+      <pubDate>Tue, 08 Sep 2020 11:38:55 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202009081138/</guid>
+      <description>&lt;p&gt;這次來使用大名鼎鼎的&amp;quot;結巴中文分詞&amp;quot;了，應該是目前最好的的斷詞工具，之後的實作會用上所以稍微筆記一下&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Matplotlib做簡單的資料可視化</title>
+      <link>https://mikanbearer.github.io/posts/202009080939/</link>
+      <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202009080939/</guid>
+      <description>&lt;p&gt;遲來的資料分析，一次做太多自己沒辦法進入狀況，先從練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續練習&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用Scrapy爬取PTT貼文</title>

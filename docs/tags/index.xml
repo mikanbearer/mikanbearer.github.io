@@ -8,17 +8,35 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Mon, 07 Sep 2020 09:54:48 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2020 11:38:55 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Jieba</title>
+      <link>https://mikanbearer.github.io/tags/Jieba/</link>
+      <pubDate>Tue, 08 Sep 2020 11:38:55 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/Jieba/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Python</title>
       <link>https://mikanbearer.github.io/tags/Python/</link>
-      <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
+      <pubDate>Tue, 08 Sep 2020 11:38:55 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Matplotlib</title>
+      <link>https://mikanbearer.github.io/tags/Matplotlib/</link>
+      <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/Matplotlib/</guid>
       <description></description>
     </item>
     
@@ -235,15 +253,6 @@
       <pubDate>Tue, 14 Jul 2020 16:04:42 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/VBScript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Windows</title>
-      <link>https://mikanbearer.github.io/tags/Windows/</link>
-      <pubDate>Tue, 14 Jul 2020 16:04:42 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Windows/</guid>
       <description></description>
     </item>
     

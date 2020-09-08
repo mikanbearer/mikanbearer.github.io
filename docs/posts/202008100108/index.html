@@ -382,9 +382,9 @@
                           label
                           text-color="white"
                           x-small
-                          href="https://mikanbearer.github.io//tags/Python/"
+                          href="https://mikanbearer.github.io//tags/Channels/"
                         >
-                          Python
+                          Channels
                         </v-chip>
                       
                         <v-chip
@@ -402,9 +402,9 @@
                           label
                           text-color="white"
                           x-small
-                          href="https://mikanbearer.github.io//tags/Channels/"
+                          href="https://mikanbearer.github.io//tags/Python/"
                         >
-                          Channels
+                          Python
                         </v-chip>
                       
                         <v-chip
@@ -953,6 +953,22 @@ rabbitmq    | client unexpectedly closed TCP connection
                     
                     <v-list-item>
                       <v-list-item-content>
+                        <v-list-item-title><a href="/posts/202009081138/">結巴分詞工具的簡單筆記</a></v-list-item-title>
+                        <v-list-item-subtitle><p>這次來使用大名鼎鼎的&quot;結巴中文分詞&quot;了，應該是目前最好的的斷詞工具，之後的實作會用上所以稍微筆記一下</p></v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-divider></v-divider>
+                    
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title><a href="/posts/202009080939/">使用Matplotlib做簡單的資料可視化</a></v-list-item-title>
+                        <v-list-item-subtitle><p>遲來的資料分析，一次做太多自己沒辦法進入狀況，先從練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續練習</p></v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-divider></v-divider>
+                    
+                    <v-list-item>
+                      <v-list-item-content>
                         <v-list-item-title><a href="/posts/202009070954/">使用Scrapy爬取PTT貼文</a></v-list-item-title>
                         <v-list-item-subtitle><p>前一篇練習比較陽春，沒有做到換頁的部分，這次索性來做複雜一點，爬取媒體最愛的PTT，雖然本人不太逛PTT就是了…</p></v-list-item-subtitle>
                       </v-list-item-content>
@@ -972,25 +988,6 @@ rabbitmq    | client unexpectedly closed TCP connection
                       <v-list-item-content>
                         <v-list-item-title><a href="/posts/202008271612/">在Flask中導入SQLAlchemy進行ORM操作</a></v-list-item-title>
                         <v-list-item-subtitle><p>Flask本身沒自帶ORM略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個<a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/">Flask-SQLAlchemy</a>可使用，大大縮短coding時間</p></v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-divider></v-divider>
-                    
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202008191354/">從今天開始學Flask</a></v-list-item-title>
-                        <v-list-item-subtitle><p>以往用的framework都是Django，但總不可能靠一招就打天下…所以便來轉戰Flask了，畢竟在某些情境下，使用這種輕量化的framework會更合適</p>
-<p>和Django不同，Flask不像Django這麼複雜，預設也只有最低限度的功能，也不像Django自帶ORM，
-因此是個自由度相當高的framework，接下來就開始動手練習</p></v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-divider></v-divider>
-                    
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title><a href="/posts/202008181609/">使用Prometheus監控RabbitMQ</a></v-list-item-title>
-                        <v-list-item-subtitle><p>因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，</p>
-<p>而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看，當作實務運用的練習</p></v-list-item-subtitle>
                       </v-list-item-content>
                     </v-list-item>
                     <v-divider></v-divider>
@@ -1028,11 +1025,11 @@ rabbitmq    | client unexpectedly closed TCP connection
     <div>
       [[ new Date().getFullYear() ]] — 
       
-      <strong>Zhang San</strong>
+      Zhang San
       
     </div>
     <div>
-      Theme <a href="https://github.com/mikanbearer/hugo-vue-mix">hugo-vue-mix</a> by <a href="https://github.com/mikanbearer">mikanbearer</a>
+      Theme <a href="https://github.com/mikanbearer/hugo-vue-mix">hugo-vue-mix</a> by me
     </div>
   </v-col>
 </v-footer>
@@ -1121,6 +1118,52 @@ rabbitmq    | client unexpectedly closed TCP connection
 var posts = [
 
   {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202009081138\/',
+    
+      title: '結巴分詞工具的簡單筆記',
+    
+    
+      summary: '\u003cp\u003e這次來使用大名鼎鼎的\u0026quot;結巴中文分詞\u0026quot;了，應該是目前最好的的斷詞工具，之後的實作會用上所以稍微筆記一下\u003c\/p\u003e',
+      content: '\u003cp\u003e這次來使用大名鼎鼎的\u0026quot;結巴中文分詞\u0026quot;了，應該是目前最好的的斷詞工具，之後的實作會用上所以稍微筆記一下\u003c\/p\u003e\n\u003cp\u003e安裝\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ pip install jieba\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022分詞\u0022\u003e分詞\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n分詞可使用jieba.cut、jieba.cut_for_search，兩者皆會返回一個generator，\u003c\/p\u003e\n\u003cp\u003e而jieba.lcut、jieba.lcut_for_search返回的是list\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-shell\u0022 data-lang=\u0022shell\u0022\u003e$ ipython\n\nIn \u003cspan style=\u0022color:#f92672\u0022\u003e[\u003c\/span\u003e1\u003cspan style=\u0022color:#f92672\u0022\u003e]\u003c\/span\u003e: import jieba\n\nIn \u003cspan style=\u0022color:#f92672\u0022\u003e[\u003c\/span\u003e2\u003cspan style=\u0022color:#f92672\u0022\u003e]\u003c\/span\u003e: type\u003cspan style=\u0022color:#f92672\u0022\u003e(\u003c\/span\u003ejieba.cut\u003cspan style=\u0022color:#f92672\u0022\u003e(\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u003c\/span\u003e, cut_all\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue\u003cspan style=\u0022color:#f92672\u0022\u003e))\u003c\/span\u003e\nOut\u003cspan style=\u0022color:#f92672\u0022\u003e[\u003c\/span\u003e2\u003cspan style=\u0022color:#f92672\u0022\u003e]\u003c\/span\u003e: generator\n\nIn \u003cspan style=\u0022color:#f92672\u0022\u003e[\u003c\/span\u003e3\u003cspan style=\u0022color:#f92672\u0022\u003e]\u003c\/span\u003e: type\u003cspan style=\u0022color:#f92672\u0022\u003e(\u003c\/span\u003ejieba.lcut\u003cspan style=\u0022color:#f92672\u0022\u003e(\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u003c\/span\u003e, cut_all\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue\u003cspan style=\u0022color:#f92672\u0022\u003e))\u003c\/span\u003e\nOut\u003cspan style=\u0022color:#f92672\u0022\u003e[\u003c\/span\u003e3\u003cspan style=\u0022color:#f92672\u0022\u003e]\u003c\/span\u003e: generator\n\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n三種模式的範例\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e jieba\n\nseg_list \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e jieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e, cut_all\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue)\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;【全模式】：\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\/ \u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ejoin(seg_list))\n\u003cspan style=\u0022color:#75715e\u0022\u003e#【全模式】：在\/ 虛\/ 構\/ 的\/ 故事\/ 當\/ 中\/ 尋\/ 求真\/ 實\/ 感\/ 的\/ 人\/ 腦\/ 袋\/ 一定\/ 定有\/ 問\/ 題\u003c\/span\u003e\n\n\nseg_list \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e jieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e, cut_all\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eFalse)\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;【精確模式】：\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\/ \u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ejoin(seg_list))\n\u003cspan style=\u0022color:#75715e\u0022\u003e#【精確模式】：在\/ 虛構\/ 的\/ 故事\/ 當中尋\/ 求真\/ 實感\/ 的\/ 人\/ 腦袋\/ 一定\/ 有\/ 問題\u003c\/span\u003e\n\n\nseg_list \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e jieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut_for_search(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e)\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;【搜尋引擎模式】：\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\/ \u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ejoin(seg_list))\n\u003cspan style=\u0022color:#75715e\u0022\u003e#【搜尋引擎模式】：在\/ 虛構\/ 的\/ 故事\/ 當中尋\/ 求真\/ 實感\/ 的\/ 人\/ 腦袋\/ 一定\/ 有\/ 問題\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n使用隱藏式馬可夫模型（Hidden Markov Model；縮寫：HMM）\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e jieba\n\nseg_list \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e jieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e, cut_all\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue, HMM\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue)\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;【全模式】：\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\/ \u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ejoin(seg_list))\n\u003cspan style=\u0022color:#75715e\u0022\u003e#【全模式】：在\/ 虛\/ 構\/ 的\/ 故事\/ 當\/ 中\/ 尋\/ 求真\/ 實\/ 感\/ 的\/ 人\/ 腦\/ 袋\/ 一定\/ 定有\/ 問\/ 題\u003c\/span\u003e\n\nseg_list \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e jieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e, cut_all\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eFalse, HMM\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue)\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;【精確模式】：\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\/ \u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ejoin(seg_list))\n\u003cspan style=\u0022color:#75715e\u0022\u003e#【精確模式】：在\/ 虛構\/ 的\/ 故事\/ 當中尋\/ 求真\/ 實感\/ 的\/ 人\/ 腦袋\/ 一定\/ 有\/ 問題\u003c\/span\u003e\n\nseg_list \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e jieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut_for_search(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e, HMM\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue)\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;【搜尋引擎模式】：\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\/ \u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ejoin(seg_list))\n\u003cspan style=\u0022color:#75715e\u0022\u003e#【搜尋引擎模式】：在\/ 虛構\/ 的\/ 故事\/ 當中尋\/ 求真\/ 實感\/ 的\/ 人\/ 腦袋\/ 一定\/ 有\/ 問題\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e雖然在這範例看不出分別\n\u003cbr\u003e\u003c\/br\u003e\nPaddle模式\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e jieba\n\njieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eenable_paddle()\nseg_list \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e jieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e, use_paddle\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue)\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;【Paddle模式】：\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\/ \u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ejoin(seg_list))\n\u003cspan style=\u0022color:#75715e\u0022\u003e#【Paddle模式】：在\/ 虛構\/ 的\/ 故事\/ 當中尋\/ 求真\/ 實感\/ 的\/ 人\/ 腦袋\/ 一定\/ 有\/ 問題\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022自訂辭典\u0022\u003e自訂辭典\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n載入檔案\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003ejieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eload_userdict(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;userdict.txt\u0026#39;\u003c\/span\u003e)\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n調整單詞\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003eseg_list \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e jieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e)\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;【調整前】：\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\/ \u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ejoin(seg_list))\n\u003cspan style=\u0022color:#75715e\u0022\u003e#【調整前】：在\/ 虛構\/ 的\/ 故事\/ 當中尋\/ 求真\/ 實感\/ 的\/ 人\/ 腦袋\/ 一定\/ 有\/ 問題\u003c\/span\u003e\n\njieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eadd_word(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;真實感\u0026#39;\u003c\/span\u003e)\nseg_list \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e jieba\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e)\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;【調整後】：\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\/ \u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ejoin(seg_list))\n\u003cspan style=\u0022color:#75715e\u0022\u003e#【調整後】：在\/ 虛構\/ 的\/ 故事\/ 當中\/ 尋求\/ 真實感\/ 的\/ 人\/ 腦袋\/ 一定\/ 有\/ 問題\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022關鍵詞提取\u0022\u003e關鍵詞提取\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n基於TF-IDF的關鍵字提取，公式就不提了…看了頭疼(´；ω；`)\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e jieba \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e analyse \u003cspan style=\u0022color:#66d9ef\u0022\u003eas\u003c\/span\u003e anls\n\ns \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;觀自在菩薩。行深般若波羅蜜多時。照見五蘊皆空。度一切苦厄。舍利子。色不異空。空不異色。色即是空。空即是色。受想行識。亦復如是。舍利子。是諸法空相。不生不滅。不垢不淨。不增不減。是故空中無色。無受想行識。無眼耳鼻舌身意。無色聲香味觸法。無眼界。乃至無意識界。無無明。亦無無明盡。乃至無老死。亦無老死盡。無苦集滅道。無智亦無得。以無所得故。菩提薩埵。依般若波羅蜜多故。心無罣礙。無罣礙故。無有恐怖。遠離顛倒夢想。究竟涅槃。三世諸佛。依般若波羅蜜多故。得阿耨多羅三藐三菩提。故知般若波羅蜜多。是大神咒。是大明咒。是無上咒。是無等等咒。能除一切苦。真實不虛。故說般若波羅蜜多咒。即說咒曰。揭諦揭諦。波羅揭諦。波羅僧揭諦。菩提薩婆訶。\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e x, w \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e anls\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eextract_tags(s, topK\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#ae81ff\u0022\u003e20\u003c\/span\u003e, withWeight\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue):\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e%s\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e \u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e%s\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e%\u003c\/span\u003e (x, w))\n\n\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u0026#39;\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e波羅蜜 0.6792481535738636\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e般若 0.5544058480443181\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e揭諦 0.5433985228590908\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e菩提 0.31302882206863636\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e行識 0.2716992614295454\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e無無明 0.2716992614295454\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e舍利子 0.25763018851136366\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e...\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n基於Text rank的關鍵字提取，原理參照\u003ca href=\u0022http:\/\/web.eecs.umich.edu\/~mihalcea\/papers\/mihalcea.emnlp04.pdf\u0022\u003e這裡\u003c\/a\u003e\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e x, w \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e anls\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003etextrank(s, withWeight\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003eTrue):\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e%s\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e \u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e%s\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u003c\/span\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e%\u003c\/span\u003e (x, w))\n\n\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u0026#39;\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e行識 1.0\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e菩提 0.7557609562914026\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e老死 0.6746173110357283\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e揭諦 0.6746173110357283\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e諸法 0.6294985968338874\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e空相 0.6259970709534944\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e觀自 0.5081817230893458\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e...\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022詞性標註\u0022\u003e詞性標註\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n標註詞性的範例如下\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e jieba \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e posseg\n\nresult \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e posseg\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003ecut(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e)\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e word, flag \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e result:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#34;{0} {1}\u0026#34;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eformat(word, flag))\n\n\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u0026#39;\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e在 p\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e虛構 n\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e的 uj\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e故事 n\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e當中 s\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e尋 v\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e求真 nz\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e...\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022返回起始位置\u0022\u003e返回起始位置\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e jieba \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e tokenize\n\nresult \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e tokenize(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;在虛構的故事當中尋求真實感的人腦袋一定有問題\u0026#39;\u003c\/span\u003e)\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e tk \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e result:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003eprint\u003c\/span\u003e(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#34;word: {0} \u003c\/span\u003e\u003cspan style=\u0022color:#ae81ff\u0022\u003e\\t\\t\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e start: {1} \u003c\/span\u003e\u003cspan style=\u0022color:#ae81ff\u0022\u003e\\t\\t\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e end: {2}\u0026#34;\u003c\/span\u003e\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eformat(tk[\u003cspan style=\u0022color:#ae81ff\u0022\u003e0\u003c\/span\u003e],tk[\u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e],tk[\u003cspan style=\u0022color:#ae81ff\u0022\u003e2\u003c\/span\u003e]))\n\n\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u0026#39;\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003eword: 在 \t\t start: 0 \t\t end: 1\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003eword: 虛構 \t\t start: 1 \t\t end: 3\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003eword: 的 \t\t start: 3 \t\t end: 4\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003eword: 故事 \t\t start: 4 \t\t end: 6\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e...\n\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;\u0026#39;\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e',
+    
+    
+      date: '2020-09-08',
+    
+    
+      tags: '[Jieba Python]',
+    
+    
+      categories: '[資料分析]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202009080939\/',
+    
+      title: '使用Matplotlib做簡單的資料可視化',
+    
+    
+      summary: '\u003cp\u003e遲來的資料分析，一次做太多自己沒辦法進入狀況，先從練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續練習\u003c\/p\u003e',
+      content: '\u003cp\u003e遲來的資料分析，一次做太多自己沒辦法進入狀況，先從練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續練習\u003c\/p\u003e\n\u003cp\u003e練習的檔案，是用之前抓的PTT貼文\n\u003ca href=\u0022https:\/\/github.com\/mikanbearer\/scrapy_sample\u0022\u003ehttps:\/\/github.com\/mikanbearer\/scrapy_sample\u003c\/a\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022使用matplotlib製圖\u0022\u003e使用Matplotlib製圖\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n首先用pip下載需要用的包\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ pip install matplotlib\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來將json做個簡單的處理\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e json\n\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e collections \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e defaultdict\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003ewith\u003c\/span\u003e open(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;pttgossip.json\u0026#39;\u003c\/span\u003e) \u003cspan style=\u0022color:#66d9ef\u0022\u003eas\u003c\/span\u003e f:\n    posts \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e json\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eload(f) \u003cspan style=\u0022color:#75715e\u0022\u003e#讀取練習的jason\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#75715e\u0022\u003e#建立defaultdict物件，value type為int\u003c\/span\u003e\ncomments_total \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e defaultdict(int)\npushes_total \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e defaultdict(int)\nhates_total \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e defaultdict(int)\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e post \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e posts:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e comment \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e post[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;comments\u0026#39;\u003c\/span\u003e]:\n        user \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e comment[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;user\u0026#39;\u003c\/span\u003e]\n\n        comments_total[user] \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b=\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e\n\n        \u003cspan style=\u0022color:#66d9ef\u0022\u003eif\u003c\/span\u003e comment[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;score\u0026#39;\u003c\/span\u003e] \u003cspan style=\u0022color:#f92672\u0022\u003e\u0026gt;\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e0\u003c\/span\u003e:\n            pushes_total[user] \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b=\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e\n\n        \u003cspan style=\u0022color:#66d9ef\u0022\u003eelif\u003c\/span\u003e comment[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;score\u0026#39;\u003c\/span\u003e] \u003cspan style=\u0022color:#f92672\u0022\u003e\u0026lt;\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e0\u003c\/span\u003e:\n            hates_total[user] \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b=\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e這樣就能以user為key，value則是一個count\n\u003cbr\u003e\u003c\/br\u003e\n接著可以畫圖囉，以user為x，那麼回應、推、噓三個則為y值，以這構想大概這樣做\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#75715e\u0022\u003e#以comment數來排序成user list，長度取50\u003c\/span\u003e\nsorted_users \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [item[\u003cspan style=\u0022color:#ae81ff\u0022\u003e0\u003c\/span\u003e] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e item \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted(comments_total\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eitems(), key\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003elambda\u003c\/span\u003e x: \u003cspan style=\u0022color:#f92672\u0022\u003e-\u003c\/span\u003ex[\u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e])][:]\n\u003cspan style=\u0022color:#75715e\u0022\u003e#以user list來排序回覆count\u003c\/span\u003e\ny_comments \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [comments_total[u] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e u \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted_users]\n\u003cspan style=\u0022color:#75715e\u0022\u003e#以user list來排序推文count\u003c\/span\u003e\ny_pushes \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [pushes_total[u] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e u \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted_users]\n\u003cspan style=\u0022color:#75715e\u0022\u003e#以user list來排序噓文count\u003c\/span\u003e\ny_hates \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [hates_total[u] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e u \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted_users]\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e這樣就處理好x與三個y\n\u003cbr\u003e\u003c\/br\u003e\n接下來就能用mtatplotlib產生簡單的圖\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e matplotlib.pyplot \u003cspan style=\u0022color:#f92672\u0022\u003eas\u003c\/span\u003e plt\n\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003edef\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003ecomment_graph\u003c\/span\u003e(comments, pushes, hates, max_x):\n    sorted_users \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [item[\u003cspan style=\u0022color:#ae81ff\u0022\u003e0\u003c\/span\u003e] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e item \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted(comments\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eitems(), key\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003elambda\u003c\/span\u003e x: \u003cspan style=\u0022color:#f92672\u0022\u003e-\u003c\/span\u003ex[\u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e])][:max_x]\n    y_comments \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [comments[u] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e u \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted_users]\n    y_pushes \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [pushes[u] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e u \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted_users]\n    y_hates \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [hates[u] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e u \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted_users]\n\n    x \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e range(len(sorted_users))\n\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eplot(x, y_comments, color\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;blue\u0026#39;\u003c\/span\u003e, label\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;comments\u0026#39;\u003c\/span\u003e)\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eplot(x, y_pushes, color\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;green\u0026#39;\u003c\/span\u003e, label\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;pushes\u0026#39;\u003c\/span\u003e)\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eplot(x, y_hates, color\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;red\u0026#39;\u003c\/span\u003e, label\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;hates\u0026#39;\u003c\/span\u003e)\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003elegend()\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eshow()\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n最後完成的code如下：\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-py\u0022 data-lang=\u0022py\u0022\u003e\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e json\n\u003cspan style=\u0022color:#f92672\u0022\u003efrom\u003c\/span\u003e collections \u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e defaultdict\n\u003cspan style=\u0022color:#f92672\u0022\u003eimport\u003c\/span\u003e matplotlib.pyplot \u003cspan style=\u0022color:#f92672\u0022\u003eas\u003c\/span\u003e plt\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003ewith\u003c\/span\u003e open(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;pttgossip.json\u0026#39;\u003c\/span\u003e) \u003cspan style=\u0022color:#66d9ef\u0022\u003eas\u003c\/span\u003e f:\n    posts \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e json\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eload(f)\n\ncomments_total \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e defaultdict(int)\npushes_total \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e defaultdict(int)\nhates_total \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e defaultdict(int)\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e post \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e posts:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e comment \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e post[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;comments\u0026#39;\u003c\/span\u003e]:\n        user \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e comment[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;user\u0026#39;\u003c\/span\u003e]\n        comments_total[user] \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b=\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e\n\n        \u003cspan style=\u0022color:#66d9ef\u0022\u003eif\u003c\/span\u003e comment[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;score\u0026#39;\u003c\/span\u003e] \u003cspan style=\u0022color:#f92672\u0022\u003e\u0026gt;\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e0\u003c\/span\u003e:\n            pushes_total[user] \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b=\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e\n\n        \u003cspan style=\u0022color:#66d9ef\u0022\u003eelif\u003c\/span\u003e comment[\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;score\u0026#39;\u003c\/span\u003e] \u003cspan style=\u0022color:#f92672\u0022\u003e\u0026lt;\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e0\u003c\/span\u003e:\n            hates_total[user] \u003cspan style=\u0022color:#f92672\u0022\u003e\u002b=\u003c\/span\u003e \u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e\n\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003edef\u003c\/span\u003e \u003cspan style=\u0022color:#a6e22e\u0022\u003ecomment_graph\u003c\/span\u003e(comments, pushes, hates, max_x):\n    sorted_users \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [item[\u003cspan style=\u0022color:#ae81ff\u0022\u003e0\u003c\/span\u003e] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e item \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted(comments\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eitems(), key\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003elambda\u003c\/span\u003e x: \u003cspan style=\u0022color:#f92672\u0022\u003e-\u003c\/span\u003ex[\u003cspan style=\u0022color:#ae81ff\u0022\u003e1\u003c\/span\u003e])][:max_x]\n    y_comments \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [comments[u] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e u \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted_users]\n    y_pushes \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [pushes[u] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e u \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted_users]\n    y_hates \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e [hates[u] \u003cspan style=\u0022color:#66d9ef\u0022\u003efor\u003c\/span\u003e u \u003cspan style=\u0022color:#f92672\u0022\u003ein\u003c\/span\u003e sorted_users]\n\n    x \u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e range(len(sorted_users))\n\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eplot(x, y_comments, color\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;blue\u0026#39;\u003c\/span\u003e, label\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;comments\u0026#39;\u003c\/span\u003e)\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eplot(x, y_pushes, color\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;green\u0026#39;\u003c\/span\u003e, label\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;pushes\u0026#39;\u003c\/span\u003e)\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eplot(x, y_hates, color\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;red\u0026#39;\u003c\/span\u003e, label\u003cspan style=\u0022color:#f92672\u0022\u003e=\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;hates\u0026#39;\u003c\/span\u003e)\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003elegend()\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003etitle(\u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;total comments\u0026#39;\u003c\/span\u003e)\n    plt\u003cspan style=\u0022color:#f92672\u0022\u003e.\u003c\/span\u003eshow()\n\ncomment_graph(comments_total, pushes_total, hates_total, \u003cspan style=\u0022color:#ae81ff\u0022\u003e100\u003c\/span\u003e)\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n這樣就能看到前幾名回應活躍的user了\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022使用jupyter-notebook操作並以inline方式顯示圖片\u0022\u003e使用Jupyter Notebook操作並以inline方式顯示圖片\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n畢竟要做資料練習，果然還是有個shell一般的操作方式最好吧？可用又可讀，如同IPython notebook，但這次來用用Jupyter\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ pip install ipython jupyter\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n輸入指令啟動notebook\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ jupyter notebook\n...\n[I 09:56:21.690 NotebookApp] Jupyter Notebook 6.1.3 is running at:\n[I 09:56:21.690 NotebookApp] http:\/\/localhost:8888\/?token=389282ffb93c1426ba34e094ef8b8667ad6812ad8575a0f6\n[I 09:56:21.691 NotebookApp]  or http:\/\/127.0.0.1:8888\/?token=389282ffb93c1426ba34e094ef8b8667ad6812ad8575a0f6\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003cbr\u003e\n接下來開啟帶有token的網址，把要分析的json上傳\n\u003cimg src=\u00224.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n接著建立新的Pyhon3 Notebook\n\u003cimg src=\u00225.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n接下來就能進入notebook操作了，還能將檔案存成.ipynb，方便觀看\n\u003cimg src=\u00226.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n加上下列就能將圖片inline顯示\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e%matplotlib notebook\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n結果範例就是這樣，不錯的好工具\n\u003cimg src=\u00227.png\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e',
+    
+    
+      date: '2020-09-08',
+    
+    
+      tags: '[Python Matplotlib]',
+    
+    
+      categories: '[資料分析]',
+    
+    
+      author: '',
+    
+  },
+
+  {
     url: 'https:\/\/mikanbearer.github.io\/posts\/202009070954\/',
     
       title: '使用Scrapy爬取PTT貼文',
@@ -1202,7 +1245,7 @@ var posts = [
       date: '2020-08-28',
     
     
-      tags: '[Scrapy Python]',
+      tags: '[Python Scrapy]',
     
     
       categories: '[網頁爬蟲]',
@@ -1225,7 +1268,7 @@ var posts = [
       date: '2020-08-27',
     
     
-      tags: '[Flask SQLAlchemy Python]',
+      tags: '[Flask Python SQLAlchemy]',
     
     
       categories: '[網頁開發]',
@@ -1248,7 +1291,7 @@ var posts = [
       date: '2020-08-24',
     
     
-      tags: '[JavaScript Vue.js Echarts Prometheus]',
+      tags: '[Echarts JavaScript Prometheus Vue.js]',
     
     
       categories: '[網頁開發]',
@@ -1409,7 +1452,7 @@ var posts = [
       date: '2020-08-10',
     
     
-      tags: '[Python Django Channels RabbitMQ]',
+      tags: '[Channels Django Python RabbitMQ]',
     
     
       categories: '[網頁開發]',
@@ -1432,7 +1475,7 @@ var posts = [
       date: '2020-08-09',
     
     
-      tags: '[JavaScript Echarts]',
+      tags: '[Echarts JavaScript]',
     
     
       categories: '[網頁開發]',
@@ -1455,7 +1498,7 @@ var posts = [
       date: '2020-08-07',
     
     
-      tags: '[Hugo Vue.js Vuetify]',
+      tags: '[Hugo Vuetify Vue.js]',
     
     
       categories: '[雜記]',
@@ -1478,7 +1521,7 @@ var posts = [
       date: '2020-07-30',
     
     
-      tags: '[Nginx Apache]',
+      tags: '[Apache Nginx]',
     
     
       categories: '[網頁開發]',
@@ -1524,7 +1567,7 @@ var posts = [
       date: '2020-07-26',
     
     
-      tags: '[Vue.js JavaScript Node.js]',
+      tags: '[JavaScript Node.js Vue.js]',
     
     
       categories: '[網頁開發]',
@@ -1570,7 +1613,7 @@ var posts = [
       date: '2020-07-22',
     
     
-      tags: '[Python Django Celery RabbitMQ]',
+      tags: '[Celery Django Python RabbitMQ]',
     
     
       categories: '[網頁開發]',
@@ -1616,7 +1659,7 @@ var posts = [
       date: '2020-07-20',
     
     
-      tags: '[Python Django]',
+      tags: '[Django Python]',
     
     
       categories: '[網頁開發]',
@@ -1639,7 +1682,7 @@ var posts = [
       date: '2020-07-20',
     
     
-      tags: '[Vue.js JavaScript]',
+      tags: '[JavaScript Vue.js]',
     
     
       categories: '[網頁開發]',
@@ -1685,7 +1728,7 @@ var posts = [
       date: '2020-07-15',
     
     
-      tags: '[Python Django]',
+      tags: '[Django Python]',
     
     
       categories: '[網頁開發]',
@@ -1708,7 +1751,7 @@ var posts = [
       date: '2020-07-14',
     
     
-      tags: '[Windows VBScript]',
+      tags: '[VBScript]',
     
     
       categories: '[小技巧]',
@@ -1777,6 +1820,10 @@ vm.$set(vm.$data, 'posts', posts)
   
   'JavaScript',
   
+  'Jieba',
+  
+  'Matplotlib',
+  
   'Moment.js',
   
   'Nginx',
@@ -1801,8 +1848,6 @@ vm.$set(vm.$data, 'posts', posts)
   
   'Vuetify',
   
-  'Windows',
-  
   'uWSGI',
   
 
@@ -1824,6 +1869,8 @@ vm.$set(vm.$data, 'posts', posts)
   '網頁爬蟲',
   
   '網頁開發',
+  
+  '資料分析',
   
   '配置管理',
   

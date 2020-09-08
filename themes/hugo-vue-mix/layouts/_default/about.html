@@ -69,7 +69,7 @@ var categories_data = {
   selected: {
     {{ range $key, $value := $taxonomy.ByCount }}
     {{ $value.Name }}: 
-      {{ if ge $key 5 }}
+      {{ if ge $key 15 }}
       false,
       {{ else }}
       true, 
@@ -77,36 +77,6 @@ var categories_data = {
   {{ end }}
   }
 }
-
-{{ $taxonomy := .Site.Taxonomies.categories }}
-var categories = {
-  legendData: [
-  {{ range $key, $value := $taxonomy.ByCount }}
-    '{{ $value.Name }}',
-  {{ end }}
-  ],
-  
-  seriesData: [
-  {{ range $key, $value := $taxonomy.ByCount }}
-    {
-      name: '{{ $value.Name }}',
-      value: {{ $value.Count }}
-    },
-  {{ end }}
-
-  ],
-  selected: {
-    {{ range $key, $value := $taxonomy.ByCount }}
-    {{ $value.Name }}: 
-      {{ if ge $key 10 }}
-      false,
-      {{ else }}
-      true, 
-      {{ end }}
-  {{ end }}
-  }
-}
-
 
 
 {{ $taxonomy := .Site.Taxonomies.tags }}
@@ -129,7 +99,7 @@ var tags_data = {
   selected: {
     {{ range $key, $value := $taxonomy.ByCount }}
     {{ $value.Name }}: 
-      {{ if ge $key 10 }}
+      {{ if ge $key 15 }}
       false,
       {{ else }}
       true, 
