@@ -110,14 +110,16 @@
 
 
 
+              <v-card color="#333a40" class="mt-5">
+                {{ template "_internal/disqus.html" . }}
+              </v-card>
+
             
                 {{ if .Site.Params.showRelatedPosts }}
                   {{ range first 1 (where (where .Site.Pages ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
                     {{ $.Scratch.Set "has_related" true }}
                   {{ end }}
-
                   {{ if $.Scratch.Get "has_related" }}
-            
                   <v-card color="#333a40" class="mt-5">
                     <v-card-title>
                       See Also
@@ -133,7 +135,6 @@
                     <v-divider></v-divider>
                     {{ end }}
                   </v-card>
-
                   {{ end }}
                 {{ end }}
 

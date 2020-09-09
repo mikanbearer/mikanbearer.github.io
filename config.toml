@@ -9,7 +9,7 @@ title = "活到老學到死"
 theme = "hugo-vue-mix"
 metaDataFormat = "yaml"
 
-#disqusShortname = "XXX"
+disqusShortname = "mikanmimi"
 #googleAnalytics = "XXX"
 
 disablePathToLower = true
