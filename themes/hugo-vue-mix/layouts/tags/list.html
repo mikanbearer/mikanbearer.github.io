@@ -18,7 +18,6 @@
                       <tr>
                         <th>Date</th>
                         <th>Category</th>
-                        <th>Tags</th>
                         <th>Title</th>
                       </tr>
                     </thead>
@@ -34,21 +33,6 @@
                       >
                         {{ . }}
                       </a>
-                      {{ end }}
-                    {{ end }}
-                    </td>
-                    <td>
-                      {{ if .Params.Tags }}
-                      {{ range .Params.Tags }}
-                      <v-chip
-                        color="accent"
-                        label
-                        text-color="white"
-                        x-small
-                        href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/"
-                      >
-                        {{ . }}
-                    </v-chip>
                       {{ end }}
                     {{ end }}
                     </td>

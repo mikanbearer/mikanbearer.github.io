@@ -38,84 +38,80 @@
                         </v-chip>
                       {{ end }}
                     {{ end }}
-  
                     </div>
                   <v-divider></v-divider>
                   </v-card-subtitle>
-  
                   <v-card-text class="text-body-1">
                     {{ .Content }}
                   </v-card-text>
-  
-  
                 </v-card>
 
 
+                {{ if .Site.DisqusShortname }}
+                <v-card color="#333a40" class="mt-5">
+                  <v-card-text>
+                  {{ template "_internal/disqus.html" . }}
+                  </v-card-text>
+                </v-card>
+                {{ end }}
 
 
 
-              
-              <div class="d-flex justify-space-between mt-5">
-                {{ if .PrevInSection }}
+                <div class="d-flex justify-space-between mt-5">
+                  {{ if .PrevInSection }}
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <v-btn
+                        href="{{ .PrevInSection.Permalink }}"
+                        target="_blank"
+                        v-on="on"
+                        text
+                      >
+                        <v-icon>mdi-arrow-left</v-icon>
+                        Prev Post
+                      </v-btn>
+                    </template>
+                    <span>{{ .PrevInSection.Title }}</span>
+                  </v-tooltip>
+                {{ else }}
+                  <v-btn
+                   text
+                   disabled
+                  >
+                  <v-icon>mdi-arrow-left</v-icon>
+                    Prev Post
+                  </v-btn>
+                {{ end }}
+                
+          
+                {{ if .NextInSection }}
                 <v-tooltip top>
                   <template v-slot:activator="{ on }">
                     <v-btn
-                      href="{{ .PrevInSection.Permalink }}"
+                      href="{{ .NextInSection.Permalink }}"
                       target="_blank"
                       v-on="on"
                       text
                     >
-                      <v-icon>mdi-arrow-left</v-icon>
-                      Prev Post
+                      Next Post
+                      <v-icon>mdi-arrow-right</v-icon>
                     </v-btn>
                   </template>
-                  <span>{{ .PrevInSection.Title }}</span>
+                  <span>{{ .NextInSection.Title }}</span>
                 </v-tooltip>
-              {{ else }}
-                <v-btn
-                 text
-                 disabled
-                >
-                <v-icon>mdi-arrow-left</v-icon>
-                  Prev Post
-                </v-btn>
-              {{ end }}
-              
-        
-              {{ if .NextInSection }}
-              <v-tooltip top>
-                <template v-slot:activator="{ on }">
+                {{ else }}
                   <v-btn
-                    href="{{ .NextInSection.Permalink }}"
-                    target="_blank"
-                    v-on="on"
                     text
+                    disabled
                   >
-                    Next Post
+                  Next Post
                     <v-icon>mdi-arrow-right</v-icon>
                   </v-btn>
-                </template>
-                <span>{{ .NextInSection.Title }}</span>
-              </v-tooltip>
-              {{ else }}
-                <v-btn
-                  text
-                  disabled
-                >
-                Next Post
-                  <v-icon>mdi-arrow-right</v-icon>
-                </v-btn>
-              {{ end }}
-              </div>
+                {{ end }}
+                </div>
 
 
-              {{ if .Site.DisqusShortname }}
-              <v-card color="#333a40" class="mt-5">
-                <v-card-text>
-                {{ template "_internal/disqus.html" . }}
-                </v-card-text>
-              </v-card>
-              {{ end }}
+
 
             
                 {{ if .Site.Params.showRelatedPosts }}
@@ -123,20 +119,28 @@
                     {{ $.Scratch.Set "has_related" true }}
                   {{ end }}
                   {{ if $.Scratch.Get "has_related" }}
-                  <v-card color="#333a40" class="mt-5">
+                  <v-card color="transparent" flat class="mt-5">
                     <v-card-title>
                       See Also
                     </v-card-title>
+                    <v-card-text>
                     {{ $num_to_show := .Site.Params.related_content_limit | default 5 }}
                     {{ range first $num_to_show (where (where .Site.Pages ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title><a href="{{ .RelPermalink }}">{{ .Title }}</a></v-list-item-title>
-                        <v-list-item-subtitle>{{ .Summary }}</v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-divider></v-divider>
+                        <v-list-item>
+                          <v-list-item-content>
+                            <v-tooltip top>
+                              <template v-slot:activator="{ on }">
+                                <v-list-item-title>
+                                  <a v-on="on" href="{{ .Permalink }}">{{ .Title }}</a>
+                                </v-list-item-title>
+                              </template>
+                              <span>{{ .Summary }}</span>
+                            </v-tooltip>
+                          </v-list-item-content>
+                        </v-list-item>
+                      <v-divider></v-divider>
                     {{ end }}
+                    </v-card-text>
                   </v-card>
                   {{ end }}
                 {{ end }}

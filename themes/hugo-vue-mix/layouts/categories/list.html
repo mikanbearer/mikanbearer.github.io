@@ -17,7 +17,6 @@
                     <thead>
                       <tr>
                         <th>Date</th>
-                        <th>Category</th>
                         <th>Tags</th>
                         <th>Title</th>
                       </tr>
@@ -26,17 +25,6 @@
                   {{ range (.Paginator 50).Pages }}
                   <tr>
                     <td>{{ .Date.Format "2006-01-02" }}</td>
-                    <td>
-                    {{ if .Params.Categories }}
-                      {{ range .Params.Categories }}
-                      <a
-                        href="{{ $.Site.LanguagePrefix | absURL }}categories/{{ . | urlize }}/"
-                      >
-                        {{ . }}
-                      </a>
-                      {{ end }}
-                    {{ end }}
-                    </td>
                     <td>
                       {{ if .Params.Tags }}
                       {{ range .Params.Tags }}
