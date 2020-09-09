@@ -365,7 +365,7 @@
                       使用WebSocket部屬簡易聊天室
                     </div>
                   </v-card-title>
-                  <v-card-subtitle class="text-body-1 mt-0">
+                  <v-card-subtitle class="text-body-1 mt-2">
                     <div>
                       2020-08-10
                       
@@ -891,7 +891,7 @@ rabbitmq    | client unexpectedly closed TCP connection
 
 
                 
-                <v-card color="#333a40" class="mt-5">
+                <v-card class="mt-5 content">
                   <v-card-text>
                   <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -919,44 +919,6 @@ rabbitmq    | client unexpectedly closed TCP connection
 
 
 
-                <div class="d-flex justify-space-between mt-5">
-                  
-                  <v-tooltip top>
-                    <template v-slot:activator="{ on }">
-                      <v-btn
-                        href="https://mikanbearer.github.io/posts/202008092021/"
-                        target="_blank"
-                        v-on="on"
-                        text
-                      >
-                        <v-icon>mdi-arrow-left</v-icon>
-                        Prev Post
-                      </v-btn>
-                    </template>
-                    <span>動態更新Echarts</span>
-                  </v-tooltip>
-                
-                
-          
-                
-                <v-tooltip top>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      href="https://mikanbearer.github.io/posts/202008131707/"
-                      target="_blank"
-                      v-on="on"
-                      text
-                    >
-                      Next Post
-                      <v-icon>mdi-arrow-right</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>【Prometheus監控實作-初級篇1】從零開始學Prometheus</span>
-                </v-tooltip>
-                
-                </div>
-
-
 
 
             
@@ -965,7 +927,7 @@ rabbitmq    | client unexpectedly closed TCP connection
                     
                   
                   
-                  <v-card color="transparent" flat class="mt-5">
+                  <v-card class="mt-5 content">
                     <v-card-title>
                       See Also
                     </v-card-title>
@@ -1049,6 +1011,43 @@ rabbitmq    | client unexpectedly closed TCP connection
                 
 
 
+
+
+                
+                <div class="d-flex justify-space-between mt-5">
+                  
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <v-btn
+                        href="https://mikanbearer.github.io/posts/202008092021/"
+                        v-on="on"
+                        text
+                      >
+                        <v-icon>mdi-arrow-left</v-icon>
+                        Prev Post
+                      </v-btn>
+                    </template>
+                    <span>動態更新Echarts</span>
+                  </v-tooltip>
+                
+                
+          
+                
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      href="https://mikanbearer.github.io/posts/202008131707/"
+                      v-on="on"
+                      text
+                    >
+                      Next Post
+                      <v-icon>mdi-arrow-right</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>【Prometheus監控實作-初級篇1】從零開始學Prometheus</span>
+                </v-tooltip>
+                
+                </div>
 
 
 

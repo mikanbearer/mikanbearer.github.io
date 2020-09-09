@@ -15,7 +15,7 @@
                       {{ .Title }}
                     </div>
                   </v-card-title>
-                  <v-card-subtitle class="text-body-1 mt-0">
+                  <v-card-subtitle class="text-body-1 mt-2">
                     <div>
                       {{ .Date.Format "2006-01-02" }}
                       {{ if .Params.Categories }}
@@ -48,67 +48,13 @@
 
 
                 {{ if .Site.DisqusShortname }}
-                <v-card color="#333a40" class="mt-5">
+                <v-card class="mt-5 content">
                   <v-card-text>
                   {{ template "_internal/disqus.html" . }}
                   </v-card-text>
                 </v-card>
                 {{ end }}
 
-
-
-                <div class="d-flex justify-space-between mt-5">
-                  {{ if .PrevInSection }}
-                  <v-tooltip top>
-                    <template v-slot:activator="{ on }">
-                      <v-btn
-                        href="{{ .PrevInSection.Permalink }}"
-                        target="_blank"
-                        v-on="on"
-                        text
-                      >
-                        <v-icon>mdi-arrow-left</v-icon>
-                        Prev Post
-                      </v-btn>
-                    </template>
-                    <span>{{ .PrevInSection.Title }}</span>
-                  </v-tooltip>
-                {{ else }}
-                  <v-btn
-                   text
-                   disabled
-                  >
-                  <v-icon>mdi-arrow-left</v-icon>
-                    Prev Post
-                  </v-btn>
-                {{ end }}
-                
-          
-                {{ if .NextInSection }}
-                <v-tooltip top>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      href="{{ .NextInSection.Permalink }}"
-                      target="_blank"
-                      v-on="on"
-                      text
-                    >
-                      Next Post
-                      <v-icon>mdi-arrow-right</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>{{ .NextInSection.Title }}</span>
-                </v-tooltip>
-                {{ else }}
-                  <v-btn
-                    text
-                    disabled
-                  >
-                  Next Post
-                    <v-icon>mdi-arrow-right</v-icon>
-                  </v-btn>
-                {{ end }}
-                </div>
 
 
 
@@ -119,7 +65,7 @@
                     {{ $.Scratch.Set "has_related" true }}
                   {{ end }}
                   {{ if $.Scratch.Get "has_related" }}
-                  <v-card color="transparent" flat class="mt-5">
+                  <v-card class="mt-5 content">
                     <v-card-title>
                       See Also
                     </v-card-title>
@@ -146,6 +92,59 @@
                 {{ end }}
 
 
+
+
+                
+                <div class="d-flex justify-space-between mt-5">
+                  {{ if .PrevInSection }}
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <v-btn
+                        href="{{ .PrevInSection.Permalink }}"
+                        v-on="on"
+                        text
+                      >
+                        <v-icon>mdi-arrow-left</v-icon>
+                        Prev Post
+                      </v-btn>
+                    </template>
+                    <span>{{ .PrevInSection.Title }}</span>
+                  </v-tooltip>
+                {{ else }}
+                  <v-btn
+                   text
+                   disabled
+                  >
+                  <v-icon>mdi-arrow-left</v-icon>
+                    Prev Post
+                  </v-btn>
+                {{ end }}
+                
+          
+                {{ if .NextInSection }}
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      href="{{ .NextInSection.Permalink }}"
+                      v-on="on"
+                      text
+                    >
+                      Next Post
+                      <v-icon>mdi-arrow-right</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>{{ .NextInSection.Title }}</span>
+                </v-tooltip>
+                {{ else }}
+                  <v-btn
+                    text
+                    disabled
+                  >
+                  Next Post
+                    <v-icon>mdi-arrow-right</v-icon>
+                  </v-btn>
+                {{ end }}
+                </div>
 
 
 
