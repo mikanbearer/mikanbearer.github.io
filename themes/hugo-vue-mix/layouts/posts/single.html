@@ -111,7 +111,9 @@
 
               {{ if .Site.DisqusShortname }}
               <v-card color="#333a40" class="mt-5">
+                <v-card-text>
                 {{ template "_internal/disqus.html" . }}
+                </v-card-text>
               </v-card>
               {{ end }}
 
