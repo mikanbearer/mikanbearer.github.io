@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>使用Prometheus監控RabbitMQ</title>
+      <title>【Prometheus監控實作-初級篇4】使用Prometheus監控RabbitMQ</title>
       <link>https://mikanbearer.github.io/posts/202008181609/</link>
       <pubDate>Tue, 18 Aug 2020 16:09:08 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -24,7 +24,7 @@
     </item>
     
     <item>
-      <title>使用Prometheus client library自訂metrics</title>
+      <title>【Prometheus監控實作-初級篇3】使用Prometheus client library自訂metrics</title>
       <link>https://mikanbearer.github.io/posts/202008171709/</link>
       <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -33,7 +33,7 @@
     </item>
     
     <item>
-      <title>使用Prometheus &#43; Pushgateway進行監控</title>
+      <title>【Prometheus監控實作-初級篇2】使用Pushgateway進行監控</title>
       <link>https://mikanbearer.github.io/posts/202008140913/</link>
       <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -42,7 +42,7 @@
     </item>
     
     <item>
-      <title>從零開始學Prometheus</title>
+      <title>【Prometheus監控實作-初級篇1】從零開始學Prometheus</title>
       <link>https://mikanbearer.github.io/posts/202008131707/</link>
       <pubDate>Thu, 13 Aug 2020 17:07:15 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>

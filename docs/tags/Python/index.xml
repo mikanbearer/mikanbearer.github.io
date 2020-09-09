@@ -23,21 +23,21 @@
     </item>
     
     <item>
-      <title>使用Matplotlib做簡單的資料可視化</title>
+      <title>【Python資料分析實作2】使用Matplotlib做簡單的資料可視化</title>
       <link>https://mikanbearer.github.io/posts/202009080939/</link>
       <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202009080939/</guid>
-      <description>&lt;p&gt;遲來的資料分析，一次做太多自己沒辦法進入狀況，先從練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續練習&lt;/p&gt;</description>
+      <description>&lt;p&gt;遲來的資料分析，原本想通通和爬蟲一起塞一篇，但一次做太多自己沒辦法進入狀況，只好先練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續深入&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>使用Scrapy爬取PTT貼文</title>
+      <title>【Python資料分析實作1】使用Scrapy爬取PTT貼文</title>
       <link>https://mikanbearer.github.io/posts/202009070954/</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202009070954/</guid>
-      <description>&lt;p&gt;前一篇練習比較陽春，沒有做到換頁的部分，這次索性來做複雜一點，爬取媒體最愛的PTT，雖然本人不太逛PTT就是了…&lt;/p&gt;</description>
+      <description>&lt;p&gt;作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -51,7 +51,7 @@
     </item>
     
     <item>
-      <title>在Flask中導入SQLAlchemy進行ORM操作</title>
+      <title>【Flask練習-初級篇2】在Flask中導入SQLAlchemy進行ORM操作</title>
       <link>https://mikanbearer.github.io/posts/202008271612/</link>
       <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -60,7 +60,7 @@
     </item>
     
     <item>
-      <title>從今天開始學Flask</title>
+      <title>【Flask練習-初級篇1】從今天開始學Flask</title>
       <link>https://mikanbearer.github.io/posts/202008191354/</link>
       <pubDate>Wed, 19 Aug 2020 13:54:41 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -71,7 +71,7 @@
     </item>
     
     <item>
-      <title>使用Prometheus client library自訂metrics</title>
+      <title>【Prometheus監控實作-初級篇3】使用Prometheus client library自訂metrics</title>
       <link>https://mikanbearer.github.io/posts/202008171709/</link>
       <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
