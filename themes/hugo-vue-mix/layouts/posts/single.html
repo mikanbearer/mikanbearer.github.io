@@ -109,10 +109,11 @@
               </div>
 
 
-
+              {{ if .Site.DisqusShortname }}
               <v-card color="#333a40" class="mt-5">
                 {{ template "_internal/disqus.html" . }}
               </v-card>
+              {{ end }}
 
             
                 {{ if .Site.Params.showRelatedPosts }}
