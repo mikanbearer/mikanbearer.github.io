@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jupyter on 活到老學到死</title>
+    <link>https://mikanbearer.github.io/tags/Jupyter/</link>
+    <description>Recent content in Jupyter on 活到老學到死</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
+    <lastBuildDate>Tue, 08 Sep 2020 09:39:01 +0800</lastBuildDate>
+    
+	<atom:link href="https://mikanbearer.github.io/tags/Jupyter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Python資料分析實作-初級篇2】在Jupyter notebook上使用Matplotlib做簡單的資料可視化</title>
+      <link>https://mikanbearer.github.io/posts/202009080939/</link>
+      <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202009080939/</guid>
+      <description>&lt;p&gt;遲來的資料分析，原本想通通和爬蟲一起塞一篇，但一次做太多自己沒辦法進入狀況，只好先練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續深入&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

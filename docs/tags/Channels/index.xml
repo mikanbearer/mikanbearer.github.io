@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>使用WebSocket部屬簡易聊天室</title>
+      <title>使用Django &#43; Channels部屬WebSocket簡易聊天室</title>
       <link>https://mikanbearer.github.io/posts/202008100108/</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>

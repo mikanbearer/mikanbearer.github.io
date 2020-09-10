@@ -8,10 +8,19 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Tue, 08 Sep 2020 11:38:55 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 09 Sep 2020 13:46:26 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/Python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>【Python資料分析實作-初級篇3】使用scikit-learn分析結巴分詞並可視化</title>
+      <link>https://mikanbearer.github.io/posts/202009091346/</link>
+      <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202009091346/</guid>
+      <description>&lt;p&gt;這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>結巴分詞工具的簡單筆記</title>
@@ -23,7 +32,7 @@
     </item>
     
     <item>
-      <title>【Python資料分析實作2】使用Matplotlib做簡單的資料可視化</title>
+      <title>【Python資料分析實作-初級篇2】在Jupyter notebook上使用Matplotlib做簡單的資料可視化</title>
       <link>https://mikanbearer.github.io/posts/202009080939/</link>
       <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -32,12 +41,13 @@
     </item>
     
     <item>
-      <title>【Python資料分析實作1】使用Scrapy爬取PTT貼文</title>
+      <title>【Python資料分析實作-初級篇1】使用Scrapy爬取PTT貼文</title>
       <link>https://mikanbearer.github.io/posts/202009070954/</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202009070954/</guid>
-      <description>&lt;p&gt;作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…&lt;/p&gt;</description>
+      <description>&lt;p&gt;從爬蟲開始的實作，分析資料前總得先有資料吧(;&amp;lsquo;∀&amp;rsquo;)&lt;/p&gt;
+&lt;p&gt;作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -80,7 +90,7 @@
     </item>
     
     <item>
-      <title>使用WebSocket部屬簡易聊天室</title>
+      <title>使用Django &#43; Channels部屬WebSocket簡易聊天室</title>
       <link>https://mikanbearer.github.io/posts/202008100108/</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -101,7 +111,7 @@
     </item>
     
     <item>
-      <title>使用Django REST framework超高速部屬RESTful API (2)</title>
+      <title>【Django API實作-初級篇2】在Django REST framework上導入JWT驗證</title>
       <link>https://mikanbearer.github.io/posts/202007201501/</link>
       <pubDate>Mon, 20 Jul 2020 15:01:14 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -110,7 +120,7 @@
     </item>
     
     <item>
-      <title>使用Django REST framework超高速部屬RESTful API (1)</title>
+      <title>【Django API實作-初級篇1】使用Django REST framework超高速部屬RESTful API</title>
       <link>https://mikanbearer.github.io/posts/202007161628/</link>
       <pubDate>Thu, 16 Jul 2020 16:28:26 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
