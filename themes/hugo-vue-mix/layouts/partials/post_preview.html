@@ -3,7 +3,7 @@
 {{ .Date.Format "2006-01-02" }}
 {{ if .Params.Categories }}
   {{ range .Params.Categories }}
-  <a href="{{ $.Site.LanguagePrefix | absURL }}/categories/{{ . | urlize }}/">{{ . }}</a>
+  <a href="{{ $.Site.LanguagePrefix | absURL }}categories/{{ . | urlize }}/">{{ . }}</a>
   {{ end }}
 {{ end }}
 </div>
