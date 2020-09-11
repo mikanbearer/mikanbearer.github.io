@@ -370,7 +370,7 @@
                       2020-08-18
                       
                         
-                          <a href="https://mikanbearer.github.io//categories/%E7%9B%A3%E6%8E%A7%E5%B7%A5%E5%85%B7/">監控工具</a>
+                          <a href="https://mikanbearer.github.io//categories/%E7%B3%BB%E7%B5%B1%E7%9B%A3%E6%8E%A7/">系統監控</a>
                         
                       
                     </div>
@@ -402,8 +402,7 @@
                   <v-divider></v-divider>
                   </v-card-subtitle>
                   <v-card-text class="text-body-1">
-                    <p>因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，</p>
-<p>而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看，當作實務運用的練習</p>
+                    <p>想特地找個一個有自帶plugin的軟體練習一下幫助記憶，剛剛好是常常使用RabbitMQ！這次就來測試看看，當作實務運用的練習</p>
 <p><a href="https://github.com/rabbitmq/rabbitmq-prometheus">rabbitmq-prometheus的repository</a></p>
 <p>一樣求方便使用docker-compose，寫個陽春的Dockerfile會比較方便</p>
 <p>為了使用內建的pulgin，直接用3.8.0以後的image，並且RUN啟用的command</p>
@@ -777,9 +776,32 @@ rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cl
 var posts = [
 
   {
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202009101608\/',
+    
+      title: '安裝並嘗試使用Arista ZTPServer',
+    
+    
+      summary: '\u003cp\u003e繼之前在架設lab的過程中被許許多多的狀況「折磨」過後(參照\u003ca href=\u0022https:\/\/mikanbearer.github.io\/posts\/202007241554\/\u0022\u003e這裡\u003c\/a\u003e)，終於找到時間接續下去了，這次就來部屬\u003ca href=\u0022https:\/\/github.com\/arista-eosplus\/ztpserver\u0022\u003eArista ZTPServer\u003c\/a\u003e，並稍微驗證一下client與server之間的動作，以確定正常能用\n，畢竟就算是最新的1.5.0版也很久沒更新了\u003c\/p\u003e',
+      content: '\u003cp\u003e繼之前在架設lab的過程中被許許多多的狀況「折磨」過後(參照\u003ca href=\u0022https:\/\/mikanbearer.github.io\/posts\/202007241554\/\u0022\u003e這裡\u003c\/a\u003e)，終於找到時間接續下去了，這次就來部屬\u003ca href=\u0022https:\/\/github.com\/arista-eosplus\/ztpserver\u0022\u003eArista ZTPServer\u003c\/a\u003e，並稍微驗證一下client與server之間的動作，以確定正常能用\n，畢竟就算是最新的1.5.0版也很久沒更新了\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\u0022#1\u0022\u003e安裝ZTPServer與DHCP Server\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#2\u0022\u003e在ENE-NG上建立vEOS Switch\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e\u003ca href=\u0022#3\u0022\u003e驗證ZTPServer動作\u003c\/a\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e這次虛擬機版本如下：\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eDebian 10\u003c\/li\u003e\n\u003cli\u003eEVE-NG 2.0.3-110\u003c\/li\u003e\n\u003cli\u003evEOS 4.20.15M\n\u003cbr\u003e\u003c\/br\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e看一下python2版本\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ python --version\nPython 2.7.16\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022p-id1安裝ztpserver與dhcp-serverp\u0022\u003e\u003cp id=1\u003e安裝ZTPServer與DHCP Server\u003c\/p\u003e\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n首先用安裝必要的包\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e# apt install git python-pip libyaml-dev isc-dhcp-server\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\nztpserver在安裝過程中會用pip下載所需的套件，這裡已經事先偷看過requirements.txt了\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:requirements.txt\u0022 data-lang=\u0022:requirements.txt\u0022\u003ewebob\nroutes\npyyaml\nrequests\nsleekxmpp    # dev only\nmock         # dev only\njsonrpclib   # dev only\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n需要留意的是libyaml-dev要記得裝，否則安裝PyYAML的時候會跳出的小錯誤會很容易忽略，後續影響為何還要再觀察\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-text\u0022 data-lang=\u0022text\u0022\u003eSearching for pyyaml\nReading https:\/\/pypi.org\/simple\/pyyaml\/\nDownloading https:\/\/files.pythonhosted.org\/packages\/64\/c2\/b80047c7ac2478f9501676c988a5411ed5572f35d1beff9cae07d321512c\/PyYAML-5.3.1.tar.gz#sha256=b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d\nBest match: PyYAML 5.3.1\nProcessing PyYAML-5.3.1.tar.gz\nWriting \/tmp\/easy_install-DJq89r\/PyYAML-5.3.1\/setup.cfg\nRunning PyYAML-5.3.1\/setup.py -q bdist_egg --dist-dir \/tmp\/easy_install-DJq89r\/PyYAML-5.3.1\/egg-dist-tmp-mJzK1J\nIn file included from ext\/_yaml.c:596:\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003eext\/_yaml.h:2:10: fatal error: yaml.h: No such file or directory\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e #include \u0026lt;yaml.h\u0026gt;\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來設定DHCP Server，在\/etc\/default\/isc-dhcp-server中找到以下兩行並修改\u003c\/p\u003e\n\u003cpre\u003e\u003ccode class=\u0022language-:\/etc\/default\/isc-dhcp-server\u0022 data-lang=\u0022:\/etc\/default\/isc-dhcp-server\u0022\u003e...\nDHCPDv4_CONF=\/etc\/dhcp\/dhcpd.conf\n...\nINTERFACESv4=\u0026quot;ens33\u0026quot;\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n注意listen interface，這裡是ens33\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ ip link show\n1: lo: \u0026lt;LOOPBACK,UP,LOWER_UP\u0026gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000\n    link\/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n2: ens33: \u0026lt;BROADCAST,MULTICAST,UP,LOWER_UP\u0026gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000\n    link\/ether 00:0c:29:58:88:13 brd ff:ff:ff:ff:ff:ff\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n再來就是到\/etc\/dhcp\/dhcpd.conf加入下列設定，這次沒用到的部分就先註解掉了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode class=\u0022language-:\/etc\/dhcp\/dhcpd.conf\u0022 data-lang=\u0022:\/etc\/dhcp\/dhcpd.conf\u0022\u003e...\nsubnet 192.168.171.0 netmask 255.255.255.0 {\n  range 192.168.171.200 192.168.171.205;\n  option routers 192.168.171.2;\n  #option domain-name-servers \u0026lt;ipaddr\u0026gt;;\n  #option domain-name \u0026quot;\u0026lt;org\u0026gt;\u0026quot;;\n\n  # Only return the bootfile-name to Arista devices\n  class \u0026quot;Arista\u0026quot; {\n    match if substring(option vendor-class-identifier, 0, 6) = \u0026quot;Arista\u0026quot;;\n    # Interesting bits:\n    # Relay agent IP address\n    # Option-82: Agent Information\n    #     Suboption 1: Circuit ID\n    #       Ex: 45:74:68:65:72:6e:65:74:31 ==\u0026gt; Ethernet1\n    option bootfile-name \u0026quot;http:\/\/192.168.171.127:8080\/bootstrap\u0026quot;;\n  }\n}\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003eDHCP Server告一段落了\n\u003cbr\u003e\u003c\/br\u003e\n接下來是ztpserver，如果用pip的話會比較快速\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ pip install ztpserver\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n但這裡貪圖git裡面的各種設定及範本，所以還是用git clone的方式\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ git\n$ git clone https:\/\/github.com\/arista-eosplus\/ztpserver.git\n$ cd ztpserver\/\n$ python setup.py build\n$ python setup.py install\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003cp\u003e安裝完成就可以啟動了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003eztps\n\u003c\/code\u003e\u003c\/pre\u003e\u003ch3 id=\u0022p-id2在ene-ng上建立veos-switchp\u0022\u003e\u003cp id=2\u003e在ENE-NG上建立vEOS Switch\u003c\/p\u003e\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接著準備client，使用EVE，開起web console後就建立一個node\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\ntemplate選擇Arista，vEOS版本選擇4.20.15M，這是個人測試問題最少的幾個版本中最新的\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n建立network\n\u003cimg src=\u00223.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n選擇Cloud0，讓EVE內的QEMU虛擬機能出HOST\n\u003cimg src=\u00224.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n接下來從node那裏把線拉上network\n\u003cimg src=\u00226.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n選擇node的managent 1來作為管理之用是理所當然的吧？\n\u003cimg src=\u00227.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n完成後就可以開機了\n\u003cimg src=\u00228.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022p-id3使用static-provisioning驗證ztpserver動作p\u0022\u003e\u003cp id=3\u003e使用Static Provisioning驗證ZTPServer動作\u003c\/p\u003e\u003c\/h3\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來終於要進入正題了，首先打開switch的console，預設user是admin，無密碼，先來收集我們要的資料\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-text\u0022 data-lang=\u0022text\u0022\u003elocalhost\u0026gt;show zerotouch \nZeroTouch Mode: Disabled\nScript Exec Timeout: 900\n\n\nlocalhost\u0026gt;show version\nArista vEOS\nHardware version:    \nSerial number:       \n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003eSystem MAC address:  5000.00d7.ee0b\n\u003c\/span\u003e\nSoftware image version: 4.20.15M\nArchitecture:           i386\nInternal build version: 4.20.15M-13793783.42015M\nInternal build ID:      93912965-5173-490d-8662-ecb360cf75a0\n\nUptime:                 0 weeks, 0 days, 0 hours and 2 minutes\nTotal memory:           2016840 kB\nFree memory:            1397076 kB\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003ezerotouch預設是disable的，EOS的機制是當startup-config為空，才會啟動agent，這裡先記下system mac address\n\u003cbr\u003e\u003c\/br\u003e\n接下來就把start-config刪了吧\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003elocalhost\u0026gt; enable\nlocalhost# write erase\nProceed with erasing startup configuration? [confirm] y\nlocalhost# reload\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n開好機就會看到agent在動了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003elocalhost login: Sep 10 15:24:03 localhost ConfigAgent: %ZTP-6-DHCPv4_QUERY: Sending DHCPv4 request on  [ Ethernet1, Ethernet2, Ethernet3, Ethernet4, Ethernet5, Ethernet6, Ethernet7, Ethernet8, Management1 ]\nSep 10 15:24:05 localhost ConfigAgent: %ZTP-6-DHCPv4_SUCCESS: DHCPv4 response received on Management1  [ Ip Address: 192.168.171.200\/24\/24; Domain: example.org; Gateway: 192.168.171.2; Boot File: http:\/\/192.168.171.127:8080\/bootstrap ]\nSep 10 15:24:10 localhost ConfigAgent: %ZTP-6-CONFIG_DOWNLOAD: Attempting to download the startup-config from http:\/\/192.168.171.127:8080\/bootstrap\nSep 10 15:24:10 localhost ConfigAgent: %ZTP-4-CONFIG_DOWNLOAD_FAIL: Failed to download the startup-config from http:\/\/192.168.171.127:8080\/bootstrap. Error: Couldn\u0027t connect to server\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\nzerotouch也變成active\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003elocalhost\u0026gt;show zerotouch \n\nZeroTouch Mode: Active\nScript Exec Timeout: 900\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來準備設定ZTPServer，找到這行，改成systemmac，這個設定是從agent的request header帶的值選擇去存取哪個目錄的資源，虛擬機沒serial number所以用mac\u003c\/p\u003e\n\u003cpre\u003e\u003ccode class=\u0022language-:\/etc\/ztpserver\/ztpserver.conf\u0022 data-lang=\u0022:\/etc\/ztpserver\/ztpserver.conf\u0022\u003e...\nidentifier = systemmac\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\nZTPServer預設的資源目錄是\/usr\/share\/ztpserver，接下來就來建立給client用的資源\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e# cd \/usr\/share\/ztpserver\/nodes\/\n# mkdir 500000d7ee0b\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n這是測試用的startup-config，如果成功的話，agent會把這個檔案寫進flash\u003c\/p\u003e\n\u003cpre\u003e\u003ccode class=\u0022language-:500000d7ee0b\/startup-config\u0022 data-lang=\u0022:500000d7ee0b\/startup-config\u0022\u003e!\nhostname test-node-1\n!\nusername admin privilege 15 role network-admin secret admin\n!\ninterface Management1\n ip address 192.168.171.210\/24\n!\nip access-list open\n 10 permit ip any any\n!\nip route 0.0.0.0\/0 192.168.171.2\n!\nip routing\n!\nmanagement api http-commands\n no shutdown\n!\nbanner login\nWelcome to $(hostname)!\nThis switch has been provisioned using the ZTPServer from Arista Networks\nDocs: http:\/\/ztpserver.readthedocs.org\/\nSource Code: https:\/\/github.com\/arista-eosplus\/ztpserver\nEOF\n!\nend\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n再來是pattern，這是用來檢查topology用的檔案，如果不符合的話就無法存取到bootstrap file，若照\u003ca href=\u0022https:\/\/ztpserver.readthedocs.io\/en\/master\/cookbook\/staticNodes.html#create-a-pattern-topology-validation-enabled\u0022\u003e官方文件\u003c\/a\u003e裡的範例是有LLDP的話是使用any: any:any，但這裡沒LLDP所以用none，否則interface會被判定不符合\u003c\/p\u003e\n\u003cpre\u003e\u003ccode class=\u0022language-:500000d7ee0b\/pattern\u0022 data-lang=\u0022:500000d7ee0b\/pattern\u0022\u003e---\nname: static_node\ninterfaces:\n  - none: none:none\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n完成之後就可以再次啟動\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ ztps\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n可以看到switch上有startup-config，且和剛才建立的一模一樣，這樣的就能確定ZTPServer可以用啦\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e\nlocalhost#show startup-config \n! Command: show startup-config\n!\nhostname test-node-1\n!\nusername admin privilege 15 role network-admin secret admin\n!\ninterface Management1\n ip address 192.168.171.210\/24\n!\nip access-list open\n 10 permit ip any any\n!\nip route 0.0.0.0\/0 192.168.171.2\n!\nip routing\n!\nmanagement api http-commands\n no shutdown\n!\nbanner login\nWelcome to $(hostname)!\nThis switch has been provisioned using the ZTPServer from Arista Networks\nDocs: http:\/\/ztpserver.readthedocs.org\/\nSource Code: https:\/\/github.com\/arista-eosplus\/ztpserver\nEOF\n!\nend\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e之後有時間再做詳細一點的練習\u003c\/p\u003e',
+    
+    
+      date: '2020-09-10',
+    
+    
+      tags: '[EVE-NG vEOS ZTPServer]',
+    
+    
+      categories: '[運維管理]',
+    
+    
+      author: '',
+    
+  },
+
+  {
     url: 'https:\/\/mikanbearer.github.io\/posts\/202009091346\/',
     
-      title: '【Python資料分析實作-初級篇3】使用scikit-learn分析結巴分詞並可視化',
+      title: '【Python資料分析實作-初級篇3】使用scikit-learn分析結巴分詞',
     
     
       summary: '\u003cp\u003e這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…\u003c\/p\u003e',
@@ -825,7 +847,7 @@ var posts = [
   {
     url: 'https:\/\/mikanbearer.github.io\/posts\/202009080939\/',
     
-      title: '【Python資料分析實作-初級篇2】在Jupyter notebook上使用Matplotlib做簡單的資料可視化',
+      title: '【Python資料分析實作-初級篇2】使用Matplotlib進行簡單的資料可視化',
     
     
       summary: '\u003cp\u003e遲來的資料分析，原本想通通和爬蟲一起塞一篇，但一次做太多自己沒辦法進入狀況，只好先練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續深入\u003c\/p\u003e',
@@ -861,7 +883,7 @@ var posts = [
       tags: '[Python Scrapy]',
     
     
-      categories: '[網頁爬蟲]',
+      categories: '[資料分析]',
     
     
       author: '',
@@ -884,7 +906,7 @@ var posts = [
       tags: '[Ansible Docker]',
     
     
-      categories: '[配置管理]',
+      categories: '[運維管理]',
     
     
       author: '',
@@ -907,7 +929,7 @@ var posts = [
       tags: '[Ansible]',
     
     
-      categories: '[配置管理]',
+      categories: '[運維管理]',
     
     
       author: '',
@@ -930,7 +952,7 @@ var posts = [
       tags: '[Python Scrapy]',
     
     
-      categories: '[網頁爬蟲]',
+      categories: '[資料分析]',
     
     
       author: '',
@@ -976,7 +998,7 @@ var posts = [
       tags: '[Echarts JavaScript Prometheus Vue.js]',
     
     
-      categories: '[網頁開發]',
+      categories: '[系統監控]',
     
     
       author: '',
@@ -1012,8 +1034,8 @@ var posts = [
       title: '【Prometheus監控實作-入門篇3】使用Prometheus監控RabbitMQ',
     
     
-      summary: '\u003cp\u003e因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，\u003c\/p\u003e\n\u003cp\u003e而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看，當作實務運用的練習\u003c\/p\u003e',
-      content: '\u003cp\u003e因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，\u003c\/p\u003e\n\u003cp\u003e而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看，當作實務運用的練習\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/github.com\/rabbitmq\/rabbitmq-prometheus\u0022\u003erabbitmq-prometheus的repository\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e一樣求方便使用docker-compose，寫個陽春的Dockerfile會比較方便\u003c\/p\u003e\n\u003cp\u003e為了使用內建的pulgin，直接用3.8.0以後的image，並且RUN啟用的command\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-Dockerfile\u0022 data-lang=\u0022Dockerfile\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eFROM\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e rabbitmq:3.8.6-management\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\u003c\/span\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eRUN\u003c\/span\u003e rabbitmq-plugins enable rabbitmq_prometheus\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncompose file增加port 15692\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:docker-compose.yml\u0022 data-lang=\u0022:docker-compose.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eversion\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;3\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eservices\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003emy-queue\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003econtainer_name\u003c\/span\u003e: rabbitmq\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003ebuild\u003c\/span\u003e: .\/\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003eports\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;5672:5672\u0026#39;\u003c\/span\u003e\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15672:15672\u0026#39;\u003c\/span\u003e\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15692:15692\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n      - rabbitmq-data:\/var\/lib\/rabbitmq\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003erabbitmq-data\u003c\/span\u003e:\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來就能在host上用cURL測試了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl -v -H \u0026quot;Accept:text\/plain\u0026quot; \u0026quot;http:\/\/localhost:15692\/metrics\u0026quot;\n...\n# TYPE rabbitmq_consumers gauge\n# HELP rabbitmq_consumers Consumers currently connected\nrabbitmq_consumers 0\n# TYPE rabbitmq_queues gauge\n# HELP rabbitmq_queues Queues available\nrabbitmq_queues 0\n# TYPE rabbitmq_build_info untyped\n# HELP rabbitmq_build_info RabbitMQ \u0026amp; Erlang\/OTP version info\nrabbitmq_build_info{rabbitmq_version=\u0026quot;3.8.6\u0026quot;,prometheus_plugin_version=\u0026quot;3.8.6\u0026quot;,prometheus_client_version=\u0026quot;4.6.0\u0026quot;,erlang_version=\u0026quot;23.0.3\u0026quot;} 1\n# TYPE rabbitmq_identity_info untyped\n# HELP rabbitmq_identity_info RabbitMQ node \u0026amp; cluster identity info\nrabbitmq_identity_info{rabbitmq_node=\u0026quot;rabbit@7f33446fce98\u0026quot;,rabbitmq_cluster=\u0026quot;rabbit@7f33446fce98\u0026quot;} 1\n# TYPE telemetry_scrape_duration_seconds summary\n# HELP telemetry_scrape_duration_seconds Scrape duration\n# TYPE telemetry_scrape_size_bytes summary\n# HELP telemetry_scrape_size_bytes Scrape size, not encoded\n# TYPE telemetry_scrape_encoded_size_bytes summary\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e巴拉巴拉一大堆\n\u003cbr\u003e\u003c\/br\u003e\n適當增加一下prometheus的config，反正只是測試一下，就姑且用static config吧\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-yaml\u0022 data-lang=\u0022yaml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n...\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter\u0026#39;\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 60s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_timeout\u003c\/span\u003e: 59s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e:\n          - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter:15692\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n能看到endpoint增加了\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n這樣就能用Prometheus監控RabbitMQ了\u003c\/p\u003e\n\u003cp\u003e剩下細部的設定可以參考\u003ca href=\u0022https:\/\/www.rabbitmq.com\/prometheus.html\u0022\u003ehttps:\/\/www.rabbitmq.com\/prometheus.html\u003c\/a\u003e\u003c\/p\u003e',
+      summary: '\u003cp\u003e想特地找個一個有自帶plugin的軟體練習一下幫助記憶，剛剛好是常常使用RabbitMQ！這次就來測試看看，當作實務運用的練習\u003c\/p\u003e',
+      content: '\u003cp\u003e想特地找個一個有自帶plugin的軟體練習一下幫助記憶，剛剛好是常常使用RabbitMQ！這次就來測試看看，當作實務運用的練習\u003c\/p\u003e\n\u003cp\u003e\u003ca href=\u0022https:\/\/github.com\/rabbitmq\/rabbitmq-prometheus\u0022\u003erabbitmq-prometheus的repository\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e一樣求方便使用docker-compose，寫個陽春的Dockerfile會比較方便\u003c\/p\u003e\n\u003cp\u003e為了使用內建的pulgin，直接用3.8.0以後的image，並且RUN啟用的command\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-Dockerfile\u0022 data-lang=\u0022Dockerfile\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eFROM\u003c\/span\u003e\u003cspan style=\u0022color:#e6db74\u0022\u003e rabbitmq:3.8.6-management\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\u003c\/span\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eRUN\u003c\/span\u003e rabbitmq-plugins enable rabbitmq_prometheus\u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\ncompose file增加port 15692\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cdiv style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\n\u003ctable style=\u0022border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;\u0022\u003e\u003ctr\u003e\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 1\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 2\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 3\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 4\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 5\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 6\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 7\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 8\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e 9\n\u003c\/span\u003e\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e10\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e11\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e12\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e13\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e14\n\u003c\/span\u003e\u003cspan style=\u0022margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f\u0022\u003e15\n\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\n\u003ctd style=\u0022vertical-align:top;padding:0;margin:0;border:0;;width:100%\u0022\u003e\n\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-:docker-compose.yml\u0022 data-lang=\u0022:docker-compose.yml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003eversion\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;3\u0026#39;\u003c\/span\u003e\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003eservices\u003c\/span\u003e:\n  \u003cspan style=\u0022color:#66d9ef\u0022\u003emy-queue\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003econtainer_name\u003c\/span\u003e: rabbitmq\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003ebuild\u003c\/span\u003e: .\/\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003eports\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;5672:5672\u0026#39;\u003c\/span\u003e\n      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15672:15672\u0026#39;\u003c\/span\u003e\n\u003cspan style=\u0022display:block;width:100%;background-color:#3c3d38\u0022\u003e      - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;15692:15692\u0026#39;\u003c\/span\u003e\n\u003c\/span\u003e    \u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n      - rabbitmq-data:\/var\/lib\/rabbitmq\n\n\u003cspan style=\u0022color:#66d9ef\u0022\u003evolumes\u003c\/span\u003e:\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003erabbitmq-data\u003c\/span\u003e:\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/td\u003e\u003c\/tr\u003e\u003c\/table\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n接下來就能在host上用cURL測試了\u003c\/p\u003e\n\u003cpre\u003e\u003ccode\u003e$ curl -v -H \u0026quot;Accept:text\/plain\u0026quot; \u0026quot;http:\/\/localhost:15692\/metrics\u0026quot;\n...\n# TYPE rabbitmq_consumers gauge\n# HELP rabbitmq_consumers Consumers currently connected\nrabbitmq_consumers 0\n# TYPE rabbitmq_queues gauge\n# HELP rabbitmq_queues Queues available\nrabbitmq_queues 0\n# TYPE rabbitmq_build_info untyped\n# HELP rabbitmq_build_info RabbitMQ \u0026amp; Erlang\/OTP version info\nrabbitmq_build_info{rabbitmq_version=\u0026quot;3.8.6\u0026quot;,prometheus_plugin_version=\u0026quot;3.8.6\u0026quot;,prometheus_client_version=\u0026quot;4.6.0\u0026quot;,erlang_version=\u0026quot;23.0.3\u0026quot;} 1\n# TYPE rabbitmq_identity_info untyped\n# HELP rabbitmq_identity_info RabbitMQ node \u0026amp; cluster identity info\nrabbitmq_identity_info{rabbitmq_node=\u0026quot;rabbit@7f33446fce98\u0026quot;,rabbitmq_cluster=\u0026quot;rabbit@7f33446fce98\u0026quot;} 1\n# TYPE telemetry_scrape_duration_seconds summary\n# HELP telemetry_scrape_duration_seconds Scrape duration\n# TYPE telemetry_scrape_size_bytes summary\n# HELP telemetry_scrape_size_bytes Scrape size, not encoded\n# TYPE telemetry_scrape_encoded_size_bytes summary\n...\n\u003c\/code\u003e\u003c\/pre\u003e\u003cp\u003e巴拉巴拉一大堆\n\u003cbr\u003e\u003c\/br\u003e\n適當增加一下prometheus的config，反正只是測試一下，就姑且用static config吧\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\u0022\u003e\u003ccode class=\u0022language-yaml\u0022 data-lang=\u0022yaml\u0022\u003e\u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_configs\u003c\/span\u003e:\n...\n  - \u003cspan style=\u0022color:#66d9ef\u0022\u003ejob_name\u003c\/span\u003e: \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter\u0026#39;\u003c\/span\u003e\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_interval\u003c\/span\u003e: 60s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003escrape_timeout\u003c\/span\u003e: 59s\n    \u003cspan style=\u0022color:#66d9ef\u0022\u003estatic_configs\u003c\/span\u003e:\n      - \u003cspan style=\u0022color:#66d9ef\u0022\u003etargets\u003c\/span\u003e:\n          - \u003cspan style=\u0022color:#e6db74\u0022\u003e\u0026#39;rabbitmq-exporter:15692\u0026#39;\u003c\/span\u003e\n\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003e\u003cbr\u003e\u003c\/br\u003e\n能看到endpoint增加了\n\u003cimg src=\u00221.png\u0022 alt=\u0022\u0022\u003e\n\u003cbr\u003e\u003c\/br\u003e\n\u003cimg src=\u00222.png\u0022 alt=\u0022\u0022\u003e\n這樣就能用Prometheus監控RabbitMQ了\u003c\/p\u003e\n\u003cp\u003e剩下細部的設定可以參考\u003ca href=\u0022https:\/\/www.rabbitmq.com\/prometheus.html\u0022\u003ehttps:\/\/www.rabbitmq.com\/prometheus.html\u003c\/a\u003e\u003c\/p\u003e',
     
     
       date: '2020-08-18',
@@ -1022,7 +1044,7 @@ var posts = [
       tags: '[Prometheus RabbitMQ]',
     
     
-      categories: '[監控工具]',
+      categories: '[系統監控]',
     
     
       author: '',
@@ -1045,7 +1067,7 @@ var posts = [
       tags: '[Prometheus Python]',
     
     
-      categories: '[監控工具]',
+      categories: '[系統監控]',
     
     
       author: '',
@@ -1091,7 +1113,7 @@ var posts = [
       tags: '[Prometheus]',
     
     
-      categories: '[監控工具]',
+      categories: '[系統監控]',
     
     
       author: '',
@@ -1114,7 +1136,7 @@ var posts = [
       tags: '[Prometheus]',
     
     
-      categories: '[監控工具]',
+      categories: '[系統監控]',
     
     
       author: '',
@@ -1532,6 +1554,8 @@ vm.$set(vm.$data, 'posts', posts)
   
   'Vuetify',
   
+  'ZTPServer',
+  
   'pandas',
   
   'scikit-learn',
@@ -1539,6 +1563,8 @@ vm.$set(vm.$data, 'posts', posts)
   'seaborn',
   
   'uWSGI',
+  
+  'vEOS',
   
 
   ]
@@ -1554,15 +1580,13 @@ vm.$set(vm.$data, 'posts', posts)
   
   '小技巧',
   
-  '監控工具',
-  
-  '網頁爬蟲',
+  '系統監控',
   
   '網頁開發',
   
   '資料分析',
   
-  '配置管理',
+  '運維管理',
   
   '雜記',
   
@@ -1615,33 +1639,6 @@ vm.$set(vm.$data, 'posts', posts)
 
 <script>
   
-  vm.panel = [0]
-  vm.$watch(() => vm.panel, ()=>{
-    var list = document.body.getElementsByClassName("highlight")
-    for(i=0; i <= list.length-1; i++){
-      var table = list[i].firstElementChild.firstElementChild
-      if (table.nodeName == 'TABLE') {
-        var code = table.firstElementChild.firstElementChild.childNodes[2].firstElementChild.firstElementChild
-        var codeName =  code ? code.className.split(":")[1] : null
-      if(codeName) {
-        var div = document.createElement('div')
-        div.textContent = codeName
-        div.classList.add('code-name')
-        table.parentNode.insertBefore(div, table)
-      }
-      }else {
-        var code = table
-        var codeName =  code ? code.className.split(":")[1] : null
-
-        if(codeName) {
-          var div = document.createElement('div')
-          div.textContent = codeName
-          div.classList.add('code-name')
-          code.parentNode.insertBefore(div, code)
-        }
-      }
-    }
-  })
 
 
 

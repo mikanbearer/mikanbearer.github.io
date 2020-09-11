@@ -8,13 +8,23 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Wed, 09 Sep 2020 13:46:26 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2020 16:08:09 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>【Python資料分析實作-初級篇3】使用scikit-learn分析結巴分詞並可視化</title>
+      <title>安裝並嘗試使用Arista ZTPServer</title>
+      <link>https://mikanbearer.github.io/posts/202009101608/</link>
+      <pubDate>Thu, 10 Sep 2020 16:08:09 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202009101608/</guid>
+      <description>&lt;p&gt;繼之前在架設lab的過程中被許許多多的狀況「折磨」過後(參照&lt;a href=&#34;https://mikanbearer.github.io/posts/202007241554/&#34;&gt;這裡&lt;/a&gt;)，終於找到時間接續下去了，這次就來部屬&lt;a href=&#34;https://github.com/arista-eosplus/ztpserver&#34;&gt;Arista ZTPServer&lt;/a&gt;，並稍微驗證一下client與server之間的動作，以確定正常能用
+，畢竟就算是最新的1.5.0版也很久沒更新了&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Python資料分析實作-初級篇3】使用scikit-learn分析結巴分詞</title>
       <link>https://mikanbearer.github.io/posts/202009091346/</link>
       <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -32,7 +42,7 @@
     </item>
     
     <item>
-      <title>【Python資料分析實作-初級篇2】在Jupyter notebook上使用Matplotlib做簡單的資料可視化</title>
+      <title>【Python資料分析實作-初級篇2】使用Matplotlib進行簡單的資料可視化</title>
       <link>https://mikanbearer.github.io/posts/202009080939/</link>
       <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -116,8 +126,7 @@
       <pubDate>Tue, 18 Aug 2020 16:09:08 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008181609/</guid>
-      <description>&lt;p&gt;因為常常使用RabbitMQ，要是能監控服務的話還真是幫了大忙，&lt;/p&gt;
-&lt;p&gt;而RabbitMQ 3.8.X內建了Prometheus的plugin，這次就來測試看看，當作實務運用的練習&lt;/p&gt;</description>
+      <description>&lt;p&gt;想特地找個一個有自帶plugin的軟體練習一下幫助記憶，剛剛好是常常使用RabbitMQ！這次就來測試看看，當作實務運用的練習&lt;/p&gt;</description>
     </item>
     
     <item>
