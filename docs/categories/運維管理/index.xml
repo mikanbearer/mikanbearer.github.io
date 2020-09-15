@@ -42,5 +42,57 @@
 &lt;p&gt;參考文件：&lt;a href=&#34;https://docs.ansible.com/&#34;&gt;https://docs.ansible.com/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>【Prometheus監控實作-應用篇1】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表</title>
+      <link>https://mikanbearer.github.io/posts/202008241004/</link>
+      <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008241004/</guid>
+      <description>&lt;p&gt;個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheus，
+就用這好用的工具來做個練習，將來有需要也能做個好看的Dashboard&lt;/p&gt;
+&lt;p&gt;這次練習旨在熟習如何取用Prometheus上的資料，達成自己的需求&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Prometheus監控實作-入門篇3】使用Prometheus監控RabbitMQ</title>
+      <link>https://mikanbearer.github.io/posts/202008181609/</link>
+      <pubDate>Tue, 18 Aug 2020 16:09:08 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008181609/</guid>
+      <description>&lt;p&gt;想特地找個一個有自帶plugin的軟體練習一下幫助記憶，剛剛好是常常使用RabbitMQ！這次就來測試看看，當作實務運用的練習&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Prometheus監控實作-初級篇1】使用Prometheus client library自訂metrics</title>
+      <link>https://mikanbearer.github.io/posts/202008171709/</link>
+      <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008171709/</guid>
+      <description>&lt;p&gt;作為往後可能需要自訂Exporter的預習，就試著拿&lt;a href=&#34;https://prometheus.io/docs/instrumenting/clientlibs/&#34;&gt;Prometheus client library&lt;/a&gt;來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Prometheus監控實作-入門篇2】使用Pushgateway進行監控</title>
+      <link>https://mikanbearer.github.io/posts/202008140913/</link>
+      <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008140913/</guid>
+      <description>&lt;p&gt;Prometheus在設計上是採用pull的模式，但在網路架構的規劃上，並不是所有的target能讓Prometheus去pull，這時候就是Pushgateway出馬的時候了&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Prometheus監控實作-入門篇1】從零開始學Prometheus</title>
+      <link>https://mikanbearer.github.io/posts/202008131707/</link>
+      <pubDate>Thu, 13 Aug 2020 17:07:15 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202008131707/</guid>
+      <description>&lt;p&gt;Prometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prometheus：監控方，定期收集資料並存在資料庫&lt;/li&gt;
+&lt;li&gt;Exporter：被監控方，回傳監控方需要的資料&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;為了往後學習方便，先來實作一遍這個方便利用的工具&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

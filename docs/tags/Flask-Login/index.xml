@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flask-Login on 活到老學到死</title>
+    <link>https://mikanbearer.github.io/tags/Flask-Login/</link>
+    <description>Recent content in Flask-Login on 活到老學到死</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
+    <lastBuildDate>Mon, 14 Sep 2020 12:57:20 +0800</lastBuildDate>
+    
+	<atom:link href="https://mikanbearer.github.io/tags/Flask-Login/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Flask練習-入門篇4】使用Flask-Login實作登入畫面</title>
+      <link>https://mikanbearer.github.io/posts/202009141257/</link>
+      <pubDate>Mon, 14 Sep 2020 12:57:20 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202009141257/</guid>
+      <description>&lt;p&gt;這次實作目標是導入Flask-Login，讓咱們的app受驗證機制保護&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

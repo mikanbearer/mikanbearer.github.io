@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>【Python資料分析實作-初級篇3】使用scikit-learn分析結巴分詞</title>
+      <title>【Python資料分析實作-入門篇3】使用scikit-learn分析結巴分詞</title>
       <link>https://mikanbearer.github.io/posts/202009091346/</link>
       <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -32,7 +32,7 @@
     </item>
     
     <item>
-      <title>【Python資料分析實作-初級篇2】使用Matplotlib進行簡單的資料可視化</title>
+      <title>【Python資料分析實作-入門篇2】使用Matplotlib進行簡單的資料可視化</title>
       <link>https://mikanbearer.github.io/posts/202009080939/</link>
       <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -41,7 +41,7 @@
     </item>
     
     <item>
-      <title>【Python資料分析實作-初級篇1】使用Scrapy爬取PTT貼文</title>
+      <title>【Python資料分析實作-入門篇1】使用Scrapy爬取PTT貼文</title>
       <link>https://mikanbearer.github.io/posts/202009070954/</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>

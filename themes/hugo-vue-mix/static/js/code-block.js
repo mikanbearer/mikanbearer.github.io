@@ -1,7 +1,7 @@
 
 
 
-
+/*
 
 var code_list = document.body.getElementsByTagName('code')
 
@@ -17,7 +17,7 @@ for (i=0; i <= code_list.length-1; i++) {
     }
   }
 }
-
+*/
 
 var list = document.body.getElementsByClassName('highlight')
 
