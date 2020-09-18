@@ -3,7 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mikanbearer.github.io/posts/202009181018/</loc>
+    <loc>https://mikanbearer.github.io/tags/Angular/</loc>
+    <lastmod>2020-09-18T10:18:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/categories/</loc>
+    <lastmod>2020-09-18T10:18:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/Node.js/</loc>
     <lastmod>2020-09-18T10:18:52+08:00</lastmod>
   </url>
   
@@ -13,13 +23,28 @@
   </url>
   
   <url>
+    <loc>https://mikanbearer.github.io/tags/</loc>
+    <lastmod>2020-09-18T10:18:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/TypeScript/</loc>
+    <lastmod>2020-09-18T10:18:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/posts/202009181018/</loc>
+    <lastmod>2020-09-18T10:18:52+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mikanbearer.github.io/</loc>
     <lastmod>2020-09-18T10:18:52+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/categories/</loc>
-    <lastmod>2020-09-16T11:32:49+08:00</lastmod>
+    <loc>https://mikanbearer.github.io/categories/%E7%B6%B2%E9%A0%81%E8%A3%BD%E4%BD%9C/</loc>
+    <lastmod>2020-09-18T10:18:52+08:00</lastmod>
   </url>
   
   <url>
@@ -34,11 +59,6 @@
   
   <url>
     <loc>https://mikanbearer.github.io/posts/202009161132/</loc>
-    <lastmod>2020-09-16T11:32:49+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/tags/</loc>
     <lastmod>2020-09-16T11:32:49+08:00</lastmod>
   </url>
   
@@ -59,11 +79,6 @@
   
   <url>
     <loc>https://mikanbearer.github.io/posts/202009151049/</loc>
-    <lastmod>2020-09-15T10:49:11+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/categories/%E7%B6%B2%E9%A0%81%E8%A3%BD%E4%BD%9C/</loc>
     <lastmod>2020-09-15T10:49:11+08:00</lastmod>
   </url>
   
@@ -315,11 +330,6 @@
   <url>
     <loc>https://mikanbearer.github.io/posts/202007291642/</loc>
     <lastmod>2020-07-29T16:42:11+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/tags/Node.js/</loc>
-    <lastmod>2020-07-26T23:14:14+08:00</lastmod>
   </url>
   
   <url>

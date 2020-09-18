@@ -8,10 +8,37 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Wed, 16 Sep 2020 11:32:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2020 10:18:52 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular</title>
+      <link>https://mikanbearer.github.io/tags/Angular/</link>
+      <pubDate>Fri, 18 Sep 2020 10:18:52 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/Angular/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Node.js</title>
+      <link>https://mikanbearer.github.io/tags/Node.js/</link>
+      <pubDate>Fri, 18 Sep 2020 10:18:52 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/Node.js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TypeScript</title>
+      <link>https://mikanbearer.github.io/tags/TypeScript/</link>
+      <pubDate>Fri, 18 Sep 2020 10:18:52 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/TypeScript/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Python</title>
@@ -280,15 +307,6 @@
       <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/uWSGI/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Node.js</title>
-      <link>https://mikanbearer.github.io/tags/Node.js/</link>
-      <pubDate>Sun, 26 Jul 2020 23:14:14 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Node.js/</guid>
       <description></description>
     </item>
     

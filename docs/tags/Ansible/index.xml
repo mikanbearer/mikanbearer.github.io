@@ -23,12 +23,12 @@
     </item>
     
     <item>
-      <title>Ansible超入門實作</title>
+      <title>從今天開始學Ansible</title>
       <link>https://mikanbearer.github.io/posts/202009011649/</link>
       <pubDate>Tue, 01 Sep 2020 16:49:15 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202009011649/</guid>
-      <description>&lt;p&gt;雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就最低限度練習一遍，以後方便以後多一些實作演練，主要目標是playbook&lt;/p&gt;
+      <description>&lt;p&gt;雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就先練習一遍，熟悉點再來自己寫role&lt;/p&gt;
 &lt;p&gt;參考文件：&lt;a href=&#34;https://docs.ansible.com/&#34;&gt;https://docs.ansible.com/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
