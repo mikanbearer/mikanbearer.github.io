@@ -43,18 +43,16 @@
     </item>
     
     <item>
-      <title>【Prometheus監控實作-應用篇1】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表</title>
+      <title>【Prometheus入門練習-自訂篇2】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表</title>
       <link>https://mikanbearer.github.io/posts/202008241004/</link>
       <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008241004/</guid>
-      <description>&lt;p&gt;個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheus，
-就用這好用的工具來做個練習，將來有需要也能做個好看的Dashboard&lt;/p&gt;
-&lt;p&gt;這次練習旨在熟習如何取用Prometheus上的資料，達成自己的需求&lt;/p&gt;</description>
+      <description>&lt;p&gt;要是不想用自帶的UI，也不想用Grafana怎麼辦！！那當然就是自己動手做啦，自己動手做的好處就是能整合其他功能做成多合一的Web app，但這次就先練習如何取用Prometheus上的資料，製作成動態圖表&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>【Prometheus監控實作-入門篇3】使用Prometheus監控RabbitMQ</title>
+      <title>【Prometheus入門練習-基本操作篇3】使用Prometheus監控RabbitMQ</title>
       <link>https://mikanbearer.github.io/posts/202008181609/</link>
       <pubDate>Tue, 18 Aug 2020 16:09:08 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -63,7 +61,7 @@
     </item>
     
     <item>
-      <title>【Prometheus監控實作-初級篇1】使用Prometheus client library自訂metrics</title>
+      <title>【Prometheus入門練習-自訂篇1】使用Prometheus client library自訂metrics</title>
       <link>https://mikanbearer.github.io/posts/202008171709/</link>
       <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -72,7 +70,7 @@
     </item>
     
     <item>
-      <title>【Prometheus監控實作-入門篇2】使用Pushgateway進行監控</title>
+      <title>【Prometheus入門練習-基本操作篇2】使用Pushgateway進行監控</title>
       <link>https://mikanbearer.github.io/posts/202008140913/</link>
       <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -81,7 +79,7 @@
     </item>
     
     <item>
-      <title>【Prometheus監控實作-入門篇1】從零開始學Prometheus</title>
+      <title>【Prometheus入門練習-基本操作篇1】從零開始學Prometheus</title>
       <link>https://mikanbearer.github.io/posts/202008131707/</link>
       <pubDate>Thu, 13 Aug 2020 17:07:15 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>

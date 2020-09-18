@@ -122,18 +122,9 @@
     </item>
     
     <item>
-      <title>Jupyter</title>
-      <link>https://mikanbearer.github.io/tags/Jupyter/</link>
-      <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Jupyter/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Matplotlib</title>
       <link>https://mikanbearer.github.io/tags/Matplotlib/</link>
-      <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
+      <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Matplotlib/</guid>
       <description></description>
@@ -167,11 +158,11 @@
     </item>
     
     <item>
-      <title>SQLAlchemy</title>
-      <link>https://mikanbearer.github.io/tags/SQLAlchemy/</link>
+      <title>Flask-SQLAlchemy</title>
+      <link>https://mikanbearer.github.io/tags/Flask-SQLAlchemy/</link>
       <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/SQLAlchemy/</guid>
+      <guid>https://mikanbearer.github.io/tags/Flask-SQLAlchemy/</guid>
       <description></description>
     </item>
     

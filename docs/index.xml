@@ -8,10 +8,19 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Wed, 16 Sep 2020 11:32:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2020 10:18:52 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>202009181018</title>
+      <link>https://mikanbearer.github.io/posts/202009181018/</link>
+      <pubDate>Fri, 18 Sep 2020 10:18:52 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202009181018/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>scikit-learn新手入門之決策樹篇</title>
@@ -24,7 +33,7 @@
     </item>
     
     <item>
-      <title>【Flask練習-入門篇5】使用Flask-WTF導入CSRF Protection</title>
+      <title>【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection</title>
       <link>https://mikanbearer.github.io/posts/202009151049/</link>
       <pubDate>Tue, 15 Sep 2020 10:49:11 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -33,7 +42,7 @@
     </item>
     
     <item>
-      <title>【Flask練習-入門篇4】使用Flask-Login實作登入畫面</title>
+      <title>【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面</title>
       <link>https://mikanbearer.github.io/posts/202009141257/</link>
       <pubDate>Mon, 14 Sep 2020 12:57:20 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -42,7 +51,7 @@
     </item>
     
     <item>
-      <title>【Flask練習-入門篇3】製作簡單的CRUD</title>
+      <title>【Flask入門練習-CRUD篇2】製作簡單的CRUD</title>
       <link>https://mikanbearer.github.io/posts/202009111635/</link>
       <pubDate>Fri, 11 Sep 2020 16:35:19 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -62,7 +71,7 @@
     </item>
     
     <item>
-      <title>【Python資料分析實作-入門篇3】使用scikit-learn分析結巴分詞</title>
+      <title>【Python資料分析練習-入門篇2】自然語言處理與機器學習</title>
       <link>https://mikanbearer.github.io/posts/202009091346/</link>
       <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -80,16 +89,7 @@
     </item>
     
     <item>
-      <title>【Python資料分析實作-入門篇2】使用Matplotlib進行簡單的資料可視化</title>
-      <link>https://mikanbearer.github.io/posts/202009080939/</link>
-      <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202009080939/</guid>
-      <description>&lt;p&gt;遲來的資料分析，原本想通通和爬蟲一起塞一篇，但一次做太多自己沒辦法進入狀況，只好先練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續深入&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>【Python資料分析實作-入門篇1】使用Scrapy爬取PTT貼文</title>
+      <title>【Python資料分析練習-入門篇1】使用Scrapy爬取PTT貼文</title>
       <link>https://mikanbearer.github.io/posts/202009070954/</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -128,27 +128,25 @@
     </item>
     
     <item>
-      <title>【Flask練習-入門篇2】在Flask中導入SQLAlchemy進行ORM操作</title>
+      <title>【Flask入門練習-CRUD篇1】在Flask中導入ORM操作</title>
       <link>https://mikanbearer.github.io/posts/202008271612/</link>
       <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008271612/</guid>
-      <description>&lt;p&gt;Flask本身沒自帶ORM略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
+      <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>【Prometheus監控實作-應用篇1】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表</title>
+      <title>【Prometheus入門練習-自訂篇2】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表</title>
       <link>https://mikanbearer.github.io/posts/202008241004/</link>
       <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008241004/</guid>
-      <description>&lt;p&gt;個人一直在監控方面使不上力，time series databese始終是自己最不熟悉的一塊，最近剛好開始接觸Prometheus，
-就用這好用的工具來做個練習，將來有需要也能做個好看的Dashboard&lt;/p&gt;
-&lt;p&gt;這次練習旨在熟習如何取用Prometheus上的資料，達成自己的需求&lt;/p&gt;</description>
+      <description>&lt;p&gt;要是不想用自帶的UI，也不想用Grafana怎麼辦！！那當然就是自己動手做啦，自己動手做的好處就是能整合其他功能做成多合一的Web app，但這次就先練習如何取用Prometheus上的資料，製作成動態圖表&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>【Flask練習-入門篇1】從今天開始學Flask</title>
+      <title>從今天開始學Flask</title>
       <link>https://mikanbearer.github.io/posts/202008191354/</link>
       <pubDate>Wed, 19 Aug 2020 13:54:41 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -159,7 +157,7 @@
     </item>
     
     <item>
-      <title>【Prometheus監控實作-入門篇3】使用Prometheus監控RabbitMQ</title>
+      <title>【Prometheus入門練習-基本操作篇3】使用Prometheus監控RabbitMQ</title>
       <link>https://mikanbearer.github.io/posts/202008181609/</link>
       <pubDate>Tue, 18 Aug 2020 16:09:08 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -168,7 +166,7 @@
     </item>
     
     <item>
-      <title>【Prometheus監控實作-初級篇1】使用Prometheus client library自訂metrics</title>
+      <title>【Prometheus入門練習-自訂篇1】使用Prometheus client library自訂metrics</title>
       <link>https://mikanbearer.github.io/posts/202008171709/</link>
       <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -186,7 +184,7 @@
     </item>
     
     <item>
-      <title>【Prometheus監控實作-入門篇2】使用Pushgateway進行監控</title>
+      <title>【Prometheus入門練習-基本操作篇2】使用Pushgateway進行監控</title>
       <link>https://mikanbearer.github.io/posts/202008140913/</link>
       <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -195,7 +193,7 @@
     </item>
     
     <item>
-      <title>【Prometheus監控實作-入門篇1】從零開始學Prometheus</title>
+      <title>【Prometheus入門練習-基本操作篇1】從零開始學Prometheus</title>
       <link>https://mikanbearer.github.io/posts/202008131707/</link>
       <pubDate>Thu, 13 Aug 2020 17:07:15 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>

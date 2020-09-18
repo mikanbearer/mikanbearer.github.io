@@ -3,12 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mikanbearer.github.io/categories/</loc>
-    <lastmod>2020-09-16T11:32:49+08:00</lastmod>
+    <loc>https://mikanbearer.github.io/posts/202009181018/</loc>
+    <lastmod>2020-09-18T10:18:52+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://mikanbearer.github.io/posts/</loc>
+    <lastmod>2020-09-18T10:18:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/</loc>
+    <lastmod>2020-09-18T10:18:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/categories/</loc>
     <lastmod>2020-09-16T11:32:49+08:00</lastmod>
   </url>
   
@@ -29,11 +39,6 @@
   
   <url>
     <loc>https://mikanbearer.github.io/tags/</loc>
-    <lastmod>2020-09-16T11:32:49+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/</loc>
     <lastmod>2020-09-16T11:32:49+08:00</lastmod>
   </url>
   
@@ -133,18 +138,8 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/tags/Jupyter/</loc>
-    <lastmod>2020-09-08T09:39:01+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mikanbearer.github.io/tags/Matplotlib/</loc>
-    <lastmod>2020-09-08T09:39:01+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/posts/202009080939/</loc>
-    <lastmod>2020-09-08T09:39:01+08:00</lastmod>
+    <lastmod>2020-09-07T09:54:48+08:00</lastmod>
   </url>
   
   <url>
@@ -183,7 +178,7 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/tags/SQLAlchemy/</loc>
+    <loc>https://mikanbearer.github.io/tags/Flask-SQLAlchemy/</loc>
     <lastmod>2020-08-27T16:12:20+08:00</lastmod>
   </url>
   

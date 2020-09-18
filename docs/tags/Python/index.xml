@@ -24,7 +24,7 @@
     </item>
     
     <item>
-      <title>【Flask練習-入門篇5】使用Flask-WTF導入CSRF Protection</title>
+      <title>【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection</title>
       <link>https://mikanbearer.github.io/posts/202009151049/</link>
       <pubDate>Tue, 15 Sep 2020 10:49:11 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -33,7 +33,7 @@
     </item>
     
     <item>
-      <title>【Flask練習-入門篇4】使用Flask-Login實作登入畫面</title>
+      <title>【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面</title>
       <link>https://mikanbearer.github.io/posts/202009141257/</link>
       <pubDate>Mon, 14 Sep 2020 12:57:20 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -42,7 +42,7 @@
     </item>
     
     <item>
-      <title>【Flask練習-入門篇3】製作簡單的CRUD</title>
+      <title>【Flask入門練習-CRUD篇2】製作簡單的CRUD</title>
       <link>https://mikanbearer.github.io/posts/202009111635/</link>
       <pubDate>Fri, 11 Sep 2020 16:35:19 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -52,7 +52,7 @@
     </item>
     
     <item>
-      <title>【Python資料分析實作-入門篇3】使用scikit-learn分析結巴分詞</title>
+      <title>【Python資料分析練習-入門篇2】自然語言處理與機器學習</title>
       <link>https://mikanbearer.github.io/posts/202009091346/</link>
       <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -70,16 +70,7 @@
     </item>
     
     <item>
-      <title>【Python資料分析實作-入門篇2】使用Matplotlib進行簡單的資料可視化</title>
-      <link>https://mikanbearer.github.io/posts/202009080939/</link>
-      <pubDate>Tue, 08 Sep 2020 09:39:01 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202009080939/</guid>
-      <description>&lt;p&gt;遲來的資料分析，原本想通通和爬蟲一起塞一篇，但一次做太多自己沒辦法進入狀況，只好先練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續深入&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>【Python資料分析實作-入門篇1】使用Scrapy爬取PTT貼文</title>
+      <title>【Python資料分析練習-入門篇1】使用Scrapy爬取PTT貼文</title>
       <link>https://mikanbearer.github.io/posts/202009070954/</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -99,16 +90,16 @@
     </item>
     
     <item>
-      <title>【Flask練習-入門篇2】在Flask中導入SQLAlchemy進行ORM操作</title>
+      <title>【Flask入門練習-CRUD篇1】在Flask中導入ORM操作</title>
       <link>https://mikanbearer.github.io/posts/202008271612/</link>
       <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/202008271612/</guid>
-      <description>&lt;p&gt;Flask本身沒自帶ORM略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
+      <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>【Flask練習-入門篇1】從今天開始學Flask</title>
+      <title>從今天開始學Flask</title>
       <link>https://mikanbearer.github.io/posts/202008191354/</link>
       <pubDate>Wed, 19 Aug 2020 13:54:41 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -119,7 +110,7 @@
     </item>
     
     <item>
-      <title>【Prometheus監控實作-初級篇1】使用Prometheus client library自訂metrics</title>
+      <title>【Prometheus入門練習-自訂篇1】使用Prometheus client library自訂metrics</title>
       <link>https://mikanbearer.github.io/posts/202008171709/</link>
       <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
