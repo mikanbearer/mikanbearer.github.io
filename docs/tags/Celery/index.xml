@@ -15,10 +15,10 @@
     
     <item>
       <title>使用Django &#43; Celery進行異步處理</title>
-      <link>https://mikanbearer.github.io/posts/202007221111/</link>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007221111/</link>
       <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202007221111/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007221111/</guid>
       <description>&lt;p&gt;本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，
 目前只提供簡單的範例，不包含異步任務的情境應用&lt;/p&gt;</description>
     </item>

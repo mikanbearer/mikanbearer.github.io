@@ -15,19 +15,19 @@
     
     <item>
       <title>使用Ansible部屬Docker Swarm</title>
-      <link>https://mikanbearer.github.io/posts/202009031456/</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009031456/</link>
       <pubDate>Thu, 03 Sep 2020 14:56:05 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202009031456/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009031456/</guid>
       <description>&lt;p&gt;偶然看到這個&lt;a href=&#34;https://github.com/atosatto/ansible-dockerswarm&#34;&gt;Ansible Role: Docker&lt;/a&gt;就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>從今天開始學Ansible</title>
-      <link>https://mikanbearer.github.io/posts/202009011649/</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009011649/</link>
       <pubDate>Tue, 01 Sep 2020 16:49:15 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202009011649/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009011649/</guid>
       <description>&lt;p&gt;雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就先練習一遍，熟悉點再來自己寫role&lt;/p&gt;
 &lt;p&gt;參考文件：&lt;a href=&#34;https://docs.ansible.com/&#34;&gt;https://docs.ansible.com/&lt;/a&gt;&lt;/p&gt;</description>
     </item>

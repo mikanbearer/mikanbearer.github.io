@@ -15,10 +15,10 @@
     
     <item>
       <title>使用Django &#43; Channels部屬WebSocket簡易聊天室</title>
-      <link>https://mikanbearer.github.io/posts/202008100108/</link>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008100108/</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202008100108/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008100108/</guid>
       <description>&lt;p&gt;製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，
 剛好可作為Message Queue及Web Socket的練習。&lt;/p&gt;
 &lt;p&gt;本篇Message Queue使用RabbitMQ，Framework使用Django，並且由Channels來實現Web Socket&lt;/p&gt;</description>

@@ -15,10 +15,10 @@
     
     <item>
       <title>【Python資料分析練習-入門篇1】使用Scrapy爬取PTT貼文</title>
-      <link>https://mikanbearer.github.io/posts/202009070954/</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009070954/</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202009070954/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009070954/</guid>
       <description>&lt;p&gt;從爬蟲開始的實作，分析資料前總得先有資料吧(;&amp;lsquo;∀&amp;rsquo;)&lt;/p&gt;
 &lt;p&gt;作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…&lt;/p&gt;</description>
     </item>

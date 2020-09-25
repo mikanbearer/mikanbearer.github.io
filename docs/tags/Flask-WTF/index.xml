@@ -15,10 +15,10 @@
     
     <item>
       <title>【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection</title>
-      <link>https://mikanbearer.github.io/posts/202009151049/</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009151049/</link>
       <pubDate>Tue, 15 Sep 2020 10:49:11 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202009151049/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009151049/</guid>
       <description>&lt;p&gt;暫定是最後一個入門練習，這次使用Flask-WTF來做CSRF Protection，Flask-WTF是WTForms結合Flask用的module&lt;/p&gt;</description>
     </item>
     

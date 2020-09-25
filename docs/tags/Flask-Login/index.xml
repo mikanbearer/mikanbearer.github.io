@@ -15,10 +15,10 @@
     
     <item>
       <title>【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面</title>
-      <link>https://mikanbearer.github.io/posts/202009141257/</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009141257/</link>
       <pubDate>Mon, 14 Sep 2020 12:57:20 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202009141257/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009141257/</guid>
       <description>&lt;p&gt;這次實作目標是導入Flask-Login，讓咱們的app受驗證機制保護&lt;/p&gt;</description>
     </item>
     
