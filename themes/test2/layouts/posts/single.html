@@ -1,0 +1,9 @@
+{{.Content}}
+
+{{ if .Site.DisqusShortname }}
+<v-card class="mt-5 content">
+  <v-card-text>
+  {{ template "_internal/disqus.html" . }}
+  </v-card-text>
+</v-card>
+{{ end }}
