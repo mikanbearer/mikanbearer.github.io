@@ -1,0 +1,17 @@
+<v-footer padless color="transparent" class="mt-5">
+  <v-col
+    class="text-center text-body-2"
+    cols="12"
+  >
+    <div>
+      [[ new Date().getFullYear() ]] — 
+      {{ if .Site.Author.name }}
+      {{ .Site.Author.name }}
+      {{ end }}
+    </div>
+    <div>
+      Theme <a href="https://github.com/mikanbearer/hugo-vue-mix">hugo-vue-mix</a>
+    </div>
+  </v-col>
+</v-footer>
+
