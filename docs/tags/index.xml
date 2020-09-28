@@ -8,28 +8,10 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Sat, 26 Sep 2020 14:50:43 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2020 11:36:54 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Vue.js</title>
-      <link>https://mikanbearer.github.io/tags/Vue.js/</link>
-      <pubDate>Sat, 26 Sep 2020 14:50:43 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Vue.js/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>https://mikanbearer.github.io/tags/Python/</link>
-      <pubDate>Fri, 25 Sep 2020 13:38:11 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Python/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Angular</title>
@@ -55,6 +37,15 @@
       <pubDate>Mon, 21 Sep 2020 11:36:54 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/TypeScript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://mikanbearer.github.io/tags/Python/</link>
+      <pubDate>Wed, 16 Sep 2020 11:32:49 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/Python/</guid>
       <description></description>
     </item>
     
@@ -226,6 +217,15 @@
       <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vue.js</title>
+      <link>https://mikanbearer.github.io/tags/Vue.js/</link>
+      <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/Vue.js/</guid>
       <description></description>
     </item>
     

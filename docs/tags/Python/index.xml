@@ -8,19 +8,10 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Fri, 25 Sep 2020 13:38:11 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2020 11:32:49 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/Python/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Python收送log</title>
-      <link>https://mikanbearer.github.io/posts/202009251338/</link>
-      <pubDate>Fri, 25 Sep 2020 13:38:11 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/202009251338/</guid>
-      <description>&lt;p&gt;工作測試用的放上來自己參考&lt;/p&gt;</description>
-    </item>
     
     <item>
       <title>scikit-learn新手入門之決策樹篇</title>
