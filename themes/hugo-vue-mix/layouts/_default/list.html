@@ -23,7 +23,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                  {{ range (.Paginator 50).Pages }}
+                  {{ range .Pages }}
                   <tr>
                     <td>{{ .Date.Format "2006-01-02" }}</td>
                     <td>
@@ -64,7 +64,6 @@
             </v-col>
           </v-row>
         </v-container>
-        <v-pagination v-model="page" :length="{{ .Paginator.TotalPages }}"></v-pagination>
       </v-main>
       {{ partial "footer" . }}
     </v-app>
@@ -72,9 +71,4 @@
 </div>
 {{ partial "footer_script" . }}
 
-<script>
-  vm.page = {{ .Paginator.PageNumber }}
-  vm.panel = [...Array({{ .Paginator.PageSize }}).keys()]
-  vm.$watch(() => vm.page, (newPage)=>{window.location.href = '{{ .Permalink }}page/' + newPage})
-</script>
 {{ end }}

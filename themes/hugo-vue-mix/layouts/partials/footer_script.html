@@ -1,80 +1,13 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
+<link href="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3/dist/vue-loading.css" rel="stylesheet">
 
 
 
 <script>
-  var vm = new Vue({
-    delimiters: ['[[', ']]'],
-    el: '#app',
-    vuetify: new Vuetify(),
-    props: {
-    },
-    data: {
-      drawer: false,
-      panel: [],
-      page: null,
-      tab: null,
-      dialog: null,
-      model: null,
-      search: null,
-
-      tags: null,
-      categories: null,
-      posts: null,
-      seltags: null,
-      selcategories: null,
-      tfilteredposts: [],
-      cfilteredposts: [],
-      
-    },
-
-    
-    created () {
-      this.$vuetify.theme.dark = true
-    },
-
-    computed: {
-      items () {
-        if (this.search) {
-          return this.posts
-        }else{
-          return []
-        }
-      },
-    },
-
-
-    methods: {
-      remove (item) {
-        this.seltags.splice(this.seltags.indexOf(item), 1)
-        this.seltags = [...this.seltags]
-      },
-    }
-  })
-
-  vm.$vuetify.theme.themes.light.primary = '#007C8A'
-  vm.$vuetify.theme.themes.light.secondary = '#44617B'
-  vm.$vuetify.theme.themes.light.accent = '#009BAC'
-  vm.$vuetify.theme.themes.light.error = '#D7003A'
-  vm.$vuetify.theme.themes.light.warning = '#F08300'
-
-
-  vm.$vuetify.theme.themes.dark.primary = '#F08300'
-  vm.$vuetify.theme.themes.dark.secondary = '#006e54'
-  vm.$vuetify.theme.themes.dark.warning = '#d3381c'
-  vm.$vuetify.theme.themes.dark.error = '#D7003A'
-  vm.$vuetify.theme.themes.dark.accent = '#00a381'
-
-
-  vm.$vuetify.theme.themes.dark.header = '#1f3134'
-  vm.$vuetify.theme.themes.dark.content = '#333a40'
-
-
-
-
-var posts = [
+  const posts = [
 {{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
   {
     url: '{{ .Permalink }}',
@@ -85,10 +18,10 @@ var posts = [
     {{ end }}
     {{ if .Truncated }}
       summary: '{{ .Summary }}',
-      content: '{{ .Content }}',
+      content: '',
     {{ else }}
       summary: '',
-      content: '{{ .Content }}',
+      content: '',
     {{ end }}
     {{ if .Params.Date }}
       date: '{{ .Params.Date.Format "2006-01-02" }}',
@@ -117,31 +50,129 @@ var posts = [
 posts.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
 posts.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
 
-vm.$set(vm.$data, 'posts', posts)
-
 
 
 {{ $taxonomy := .Site.Taxonomies.tags }}
-  var alltags = [
+  const tags = [
   {{ range $key, $value := $taxonomy }}
   '{{ $key }}',
   {{ end }}
 
   ]
 
-  vm.$set(vm.$data, 'tags', alltags.sort())
 
 
 
 {{ $taxonomy := .Site.Taxonomies.categories }}
-  var allcategories = [
+  const categories = [
   {{ range $key, $value := $taxonomy }}
   '{{ $key }}',
   {{ end }}
 
   ]
 
-  vm.$set(vm.$data, 'categories', allcategories.sort())
+
+
+/////////////////////////////////////////////////////////////////////
+
+  Vue.use(VueLoading)
+  Vue.component('loading', VueLoading)
+
+
+  var vm = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app',
+    vuetify: new Vuetify(),
+    props: {
+    },
+    data: {
+      drawer: false,
+      panel: [],
+
+      page: 1,
+      pageSize: 20,
+      pageLength: null,
+
+      displayPosts: [],
+      tab: null,
+      dialog: null,
+      model: null,
+      search: null,
+
+      tags: tags,
+      categories: categories,
+      posts: posts,
+      seltags: null,
+      selcategories: null,
+      tfilteredposts: [],
+      cfilteredposts: [],
+    },
+
+    created () {
+      this.$vuetify.theme.dark = true
+      /*this.loader = this.$loading.show(
+        {loader: 'dots', color: '#fff', backgroundColor: '#272727', opacity: 1}
+          )*/
+      this.pageLength = Math.ceil(posts.length/this.pageSize)
+      this.pageChange(1)
+    },
+
+    mounted () {
+      this.loader.hide()
+    },
+
+    computed: {
+      items () {
+        if (this.search) {
+          return this.posts
+        }else{
+          return []
+        }
+      }
+    },
+
+
+    methods: {
+      pageChange (pageNumber) {
+        this.displayPosts = posts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber))
+        this.panel = [...Array(this.pageSize).keys()].map((k, i) => i)
+        //this.$vuetify.goTo(0)
+        setTimeout(this.$vuetify.goTo, 5, 0)
+      },
+
+      remove (item) {
+        this.seltags.splice(this.seltags.indexOf(item), 1)
+        this.seltags = [...this.seltags]  
+      }
+
+    }
+  })
+
+  vm.$vuetify.theme.themes.light.primary = '#007C8A'
+  vm.$vuetify.theme.themes.light.secondary = '#44617B'
+  vm.$vuetify.theme.themes.light.accent = '#009BAC'
+  vm.$vuetify.theme.themes.light.error = '#D7003A'
+  vm.$vuetify.theme.themes.light.warning = '#F08300'
+
+
+  vm.$vuetify.theme.themes.dark.primary = '#F08300'
+  vm.$vuetify.theme.themes.dark.secondary = '#006e54'
+  vm.$vuetify.theme.themes.dark.warning = '#d3381c'
+  vm.$vuetify.theme.themes.dark.error = '#D7003A'
+  vm.$vuetify.theme.themes.dark.accent = '#00a381'
+
+
+  vm.$vuetify.theme.themes.dark.header = '#1f3134'
+  vm.$vuetify.theme.themes.dark.content = '#333a40'
+
+
+
+
+
+
+
+
+
 
 
 
