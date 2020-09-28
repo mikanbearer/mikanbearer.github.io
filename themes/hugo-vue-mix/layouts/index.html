@@ -23,7 +23,7 @@
                           v-for="category in post.categories"
                           :href="'{{ "" | absLangURL }}categories/' + category"
                         >
-                          [[ categories ]]
+                          [[ category ]]
                         </a>
                         <div>
                           <v-chip
@@ -36,7 +36,7 @@
                             :href="'{{ "" | absLangURL }}tags/' + tag"
                             class="mr-1"
                           >
-                            [[ tags ]]
+                            [[ tag ]]
                           </v-chip>
                         </div>
                         <v-divider></v-divider>
