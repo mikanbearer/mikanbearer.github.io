@@ -1,0 +1,160 @@
+<v-app-bar
+  app
+  clipped-left
+  dense
+  dark
+  hide-on-scroll
+>
+
+  <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+  <v-toolbar-title class="mr-12 align-center">
+    <span class="title"></span>
+  </v-toolbar-title>
+
+  <v-spacer></v-spacer>
+  <v-btn icon @click.stop="dialog = !dialog">
+    <v-icon>mdi-magnify</v-icon>
+  </v-btn>
+
+<!--
+  <v-menu offset-y>
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        dark
+        v-bind="attrs"
+        v-on="on"
+        icon
+      >
+      <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+    </template>
+    <v-list>
+    
+      <v-list-item link href="{{ "" | absLangURL }}">
+        <v-list-item-action>
+          <v-icon>mdi-home</v-icon>
+        </v-list-item-action>
+        <v-list-item-title>Home</v-list-item-title>
+      </v-list-item>
+    
+      <v-list-item link href="{{ "about" | absLangURL }}">
+        <v-list-item-action>
+          <v-icon>mdi-information</v-icon>
+        </v-list-item-action>
+        <v-list-item-title>About</v-list-item-title>
+      </v-list-item>
+  
+    </v-list>
+  
+  
+    <v-list dense>
+      <v-subheader class="mt-4">BLOG</v-subheader>
+  
+      <v-list-item link href="{{ "posts" | absLangURL }}">
+        <v-list-item-action>
+          <v-icon>mdi-file-document-multiple</v-icon>
+        </v-list-item-action>
+        <v-list-item-title>Posts</v-list-item-title>
+      </v-list-item>
+  
+  
+  
+      <v-list-item link href="{{ "tags" | absLangURL }}">
+        <v-list-item-action>
+          <v-icon>mdi-tag-multiple</v-icon>
+        </v-list-item-action>
+        <v-list-item-title>Tags</v-list-item-title>
+      </v-list-item>
+  
+      <v-list-item link href="{{ "categories" | absLangURL }}">
+        <v-list-item-action>
+          <v-icon>mdi-folder-multiple</v-icon>
+        </v-list-item-action>
+        <v-list-item-title>Categories</v-list-item-title>
+      </v-list-item>
+  
+  
+      <v-divider></v-divider>
+  
+  
+  
+  
+    </v-list>
+  </v-menu>
+-->
+</v-app-bar>
+
+
+
+
+
+
+
+
+
+<v-dialog v-model="dialog" max-width="600" light>
+  <v-card>
+    <v-card-title>
+      Search Posts
+    </v-card-title>
+
+        <v-card-text>
+          <v-combobox 
+            v-model="keyword"
+            :items="titles"
+            clearable
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-text"
+            label="Title"
+          >  
+          </v-combobox>
+
+          <v-combobox 
+            v-model="seltags"
+            :items="tags"
+            chips
+            clearable
+            multiple
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-tag-multiple"
+            label="Tags"
+          >
+            <template v-slot:selection="{ attrs, item, select, selected }">
+              <v-chip
+                color="accent"
+                v-bind="attrs"
+                :input-value="selected"
+                close
+                @click:close="remove(item)"
+              >
+               [[ item ]]
+              </v-chip>
+            </template>              
+          </v-combobox>
+  
+          <v-combobox 
+            v-model="selcategories"
+            :items="categories"
+            clearable
+            multiple
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-folder"
+            label="Categories"
+          >  
+          </v-combobox>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" @click="searchPosts" small>Read More</v-btn>
+        </v-card-actions>
+        
+  
+
+    </v-tabs-items>
+  </v-card>
+</v-dialog>
