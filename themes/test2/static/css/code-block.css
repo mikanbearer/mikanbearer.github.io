@@ -1,0 +1,67 @@
+.v-application pre{
+  font-family: Roboto,sans-serif;
+  font-weight: normal;
+  background-color: #272822;
+  color: #f8f8f2;
+  overflow: auto;
+}
+
+
+.v-application code{
+  font-family: Roboto,sans-serif;
+  font-weight: normal;
+  background-color: #272822;
+  color: #f8f8f2;
+  padding: 0px;
+}
+
+pre {
+  background-color: #272822;
+  color: #f8f8f2;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+table pre {
+  background-color: #272822;
+  color: #f8f8f2;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+
+code {
+  background-color: #272822;
+  color: #f8f8f2;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+
+div.highlight div {
+  border-radius: 4px;
+}
+
+div.highlight table code {
+  padding: 0px;
+}
+
+div.highlight div.code-name {
+  margin-top: 7px;
+  margin-left: 6px;
+  margin-bottom: 10px;
+  display: inline-block;
+  position: relative;
+  padding: 4px 8px;
+  background-color: #E7E9EB;
+  color: #485A60;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+
+div.v-card div.highlight pre:first-child div.code-name {
+  margin-left: -4px;
+  margin-top: -4px;
+}
+
