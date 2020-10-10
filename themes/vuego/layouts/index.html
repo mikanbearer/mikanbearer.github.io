@@ -1,0 +1,152 @@
+{{ define "main" }}
+<div id="app">
+    <v-app id="inspire">
+      <v-main>
+
+
+
+
+        <v-app-bar
+  app
+  clipped-left
+  dense
+  dark
+  hide-on-scroll
+>
+
+  <!--<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>-->
+
+  <v-toolbar-title class="mr-12 align-center">
+    <span class="title"></span>
+  </v-toolbar-title>
+
+  <v-spacer></v-spacer>
+  <v-btn v-if="notInSearch" icon @click.stop="searchModal = !searchModal">
+    <v-icon>mdi-magnify</v-icon>
+  </v-btn>
+  <v-btn v-else icon @click.stop="searchModal = !searchModal"  color="error">
+    <v-icon>mdi-magnify</v-icon>
+  </v-btn>
+
+</v-app-bar>
+
+
+
+
+
+
+
+
+
+<v-dialog v-model="searchModal" max-width="600" light>
+  <v-card>
+    <v-card-title>
+      Search Posts
+    </v-card-title>
+
+        <v-card-text>
+          <v-combobox 
+            v-model="searchConditions.keyword"
+            :items="titles"
+            clearable
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-text"
+            label="Title"
+            height="42"
+          >  
+          </v-combobox>
+
+          <v-combobox 
+            v-model="searchConditions.selectedTags"
+            :items="tags"
+            chips
+            clearable
+            multiple
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-tag-multiple"
+            label="Tags"
+          >
+            <template v-slot:selection="{ attrs, item, select, selected }">
+              <v-chip
+                color="accent"
+                v-bind="attrs"
+                :input-value="selected"
+                close
+                @click:close="removeItem('selectedTags', item)"
+              >
+               [[ item ]]
+              </v-chip>
+            </template>              
+          </v-combobox>
+  
+          <v-combobox 
+            v-model="searchConditions.selectedCategories"
+            :items="categories"
+            clearable
+            multiple
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-folder-multiple"
+            label="Categories"
+            height="42"
+          >  
+          </v-combobox>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            :disabled="notInSearch"
+            color="error"
+            @click="$router.history.push('/')"
+            small
+          >
+            Clear
+          </v-btn>
+          <v-btn color="primary" @click="toFilteredList" small>
+            Search
+          </v-btn>
+        </v-card-actions>
+        
+  
+
+    </v-tabs-items>
+  </v-card>
+</v-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <v-container fluid style="width: 800px">
+          <v-row dense>
+            <v-col>
+
+              <v-scroll-x-transition>
+                <router-view></router-view>
+              </v-scroll-x-transition>
+              
+
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main> 
+    </v-app>
+</div>
+
+<script>
+</script>
+{{ end }}

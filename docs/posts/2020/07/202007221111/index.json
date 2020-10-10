@@ -1,0 +1,29 @@
+{
+    "result" : 
+{
+    "title": "使用Django + Celery進行異步處理",
+    "date": "2020-07-22 11:11",
+    "draft": "true",
+    "categories": 
+    [
+        
+            "網頁製作"
+        
+    ],
+    "tags":
+    [
+        
+            "Celery"
+        
+            , "Django"
+        
+            , "Python"
+        
+            , "RabbitMQ"
+        
+    ],
+
+    "url": "https://mikanbearer.github.io/posts/2020/07/202007221111/"
+}
+
+}

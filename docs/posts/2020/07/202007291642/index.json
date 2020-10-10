@@ -1,0 +1,27 @@
+{
+    "result" : 
+{
+    "title": "使用docker-compose部屬Nginx + uWSGI + Django",
+    "date": "2020-07-29 16:42",
+    "draft": "true",
+    "categories": 
+    [
+        
+            "網頁製作"
+        
+    ],
+    "tags":
+    [
+        
+            "Docker"
+        
+            , "Nginx"
+        
+            , "uWSGI"
+        
+    ],
+
+    "url": "https://mikanbearer.github.io/posts/2020/07/202007291642/"
+}
+
+}

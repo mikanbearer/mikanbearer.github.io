@@ -1,0 +1,465 @@
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+
+
+<script>
+  const posts = [
+{{ range $index, $element := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {
+    id: {{ $index }},
+    url: '{{ $element.Permalink }}',
+    {{if $element.Title }}
+      title: '{{ $element.Title }}',
+    {{ else }}
+      title: '',
+    {{ end }}
+    {{ if $element.Truncated }}
+      summary: '{{ $element.Summary }}',
+      content: '',
+    {{ else }}
+      summary: '',
+      content: '',
+    {{ end }}
+    {{ if $element.Params.Date }}
+      date: '{{ $element.Params.Date.Format "2006-01-02 15:04" }}',
+    {{ else }}
+      date: '',
+    {{ end }}
+    {{ if $element.Params.Tags }}
+      tags: '{{ $element.Params.Tags }}',
+    {{ else }}
+      tags: ' ',
+    {{ end }}
+    {{ if $element.Params.Categories }}
+      categories: '{{ $element.Params.Categories }}',
+    {{ else }}
+      categories: ' ',
+    {{ end }}
+    {{ if $element.Params.Author }}
+      author: '{{ $element.Params.Author }}',
+    {{ else }}
+      author: '',
+    {{ end }}
+  },
+{{ end }}
+]
+
+posts.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
+posts.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
+
+const titles = [
+{{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{if .Title }}
+      '{{ .Title }}',
+  {{ end }}
+{{ end }}
+]
+
+
+
+{{ $taxonomy := .Site.Taxonomies.tags }}
+  const tags = [
+  {{ range $key, $value := $taxonomy }}
+  '{{ $key }}',
+  {{ end }}
+
+  ]
+
+
+
+
+{{ $taxonomy := .Site.Taxonomies.categories }}
+  const categories = [
+  {{ range $key, $value := $taxonomy }}
+  '{{ $key }}',
+  {{ end }}
+
+  ]
+
+
+/////////////////////////////////////////////////////////////////////
+
+  Vue.use(VueLoading)
+  Vue.component('loading', VueLoading)
+
+
+  const Post = {
+    template: '{{ partial "vue_templates/post.html" . }}',
+    delimiters: ['[[', ']]'],
+
+    data () {
+      return {
+        post: {
+          title: null,
+          date: null,
+          categories: null,
+          tags: null
+        },
+        content: null
+      }
+    },
+
+    created () {
+      this.getPost(this.$route.query.url)
+    },
+
+    updated () {
+      this.replaceImgSrc()
+      this.addCodeBlockTitle()
+    },
+
+    methods: {
+      replaceImgSrc () {
+        var contents = document.getElementsByClassName('content')
+
+        Array.prototype.forEach.call(contents, content => {
+          var imgs = content.getElementsByTagName('img')
+          Array.prototype.forEach.call(imgs, img => {
+            if (img.attributes.src.value.indexOf('http') == -1) {
+              img.src = this.post.url + img.attributes.src.value
+            }
+          })
+        })        
+      },
+
+      addCodeBlockTitle () {
+        var code_list = document.body.getElementsByTagName('code')
+        for (i=0; i <= code_list.length-1; i++) {
+          var codeParent = code_list[i].closest('pre')
+          if (codeParent) {
+            if (!codeParent.closest('div.highlight')) {
+              if (/^language-:+/.test(code_list[i].className)) {
+                var div = document.createElement('div')
+                div.classList.add('highlight')
+                var pre = codeParent.cloneNode(true)
+                div.appendChild(pre)
+                codeParent.replaceWith(div)
+              }
+            }
+          }
+        }
+
+        var list = document.body.getElementsByClassName('highlight')
+
+        for(i=0; i <= list.length-1; i++){
+          var table = list[i].firstElementChild.firstElementChild
+          if (table.nodeName == 'TABLE') {
+            var code = table.firstElementChild.firstElementChild.childNodes[2].firstElementChild.firstElementChild
+            var codeName =  code ? code.className.split(':')[1] : null
+            if(codeName) {
+              var div = document.createElement('div')
+              div.textContent = codeName
+              div.classList.add('code-name')
+              table.parentNode.insertBefore(div, table)
+            }
+          } else {
+            var code = table
+            var codeName =  code ? code.className.split(':')[1] : null
+          
+            if(codeName) {
+              var div = document.createElement('div')
+              var br = document.createElement('br')
+              div.textContent = codeName
+              div.classList.add('code-name')
+              code.parentNode.insertBefore(div, code)
+              code.parentNode.insertBefore(br, code)
+            }
+          }
+        }
+      },
+
+      getPost (url) {
+        axios.get(url + 'index.json').then(response => {
+          this.post = response.data.result
+        })
+        axios.get(url).then(response => {
+          setTimeout(() => {this.content = response.data}, 250)
+        })
+      }
+
+    }
+  }
+  
+
+  const List = {
+    template: '{{ partial "vue_templates/list.html" . }}',
+    delimiters: ['[[', ']]'],
+    data () {
+      return {
+        postPanel: [],
+        page: 1,
+        pageSize: 10,
+        pageLength: null,
+        filteredPosts: posts,
+        displayPosts: [],
+        count: 0,
+        resultSnackbar: false
+      }
+    },
+
+    computed: {
+      getQuery () {
+        return this.$route.query
+      }
+    },
+
+    mounted () {
+      this.postsInit()
+    },
+
+    watch: {
+      getQuery (to, from) {
+        this.searchPosts()
+      },
+    },
+    methods: {
+      getSearchConditions () {
+        var query = this.getQuery
+        const convertToArray = (value) => {
+          if (Array.isArray(value)) {
+            return value
+          } else if (typeof value === 'string') {
+            return value.split(',')
+          } else {
+            return []
+          }
+        }
+
+        var searchConditions = {}
+
+        searchConditions.selectedCategories = convertToArray(query.category)
+        searchConditions.selectedTags = convertToArray(query.tag)
+        if (typeof query.keyword === 'string') {
+          searchConditions.keyword = query.keyword
+        } else {
+          searchConditions.keyword = ''
+        }
+        return searchConditions
+      },
+
+      postsInit () {
+        if (Object.keys(this.$route.query).length) {
+          this.searchPosts()
+        }
+        else {
+          this.pageInit()
+        }
+      },
+
+      pageInit () {
+        this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
+        this.pageChange(1)
+      },
+
+      pageChange (pageNumber) {
+        this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber))
+        this.postPanel = [...Array(this.pageSize).keys()].map((k, i) => i)
+        setTimeout(this.$vuetify.goTo, 5, 0)
+        this.count ++
+      },
+
+      searchPosts () {
+        var searchConditions = this.getSearchConditions()
+        var keyword = searchConditions.keyword
+        var selectedTags = searchConditions.selectedTags
+        var selectedCategories = searchConditions.selectedCategories
+        var filteredPosts = []
+
+        const arrayChecker = (arr, target) => {
+          if (target) {
+            return target.every(v => arr.includes(v))
+          }
+          return true
+        }
+
+        const stringChecker = (str, target) => {
+          if (target) {
+            return str.indexOf(target) != -1
+          }
+          return true
+        }
+
+        for (const post of posts) {
+          if (arrayChecker(post.tags, selectedTags) && arrayChecker(post.categories, selectedCategories) && stringChecker(post.title, keyword)) {
+            filteredPosts.push(post)
+          }
+        }
+
+        this.filteredPosts = filteredPosts
+        this.resultSnackbar = true
+        this.pageInit()
+      },
+    }
+  }
+
+
+  const routes = [
+    { path: '/', component: List },
+    { path: '/post', component: Post }
+  ]
+
+  const router = new VueRouter({
+    routes
+  })
+
+
+
+
+  var vm = new Vue({
+    router,
+    delimiters: ['[[', ']]'],
+    el: '#app',
+    vuetify: new Vuetify(),
+    props: {
+    },
+    data: {
+      titles: titles,
+      tags: tags,
+      categories: categories,
+      posts: posts,
+
+      searchModal: null,
+
+      searchConditions: {
+        selectedCategories: [],
+        selectedTags: [],
+        keyword: ''
+      }
+    },
+
+    computed: {
+      getQuery () {
+        return this.$route.query
+      },
+      notInSearch () {
+        return Object.values(this.searchConditions).every(v => v.length === 0)
+      }
+    },
+
+    watch: {
+      getQuery (to, from) {
+        if (this.$route.path == '/') {
+          this.setSearchConditionsToData()
+        }
+      }
+    },
+
+    created () {
+      this.$vuetify.theme.dark = true
+      this.loader = this.$loading.show(
+        {loader: 'dots', color: '#fff', backgroundColor: '#272727', opacity: 1}
+          )
+    },
+
+    mounted () {
+      this.setSearchConditionsToData()
+      this.loader.hide()
+    },
+
+    methods: {
+      getSearchConditions () {
+        var query = this.getQuery
+        const convertToArray = (value) => {
+          if (Array.isArray(value)) {
+            return value
+          } else if (typeof value === 'string') {
+            return value.split(',')
+          } else {
+            return []
+          }
+        }
+
+        var searchConditions = {}
+
+        searchConditions.selectedCategories = convertToArray(query.category)
+        searchConditions.selectedTags = convertToArray(query.tag)
+        if (typeof query.keyword === 'string') {
+          searchConditions.keyword = query.keyword
+        } else {
+          searchConditions.keyword = ''
+        }
+        return searchConditions
+      },
+
+      setSearchConditionsToData () {
+        this.searchConditions = this.getSearchConditions()
+      },
+
+      toFilteredList () {
+        var query = {}
+
+        if (this.searchConditions.keyword) {
+          query.keyword = this.searchConditions.keyword
+        }
+        if (this.searchConditions.selectedCategories.length) {
+          query.category = this.searchConditions.selectedCategories
+        }
+        if (this.searchConditions.selectedTags.length) {
+          query.tag = this.searchConditions.selectedTags
+        }
+        if (this.$route.path == '/') {
+          this.$router.history.push({
+            query: query
+          })
+        }
+        else {
+          this.$router.push({
+            path: '/',
+            query: query
+          })
+        }
+      },
+
+      removeItem (target, item) {
+        const index = this.searchConditions[target].indexOf(item)
+        if (index >= 0) {
+          this.searchConditions[target].splice(index, 1)
+        }
+      },
+    }
+  })
+
+  vm.$vuetify.theme.themes.light.primary = '#007C8A'
+  vm.$vuetify.theme.themes.light.secondary = '#44617B'
+  vm.$vuetify.theme.themes.light.accent = '#009BAC'
+  vm.$vuetify.theme.themes.light.error = '#D7003A'
+  vm.$vuetify.theme.themes.light.warning = '#F08300'
+
+
+  vm.$vuetify.theme.themes.dark.primary = '#F08300'
+  vm.$vuetify.theme.themes.dark.secondary = '#006e54'
+  vm.$vuetify.theme.themes.dark.warning = '#d3381c'
+  vm.$vuetify.theme.themes.dark.error = '#D7003A'
+  vm.$vuetify.theme.themes.dark.accent = '#009988'
+
+
+  vm.$vuetify.theme.themes.dark.header = '#1f3134'
+  vm.$vuetify.theme.themes.dark.content = '#333a40'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+ 

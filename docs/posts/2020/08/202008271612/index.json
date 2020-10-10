@@ -1,0 +1,27 @@
+{
+    "result" : 
+{
+    "title": "【Flask入門練習-CRUD篇1】在Flask中導入ORM操作",
+    "date": "2020-08-27 16:12",
+    "draft": "true",
+    "categories": 
+    [
+        
+            "網頁製作"
+        
+    ],
+    "tags":
+    [
+        
+            "Flask"
+        
+            , "Flask-SQLAlchemy"
+        
+            , "Python"
+        
+    ],
+
+    "url": "https://mikanbearer.github.io/posts/2020/08/202008271612/"
+}
+
+}

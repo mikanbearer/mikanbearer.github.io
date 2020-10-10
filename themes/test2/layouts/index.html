@@ -6,65 +6,14 @@
     <v-app id="inspire">
       <v-main>
         <v-container fluid style="width: 800px">
-          <v-row>
-            <v-col>
-              <v-card v-show='qq'>
-                QQ
-              </v-card>
-            </v-col>
-          </v-row>
           <v-row dense>
             <v-col>
-              <div>
-                <v-expansion-panels v-model="panel" focusable multiple popout dark>
-                  <v-expansion-panel v-for="(post, index) in displayPosts" :key="post.id">
-                    <v-expansion-panel-header class="header">
-                      <div class="text-h6 grey--text text--lighten-5">
-                        [[ post.title ]]
-                      </div>
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content class="content">
-                      <div class="text-body-1 grey--text text--lighten-1 mt-1">
-                        [[ post.date ]]
-                        <a 
-                          v-for="category in post.categories"
-                          :href="'{{ "" | absLangURL }}categories/' + category"
-                        >
-                          [[ category ]]
-                        </a>
-                        <div>
-                          <v-chip
-                            v-for="tag in post.tags"
-                            v-bind:key="tag.id"
-                            color="accent"
-                            label
-                            text-color="white"
-                            x-small
-                            :href="'{{ "" | absLangURL }}tags/' + tag"
-                            class="mr-1"
-                          >
-                            [[ tag ]]
-                          </v-chip>
-                        </div>
-                        <v-divider></v-divider>
-                        
-                        <div class="mt-2">
-                          <div :id="'content_' + index" v-html="post.content">
-                          </div>
-                          <div>
-                            <v-btn :href="post.url" color="primary" small>Read More</v-btn>
-                            <v-btn @click="getContent(post.url, index)" color="primary" small>getCOntent</v-btn>
-                          </div>
-                        </div>
-                      </div>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-                </v-expansion-panels>
-              </div>
+
+              <router-view><router-view>
+
             </v-col>
           </v-row>
         </v-container>
-        <v-pagination v-model="page" :length=pageLength @input="pageChange"></v-pagination>
       </v-main> 
       {{ partial "footer" . }}
     </v-app>

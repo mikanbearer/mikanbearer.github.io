@@ -1,0 +1,79 @@
+<div :key="count">
+
+    <div class="post-list">
+        <v-expansion-panels v-model="postPanel" focusable multiple popout dark>
+            <v-expansion-panel v-for="(post, index) in displayPosts" :key="index">
+                <v-expansion-panel-header class="header">
+                    <div class="text-h6 grey--text text--lighten-5">
+                        [[ post.title ]]
+                    </div>
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                    <div class="text-body-1 grey--text text--lighten-2 mt-1">
+                        <div>
+                            [[ post.date ]]
+                            <router-link
+                                v-for="category in post.categories"
+                                :key="category"
+                                :to="{path: '/', query: {category: category}}"
+                            >
+                                [[ category ]]
+                            </router-link>
+                        </div>
+
+                        <div>
+                            <v-icon small color="grey lighten-2">
+                                mdi-tag-multiple
+                            </v-icon>
+                            <v-chip
+                                v-for="tag in post.tags"
+                                v-bind:key="tag.id"
+                                color="accent"
+                                label
+                                text-color="grey lighten-4"
+                                x-small
+                                class="mr-1"
+                                :key="tag"
+                                :to="{path: '/', query: {tag: tag}}"
+                            >
+                                [[ tag ]]
+                            </v-chip>
+                        </div>
+                    </div>
+                    <v-divider></v-divider>
+                
+                    <div class="mt-4">
+                        <div class="text-body-2 grey--text text--lighten-2" v-html="post.summary">
+                        </div>
+                        <div>
+                            <v-btn :to="{path: 'post', query: {url: post.url}}" color="primary" small>Read More</v-btn>
+                        </div>
+                    </div>
+
+                </v-expansion-panel-content>
+            </v-expansion-panel>
+        </v-expansion-panels>
+        <v-pagination v-model="page" :length=pageLength @input="pageChange"></v-pagination>
+    </div>
+
+
+
+    <v-snackbar
+        v-model="resultSnackbar"
+        :timeout=3000
+    >
+        Found [[ filteredPosts.length ]] Posts.
+        <template v-slot:action="{ attrs }">
+            <v-btn
+                color="primary"
+                icon
+                v-bind="attrs"
+                @click="resultSnackbar = false"
+            >
+                <v-icon>
+                    mdi-close
+                </v-icon>
+            </v-btn>
+        </template>
+    </v-snackbar>
+</div>
