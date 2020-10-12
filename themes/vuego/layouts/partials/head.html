@@ -1,6 +1,7 @@
 <head>
     <title>{{ .Site.Title }}</title>
-  
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -11,6 +12,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     
     <style>
+      .site-title {
+        font-family: 'Noto Sans TC', sans-serif !important;
+      }
+ 
+
+      .post-title {
+        font-family: 'Noto Sans TC', sans-serif !important;
+      }
+
+      .post-subtitle {
+        font-family: 'Noto Sans TC', sans-serif !important;
+      }
+
+      .post-content {
+        font-family: 'Noto Sans TC', sans-serif !important;
+      }
+
+
       body {
         width: 100%;
         height: 100%;
@@ -18,23 +37,34 @@
         top: 0;
         left: 0;
         background-size: cover;
-        
-        background-color: #272727;
-        
-  
-  
-        
+        background-color: #272727;        
       }
   
       #inspire {
         background: none;
       }
-
-
+      
 
       div.v-input__prepend-inner div.v-input__icon {
         margin-top: 4px;
       }
+
+      a.v-chip--active.accent {
+        -webkit-filter: brightness(1.1);
+      }
+
+      a.v-chip--active.accent span {
+        color: #ffffff;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .post-list .theme--dark.v-expansion-panels .v-expansion-panel--active {
+        background-color: #333a40;
+      }
+
       
     </style>
   

@@ -89,6 +89,22 @@ const titles = [
   Vue.use(VueLoading)
   Vue.component('loading', VueLoading)
 
+  const About = {
+    template: '{{ partial "vue_templates/about.html" . }}',
+    delimiters: ['[[', ']]'],
+
+    data () {
+      return {
+        content: null
+      }
+    },
+    created () {
+      axios.get('{{ .Site.BaseURL }}about/').then(response => {
+          setTimeout(() => {this.content = response.data}, 250)
+      })
+    },
+  }
+
 
   const Post = {
     template: '{{ partial "vue_templates/post.html" . }}',
@@ -200,7 +216,12 @@ const titles = [
         filteredPosts: posts,
         displayPosts: [],
         count: 0,
-        resultSnackbar: false
+        resultSnackbar: false,
+        searchConditions: {
+          selectedCategories: [],
+          selectedTags: [],
+          keyword: ''
+        }
       }
     },
 
@@ -255,18 +276,22 @@ const titles = [
 
       pageInit () {
         this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
-        this.pageChange(1)
+        setTimeout(this.pageChange, 200, 1)
       },
 
       pageChange (pageNumber) {
         this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber))
         this.postPanel = [...Array(this.pageSize).keys()].map((k, i) => i)
-        setTimeout(this.$vuetify.goTo, 5, 0)
+        if (window.pageYOffset >= 60) {
+          window.scroll({top: 60, behavior: 'instant'})
+        }
+        setTimeout(window.scroll, 5, {top: 0, behavior: 'smooth'})
         this.count ++
       },
 
       searchPosts () {
         var searchConditions = this.getSearchConditions()
+        this.searchConditions = searchConditions
         var keyword = searchConditions.keyword
         var selectedTags = searchConditions.selectedTags
         var selectedCategories = searchConditions.selectedCategories
@@ -302,7 +327,8 @@ const titles = [
 
   const routes = [
     { path: '/', component: List },
-    { path: '/post', component: Post }
+    { path: '/post', component: Post },
+    { path: '/about', component: About }
   ]
 
   const router = new VueRouter({
@@ -310,7 +336,17 @@ const titles = [
   })
 
 
+  
+  router.beforeEach((to, from, next) => {
+    if (window.pageYOffset >= 60) {
+      window.scroll({top: 60, behavior: 'instant'})
+    }
+    setTimeout(window.scroll, 5, {top: 0, behavior: 'smooth'})
+    next()
+  })
 
+
+  
 
   var vm = new Vue({
     router,
@@ -339,7 +375,11 @@ const titles = [
         return this.$route.query
       },
       notInSearch () {
-        return Object.values(this.searchConditions).every(v => v.length === 0)
+        const queryKeys = Object.keys(this.$route.query)
+        if (queryKeys.length === 0) {
+          return true
+        }
+        return !queryKeys.every(v => ['keyword', 'category', 'tag'].includes(v))
       }
     },
 

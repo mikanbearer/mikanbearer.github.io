@@ -1,0 +1,15 @@
+<div v-if="content">
+    <v-card class="content" id="post-content">
+        <v-card-title class="text-h6 grey--text text--lighten-4 justify-space-between" style="background-color: #556265;">
+            <div class="ml-2 post-title">
+                About
+            </div>
+        </v-card-title>
+
+        <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
+            <div class="mr-2 ml-2 post-content" v-html="content">
+
+            </div>
+        </v-card-text>
+    </v-card>
+</div>

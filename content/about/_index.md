@@ -10,4 +10,5 @@ title: "About"
     * **Flask**
   * **Client-side Web Framework**
     * **Vue.js**
+    * **Angular**
     ...etc

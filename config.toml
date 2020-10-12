@@ -5,7 +5,7 @@ languageCode = "en-us"
 
 DefaultContentLanguage = "en"
 #DefaultContentLanguage = "ja"
-title = "活到老學到死"
+title = "垃圾堆"
 #theme = "test2"
 theme = "vuego"
 metaDataFormat = "yaml"
@@ -41,6 +41,7 @@ disablePathToLower = true
 
 [outputs]
   page = ["HTML", "JSON"]
+  
 
 
 

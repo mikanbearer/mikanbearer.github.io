@@ -1,11 +1,23 @@
 {
-    "data" : 
+    "result" : 
 {
-    "title": "202009221717",
-    "date": "2020-09-22 17:17:48 +0800 CST",
-    
+    "title": "讓Hugo輸出JSON格式",
+    "date": "2020-09-22 17:17",
+    "draft": "true",
+    "categories": 
+    [
+        
+            "網頁製作"
+        
+    ],
+    "tags":
+    [
+        
+            "Hugo"
+        
+    ],
 
-    "content": ""
+    "url": "https://mikanbearer.github.io/posts/2020/09/202009221717/"
 }
 
 }

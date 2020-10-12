@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>網頁製作 on 活到老學到死</title>
+    <title>網頁製作 on 垃圾堆</title>
     <link>https://mikanbearer.github.io/categories/%E7%B6%B2%E9%A0%81%E8%A3%BD%E4%BD%9C/</link>
-    <description>Recent content in 網頁製作 on 活到老學到死</description>
+    <description>Recent content in 網頁製作 on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Vue Router在同一頁面傳遞新的query string</title>
+      <title>Vue Router在同一route component傳遞新的query string</title>
       <link>https://mikanbearer.github.io/posts/202010061053/</link>
       <pubDate>Tue, 06 Oct 2020 10:53:36 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
@@ -30,6 +30,15 @@
       <guid>https://mikanbearer.github.io/posts/202009261450/</guid>
       <description>&lt;p&gt;不久前才想用vuetify的v-overlay與v-progress-circular來做個loading的延遲畫面，就意外發現了這個好東西：&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/vue-loading-overlay&#34;&gt;vue-loading-overlay&lt;/a&gt;，馬上就來試一下&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>讓Hugo輸出JSON格式</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009221717/</link>
+      <pubDate>Tue, 22 Sep 2020 17:17:48 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009221717/</guid>
+      <description>&lt;p&gt;計畫使用Hugo來製作Single Page，有JSON會方便很多，許多地方寫得不是很清楚所以筆記一下&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html><head>
 	<meta name="generator" content="Hugo 0.73.0" />
-    <title>活到老學到死</title>
-  
+    <title>垃圾堆</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -13,6 +14,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     
     <style>
+      .site-title {
+        font-family: 'Noto Sans TC', sans-serif !important;
+      }
+ 
+
+      .post-title {
+        font-family: 'Noto Sans TC', sans-serif !important;
+      }
+
+      .post-subtitle {
+        font-family: 'Noto Sans TC', sans-serif !important;
+      }
+
+      .post-content {
+        font-family: 'Noto Sans TC', sans-serif !important;
+      }
+
+
       body {
         width: 100%;
         height: 100%;
@@ -20,23 +39,34 @@
         top: 0;
         left: 0;
         background-size: cover;
-        
-        background-color: #272727;
-        
-  
-  
-        
+        background-color: #272727;        
       }
   
       #inspire {
         background: none;
       }
-
-
+      
 
       div.v-input__prepend-inner div.v-input__icon {
         margin-top: 4px;
       }
+
+      a.v-chip--active.accent {
+        -webkit-filter: brightness(1.1);
+      }
+
+      a.v-chip--active.accent span {
+        color: #ffffff;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .post-list .theme--dark.v-expansion-panels .v-expansion-panel--active {
+        background-color: #333a40;
+      }
+
       
     </style>
   
@@ -44,150 +74,137 @@
   <body><div id="content">
 <div id="app">
     <v-app id="inspire">
-      <v-main>
-
-
-
-
-        <v-app-bar
-  app
-  clipped-left
-  dense
-  dark
-  hide-on-scroll
->
-
-  
-
-  <v-toolbar-title class="mr-12 align-center">
-    <span class="title"></span>
-  </v-toolbar-title>
-
-  <v-spacer></v-spacer>
-  <v-btn v-if="notInSearch" icon @click.stop="searchModal = !searchModal">
-    <v-icon>mdi-magnify</v-icon>
-  </v-btn>
-  <v-btn v-else icon @click.stop="searchModal = !searchModal"  color="error">
-    <v-icon>mdi-magnify</v-icon>
-  </v-btn>
-
-</v-app-bar>
-
-
-
-
-
-
-
-
-
-<v-dialog v-model="searchModal" max-width="600" light>
-  <v-card>
-    <v-card-title>
-      Search Posts
-    </v-card-title>
-
-        <v-card-text>
-          <v-combobox 
-            v-model="searchConditions.keyword"
-            :items="titles"
-            clearable
-            hide-selected
-            hide-details
-            prepend-inner-icon="mdi-text"
-            label="Title"
-            height="42"
-          >  
-          </v-combobox>
-
-          <v-combobox 
-            v-model="searchConditions.selectedTags"
-            :items="tags"
-            chips
-            clearable
-            multiple
-            hide-selected
-            hide-details
-            prepend-inner-icon="mdi-tag-multiple"
-            label="Tags"
-          >
-            <template v-slot:selection="{ attrs, item, select, selected }">
-              <v-chip
-                color="accent"
-                v-bind="attrs"
-                :input-value="selected"
-                close
-                @click:close="removeItem('selectedTags', item)"
-              >
-               [[ item ]]
-              </v-chip>
-            </template>              
-          </v-combobox>
-  
-          <v-combobox 
-            v-model="searchConditions.selectedCategories"
-            :items="categories"
-            clearable
-            multiple
-            hide-selected
-            hide-details
-            prepend-inner-icon="mdi-folder-multiple"
-            label="Categories"
-            height="42"
-          >  
-          </v-combobox>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            :disabled="notInSearch"
-            color="error"
-            @click="$router.history.push('/')"
-            small
-          >
-            Clear
-          </v-btn>
-          <v-btn color="primary" @click="toFilteredList" small>
-            Search
-          </v-btn>
-        </v-card-actions>
+      <v-app-bar
+        app
+        hide-on-scroll
         
+        fade-img-on-scroll
+        src="https://mikanbearer.github.io/img/0.jpg"    
+      >
+
+      
+
+      <v-toolbar-title class="mr-12 align-center">
+        <span class="site-title">垃圾堆</span>
+      </v-toolbar-title>
+
+      <v-spacer></v-spacer>
+      <v-btn v-if="notInSearch" icon @click.stop="searchModal = !searchModal">
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+      <v-btn v-else icon @click.stop="searchModal = !searchModal"  color="error">
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
   
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(31,49,52,.7), rgba(69,87,101,.7)"
+        ></v-img>
+      </template>
+    
+    
+      <template v-slot:extension>
+        <v-tabs align-with-title>
+          <v-tab v-if="$route.path == '/'"  to="/" :class="['v-tab--active']">Posts</v-tab>
+          <v-tab v-else to="/">Posts</v-tab>
+          <v-tab to="/about">About</v-tab>
+        </v-tabs>
+      </template>
+    
+    </v-app-bar>
 
-    </v-tabs-items>
-  </v-card>
-</v-dialog>
+    <v-main>
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-scroll-x-transition>
+              <router-view></router-view>
+            </v-scroll-x-transition>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main> 
 
 
+    <v-dialog v-model="searchModal" max-width="600" light>
+      <v-card color="#e6eae3">
+        <v-card-title>
+          Search Posts
+        </v-card-title>
+    
+            <v-card-text>
+              <v-combobox 
+                v-model="searchConditions.keyword"
+                :items="titles"
+                clearable
+                hide-selected
+                hide-details
+                prepend-inner-icon="mdi-text"
+                label="Title"
+                height="42"
+              >  
+              </v-combobox>
+    
+              <v-combobox 
+                v-model="searchConditions.selectedTags"
+                :items="tags"
+                chips
+                clearable
+                multiple
+                hide-selected
+                hide-details
+                prepend-inner-icon="mdi-tag-multiple"
+                label="Tags"
+              >
+                <template v-slot:selection="{ attrs, item, select, selected }">
+                  <v-chip
+                    color="accent"
+                    v-bind="attrs"
+                    :input-value="selected"
+                    close
+                    @click:close="removeItem('selectedTags', item)"
+                  >
+                   [[ item ]]
+                  </v-chip>
+                </template>              
+              </v-combobox>
+      
+              <v-combobox 
+                v-model="searchConditions.selectedCategories"
+                :items="categories"
+                clearable
+                multiple
+                hide-selected
+                hide-details
+                prepend-inner-icon="mdi-folder-multiple"
+                label="Categories"
+                height="42"
+              >  
+              </v-combobox>
+            </v-card-text>
+    
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                :disabled="notInSearch"
+                color="error"
+                @click="$router.history.push('/')"
+                small
+              >
+                Clear
+              </v-btn>
+              <v-btn color="primary" @click="toFilteredList" small>
+                Search
+              </v-btn>
+            </v-card-actions>
+
+        </v-tabs-items>
+      </v-card>
+    </v-dialog>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        <v-container fluid style="width: 800px">
-          <v-row dense>
-            <v-col>
-
-              <v-scroll-x-transition>
-                <router-view></router-view>
-              </v-scroll-x-transition>
-              
-
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-main> 
-    </v-app>
+  </v-app>
 </div>
 
 <script>
@@ -209,9 +226,33 @@
 
   {
     id:  0 ,
+    url: 'https:\/\/mikanbearer.github.io\/posts\/202010081713\/',
+    
+      title: '主題更新',
+    
+    
+      summary: '\u003cp\u003e心一橫把整個BLOG做成Single Page了，但目前還只是雛形，記錄下幾個主要的變更點、想法及待解決的問題\u003c\/p\u003e',
+      content: '',
+    
+    
+      date: '2020-10-08 17:13',
+    
+    
+      tags: '[Hugo Vue.js]',
+    
+    
+      categories: '[雜記]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    id:  1 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/202010061053\/',
     
-      title: 'Vue Router在同一頁面傳遞新的query string',
+      title: 'Vue Router在同一route component傳遞新的query string',
     
     
       summary: '\u003cp\u003e弄這個blog遇到的問題，想使用Vue Router來取代Hugo部分list功能的小筆記\u003c\/p\u003e',
@@ -232,7 +273,7 @@
   },
 
   {
-    id:  1 ,
+    id:  2 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/202009261450\/',
     
       title: '使用Vue Loading Overlay追加過場動畫',
@@ -256,7 +297,7 @@
   },
 
   {
-    id:  2 ,
+    id:  3 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/202009251338\/',
     
       title: 'Python收送log',
@@ -280,7 +321,31 @@
   },
 
   {
-    id:  3 ,
+    id:  4 ,
+    url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009221717\/',
+    
+      title: '讓Hugo輸出JSON格式',
+    
+    
+      summary: '\u003cp\u003e計畫使用Hugo來製作Single Page，有JSON會方便很多，許多地方寫得不是很清楚所以筆記一下\u003c\/p\u003e',
+      content: '',
+    
+    
+      date: '2020-09-22 17:17',
+    
+    
+      tags: '[Hugo]',
+    
+    
+      categories: '[網頁製作]',
+    
+    
+      author: '',
+    
+  },
+
+  {
+    id:  5 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009211136\/',
     
       title: '使用Angular嘗試製作SPA登入畫面',
@@ -304,7 +369,7 @@
   },
 
   {
-    id:  4 ,
+    id:  6 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009181018\/',
     
       title: '從今天開始學Angular',
@@ -328,7 +393,7 @@
   },
 
   {
-    id:  5 ,
+    id:  7 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009161132\/',
     
       title: 'scikit-learn新手入門之決策樹篇',
@@ -352,7 +417,7 @@
   },
 
   {
-    id:  6 ,
+    id:  8 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009151049\/',
     
       title: '【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection',
@@ -376,7 +441,7 @@
   },
 
   {
-    id:  7 ,
+    id:  9 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009141257\/',
     
       title: '【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面',
@@ -400,7 +465,7 @@
   },
 
   {
-    id:  8 ,
+    id:  10 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009111635\/',
     
       title: '【Flask入門練習-CRUD篇2】製作簡單的CRUD',
@@ -424,7 +489,7 @@
   },
 
   {
-    id:  9 ,
+    id:  11 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009101608\/',
     
       title: '安裝並嘗試使用Arista ZTPServer',
@@ -448,7 +513,7 @@
   },
 
   {
-    id:  10 ,
+    id:  12 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009091346\/',
     
       title: '【Python資料分析練習-入門篇2】自然語言處理與機器學習',
@@ -472,7 +537,7 @@
   },
 
   {
-    id:  11 ,
+    id:  13 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009081138\/',
     
       title: '結巴分詞工具的簡單筆記',
@@ -496,7 +561,7 @@
   },
 
   {
-    id:  12 ,
+    id:  14 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009070954\/',
     
       title: '【Python資料分析練習-入門篇1】使用Scrapy爬取PTT貼文',
@@ -520,7 +585,7 @@
   },
 
   {
-    id:  13 ,
+    id:  15 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009031456\/',
     
       title: '使用Ansible部屬Docker Swarm',
@@ -544,7 +609,7 @@
   },
 
   {
-    id:  14 ,
+    id:  16 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009011649\/',
     
       title: '從今天開始學Ansible',
@@ -568,7 +633,7 @@
   },
 
   {
-    id:  15 ,
+    id:  17 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008281726\/',
     
       title: '從Scrapy開始玩爬蟲',
@@ -592,7 +657,7 @@
   },
 
   {
-    id:  16 ,
+    id:  18 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008271612\/',
     
       title: '【Flask入門練習-CRUD篇1】在Flask中導入ORM操作',
@@ -616,7 +681,7 @@
   },
 
   {
-    id:  17 ,
+    id:  19 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008241004\/',
     
       title: '【Prometheus入門練習-自訂篇2】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表',
@@ -640,7 +705,7 @@
   },
 
   {
-    id:  18 ,
+    id:  20 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008191354\/',
     
       title: '從今天開始學Flask',
@@ -664,7 +729,7 @@
   },
 
   {
-    id:  19 ,
+    id:  21 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008181609\/',
     
       title: '【Prometheus入門練習-基本操作篇3】使用Prometheus監控RabbitMQ',
@@ -688,7 +753,7 @@
   },
 
   {
-    id:  20 ,
+    id:  22 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008171709\/',
     
       title: '【Prometheus入門練習-自訂篇1】使用Prometheus client library自訂metrics',
@@ -712,7 +777,7 @@
   },
 
   {
-    id:  21 ,
+    id:  23 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008151135\/',
     
       title: '使用Moment.js處理日期時間',
@@ -736,7 +801,7 @@
   },
 
   {
-    id:  22 ,
+    id:  24 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008140913\/',
     
       title: '【Prometheus入門練習-基本操作篇2】使用Pushgateway進行監控',
@@ -760,7 +825,7 @@
   },
 
   {
-    id:  23 ,
+    id:  25 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008131707\/',
     
       title: '【Prometheus入門練習-基本操作篇1】從零開始學Prometheus',
@@ -784,7 +849,7 @@
   },
 
   {
-    id:  24 ,
+    id:  26 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008100108\/',
     
       title: '使用Django \u002b Channels部屬WebSocket簡易聊天室',
@@ -808,7 +873,7 @@
   },
 
   {
-    id:  25 ,
+    id:  27 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008092021\/',
     
       title: '動態更新Echarts',
@@ -832,7 +897,7 @@
   },
 
   {
-    id:  26 ,
+    id:  28 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008070930\/',
     
       title: '新主題上線！',
@@ -856,7 +921,7 @@
   },
 
   {
-    id:  27 ,
+    id:  29 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007301419\/',
     
       title: '在Nginx或Apache上設定CORS',
@@ -880,7 +945,7 @@
   },
 
   {
-    id:  28 ,
+    id:  30 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007291642\/',
     
       title: '使用docker-compose部屬Nginx \u002b uWSGI \u002b Django',
@@ -904,7 +969,7 @@
   },
 
   {
-    id:  29 ,
+    id:  31 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007262314\/',
     
       title: '使用Vue.js \u002b Vuetify製作SPA登入畫面',
@@ -928,7 +993,7 @@
   },
 
   {
-    id:  30 ,
+    id:  32 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007241554\/',
     
       title: '【2020\/07\/25解決】在EVE-NG上部屬vEOS LAB',
@@ -952,7 +1017,7 @@
   },
 
   {
-    id:  31 ,
+    id:  33 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007221111\/',
     
       title: '使用Django \u002b Celery進行異步處理',
@@ -976,7 +1041,7 @@
   },
 
   {
-    id:  32 ,
+    id:  34 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007211516\/',
     
       title: '用VBA在Excel中使用nslookup',
@@ -1000,7 +1065,7 @@
   },
 
   {
-    id:  33 ,
+    id:  35 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007201501\/',
     
       title: '【Django API實作-入門篇2】在Django REST framework上導入JWT驗證',
@@ -1024,7 +1089,7 @@
   },
 
   {
-    id:  34 ,
+    id:  36 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007201139\/',
     
       title: '使用watch監控的一些寫法',
@@ -1048,7 +1113,7 @@
   },
 
   {
-    id:  35 ,
+    id:  37 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007161628\/',
     
       title: '【Django API實作-入門篇1】使用Django REST framework超高速部屬RESTful API',
@@ -1072,7 +1137,7 @@
   },
 
   {
-    id:  36 ,
+    id:  38 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007151013\/',
     
       title: '使用Django超高速部屬CRUD',
@@ -1096,7 +1161,7 @@
   },
 
   {
-    id:  37 ,
+    id:  39 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007141604\/',
     
       title: '使用VBScript定期送出按鍵',
@@ -1120,7 +1185,7 @@
   },
 
   {
-    id:  38 ,
+    id:  40 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007101327\/',
     
       title: '紀念用的第一篇',
@@ -1151,7 +1216,11 @@ posts.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
 const titles = [
 
   
-      'Vue Router在同一頁面傳遞新的query string',
+      '主題更新',
+  
+
+  
+      'Vue Router在同一route component傳遞新的query string',
   
 
   
@@ -1160,6 +1229,10 @@ const titles = [
 
   
       'Python收送log',
+  
+
+  
+      '讓Hugo輸出JSON格式',
   
 
   
@@ -1417,9 +1490,25 @@ const titles = [
   Vue.use(VueLoading)
   Vue.component('loading', VueLoading)
 
+  const About = {
+    template: '\u003cdiv v-if=\u0022content\u0022\u003e\r\n    \u003cv-card class=\u0022content\u0022 id=\u0022post-content\u0022\u003e\r\n        \u003cv-card-title class=\u0022text-h6 grey--text text--lighten-4 justify-space-between\u0022 style=\u0022background-color: #556265;\u0022\u003e\r\n            \u003cdiv class=\u0022ml-2 post-title\u0022\u003e\r\n                About\r\n            \u003c\/div\u003e\r\n        \u003c\/v-card-title\u003e\r\n\r\n        \u003cv-card-text class=\u0022text-body-2 grey--text text--lighten-2 mt-2\u0022\u003e\r\n            \u003cdiv class=\u0022mr-2 ml-2 post-content\u0022 v-html=\u0022content\u0022\u003e\r\n\r\n            \u003c\/div\u003e\r\n        \u003c\/v-card-text\u003e\r\n    \u003c\/v-card\u003e\r\n\u003c\/div\u003e',
+    delimiters: ['[[', ']]'],
+
+    data () {
+      return {
+        content: null
+      }
+    },
+    created () {
+      axios.get('https:\/\/mikanbearer.github.io\/about/').then(response => {
+          setTimeout(() => {this.content = response.data}, 250)
+      })
+    },
+  }
+
 
   const Post = {
-    template: '\u003cdiv v-if=\u0022content\u0022\u003e\r\n    \u003cv-card class=\u0022content\u0022 id=\u0022post-content\u0022\u003e\r\n        \u003cv-card-title class=\u0022text-h6 grey--text text--lighten-4 justify-space-between\u0022 style=\u0022background-color: #556265;\u0022\u003e\r\n            \u003cdiv class=\u0022ml-2\u0022\u003e\r\n                [[ post.title ]]\r\n            \u003c\/div\u003e\r\n        \u003c\/v-card-title\u003e\r\n        \u003cv-card-subtitle class=\u0022text-body-1 grey--text text--lighten-2 mt-1 mr-2 ml-2\u0022\u003e\r\n            \u003cdiv\u003e\r\n                [[ post.date ]]\r\n                \u003crouter-link\r\n                    v-for=\u0022category in post.categories\u0022\r\n                    :key=\u0022category\u0022\r\n                    :to=\u0022{path: \u0027\/\u0027, query: {category: category}}\u0022\r\n                \u003e\r\n                    [[ category ]]\r\n                \u003c\/router-link\u003e\r\n            \u003c\/div\u003e\r\n            \u003cdiv\u003e\r\n                \u003cv-icon small color=\u0022grey lighten-2\u0022\u003e\r\n                    mdi-tag-multiple\r\n                \u003c\/v-icon\u003e\r\n                \u003cv-chip\r\n                    color=\u0022accent\u0022\r\n                    label\r\n                    text-color=\u0022grey lighten-4\u0022\r\n                    x-small\r\n                    class=\u0022mr-1\u0022\r\n                    v-for=\u0022tag in post.tags\u0022\r\n                    :key=\u0022tag\u0022\r\n                    :to=\u0022{path: \u0027\/\u0027, query: {tag: tag}}\u0022\r\n                \u003e\r\n                    [[ tag ]]\r\n                \u003c\/v-chip\u003e\r\n            \u003c\/div\u003e\r\n            \u003cv-divider\u003e\u003c\/v-divider\u003e\r\n        \u003c\/v-card-subtitle\u003e\r\n        \u003cv-card-text\u003e\r\n            \u003cdiv class=\u0022text-body-2 grey--text text--lighten-2 mr-2 ml-2\u0022 v-html=\u0022content\u0022\u003e\r\n\r\n            \u003c\/div\u003e\r\n        \u003c\/v-card-text\u003e\r\n    \u003c\/v-card\u003e\r\n\r\n    \u003cv-card class=\u0022mt-5 content\u0022\u003e\r\n        \u003cv-card-text\u003e\r\n        \u003cdiv id=\u0022disqus_thread\u0022\u003e\u003c\/div\u003e\r\n\u003cscript type=\u0022application\/javascript\u0022\u003e\r\n    var disqus_config = function () {\r\n        this.page.url = \u0027[[ $route.query.url ]]\u0027\r\n    };\r\n    (function() {\r\n        if ([\u0022localhost\u0022, \u0022127.0.0.1\u0022].indexOf(window.location.hostname) != -1) {\r\n            document.getElementById(\u0027disqus_thread\u0027).innerHTML = \u0027Disqus comments not available by default when the website is previewed locally.\u0027;\r\n            return;\r\n        }\r\n        var d = document, s = d.createElement(\u0027script\u0027); s.async = true;\r\n        var disqus_shortname = \u0027mikanmimi\u0027;\r\n        s.src = \u0027\/\/\u0027 \u002b disqus_shortname \u002b \u0027.disqus.com\/embed.js\u0027;\r\n        s.setAttribute(\u0027data-timestamp\u0027, \u002bnew Date());\r\n        (d.head || d.body).appendChild(s);\r\n    })();\r\n\u003c\/script\u003e\r\n\u003cnoscript\u003ePlease enable JavaScript to view the \u003ca href=\u0022https:\/\/disqus.com\/?ref_noscript\u0022\u003ecomments powered by Disqus.\u003c\/a\u003e\u003c\/noscript\u003e\r\n\u003ca href=\u0022https:\/\/disqus.com\u0022 class=\u0022dsq-brlink\u0022\u003ecomments powered by \u003cspan class=\u0022logo-disqus\u0022\u003eDisqus\u003c\/span\u003e\u003c\/a\u003e\r\n        \u003c\/v-card-text\u003e\r\n    \u003c\/v-card\u003e\r\n\u003c\/div\u003e',
+    template: '\u003cdiv v-if=\u0022content\u0022\u003e\r\n    \u003cv-card class=\u0022content\u0022 id=\u0022post-content\u0022\u003e\r\n        \u003cv-card-title class=\u0022text-h6 grey--text text--lighten-4 justify-space-between\u0022 style=\u0022background-color: #556265;\u0022\u003e\r\n            \u003cdiv class=\u0022ml-2 post-title\u0022\u003e\r\n                [[ post.title ]]\r\n            \u003c\/div\u003e\r\n        \u003c\/v-card-title\u003e\r\n        \u003cv-card-subtitle class=\u0022text-body-1 grey--text text--lighten-2 mt-1 mr-2 ml-2\u0022\u003e\r\n            \u003cdiv class=\u0022post-subtitle\u0022\u003e\r\n                [[ post.date ]]\r\n                \u003crouter-link\r\n                    v-for=\u0022category in post.categories\u0022\r\n                    :key=\u0022category\u0022\r\n                    :to=\u0022{path: \u0027\/\u0027, query: {category: category}}\u0022\r\n                \u003e\r\n                    [[ category ]]\r\n                \u003c\/router-link\u003e\r\n            \u003c\/div\u003e\r\n            \u003cdiv\u003e\r\n                \u003cv-icon small color=\u0022grey lighten-2\u0022\u003e\r\n                    mdi-tag-multiple\r\n                \u003c\/v-icon\u003e\r\n                \u003cv-chip\r\n                    color=\u0022accent\u0022\r\n                    label\r\n                    text-color=\u0022grey lighten-4\u0022\r\n                    x-small\r\n                    class=\u0022mr-1\u0022\r\n                    v-for=\u0022tag in post.tags\u0022\r\n                    :key=\u0022tag\u0022\r\n                    :to=\u0022{path: \u0027\/\u0027, query: {tag: tag}}\u0022\r\n                \u003e\r\n                    [[ tag ]]\r\n                \u003c\/v-chip\u003e\r\n            \u003c\/div\u003e\r\n            \u003cv-divider\u003e\u003c\/v-divider\u003e\r\n        \u003c\/v-card-subtitle\u003e\r\n        \u003cv-card-text class=\u0022text-body-2 grey--text text--lighten-2\u0022\u003e\r\n            \u003cdiv class=\u0022mr-2 ml-2 post-content\u0022 v-html=\u0022content\u0022\u003e\r\n\r\n            \u003c\/div\u003e\r\n        \u003c\/v-card-text\u003e\r\n    \u003c\/v-card\u003e\r\n\r\n    \u003cv-card class=\u0022mt-5 content\u0022\u003e\r\n        \u003cv-card-text\u003e\r\n        \u003cdiv id=\u0022disqus_thread\u0022\u003e\u003c\/div\u003e\r\n\u003cscript type=\u0022application\/javascript\u0022\u003e\r\n    var disqus_config = function () {\r\n        this.page.url = \u0027[[ $route.query.url ]]\u0027\r\n    };\r\n    (function() {\r\n        if ([\u0022localhost\u0022, \u0022127.0.0.1\u0022].indexOf(window.location.hostname) != -1) {\r\n            document.getElementById(\u0027disqus_thread\u0027).innerHTML = \u0027Disqus comments not available by default when the website is previewed locally.\u0027;\r\n            return;\r\n        }\r\n        var d = document, s = d.createElement(\u0027script\u0027); s.async = true;\r\n        var disqus_shortname = \u0027mikanmimi\u0027;\r\n        s.src = \u0027\/\/\u0027 \u002b disqus_shortname \u002b \u0027.disqus.com\/embed.js\u0027;\r\n        s.setAttribute(\u0027data-timestamp\u0027, \u002bnew Date());\r\n        (d.head || d.body).appendChild(s);\r\n    })();\r\n\u003c\/script\u003e\r\n\u003cnoscript\u003ePlease enable JavaScript to view the \u003ca href=\u0022https:\/\/disqus.com\/?ref_noscript\u0022\u003ecomments powered by Disqus.\u003c\/a\u003e\u003c\/noscript\u003e\r\n\u003ca href=\u0022https:\/\/disqus.com\u0022 class=\u0022dsq-brlink\u0022\u003ecomments powered by \u003cspan class=\u0022logo-disqus\u0022\u003eDisqus\u003c\/span\u003e\u003c\/a\u003e\r\n        \u003c\/v-card-text\u003e\r\n    \u003c\/v-card\u003e\r\n\u003c\/div\u003e',
     delimiters: ['[[', ']]'],
 
     data () {
@@ -1517,7 +1606,7 @@ const titles = [
   
 
   const List = {
-    template: '\u003cdiv :key=\u0022count\u0022\u003e\r\n\r\n    \u003cdiv class=\u0022post-list\u0022\u003e\r\n        \u003cv-expansion-panels v-model=\u0022postPanel\u0022 focusable multiple popout dark\u003e\r\n            \u003cv-expansion-panel v-for=\u0022(post, index) in displayPosts\u0022 :key=\u0022index\u0022\u003e\r\n                \u003cv-expansion-panel-header class=\u0022header\u0022\u003e\r\n                    \u003cdiv class=\u0022text-h6 grey--text text--lighten-5\u0022\u003e\r\n                        [[ post.title ]]\r\n                    \u003c\/div\u003e\r\n                \u003c\/v-expansion-panel-header\u003e\r\n                \u003cv-expansion-panel-content\u003e\r\n                    \u003cdiv class=\u0022text-body-1 grey--text text--lighten-2 mt-1\u0022\u003e\r\n                        \u003cdiv\u003e\r\n                            [[ post.date ]]\r\n                            \u003crouter-link\r\n                                v-for=\u0022category in post.categories\u0022\r\n                                :key=\u0022category\u0022\r\n                                :to=\u0022{path: \u0027\/\u0027, query: {category: category}}\u0022\r\n                            \u003e\r\n                                [[ category ]]\r\n                            \u003c\/router-link\u003e\r\n                        \u003c\/div\u003e\r\n\r\n                        \u003cdiv\u003e\r\n                            \u003cv-icon small color=\u0022grey lighten-2\u0022\u003e\r\n                                mdi-tag-multiple\r\n                            \u003c\/v-icon\u003e\r\n                            \u003cv-chip\r\n                                v-for=\u0022tag in post.tags\u0022\r\n                                v-bind:key=\u0022tag.id\u0022\r\n                                color=\u0022accent\u0022\r\n                                label\r\n                                text-color=\u0022grey lighten-4\u0022\r\n                                x-small\r\n                                class=\u0022mr-1\u0022\r\n                                :key=\u0022tag\u0022\r\n                                :to=\u0022{path: \u0027\/\u0027, query: {tag: tag}}\u0022\r\n                            \u003e\r\n                                [[ tag ]]\r\n                            \u003c\/v-chip\u003e\r\n                        \u003c\/div\u003e\r\n                    \u003c\/div\u003e\r\n                    \u003cv-divider\u003e\u003c\/v-divider\u003e\r\n                \r\n                    \u003cdiv class=\u0022mt-4\u0022\u003e\r\n                        \u003cdiv class=\u0022text-body-2 grey--text text--lighten-2\u0022 v-html=\u0022post.summary\u0022\u003e\r\n                        \u003c\/div\u003e\r\n                        \u003cdiv\u003e\r\n                            \u003cv-btn :to=\u0022{path: \u0027post\u0027, query: {url: post.url}}\u0022 color=\u0022primary\u0022 small\u003eRead More\u003c\/v-btn\u003e\r\n                        \u003c\/div\u003e\r\n                    \u003c\/div\u003e\r\n\r\n                \u003c\/v-expansion-panel-content\u003e\r\n            \u003c\/v-expansion-panel\u003e\r\n        \u003c\/v-expansion-panels\u003e\r\n        \u003cv-pagination v-model=\u0022page\u0022 :length=pageLength @input=\u0022pageChange\u0022\u003e\u003c\/v-pagination\u003e\r\n    \u003c\/div\u003e\r\n\r\n\r\n\r\n    \u003cv-snackbar\r\n        v-model=\u0022resultSnackbar\u0022\r\n        :timeout=3000\r\n    \u003e\r\n        Found [[ filteredPosts.length ]] Posts.\r\n        \u003ctemplate v-slot:action=\u0022{ attrs }\u0022\u003e\r\n            \u003cv-btn\r\n                color=\u0022primary\u0022\r\n                icon\r\n                v-bind=\u0022attrs\u0022\r\n                @click=\u0022resultSnackbar = false\u0022\r\n            \u003e\r\n                \u003cv-icon\u003e\r\n                    mdi-close\r\n                \u003c\/v-icon\u003e\r\n            \u003c\/v-btn\u003e\r\n        \u003c\/template\u003e\r\n    \u003c\/v-snackbar\u003e\r\n\u003c\/div\u003e',
+    template: '\u003cdiv :key=\u0022count\u0022\u003e\r\n\r\n    \u003cdiv class=\u0022post-list\u0022\u003e\r\n        \u003cv-expansion-panels v-model=\u0022postPanel\u0022 focusable multiple popout dark\u003e\r\n            \u003cv-expansion-panel v-for=\u0022(post, index) in displayPosts\u0022 :key=\u0022index\u0022\u003e\r\n                \u003cv-expansion-panel-header class=\u0022text-h6 grey--text text--lighten-5 header\u0022\u003e\r\n                    \u003cdiv class=\u0022post-title\u0022\u003e\r\n                        [[ post.title ]]\r\n                    \u003c\/div\u003e\r\n                \u003c\/v-expansion-panel-header\u003e\r\n                \u003cv-expansion-panel-content\u003e\r\n                    \u003cdiv class=\u0022text-body-1 grey--text text--lighten-2 mt-1\u0022\u003e\r\n                        \u003cdiv class=\u0022post-subtitle\u0022\u003e\r\n                            [[ post.date ]]\r\n                            \u003crouter-link\r\n                                v-for=\u0022category in post.categories\u0022\r\n                                :key=\u0022category\u0022\r\n                                :to=\u0022{path: \u0027\/\u0027, query: {category: category}}\u0022\r\n                            \u003e\r\n                                [[ category ]]\r\n                            \u003c\/router-link\u003e\r\n                        \u003c\/div\u003e\r\n\r\n                        \u003cdiv\u003e\r\n                            \u003cv-icon small color=\u0022grey lighten-2\u0022\u003e\r\n                                mdi-tag-multiple\r\n                            \u003c\/v-icon\u003e\r\n                            \u003cdiv v-for=\u0022tag in post.tags\u0022 class=\u0022d-inline\u0022\u003e\r\n                               \r\n\r\n                                \u003cv-chip\r\n                                    color=\u0022accent\u0022\r\n                                    label\r\n                                    text-color=\u0022grey lighten-4\u0022\r\n                                    x-small\r\n                                    class=\u0022mr-1\u0022\r\n                                    :key=\u0022tag\u0022\r\n                                    :to=\u0022{path: \u0027\/\u0027, query: {tag: tag}}\u0022\r\n                                    v-if=\u0022searchConditions.selectedTags.includes(tag)\u0022\r\n                                    :class=\u0022[\u0027v-chip--active\u0027]\u0022\r\n                                \u003e\r\n                                    [[ tag ]]\r\n                                \u003c\/v-chip\u003e\r\n                                \u003cv-chip\r\n                                    color=\u0022accent\u0022\r\n                                    label\r\n                                    text-color=\u0022grey lighten-4\u0022\r\n                                    x-small\r\n                                    class=\u0022mr-1\u0022\r\n                                    :key=\u0022tag\u0022\r\n                                    :to=\u0022{path: \u0027\/\u0027, query: {tag: tag}}\u0022\r\n                                    v-else\r\n\r\n                                \u003e\r\n                                    [[ tag ]]\r\n                                \u003c\/v-chip\u003e\r\n                            \u003c\/div\u003e\r\n                        \u003c\/div\u003e\r\n                    \u003c\/div\u003e\r\n                    \u003cv-divider\u003e\u003c\/v-divider\u003e\r\n                \r\n                    \u003cdiv class=\u0022text-body-2 grey--text text--lighten-2 mt-4\u0022\u003e\r\n                        \u003cdiv class=\u0022post-content\u0022 v-html=\u0022post.summary\u0022\u003e\r\n                        \u003c\/div\u003e\r\n                        \u003cdiv\u003e\r\n                            \u003cv-btn :to=\u0022{path: \u0027post\u0027, query: {url: post.url}}\u0022 color=\u0022primary\u0022 small\u003eRead More\u003c\/v-btn\u003e\r\n                        \u003c\/div\u003e\r\n                    \u003c\/div\u003e\r\n\r\n                \u003c\/v-expansion-panel-content\u003e\r\n            \u003c\/v-expansion-panel\u003e\r\n        \u003c\/v-expansion-panels\u003e\r\n        \u003cv-pagination v-if=\u0022displayPosts.length\u0022 v-model=\u0022page\u0022 :length=pageLength @input=\u0022pageChange\u0022 class=\u0022mt-4\u0022\u003e\u003c\/v-pagination\u003e\r\n    \u003c\/div\u003e\r\n\r\n\r\n\r\n    \u003cv-snackbar\r\n        v-model=\u0022resultSnackbar\u0022\r\n        :timeout=3000\r\n    \u003e\r\n        Found [[ filteredPosts.length ]] Posts.\r\n        \u003ctemplate v-slot:action=\u0022{ attrs }\u0022\u003e\r\n            \u003cv-btn\r\n                color=\u0022primary\u0022\r\n                icon\r\n                v-bind=\u0022attrs\u0022\r\n                @click=\u0022resultSnackbar = false\u0022\r\n            \u003e\r\n                \u003cv-icon\u003e\r\n                    mdi-close\r\n                \u003c\/v-icon\u003e\r\n            \u003c\/v-btn\u003e\r\n        \u003c\/template\u003e\r\n    \u003c\/v-snackbar\u003e\r\n\u003c\/div\u003e',
     delimiters: ['[[', ']]'],
     data () {
       return {
@@ -1528,7 +1617,12 @@ const titles = [
         filteredPosts: posts,
         displayPosts: [],
         count: 0,
-        resultSnackbar: false
+        resultSnackbar: false,
+        searchConditions: {
+          selectedCategories: [],
+          selectedTags: [],
+          keyword: ''
+        }
       }
     },
 
@@ -1583,18 +1677,22 @@ const titles = [
 
       pageInit () {
         this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
-        this.pageChange(1)
+        setTimeout(this.pageChange, 200, 1)
       },
 
       pageChange (pageNumber) {
         this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber))
         this.postPanel = [...Array(this.pageSize).keys()].map((k, i) => i)
-        setTimeout(this.$vuetify.goTo, 5, 0)
+        if (window.pageYOffset >= 60) {
+          window.scroll({top: 60, behavior: 'instant'})
+        }
+        setTimeout(window.scroll, 5, {top: 0, behavior: 'smooth'})
         this.count ++
       },
 
       searchPosts () {
         var searchConditions = this.getSearchConditions()
+        this.searchConditions = searchConditions
         var keyword = searchConditions.keyword
         var selectedTags = searchConditions.selectedTags
         var selectedCategories = searchConditions.selectedCategories
@@ -1630,7 +1728,8 @@ const titles = [
 
   const routes = [
     { path: '/', component: List },
-    { path: '/post', component: Post }
+    { path: '/post', component: Post },
+    { path: '/about', component: About }
   ]
 
   const router = new VueRouter({
@@ -1638,7 +1737,17 @@ const titles = [
   })
 
 
+  
+  router.beforeEach((to, from, next) => {
+    if (window.pageYOffset >= 60) {
+      window.scroll({top: 60, behavior: 'instant'})
+    }
+    setTimeout(window.scroll, 5, {top: 0, behavior: 'smooth'})
+    next()
+  })
 
+
+  
 
   var vm = new Vue({
     router,
@@ -1667,7 +1776,11 @@ const titles = [
         return this.$route.query
       },
       notInSearch () {
-        return Object.values(this.searchConditions).every(v => v.length === 0)
+        const queryKeys = Object.keys(this.$route.query)
+        if (queryKeys.length === 0) {
+          return true
+        }
+        return !queryKeys.every(v => ['keyword', 'category', 'tag'].includes(v))
       }
     },
 
