@@ -144,9 +144,9 @@ const titles = [
     },
 
     updated () {
+      setTimeout(this.resetDisqus, 150, this.$route.query.url)
       this.replaceImgSrc()
       this.addCodeBlockTitle()
-      this.resetDisqus(this.$route.query.url)
     },
 
     methods: {
@@ -224,11 +224,11 @@ const titles = [
             reload: true,
             config: function () {  
               this.page.url = url
-              }
             }
-          )
+          })
         }
       },
+
 
     }
   }
@@ -384,21 +384,18 @@ const titles = [
     delimiters: ['[[', ']]'],
     el: '#app',
     vuetify: new Vuetify(),
-    props: {
-    },
     data: {
       titles: titles,
       tags: tags,
       categories: categories,
       posts: posts,
-
-      searchModal: null,
-
       searchConditions: {
         selectedCategories: [],
         selectedTags: [],
         keyword: ''
-      }
+      },
+      searchModal: false,
+      commentBlock: false
     },
 
     computed: {
@@ -427,12 +424,17 @@ const titles = [
       this.loader = this.$loading.show(
         {loader: 'dots', color: '#fff', backgroundColor: '#272727', opacity: 1}
           )
+      this.setSearchConditionsToData()
+      this.addingDISQUS()
     },
 
     mounted () {
-      this.setSearchConditionsToData()
-      this.addingDISQUS()
       this.loader.hide()
+      this.showComment()
+    },
+
+    updated () {
+      this.showComment()
     },
 
     methods: {
@@ -511,6 +513,14 @@ const titles = [
         d.body.appendChild(s)
         })()
       },
+
+      showComment () {
+        if (this.$route.path === '/post') {
+          setTimeout(() => {this.commentBlock = true}, 500)
+        } else {
+          this.commentBlock = false
+        }
+      }
     }
   })
 
