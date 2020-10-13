@@ -6,6 +6,7 @@
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 {{ partial "vue_templates/list.html" . }}
 {{ partial "vue_templates/post.html" . }}
+{{ partial "vue_templates/works.html" . }}
 {{ partial "vue_templates/about.html" . }}
 
 
@@ -101,8 +102,23 @@ const titles = [
     },
     created () {
       axios.get('{{ .Site.BaseURL }}about/').then(response => {
-          setTimeout(() => {this.content = response.data}, 250)
+          setTimeout(() => {this.content = response.data}, 300)
       })
+    },
+  }
+
+  const Works = {
+    template: '#works',
+    delimiters: ['[[', ']]'],
+
+    data () {
+      return {
+        content: null
+      }
+    },
+
+    created () {
+      setTimeout(() => {this.content = true}, 300)
     },
   }
 
@@ -198,7 +214,7 @@ const titles = [
           this.post = response.data.result
         })
         axios.get(url).then(response => {
-          setTimeout(() => {this.content = response.data}, 250)
+          setTimeout(() => {this.content = response.data}, 300)
         })
       },
 
@@ -342,6 +358,7 @@ const titles = [
   const routes = [
     { path: '/', component: List },
     { path: '/post', component: Post },
+    { path: '/works', component: Works },
     { path: '/about', component: About }
   ]
 

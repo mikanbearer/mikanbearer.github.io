@@ -108,6 +108,7 @@
         <v-tabs align-with-title>
           <v-tab v-if="$route.path == '/'"  to="/" :class="['v-tab--active']">Posts</v-tab>
           <v-tab v-else to="/">Posts</v-tab>
+          <v-tab to="/works">Works</v-tab>
           <v-tab to="/about">About</v-tab>
         </v-tabs>
       </template>
@@ -222,6 +223,103 @@
 <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script type="text/x-template" id="list">
+
+    <div :key="count">
+        <div class="post-list">
+            <v-expansion-panels v-model="postPanel" focusable multiple popout dark>
+                <v-expansion-panel v-for="(post, index) in displayPosts" :key="index">
+                    <v-expansion-panel-header class="text-h6 grey--text text--lighten-5 header">
+                        <div class="post-title">
+                            [[ post.title ]]
+                        </div>
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                        <div class="text-body-1 grey--text text--lighten-2 mt-1">
+                            <div class="post-subtitle">
+                                [[ post.date ]]
+                                <router-link
+                                    v-for="category in post.categories"
+                                    :key="category"
+                                    :to="{path: '/', query: {category: category}}"
+                                >
+                                    [[ category ]]
+                                </router-link>
+                            </div>
+
+                            <div>
+                                <v-icon small color="grey lighten-2">
+                                    mdi-tag-multiple
+                                </v-icon>
+                                <div v-for="tag in post.tags" class="d-inline">
+                                
+
+                                    <v-chip
+                                        color="accent"
+                                        label
+                                        text-color="grey lighten-4"
+                                        x-small
+                                        class="mr-1"
+                                        :key="tag"
+                                        :to="{path: '/', query: {tag: tag}}"
+                                        v-if="searchConditions.selectedTags.includes(tag)"
+                                        :class="['v-chip--active']"
+                                    >
+                                        [[ tag ]]
+                                    </v-chip>
+                                    <v-chip
+                                        color="accent"
+                                        label
+                                        text-color="grey lighten-4"
+                                        x-small
+                                        class="mr-1"
+                                        :key="tag"
+                                        :to="{path: '/', query: {tag: tag}}"
+                                        v-else
+
+                                    >
+                                        [[ tag ]]
+                                    </v-chip>
+                                </div>
+                            </div>
+                        </div>
+                        <v-divider></v-divider>
+                    
+                        <div class="text-body-2 grey--text text--lighten-2 mt-4">
+                            <div class="post-content" v-html="post.summary">
+                            </div>
+                            <div>
+                                <v-btn :to="{path: 'post', query: {url: post.url}}" color="primary" small>Read More</v-btn>
+                            </div>
+                        </div>
+
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+            </v-expansion-panels>
+            <v-pagination v-if="displayPosts.length" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
+        </div>
+
+        <v-snackbar
+            v-model="resultSnackbar"
+            :timeout=3000
+        >
+            Found [[ filteredPosts.length ]] Posts.
+            <template v-slot:action="{ attrs }">
+                <v-btn
+                    color="primary"
+                    icon
+                    v-bind="attrs"
+                    @click="resultSnackbar = false"
+                >
+                    <v-icon>
+                        mdi-close
+                    </v-icon>
+                </v-btn>
+            </template>
+        </v-snackbar>
+    </div>
+
+</script>
 <script type="text/x-template" id="post">
     <div v-if="content">
         <v-card class="content" id="post-content">
@@ -269,6 +367,41 @@
 
  
     </div>
+</script>
+<script type="text/x-template" id="works">
+    <div v-if="content">
+        <v-card class="content" id="post-content">
+            <v-card-title class="text-h6 grey--text text--lighten-4 justify-space-between" style="background-color: #556265;">
+                <div class="ml-2 post-title">
+                    Works
+                </div>
+            </v-card-title>
+
+            <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
+                <div class="mr-2 ml-2 post-content">
+                    Comming soon...
+                </div>
+            </v-card-text>
+        </v-card>
+    </div>
+</script>
+<script type="text/x-template" id="about">
+    <div v-if="content">
+        <v-card class="content" id="post-content">
+            <v-card-title class="text-h6 grey--text text--lighten-4 justify-space-between" style="background-color: #556265;">
+                <div class="ml-2 post-title">
+                    About
+                </div>
+            </v-card-title>
+
+            <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
+                <div class="mr-2 ml-2 post-content" v-html="content">
+
+                </div>
+            </v-card-text>
+        </v-card>
+    </div>
+
 </script>
 
 
@@ -1543,7 +1676,7 @@ const titles = [
   Vue.component('loading', VueLoading)
 
   const About = {
-    template: '\u003cdiv v-if=\u0022content\u0022\u003e\r\n    \u003cv-card class=\u0022content\u0022 id=\u0022post-content\u0022\u003e\r\n        \u003cv-card-title class=\u0022text-h6 grey--text text--lighten-4 justify-space-between\u0022 style=\u0022background-color: #556265;\u0022\u003e\r\n            \u003cdiv class=\u0022ml-2 post-title\u0022\u003e\r\n                About\r\n            \u003c\/div\u003e\r\n        \u003c\/v-card-title\u003e\r\n\r\n        \u003cv-card-text class=\u0022text-body-2 grey--text text--lighten-2 mt-2\u0022\u003e\r\n            \u003cdiv class=\u0022mr-2 ml-2 post-content\u0022 v-html=\u0022content\u0022\u003e\r\n\r\n            \u003c\/div\u003e\r\n        \u003c\/v-card-text\u003e\r\n    \u003c\/v-card\u003e\r\n\u003c\/div\u003e',
+    template: '#about',
     delimiters: ['[[', ']]'],
 
     data () {
@@ -1553,8 +1686,23 @@ const titles = [
     },
     created () {
       axios.get('https:\/\/mikanbearer.github.io\/about/').then(response => {
-          setTimeout(() => {this.content = response.data}, 250)
+          setTimeout(() => {this.content = response.data}, 300)
       })
+    },
+  }
+
+  const Works = {
+    template: '#works',
+    delimiters: ['[[', ']]'],
+
+    data () {
+      return {
+        content: null
+      }
+    },
+
+    created () {
+      setTimeout(() => {this.content = true}, 300)
     },
   }
 
@@ -1650,18 +1798,20 @@ const titles = [
           this.post = response.data.result
         })
         axios.get(url).then(response => {
-          setTimeout(() => {this.content = response.data}, 250)
+          setTimeout(() => {this.content = response.data}, 300)
         })
       },
 
       resetDisqus (url) {
-        window.DISQUS.reset({
-          reload: true,
-          config: function () {  
-            this.page.url = url
+        if (window.DISQUS) {
+          window.DISQUS.reset({
+            reload: true,
+            config: function () {  
+              this.page.url = url
+              }
             }
-          }
-        )
+          )
+        }
       },
 
     }
@@ -1669,7 +1819,7 @@ const titles = [
   
 
   const List = {
-    template: '\u003cdiv :key=\u0022count\u0022\u003e\r\n\r\n    \u003cdiv class=\u0022post-list\u0022\u003e\r\n        \u003cv-expansion-panels v-model=\u0022postPanel\u0022 focusable multiple popout dark\u003e\r\n            \u003cv-expansion-panel v-for=\u0022(post, index) in displayPosts\u0022 :key=\u0022index\u0022\u003e\r\n                \u003cv-expansion-panel-header class=\u0022text-h6 grey--text text--lighten-5 header\u0022\u003e\r\n                    \u003cdiv class=\u0022post-title\u0022\u003e\r\n                        [[ post.title ]]\r\n                    \u003c\/div\u003e\r\n                \u003c\/v-expansion-panel-header\u003e\r\n                \u003cv-expansion-panel-content\u003e\r\n                    \u003cdiv class=\u0022text-body-1 grey--text text--lighten-2 mt-1\u0022\u003e\r\n                        \u003cdiv class=\u0022post-subtitle\u0022\u003e\r\n                            [[ post.date ]]\r\n                            \u003crouter-link\r\n                                v-for=\u0022category in post.categories\u0022\r\n                                :key=\u0022category\u0022\r\n                                :to=\u0022{path: \u0027\/\u0027, query: {category: category}}\u0022\r\n                            \u003e\r\n                                [[ category ]]\r\n                            \u003c\/router-link\u003e\r\n                        \u003c\/div\u003e\r\n\r\n                        \u003cdiv\u003e\r\n                            \u003cv-icon small color=\u0022grey lighten-2\u0022\u003e\r\n                                mdi-tag-multiple\r\n                            \u003c\/v-icon\u003e\r\n                            \u003cdiv v-for=\u0022tag in post.tags\u0022 class=\u0022d-inline\u0022\u003e\r\n                               \r\n\r\n                                \u003cv-chip\r\n                                    color=\u0022accent\u0022\r\n                                    label\r\n                                    text-color=\u0022grey lighten-4\u0022\r\n                                    x-small\r\n                                    class=\u0022mr-1\u0022\r\n                                    :key=\u0022tag\u0022\r\n                                    :to=\u0022{path: \u0027\/\u0027, query: {tag: tag}}\u0022\r\n                                    v-if=\u0022searchConditions.selectedTags.includes(tag)\u0022\r\n                                    :class=\u0022[\u0027v-chip--active\u0027]\u0022\r\n                                \u003e\r\n                                    [[ tag ]]\r\n                                \u003c\/v-chip\u003e\r\n                                \u003cv-chip\r\n                                    color=\u0022accent\u0022\r\n                                    label\r\n                                    text-color=\u0022grey lighten-4\u0022\r\n                                    x-small\r\n                                    class=\u0022mr-1\u0022\r\n                                    :key=\u0022tag\u0022\r\n                                    :to=\u0022{path: \u0027\/\u0027, query: {tag: tag}}\u0022\r\n                                    v-else\r\n\r\n                                \u003e\r\n                                    [[ tag ]]\r\n                                \u003c\/v-chip\u003e\r\n                            \u003c\/div\u003e\r\n                        \u003c\/div\u003e\r\n                    \u003c\/div\u003e\r\n                    \u003cv-divider\u003e\u003c\/v-divider\u003e\r\n                \r\n                    \u003cdiv class=\u0022text-body-2 grey--text text--lighten-2 mt-4\u0022\u003e\r\n                        \u003cdiv class=\u0022post-content\u0022 v-html=\u0022post.summary\u0022\u003e\r\n                        \u003c\/div\u003e\r\n                        \u003cdiv\u003e\r\n                            \u003cv-btn :to=\u0022{path: \u0027post\u0027, query: {url: post.url}}\u0022 color=\u0022primary\u0022 small\u003eRead More\u003c\/v-btn\u003e\r\n                        \u003c\/div\u003e\r\n                    \u003c\/div\u003e\r\n\r\n                \u003c\/v-expansion-panel-content\u003e\r\n            \u003c\/v-expansion-panel\u003e\r\n        \u003c\/v-expansion-panels\u003e\r\n        \u003cv-pagination v-if=\u0022displayPosts.length\u0022 v-model=\u0022page\u0022 :length=pageLength @input=\u0022pageChange\u0022 class=\u0022mt-4\u0022\u003e\u003c\/v-pagination\u003e\r\n    \u003c\/div\u003e\r\n\r\n\r\n\r\n    \u003cv-snackbar\r\n        v-model=\u0022resultSnackbar\u0022\r\n        :timeout=3000\r\n    \u003e\r\n        Found [[ filteredPosts.length ]] Posts.\r\n        \u003ctemplate v-slot:action=\u0022{ attrs }\u0022\u003e\r\n            \u003cv-btn\r\n                color=\u0022primary\u0022\r\n                icon\r\n                v-bind=\u0022attrs\u0022\r\n                @click=\u0022resultSnackbar = false\u0022\r\n            \u003e\r\n                \u003cv-icon\u003e\r\n                    mdi-close\r\n                \u003c\/v-icon\u003e\r\n            \u003c\/v-btn\u003e\r\n        \u003c\/template\u003e\r\n    \u003c\/v-snackbar\u003e\r\n\u003c\/div\u003e',
+    template: '#list',
     delimiters: ['[[', ']]'],
     data () {
       return {
@@ -1792,6 +1942,7 @@ const titles = [
   const routes = [
     { path: '/', component: List },
     { path: '/post', component: Post },
+    { path: '/works', component: Works },
     { path: '/about', component: About }
   ]
 
