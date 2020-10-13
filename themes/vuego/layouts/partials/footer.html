@@ -4,7 +4,9 @@
 <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+{{ partial "vue_templates/list.html" . }}
 {{ partial "vue_templates/post.html" . }}
+{{ partial "vue_templates/about.html" . }}
 
 
 
@@ -89,7 +91,7 @@ const titles = [
   Vue.component('loading', VueLoading)
 
   const About = {
-    template: '{{ partial "vue_templates/about.html" . }}',
+    template: '#about',
     delimiters: ['[[', ']]'],
 
     data () {
@@ -201,13 +203,15 @@ const titles = [
       },
 
       resetDisqus (url) {
-        window.DISQUS.reset({
-          reload: true,
-          config: function () {  
-            this.page.url = url
+        if (window.DISQUS) {
+          window.DISQUS.reset({
+            reload: true,
+            config: function () {  
+              this.page.url = url
+              }
             }
-          }
-        )
+          )
+        }
       },
 
     }
@@ -215,7 +219,7 @@ const titles = [
   
 
   const List = {
-    template: '{{ partial "vue_templates/list.html" . }}',
+    template: '#list',
     delimiters: ['[[', ']]'],
     data () {
       return {
