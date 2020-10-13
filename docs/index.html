@@ -122,7 +122,7 @@
             <v-scroll-x-transition>
               <router-view></router-view>
             </v-scroll-x-transition>
-            <v-card class="mt-5 content" v-show="this.$route.path === '/post' && commentBlock">
+            <v-card class="mt-5 content" v-show="commentBlock">
               <v-card-text>
                 <div id="disqus_thread"></div>
                 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
@@ -2102,7 +2102,7 @@ const titles = [
 
       showComment () {
         if (this.$route.path === '/post') {
-          setTimeout(() => {this.commentBlock = true}, 1000)
+          setTimeout(() => {this.commentBlock = true}, 3000)
         } else {
           this.commentBlock = false
         }
