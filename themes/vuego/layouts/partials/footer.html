@@ -2,10 +2,9 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+{{ partial "vue_templates/post.html" . }}
 
 
 
@@ -107,7 +106,7 @@ const titles = [
 
 
   const Post = {
-    template: '{{ partial "vue_templates/post.html" . }}',
+    template: '#post',
     delimiters: ['[[', ']]'],
 
     data () {
@@ -129,6 +128,7 @@ const titles = [
     updated () {
       this.replaceImgSrc()
       this.addCodeBlockTitle()
+      this.resetDisqus(this.$route.query.url)
     },
 
     methods: {
@@ -198,7 +198,17 @@ const titles = [
         axios.get(url).then(response => {
           setTimeout(() => {this.content = response.data}, 250)
         })
-      }
+      },
+
+      resetDisqus (url) {
+        window.DISQUS.reset({
+          reload: true,
+          config: function () {  
+            this.page.url = url
+            }
+          }
+        )
+      },
 
     }
   }
@@ -400,6 +410,7 @@ const titles = [
 
     mounted () {
       this.setSearchConditionsToData()
+      this.addingDISQUS()
       this.loader.hide()
     },
 
@@ -462,6 +473,22 @@ const titles = [
         if (index >= 0) {
           this.searchConditions[target].splice(index, 1)
         }
+      },
+
+      addingDISQUS () {
+        (() => {
+          if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.'
+            return
+        }
+        var d = document, s = d.createElement('script')
+        s.async = true
+
+        var disqus_shortname = '{{ .Site.DisqusShortname }}'
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js'
+        s.setAttribute('data-timestamp', +new Date())
+        d.body.appendChild(s)
+        })()
       },
     }
   })
