@@ -367,6 +367,8 @@
 
  
     </div>
+    <div v-else style="height: 100vh;">
+    </div>
 </script>
 <script type="text/x-template" id="works">
     <div v-if="content">
@@ -2100,7 +2102,7 @@ const titles = [
 
       showComment () {
         if (this.$route.path === '/post') {
-          setTimeout(() => {this.commentBlock = true}, 500)
+          setTimeout(() => {this.commentBlock = true}, 1000)
         } else {
           this.commentBlock = false
         }
