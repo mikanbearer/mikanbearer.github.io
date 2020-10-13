@@ -143,8 +143,11 @@ const titles = [
       this.getPost(this.$route.query.url)
     },
 
+    mounted () {
+      setTimeout(this.resetDisqus, 1500, this.$route.query.url)
+    },
+
     updated () {
-      setTimeout(this.resetDisqus, 150, this.$route.query.url)
       this.replaceImgSrc()
       this.addCodeBlockTitle()
     },
