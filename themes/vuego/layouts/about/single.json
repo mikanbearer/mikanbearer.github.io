@@ -1,0 +1,61 @@
+{{ define "result" }}
+[
+  {
+    {{ $taxonomy := .Site.Taxonomies.categories }}
+    "categories_data": {
+      "legendData": [
+        {{ range $key, $value := $taxonomy.ByCount }}
+          {{ if $key }},{{ end }}"{{ $value.Name }}"
+        {{ end }}
+      ],
+  
+      "seriesData": [
+        {{ range $key, $value := $taxonomy.ByCount }}
+          {{ if $key }},{{ end }}{
+            "name": "{{ $value.Name }}",
+            "value": {{ $value.Count }}
+          }
+        {{ end }}
+      ],
+
+      "selected": {
+        {{ range $key, $value := $taxonomy.ByCount }}
+          {{ if $key }},{{ end }}"{{ $value.Name }}": 
+          {{ if ge $key 15 }}false
+          {{ else }}true
+          {{ end }}
+        {{ end }}
+      }
+    }
+  },
+
+  {
+    {{ $taxonomy := .Site.Taxonomies.tags }}
+    "var tags_data": {
+      "legendData": [
+        {{ range $key, $value := $taxonomy.ByCount }}
+          {{ if $key }},{{ end }}"{{ $value.Name }}"
+        {{ end }}
+      ],
+  
+      "seriesData": [
+        {{ range $key, $value := $taxonomy.ByCount }}
+          {{ if $key }},{{ end }}{
+            "name": "{{ $value.Name }}",
+            "value": {{ $value.Count }}
+          }
+        {{ end }}
+      ],
+
+      "selected": {
+        {{ range $key, $value := $taxonomy.ByCount }}
+          {{ if $key }},{{ end }}"{{ $value.Name }}": 
+          {{ if ge $key 15 }}false
+          {{ else }}true
+          {{ end }}
+        {{ end }}
+      }
+    }
+  }
+]
+{{ end }}

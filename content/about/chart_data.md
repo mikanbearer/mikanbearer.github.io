@@ -1,5 +1,6 @@
 ---
 title: "About"
+layout: "single"
 ---
 
 從網管入門的無頭蒼蠅，偶爾記錄自己的學習過程
