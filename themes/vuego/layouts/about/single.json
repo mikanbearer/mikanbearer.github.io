@@ -1,5 +1,4 @@
 {{ define "result" }}
-[
   {
     {{ $taxonomy := .Site.Taxonomies.categories }}
     "categories_data": {
@@ -26,12 +25,10 @@
           {{ end }}
         {{ end }}
       }
-    }
-  },
-
-  {
+    },
+  
     {{ $taxonomy := .Site.Taxonomies.tags }}
-    "var tags_data": {
+    "tags_data": {
       "legendData": [
         {{ range $key, $value := $taxonomy.ByCount }}
           {{ if $key }},{{ end }}"{{ $value.Name }}"
@@ -57,5 +54,5 @@
       }
     }
   }
-]
+
 {{ end }}

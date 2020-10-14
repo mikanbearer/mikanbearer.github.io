@@ -4,6 +4,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.common.js"></script>
 {{ partial "vue_templates/posts.html" . }}
 {{ partial "vue_templates/post.html" . }}
 {{ partial "vue_templates/works.html" . }}
@@ -100,11 +101,76 @@ const title_list = [
         content: null
       }
     },
+
     created () {
       axios.get('{{ .Site.BaseURL }}about/').then(response => {
           setTimeout(() => {this.content = response.data}, 300)
       })
+
+      axios.get('{{ .Site.BaseURL }}about/chart_data/index.json').then(response => {
+          setTimeout(() => {
+            var result = response.data.result
+            this.setCharts('Top Categories', 'category', result.categories_data, 'chart_categories')
+            setTimeout(this.setCharts, 500, 'Top Tags', 'tag', result.tags_data, 'chart_tags')
+            }, 500)
+      })
     },
+    methods: {
+      setCharts (title, series_name, data, element_id) {
+        var option = {
+          title: {
+            left: 'auto',
+            text: title,
+            textStyle: {
+              color: '#e0e0e0',
+              fontSize: 16,
+              fontFamily: 'Noto Sans TC'
+            }
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+          },
+          legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 0,
+            top: 10,
+            bottom: 10,
+            data: data.legendData,
+            selected: data.selected,
+            inactiveColor: '#686868',
+            pageIconColor: '#aaa',
+            pageIconInactiveColor: '#2f4554',
+            textStyle: {
+              color: '#c2c4c6'
+            },
+            pageTextStyle: {
+              color: '#c2c4c6'
+            }
+          },
+          series: [
+            {
+              name: series_name,
+              type: 'pie',
+              radius: '55%',
+              center: ['40%', '50%'],
+              data: data.seriesData,
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        }
+        var chart = echarts.init(document.getElementById(element_id))
+        chart.setOption(option)
+
+      }
+    }
   }
 
   const Works = {
