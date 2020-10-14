@@ -5,8 +5,7 @@
             <v-expansion-panels v-model="postPanel" focusable multiple popout dark>
                 <v-expansion-panel v-for="(post, index) in displayPosts" :key="index">
                     <v-expansion-panel-header class="text-h6 grey--text text--lighten-5 header">
-                        <div class="post-title">
-                            [[ post.title ]]
+                        <div class="post-title" v-html="post.title">
                         </div>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>

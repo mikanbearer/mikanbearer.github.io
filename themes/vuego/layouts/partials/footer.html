@@ -412,8 +412,15 @@ const title_list = [
 
         for (const post of post_list) {
           if (arrayChecker(post.tags, selectedTags) && arrayChecker(post.categories, selectedCategories) && stringChecker(post.title, keyword)) {
-            filteredPosts.push(post)
+            filteredPosts.push(JSON.parse(JSON.stringify(post)))
           }
+        }
+
+        if (keyword) {
+          filteredPosts.forEach(post => {
+            var hl_Keyword = '<span style="background-color:#00a381">' + keyword + '</span>'
+            post.title = post.title.replace(keyword, hl_Keyword)
+          })
         }
 
         this.filteredPosts = filteredPosts
