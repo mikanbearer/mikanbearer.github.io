@@ -4,7 +4,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-{{ partial "vue_templates/list.html" . }}
+{{ partial "vue_templates/posts.html" . }}
 {{ partial "vue_templates/post.html" . }}
 {{ partial "vue_templates/works.html" . }}
 {{ partial "vue_templates/about.html" . }}
@@ -12,7 +12,7 @@
 
 
 <script>
-  const posts = [
+  const post_list = [
 {{ range $index, $element := where site.RegularPages "Type" "in" site.Params.mainSections }}
   {
     id: {{ $index }},
@@ -53,10 +53,10 @@
 {{ end }}
 ]
 
-posts.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
-posts.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
+post_list.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
+post_list.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
 
-const titles = [
+const title_list = [
 {{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
   {{if .Title }}
       '{{ .Title }}',
@@ -67,7 +67,7 @@ const titles = [
 
 
 {{ $taxonomy := .Site.Taxonomies.tags }}
-  const tags = [
+  const tag_list = [
   {{ range $key, $value := $taxonomy }}
   '{{ $key }}',
   {{ end }}
@@ -78,7 +78,7 @@ const titles = [
 
 
 {{ $taxonomy := .Site.Taxonomies.categories }}
-  const categories = [
+  const category_list = [
   {{ range $key, $value := $taxonomy }}
   '{{ $key }}',
   {{ end }}
@@ -237,8 +237,8 @@ const titles = [
   }
   
 
-  const List = {
-    template: '#list',
+  const Posts = {
+    template: '#posts',
     delimiters: ['[[', ']]'],
     data () {
       return {
@@ -246,7 +246,7 @@ const titles = [
         page: 1,
         pageSize: 10,
         pageLength: null,
-        filteredPosts: posts,
+        filteredPosts: post_list,
         displayPosts: [],
         count: 0,
         resultSnackbar: false,
@@ -344,7 +344,7 @@ const titles = [
           return true
         }
 
-        for (const post of posts) {
+        for (const post of post_list) {
           if (arrayChecker(post.tags, selectedTags) && arrayChecker(post.categories, selectedCategories) && stringChecker(post.title, keyword)) {
             filteredPosts.push(post)
           }
@@ -359,7 +359,7 @@ const titles = [
 
 
   const routes = [
-    { path: '/', component: List },
+    { path: '/', component: Posts },
     { path: '/post', component: Post },
     { path: '/works', component: Works },
     { path: '/about', component: About }
@@ -388,10 +388,9 @@ const titles = [
     el: '#app',
     vuetify: new Vuetify(),
     data: {
-      titles: titles,
-      tags: tags,
-      categories: categories,
-      posts: posts,
+      titles: title_list,
+      tags: tag_list,
+      categories: category_list,
       searchConditions: {
         selectedCategories: [],
         selectedTags: [],
@@ -469,7 +468,7 @@ const titles = [
         this.searchConditions = this.getSearchConditions()
       },
 
-      toFilteredList () {
+      toFilteredPosts () {
         var query = {}
 
         if (this.searchConditions.keyword) {
