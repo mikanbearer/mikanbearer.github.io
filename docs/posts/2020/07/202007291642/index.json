@@ -3,7 +3,7 @@
 {
     "title": "使用docker-compose部屬Nginx + uWSGI + Django",
     "date": "2020-07-29 16:42",
-    "draft": "true",
+    "draft": "false",
     "categories": 
     [
         

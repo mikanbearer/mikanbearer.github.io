@@ -116,13 +116,13 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
+      <v-container class="mt-4">
         <v-row>
           <v-col>
             <v-scroll-x-transition>
               <router-view></router-view>
             </v-scroll-x-transition>
-            <v-card class="mt-5 content" v-show="commentBlock">
+            <v-card class="mt-4 content" v-show="commentBlock">
               <v-card-text>
                 <div id="disqus_thread"></div>
                 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
@@ -201,7 +201,7 @@
               >
                 Clear
               </v-btn>
-              <v-btn color="primary" @click="toFilteredList" small>
+              <v-btn color="primary" @click="toFilteredPosts" small>
                 Search
               </v-btn>
             </v-card-actions>
@@ -223,15 +223,15 @@
 <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-<script type="text/x-template" id="list">
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.common.js"></script>
+<script type="text/x-template" id="posts">
 
     <div :key="count">
         <div class="post-list">
             <v-expansion-panels v-model="postPanel" focusable multiple popout dark>
                 <v-expansion-panel v-for="(post, index) in displayPosts" :key="index">
                     <v-expansion-panel-header class="text-h6 grey--text text--lighten-5 header">
-                        <div class="post-title">
-                            [[ post.title ]]
+                        <div class="post-title" v-html="post.title">
                         </div>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
@@ -373,11 +373,7 @@
 <script type="text/x-template" id="works">
     <div v-if="content">
         <v-card class="content" id="post-content">
-            <v-card-title class="text-h6 grey--text text--lighten-4 justify-space-between" style="background-color: #556265;">
-                <div class="ml-2 post-title">
-                    Works
-                </div>
-            </v-card-title>
+
 
             <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
                 <div class="mr-2 ml-2 post-content">
@@ -389,18 +385,32 @@
 </script>
 <script type="text/x-template" id="about">
     <div v-if="content">
-        <v-card class="content" id="post-content">
-            <v-card-title class="text-h6 grey--text text--lighten-4 justify-space-between" style="background-color: #556265;">
-                <div class="ml-2 post-title">
-                    About
-                </div>
-            </v-card-title>
+        <v-card flat color="transparent">
+            <v-row justify="start" class="mt-n8">
+                <v-col md="8">
+                    <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
+                        <div class="mr-2 ml-2 post-content" v-html="content">
+                        </div>
+                    </v-card-text>
+                    <v-divider inset></v-divider>
+                </v-col>
+            </v-row>
 
-            <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
-                <div class="mr-2 ml-2 post-content" v-html="content">
+            <v-row justify="center">
+                <v-col md="8">
+                    <div id="chart_categories" style="width:100%; height:240px;"></div>
+                    <v-divider inset></v-divider>
+                </v-col>
 
-                </div>
-            </v-card-text>
+
+            </v-row>
+            <v-row justify="end">
+                <v-col md="8">
+                    <div id="chart_tags" style="width:100%; height:240px;"></div>
+                    <v-divider inset></v-divider>
+                </v-col>
+
+            </v-row>
         </v-card>
     </div>
 
@@ -409,7 +419,7 @@
 
 
 <script>
-  const posts = [
+  const post_list = [
 
   {
     id:  0 ,
@@ -1397,10 +1407,10 @@
 
 ]
 
-posts.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
-posts.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
+post_list.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
+post_list.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
 
-const titles = [
+const title_list = [
 
   
       '主題更新',
@@ -1571,7 +1581,7 @@ const titles = [
 
 
 
-  const tags = [
+  const tag_list = [
   
   'Angular',
   
@@ -1654,7 +1664,7 @@ const titles = [
 
 
 
-  const categories = [
+  const category_list = [
   
   '問題紀錄',
   
@@ -1686,11 +1696,76 @@ const titles = [
         content: null
       }
     },
+
     created () {
       axios.get('https:\/\/mikanbearer.github.io\/about/').then(response => {
           setTimeout(() => {this.content = response.data}, 300)
       })
+
+      axios.get('https:\/\/mikanbearer.github.io\/about/chart_data/index.json').then(response => {
+          setTimeout(() => {
+            var result = response.data.result
+            this.setCharts('Top Categories', 'category', result.categories_data, 'chart_categories')
+            setTimeout(this.setCharts, 500, 'Top Tags', 'tag', result.tags_data, 'chart_tags')
+            }, 500)
+      })
     },
+    methods: {
+      setCharts (title, series_name, data, element_id) {
+        var option = {
+          title: {
+            left: 'auto',
+            text: title,
+            textStyle: {
+              color: '#e0e0e0',
+              fontSize: 16,
+              fontFamily: 'Noto Sans TC'
+            }
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+          },
+          legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 0,
+            top: 10,
+            bottom: 10,
+            data: data.legendData,
+            selected: data.selected,
+            inactiveColor: '#686868',
+            pageIconColor: '#aaa',
+            pageIconInactiveColor: '#2f4554',
+            textStyle: {
+              color: '#c2c4c6'
+            },
+            pageTextStyle: {
+              color: '#c2c4c6'
+            }
+          },
+          series: [
+            {
+              name: series_name,
+              type: 'pie',
+              radius: '55%',
+              center: ['40%', '50%'],
+              data: data.seriesData,
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        }
+        var chart = echarts.init(document.getElementById(element_id))
+        chart.setOption(option)
+
+      }
+    }
   }
 
   const Works = {
@@ -1729,8 +1804,11 @@ const titles = [
       this.getPost(this.$route.query.url)
     },
 
+    mounted () {
+      setTimeout(this.resetDisqus, 1500, this.$route.query.url)
+    },
+
     updated () {
-      setTimeout(this.resetDisqus, 150, this.$route.query.url)
       this.replaceImgSrc()
       this.addCodeBlockTitle()
     },
@@ -1820,8 +1898,8 @@ const titles = [
   }
   
 
-  const List = {
-    template: '#list',
+  const Posts = {
+    template: '#posts',
     delimiters: ['[[', ']]'],
     data () {
       return {
@@ -1829,7 +1907,7 @@ const titles = [
         page: 1,
         pageSize: 10,
         pageLength: null,
-        filteredPosts: posts,
+        filteredPosts: post_list,
         displayPosts: [],
         count: 0,
         resultSnackbar: false,
@@ -1927,10 +2005,17 @@ const titles = [
           return true
         }
 
-        for (const post of posts) {
+        for (const post of post_list) {
           if (arrayChecker(post.tags, selectedTags) && arrayChecker(post.categories, selectedCategories) && stringChecker(post.title, keyword)) {
-            filteredPosts.push(post)
+            filteredPosts.push(JSON.parse(JSON.stringify(post)))
           }
+        }
+
+        if (keyword) {
+          filteredPosts.forEach(post => {
+            var hl_Keyword = '<span style="background-color:#00a381">' + keyword + '</span>'
+            post.title = post.title.replace(keyword, hl_Keyword)
+          })
         }
 
         this.filteredPosts = filteredPosts
@@ -1942,7 +2027,7 @@ const titles = [
 
 
   const routes = [
-    { path: '/', component: List },
+    { path: '/', component: Posts },
     { path: '/post', component: Post },
     { path: '/works', component: Works },
     { path: '/about', component: About }
@@ -1971,10 +2056,9 @@ const titles = [
     el: '#app',
     vuetify: new Vuetify(),
     data: {
-      titles: titles,
-      tags: tags,
-      categories: categories,
-      posts: posts,
+      titles: title_list,
+      tags: tag_list,
+      categories: category_list,
       searchConditions: {
         selectedCategories: [],
         selectedTags: [],
@@ -2052,7 +2136,7 @@ const titles = [
         this.searchConditions = this.getSearchConditions()
       },
 
-      toFilteredList () {
+      toFilteredPosts () {
         var query = {}
 
         if (this.searchConditions.keyword) {
