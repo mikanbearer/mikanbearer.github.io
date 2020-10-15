@@ -1934,6 +1934,7 @@ const title_list = [
         this.searchPosts()
       },
     },
+    
     methods: {
       getSearchConditions () {
         var query = this.getQuery
@@ -1989,42 +1990,46 @@ const title_list = [
         var keyword = searchConditions.keyword
         var selectedTags = searchConditions.selectedTags
         var selectedCategories = searchConditions.selectedCategories
-        var filteredPosts = []
+        const posts = JSON.parse(JSON.stringify(post_list))
 
-        const arrayChecker = (arr, target) => {
-          if (target) {
-            return target.every(v => arr.includes(v))
+        const checkArray = (target, item) => {
+          if (item) {
+            return item.every(v => target.includes(v))
           }
           return true
         }
 
-        const stringChecker = (str, target) => {
-          if (target) {
-            return str.indexOf(target) != -1
+        var checkArrayResult = []
+
+        for (const post of posts) {
+          if (checkArray(post.tags, selectedTags) && checkArray(post.categories, selectedCategories)) {
+            checkArrayResult.push(post)
           }
-          return true
         }
 
-        for (const post of post_list) {
-          if (arrayChecker(post.tags, selectedTags) && arrayChecker(post.categories, selectedCategories) && stringChecker(post.title, keyword)) {
-            filteredPosts.push(JSON.parse(JSON.stringify(post)))
-          }
-        }
+        var checkKeywordResult = []
 
         if (keyword) {
-          filteredPosts.forEach(post => {
-            var hl_Keyword = '<span style="background-color:#00a381">' + keyword + '</span>'
-            post.title = post.title.replace(keyword, hl_Keyword)
-          })
-        }
+          var lower_keyword = keyword.toLowerCase()
+          for (const post of checkArrayResult) {
+            var lower_title = post.title.toLowerCase()
+            var keywordIndex = lower_title.indexOf(lower_keyword)
 
-        this.filteredPosts = filteredPosts
+            if (keywordIndex !== -1) {
+              hl_keyword = '<span style="background-color:#00a381">' + post.title.substring(keywordIndex, keywordIndex + keyword.length) + '</span>'
+              post.title = lower_title.replace(lower_keyword, hl_keyword)
+              checkKeywordResult.push(post)
+            }
+          }
+          this.filteredPosts = checkKeywordResult
+        } else {
+          this.filteredPosts = checkArrayResult
+        }
         this.resultSnackbar = true
         this.pageInit()
       },
     }
   }
-
 
   const routes = [
     { path: '/', component: Posts },
