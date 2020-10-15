@@ -86,33 +86,6 @@
     </item>
     
     <item>
-      <title>Flask-WTF</title>
-      <link>https://mikanbearer.github.io/tags/Flask-WTF/</link>
-      <pubDate>Tue, 15 Sep 2020 10:49:11 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Flask-WTF/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Flask-Login</title>
-      <link>https://mikanbearer.github.io/tags/Flask-Login/</link>
-      <pubDate>Mon, 14 Sep 2020 12:57:20 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Flask-Login/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Flask-Migrate</title>
-      <link>https://mikanbearer.github.io/tags/Flask-Migrate/</link>
-      <pubDate>Fri, 11 Sep 2020 16:35:19 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Flask-Migrate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>EVE-NG</title>
       <link>https://mikanbearer.github.io/tags/EVE-NG/</link>
       <pubDate>Thu, 10 Sep 2020 16:08:09 +0800</pubDate>
@@ -199,15 +172,6 @@
       <pubDate>Thu, 03 Sep 2020 14:56:05 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/tags/Docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Flask-SQLAlchemy</title>
-      <link>https://mikanbearer.github.io/tags/Flask-SQLAlchemy/</link>
-      <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/Flask-SQLAlchemy/</guid>
       <description></description>
     </item>
     

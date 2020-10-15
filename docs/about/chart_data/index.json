@@ -130,14 +130,6 @@
         
           ,"Excel"
         
-          ,"Flask-Login"
-        
-          ,"Flask-Migrate"
-        
-          ,"Flask-SQLAlchemy"
-        
-          ,"Flask-WTF"
-        
           ,"Jieba"
         
           ,"Matplotlib"
@@ -271,26 +263,6 @@
         
           ,{
             "name": "Excel",
-            "value": 1
-          }
-        
-          ,{
-            "name": "Flask-Login",
-            "value": 1
-          }
-        
-          ,{
-            "name": "Flask-Migrate",
-            "value": 1
-          }
-        
-          ,{
-            "name": "Flask-SQLAlchemy",
-            "value": 1
-          }
-        
-          ,{
-            "name": "Flask-WTF",
             "value": 1
           }
         
@@ -438,22 +410,6 @@
           
         
           ,"Excel": 
-          false
-          
-        
-          ,"Flask-Login": 
-          false
-          
-        
-          ,"Flask-Migrate": 
-          false
-          
-        
-          ,"Flask-SQLAlchemy": 
-          false
-          
-        
-          ,"Flask-WTF": 
           false
           
         

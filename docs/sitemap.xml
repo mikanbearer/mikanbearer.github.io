@@ -118,28 +118,13 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/tags/Flask-WTF/</loc>
-    <lastmod>2020-09-15T10:49:11+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mikanbearer.github.io/posts/2020/09/202009151049/</loc>
     <lastmod>2020-09-15T10:49:11+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/tags/Flask-Login/</loc>
-    <lastmod>2020-09-14T12:57:20+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mikanbearer.github.io/posts/2020/09/202009141257/</loc>
     <lastmod>2020-09-14T12:57:20+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/tags/Flask-Migrate/</loc>
-    <lastmod>2020-09-11T16:35:19+08:00</lastmod>
   </url>
   
   <url>
@@ -235,11 +220,6 @@
   <url>
     <loc>https://mikanbearer.github.io/posts/2020/08/202008281726/</loc>
     <lastmod>2020-08-28T17:26:08+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/tags/Flask-SQLAlchemy/</loc>
-    <lastmod>2020-08-27T16:12:20+08:00</lastmod>
   </url>
   
   <url>
