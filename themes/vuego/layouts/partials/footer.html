@@ -110,8 +110,8 @@ const title_list = [
       axios.get('{{ .Site.BaseURL }}about/chart_data/index.json').then(response => {
           setTimeout(() => {
             var result = response.data.result
-            this.setCharts('Top Categories', 'category', result.categories_data, 'chart_categories')
-            setTimeout(this.setCharts, 500, 'Top Tags', 'tag', result.tags_data, 'chart_tags')
+            this.setCharts('Top Tags', 'tag', result.tags_data, 'chart_tags')
+            setTimeout(this.setCharts, 500, 'Top Categories', 'category', result.categories_data, 'chart_categories')
             }, 500)
       })
     },
