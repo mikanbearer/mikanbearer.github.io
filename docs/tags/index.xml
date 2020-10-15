@@ -8,10 +8,19 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Thu, 08 Oct 2020 17:13:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Oct 2020 16:35:05 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JQuery</title>
+      <link>https://mikanbearer.github.io/tags/JQuery/</link>
+      <pubDate>Wed, 14 Oct 2020 16:35:05 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/JQuery/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Hugo</title>

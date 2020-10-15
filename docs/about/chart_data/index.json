@@ -23,7 +23,7 @@
         
           {
             "name": "網頁製作",
-            "value": 21
+            "value": 22
           }
         
           ,{
@@ -131,6 +131,8 @@
           ,"Excel"
         
           ,"Jieba"
+        
+          ,"JQuery"
         
           ,"Matplotlib"
         
@@ -268,6 +270,11 @@
         
           ,{
             "name": "Jieba",
+            "value": 1
+          }
+        
+          ,{
+            "name": "JQuery",
             "value": 1
           }
         
@@ -414,6 +421,10 @@
           
         
           ,"Jieba": 
+          false
+          
+        
+          ,"JQuery": 
           false
           
         

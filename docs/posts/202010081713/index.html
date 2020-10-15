@@ -86,7 +86,7 @@
 <ul>
 <li>Vuerify v-app-bar往上捲動無法正確觸發
 <ul>
-<li>hide-on-scroll的問題，往上捲動步數無法觸發顯示，常發生在畫面遷移個時候，及window.scroll使用instant的時候，暫時改為smooth mode即可正確觸發，而router的部分則是使用route guard在遷移前上捲觸發後再next()</li>
+<li>hide-on-scroll的問題，往上捲動步數無法觸發顯示，常發生在DOM變更及window.scroll使用instant的時候，暫時改為smooth mode來迴避，並放在route guard，避免DOM變更後導致畫面高度小於螢幕(即無捲動條)時鎖死到只能reload</li>
 </ul>
 </li>
 </ul>
