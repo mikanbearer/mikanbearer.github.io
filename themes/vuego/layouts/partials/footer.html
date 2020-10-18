@@ -308,13 +308,11 @@ const title_list = [
     delimiters: ['[[', ']]'],
     data () {
       return {
-        postPanel: [],
         page: 1,
         pageSize: 10,
         pageLength: null,
         filteredPosts: post_list,
         displayPosts: [],
-        count: 0,
         resultSnackbar: false,
         searchConditions: {
           selectedCategories: [],
@@ -339,7 +337,7 @@ const title_list = [
         this.searchPosts()
       },
     },
-    
+
     methods: {
       getSearchConditions () {
         var query = this.getQuery
@@ -374,19 +372,23 @@ const title_list = [
         }
       },
 
-      pageInit () {
-        this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
-        setTimeout(this.pageChange, 200, 1)
-      },
-
       pageChange (pageNumber) {
-        this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber))
-        this.postPanel = [...Array(this.pageSize).keys()].map((k, i) => i)
+        this.displayPosts = []
         if (window.pageYOffset >= 60) {
           window.scroll({top: 60, behavior: 'instant'})
         }
-        setTimeout(window.scroll, 5, {top: 0, behavior: 'smooth'})
-        this.count ++
+        setTimeout(() => {
+          window.scroll({top: 0, behavior: 'smooth'})
+        }, 1)
+        setTimeout(() => {
+          this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber - 1), this.pageSize*(pageNumber))
+        }, 100)
+      },
+
+      pageInit () {
+        this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
+        this.page = 1
+        setTimeout(this.pageChange, 150, 1)
       },
 
       searchPosts () {
@@ -453,8 +455,10 @@ const title_list = [
     if (window.pageYOffset >= 60) {
       window.scroll({top: 60, behavior: 'instant'})
     }
-    setTimeout(window.scroll, 5, {top: 0, behavior: 'smooth'})
-    next()
+    setTimeout(() => {
+      window.scroll({top: 0, behavior: 'smooth'})
+    }, 1)
+    setTimeout(next, 100)
   })
 
 
