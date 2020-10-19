@@ -380,7 +380,7 @@ const title_list = [
         }
         setTimeout(() => {
           window.scroll({top: 0, behavior: 'smooth'})
-        }, 1)
+        }, 10)
         setTimeout(() => {
           this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber - 1), this.pageSize*(pageNumber))
         }, 100)
@@ -458,7 +458,7 @@ const title_list = [
     }
     setTimeout(() => {
       window.scroll({top: 0, behavior: 'smooth'})
-    }, 1)
+    }, 10)
     setTimeout(next, 100)
   })
 
