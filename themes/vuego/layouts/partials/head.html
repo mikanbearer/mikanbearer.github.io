@@ -1,7 +1,7 @@
 <head>
     <title>{{ .Site.Title }}</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -19,14 +19,21 @@
 
       .post-title {
         font-family: 'Noto Sans TC', sans-serif !important;
+        font-weight: 400;
       }
 
       .post-subtitle {
         font-family: 'Noto Sans TC', sans-serif !important;
+        font-weight: 300;
       }
 
       .post-content {
         font-family: 'Noto Sans TC', sans-serif !important;
+        font-weight: 300;
+      }
+
+      .post-list .post-title {
+        color: #eeeeee;
       }
 
 
@@ -38,6 +45,14 @@
         left: 0;
         background-size: cover;
         background-color: #272727;        
+      }
+
+      a {
+        text-decoration:none;
+      }
+
+      a:hover {
+        text-decoration:underline;
       }
   
       #inspire {

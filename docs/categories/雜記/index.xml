@@ -42,14 +42,13 @@
     </item>
     
     <item>
-      <title>紀念用的第一篇</title>
-      <link>https://mikanbearer.github.io/posts/2020/07/202007101327/</link>
-      <pubDate>Fri, 10 Jul 2020 13:27:20 +0800</pubDate>
+      <title>【2020/07/25解決】在EVE-NG上部屬vEOS LAB</title>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007241554/</link>
+      <pubDate>Fri, 24 Jul 2020 15:54:30 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/posts/2020/07/202007101327/</guid>
-      <description>&lt;p&gt;最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣，
-就到&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;https://www.staticgen.com/&lt;/a&gt;找個人氣度高的來用，之後就選上了這個&lt;strong&gt;Hugo&lt;/strong&gt;，
-雖然這個Beautiful Hugo的theme挺好看的，之後還是要改一下，首先還是先搞定code block…&lt;/p&gt;</description>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007241554/</guid>
+      <description>&lt;p&gt;第一篇挫折問題紀錄，各種鬼打牆…
+原本想在EVE-NG上做個簡單的LAB，沒想到問題還真不少…&lt;/p&gt;</description>
     </item>
     
   </channel>

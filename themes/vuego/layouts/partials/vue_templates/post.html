@@ -1,45 +1,58 @@
 <script type="text/x-template" id="post">
     <div v-if="content">
-        <v-card class="content" id="post-content">
-            <v-card-title class="text-h6 grey--text text--lighten-4 justify-space-between" style="background-color: #556265;">
-                <div class="post-title">
-                    [[ post.title ]]
-                </div>
-            </v-card-title>
-            <v-card-subtitle class="text-body-1 grey--text text--lighten-2 mt-1">
-                <div class="post-subtitle">
-                    [[ post.date ]]
-                    <router-link
-                        v-for="category in post.categories"
-                        :key="category"
-                        :to="{path: '/', query: {category: category}}"
-                    >
-                        [[ category ]]
-                    </router-link>
-                </div>
-                <div>
-                    <v-icon small color="grey lighten-2">
-                        mdi-tag-multiple
-                    </v-icon>
-                    <v-chip
-                        color="accent"
-                        label
-                        text-color="grey lighten-4"
-                        x-small
-                        class="mr-1"
-                        v-for="tag in post.tags"
-                        :key="tag"
-                        :to="{path: '/', query: {tag: tag}}"
-                    >
-                        [[ tag ]]
-                    </v-chip>
-                </div>
-                <v-divider></v-divider>
-            </v-card-subtitle>
-            <v-card-text class="text-body-2 grey--text text--lighten-2">
-                <div class="post-content" v-html="content">
+        <v-card class="content">
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <div class="mb-2 text-body-2 grey--text text--lighten-1">
+                        [[ post.date ]]
+                        <v-divider vertical></v-divider>
+                        <v-icon small color="grey lighten-1">
+                            mdi-note-text
+                        </v-icon>
+                        [[ post.wordcount ]] words
+                        <v-divider vertical></v-divider>
+                        <v-icon small color="grey lighten-1">
+                            mdi-folder
+                        </v-icon>
+                        <div v-for="(category, index) in post.categories" class="d-inline post-subtitle">
+                            <span v-if="index">, </span>
+                            <router-link
+                                :to="{path: '/', query: {category: category}}"
+                            >
+                                [[ category ]]
+                            </router-link>
+                        </div>
+                    </div>
+                    <v-list-item-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title" v-html="post.title"></span>
+                    </v-list-item-title>
+                    <v-list-item-subtitle>
+                        <div class="mt-2 text-body-2 grey--text text--lighten-1">
+                            <v-icon small color="grey lighten-1">
+                                mdi-tag-multiple
+                            </v-icon>
+                            <div v-for="tag in post.tags" class="d-inline">
+                                <v-chip
+                                    color="accent"
+                                    label
+                                    text-color="grey lighten-3"
+                                    x-small
+                                    class="mr-1"
+                                    :key="tag"
+                                    :to="{path: '/', query: {tag: tag}}"
+                                >
+                                    [[ tag ]]
+                                </v-chip>
+                            </div>
+                        </div>                      
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
 
-                </div>
+            <v-divider inset></v-divider>
+            
+            <v-card-text class="text-body-2 grey--text text--lighten-2">
+                <div class="post-content" v-html="content"></div>
             </v-card-text>
         </v-card>
 

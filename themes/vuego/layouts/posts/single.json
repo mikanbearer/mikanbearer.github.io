@@ -16,6 +16,7 @@
         {{ end }}
     ],
 
-    "url": "{{ .Permalink }}"
+    "url": "{{ .Permalink }}",
+    "wordcount": "{{ .WordCount }}"
 }
 {{ end }}
