@@ -1,0 +1,194 @@
+<p>暫定是最後一個入門練習，這次使用Flask-WTF來做CSRF Protection，Flask-WTF是WTForms結合Flask用的module</p>
+<p>練習的完成品放在<a href="https://github.com/mikanbearer/flask_crud_example/tree/append_flaskform">這裡</a></p>
+<p>首先安裝本篇主題的Flask-WTF及之後修飾用的Flask-Bootstrap</p>
+<pre><code>$ pip install flask-wtf flask-bootstrap
+</code></pre><p><br></br>
+首先初始化CSRFProtect，並定義好form</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.py" data-lang=":app/app.py"><span style="color:#f92672">from</span> flask_wtf.csrf <span style="color:#f92672">import</span> CSRFProtect
+<span style="color:#f92672">from</span> flask_wtf <span style="color:#f92672">import</span> FlaskForm
+<span style="color:#f92672">from</span> wtforms <span style="color:#f92672">import</span> StringField, PasswordField
+<span style="color:#f92672">from</span> wtforms.validators <span style="color:#f92672">import</span> DataRequired
+
+<span style="color:#f92672">...</span>
+csrf <span style="color:#f92672">=</span> CSRFProtect(app) <span style="color:#75715e">#初始化CSRFProtect</span>
+<span style="color:#f92672">...</span>
+
+<span style="color:#75715e">#稍後要用的form</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoginForm</span>(FlaskForm):
+    user <span style="color:#f92672">=</span> StringField(<span style="color:#e6db74">&#39;user&#39;</span>, validators<span style="color:#f92672">=</span>[DataRequired()])
+    password <span style="color:#f92672">=</span> PasswordField(<span style="color:#e6db74">&#39;password&#39;</span>, validators<span style="color:#f92672">=</span>[DataRequired()])
+<span style="color:#f92672">...</span>
+</code></pre></div><p><br></br>
+再來從login著手，改成下面的樣子</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.py" data-lang=":app/app.py"><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/login&#39;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;GET&#39;</span>, <span style="color:#e6db74">&#39;POST&#39;</span>])
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">login</span>():
+    form <span style="color:#f92672">=</span> LoginForm()
+    <span style="color:#66d9ef">if</span> form<span style="color:#f92672">.</span>validate_on_submit():
+        user <span style="color:#f92672">=</span> form<span style="color:#f92672">.</span>user<span style="color:#f92672">.</span>data
+        password <span style="color:#f92672">=</span> form<span style="color:#f92672">.</span>password<span style="color:#f92672">.</span>data
+        <span style="color:#66d9ef">try</span>:
+            <span style="color:#66d9ef">if</span> password <span style="color:#f92672">==</span> admins[user][<span style="color:#e6db74">&#39;password&#39;</span>]:
+                admin <span style="color:#f92672">=</span> Admin()
+                admin<span style="color:#f92672">.</span>id <span style="color:#f92672">=</span> user
+                flask_login<span style="color:#f92672">.</span>login_user(admin)
+                <span style="color:#66d9ef">return</span> redirect(url_for(<span style="color:#e6db74">&#39;list&#39;</span>))
+            <span style="color:#66d9ef">else</span>:
+                error <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;password is incorrect&#39;</span>
+
+        <span style="color:#66d9ef">except</span>:
+            error <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;user not found&#39;</span>
+        <span style="color:#66d9ef">finally</span>:
+            <span style="color:#66d9ef">pass</span>
+        <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;login.html&#39;</span>, form<span style="color:#f92672">=</span>form, error<span style="color:#f92672">=</span>error)
+    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;login.html&#39;</span>, form<span style="color:#f92672">=</span>form)
+</code></pre></div><p><br></br>
+也可以事前加上print來看看object的內容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">...</span>
+    <span style="color:#66d9ef">if</span> form<span style="color:#f92672">.</span>validate_on_submit():
+        <span style="color:#66d9ef">print</span>(form<span style="color:#f92672">.</span>user)
+        <span style="color:#66d9ef">print</span>(form<span style="color:#f92672">.</span>password)
+<span style="color:#f92672">...</span>
+</code></pre></div><p><br></br>
+接著更新template，要記得加上{{ form.csrf_token }}，否則就少一個field，會判定為invalid</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/templates/login.html" data-lang=":app/templates/login.html">...
+                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+                    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>&gt;
+                        {{ form.csrf_token }}
+                        {{ form.user(size=20) }}
+                        {{ form.password(size=20) }}
+                        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Login&lt;/<span style="color:#f92672">button</span>&gt;
+                    &lt;/<span style="color:#f92672">form</span>&gt;
+</code></pre></div><p><br></br>
+可以試著看看畫面</p>
+<img style="display:inline;" width="200" src="1.png">
+<p><br></br>
+form的source code也會是這樣子，有一個hidden的field</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;csrf_token&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;csrf_token&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;IjNjODU1NmIyY2U1OTM0MGRkZjNlNDhkY2I1Y2ZkZTRlYzAzZDViZTAi.X2BZJA.gtrg0aIXbMr9p2T5lSc9IlTPjVE&#34;</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user&#34;</span> <span style="color:#a6e22e">required</span> <span style="color:#a6e22e">size</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;20&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">required</span> <span style="color:#a6e22e">size</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;20&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Login&lt;/<span style="color:#f92672">button</span>&gt;
+&lt;/<span style="color:#f92672">form</span>&gt;
+</code></pre></div><p><br></br>
+如果token錯誤就會出現這個畫面</p>
+<img style="display:inline;" width="200" src="2.png">
+<p>這樣CSRF就可以說是大功告成啦，只是現在還是很醜…
+<br></br>
+接下來可以利用Flask Bootstrap對WTForms的支援來修飾一下form</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.py" data-lang=":app/app.py"><span style="color:#f92672">from</span> flask_bootstrap <span style="color:#f92672">import</span> Bootstrap
+<span style="color:#f92672">...</span>
+Boostrap(app)
+</code></pre></div><p><br></br>
+接著修飾一下template，使用Flask-Bootstrap的話template是寫死的，而WTF的label也不能設定成none，隱藏label最快的方式就是css了</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/templates/login.html" data-lang=":app/templates/login.html"><span style="color:#75715e">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+  &lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;
+<span style="display:block;width:100%;background-color:#3c3d38">    &lt;<span style="color:#f92672">style</span>&gt;
+</span><span style="display:block;width:100%;background-color:#3c3d38">        .<span style="color:#a6e22e">control-label</span> {<span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">none</span>;}
+</span><span style="display:block;width:100%;background-color:#3c3d38">    &lt;/<span style="color:#f92672">style</span>&gt;
+</span>    &lt;<span style="color:#f92672">title</span>&gt;Flask CRUD Example&lt;/<span style="color:#f92672">title</span>&gt;
+  &lt;/<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">body</span>&gt;
+   &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container mt-4&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-12&#34;</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card&#34;</span>&gt;
+                &lt;<span style="color:#f92672">h5</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-header&#34;</span>&gt;
+                    Login
+                &lt;/<span style="color:#f92672">h5</span>&gt;
+                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+<span style="display:block;width:100%;background-color:#3c3d38">                    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+</span><span style="display:block;width:100%;background-color:#3c3d38">                        {{ form.csrf_token }}
+</span><span style="display:block;width:100%;background-color:#3c3d38">                        {% import &#34;bootstrap/wtf.html&#34; as wtf %}
+</span><span style="display:block;width:100%;background-color:#3c3d38">                        {{ wtf.form_field(form.user) }}
+</span><span style="display:block;width:100%;background-color:#3c3d38">                        {{ wtf.form_field(form.password) }}
+</span><span style="display:block;width:100%;background-color:#3c3d38">                        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Login&lt;/<span style="color:#f92672">button</span>&gt;
+</span><span style="display:block;width:100%;background-color:#3c3d38">                    &lt;/<span style="color:#f92672">form</span>&gt;
+</span>                    {% if error %}
+                        {{ error }}
+                    {% endif %}
+                &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;/<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://code.jquery.com/jquery-3.2.1.slim.min.js&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p><br></br>
+接著改一下form</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.py" data-lang=":app/app.py"><span style="color:#f92672">...</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoginForm</span>(FlaskForm):
+    user <span style="color:#f92672">=</span> StringField(<span style="color:#e6db74">&#39;user&#39;</span>, validators<span style="color:#f92672">=</span>[DataRequired()], render_kw<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;placeholder&#39;</span>: <span style="color:#e6db74">&#39;Username&#39;</span>})
+    password <span style="color:#f92672">=</span> PasswordField(<span style="color:#e6db74">&#39;password&#39;</span>, validators<span style="color:#f92672">=</span>[DataRequired()], render_kw<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;placeholder&#34;</span>: <span style="color:#e6db74">&#39;Password&#39;</span>})
+</code></pre></div><p><br></br></p>
+<p>Login畫面就回到原本的樣子啦</p>
+<img style="display:inline;" width="200" src="3.png">
+<p><br></br>
+接著就把create、update也比照辦理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.py" data-lang=":app/app.py"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelForm</span>(FlaskForm):
+    username <span style="color:#f92672">=</span> StringField(<span style="color:#e6db74">&#39;username&#39;</span>, validators<span style="color:#f92672">=</span>[DataRequired()])
+    email <span style="color:#f92672">=</span> StringField(<span style="color:#e6db74">&#39;email&#39;</span>, validators<span style="color:#f92672">=</span>[DataRequired(), Email()])
+
+<span style="color:#f92672">...</span>
+
+<span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/create&#39;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;get&#39;</span>, <span style="color:#e6db74">&#39;post&#39;</span>])
+<span style="color:#a6e22e">@flask_login.login_required</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create</span>():
+    form <span style="color:#f92672">=</span> ModelForm()
+    <span style="color:#66d9ef">if</span> form<span style="color:#f92672">.</span>validate_on_submit():
+        username <span style="color:#f92672">=</span> form<span style="color:#f92672">.</span>username<span style="color:#f92672">.</span>data
+        email <span style="color:#f92672">=</span> form<span style="color:#f92672">.</span>email<span style="color:#f92672">.</span>data
+        user <span style="color:#f92672">=</span> User(username<span style="color:#f92672">=</span>username, email<span style="color:#f92672">=</span>email)
+        db<span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>add(user)
+        db<span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>commit()
+        <span style="color:#66d9ef">return</span> redirect(url_for(<span style="color:#e6db74">&#39;list&#39;</span>))
+    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;form.html&#39;</span>, form<span style="color:#f92672">=</span>form)
+
+<span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/update/&lt;user_id&gt;&#39;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;get&#39;</span>, <span style="color:#e6db74">&#39;post&#39;</span>])
+<span style="color:#a6e22e">@flask_login.login_required</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update</span>(user_id):
+    user <span style="color:#f92672">=</span> User<span style="color:#f92672">.</span>query<span style="color:#f92672">.</span>filter_by(id<span style="color:#f92672">=</span>user_id)<span style="color:#f92672">.</span>first()
+    form <span style="color:#f92672">=</span> ModelForm(obj<span style="color:#f92672">=</span>user)
+    <span style="color:#66d9ef">if</span> request<span style="color:#f92672">.</span>method <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;POST&#39;</span>:
+        user<span style="color:#f92672">.</span>username <span style="color:#f92672">=</span> form<span style="color:#f92672">.</span>username<span style="color:#f92672">.</span>data
+        user<span style="color:#f92672">.</span>email <span style="color:#f92672">=</span> form<span style="color:#f92672">.</span>email<span style="color:#f92672">.</span>data
+        db<span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>add(user)
+        db<span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>commit()
+        <span style="color:#66d9ef">return</span> redirect(url_for(<span style="color:#e6db74">&#39;detail&#39;</span>, user_id<span style="color:#f92672">=</span>user_id))
+    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;form.html&#39;</span>, user<span style="color:#f92672">=</span>user, form<span style="color:#f92672">=</span>form)
+</code></pre></div><p><br></br>
+最後改完template就大功告成</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:/app/template/form.html" data-lang=":/app/template/form.html">{% extends &#39;base.html&#39; %}
+{% block content %}
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container mt-4&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-12&#34;</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card&#34;</span>&gt;
+                &lt;<span style="color:#f92672">h5</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-header&#34;</span>&gt;
+                    {% if user %}
+                        {% set username, email = user.username, user.email %}
+                        Update: {{ username }}
+                    {% else %}
+                        Create user
+                        {% set username, email = &#39;&#39;, &#39;&#39; %}
+                    {% endif %}
+                &lt;/<span style="color:#f92672">h5</span>&gt;
+                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+                    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>&gt;
+                        {{ form.csrf_token }}
+                        {% import &#34;bootstrap/wtf.html&#34; as wtf %}
+                        {{ wtf.form_field(form.username) }}
+                        {{ wtf.form_field(form.email) }}
+                        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Submit&lt;/<span style="color:#f92672">button</span>&gt;
+                    &lt;/<span style="color:#f92672">form</span>&gt;
+                &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+{% endblock %}
+</code></pre></div>

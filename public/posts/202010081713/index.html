@@ -1,0 +1,123 @@
+<p>心一橫把整個BLOG做成Single Page了，但目前還只是雛形，記錄下幾個主要的變更點、想法及待解決的問題</p>
+<h3 id="主要的變更">主要的變更</h3>
+<hr>
+<ul>
+<li>
+<p>router</p>
+<ul>
+<li>加入了Vue Router，為了方便使用網址操作採用hash mode
+<br></br></li>
+</ul>
+</li>
+<li>
+<p>post</p>
+<ul>
+<li>為減少Loading，所有Post的Page都使用Axios來取得，但現階段html和json是同時取得，因為.Summary及.Content容易Parse Error，request的url來自hugo template內一開始包含的object，使用query來傳給route component</li>
+</ul>
+</li>
+</ul>
+<img src="0.gif" width="500">
+<br></br>
+<ul>
+<li>search
+<ul>
+<li>幾乎沿用的搜尋功能，一樣使用hugo template內一開始包含的object，但改成了and的方式搜尋並無視大小寫分別，且能使用query的方式操作(參照前列router說的hash mode)</li>
+</ul>
+</li>
+</ul>
+<img src="1.gif" width="500">
+<br></br>
+<ul>
+<li>disqus
+<ul>
+<li>保留了disqus，為了和其他非單頁式且使用hugo預設template的theme相容，一樣使用url而非identifier，為了避免過多request與head被無止盡的append script，改用DUSQUS.reset()，像是以下樣式</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Post</span> <span style="color:#f92672">=</span> {
+  ...
+
+  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">resetDisqus</span> (<span style="color:#a6e22e">url</span>) {
+      window.<span style="color:#a6e22e">DISQUS</span>.<span style="color:#a6e22e">reset</span>({
+        <span style="color:#a6e22e">reload</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+        <span style="color:#a6e22e">config</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">url</span>
+          }
+        }
+      )
+    },
+  }
+}
+
+...
+
+<span style="color:#a6e22e">Vue</span>({
+  ...
+
+  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">addingDISQUS</span> () {
+      (() =&gt; {
+        <span style="color:#66d9ef">if</span> ([<span style="color:#e6db74">&#34;localhost&#34;</span>, <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>].<span style="color:#a6e22e">indexOf</span>(window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">hostname</span>) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+          document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;disqus_thread&#39;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Disqus comments not available by default when the website ispreviewed locally.&#39;</span>
+          <span style="color:#66d9ef">return</span>
+      }
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> document, <span style="color:#a6e22e">s</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;script&#39;</span>)
+      <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">async</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">disqus_shortname</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{{ .Site.DisqusShortname }}&#39;</span>
+      <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;//&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">disqus_shortname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;.disqus.com/embed.js&#39;</span>
+      <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#39;data-timestamp&#39;</span>, <span style="color:#f92672">+</span><span style="color:#66d9ef">new</span> Date())
+      <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">s</span>)
+      })()
+    },
+  }
+</code></pre></div><p><br></br></p>
+<ul>
+<li>移除部分template
+<ul>
+<li>使用query來替代posts的list template</li>
+<li>term的部分還在思考中</li>
+</ul>
+</li>
+</ul>
+<p><br></br></p>
+<h3 id="主要的問題">主要的問題</h3>
+<hr>
+<ul>
+<li>Vuerify v-app-bar往上捲動無法正確觸發
+<ul>
+<li>hide-on-scroll的問題，往上捲動步數無法觸發顯示，常發生在DOM變更及window.scroll使用instant的時候，暫時改為smooth mode來迴避，並放在route guard，避免DOM變更後導致畫面高度小於螢幕(即無捲動條)時鎖死到只能reload</li>
+</ul>
+</li>
+</ul>
+<img src="2.gif" width="500">
+<br></br>
+<ul>
+<li>v-html內相對路徑的圖片
+<ul>
+<li>之前寫作風格留的鍋，以往圖片都是在貼文的路徑下，與之前在code block加入title一樣，暫時是用個script解決</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">      <span style="color:#a6e22e">replaceImgSrc</span> () {
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">contents</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementsByClassName</span>(<span style="color:#e6db74">&#39;content&#39;</span>)
+
+        Array.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">forEach</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">contents</span>, <span style="color:#a6e22e">content</span> =&gt; {
+          <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">imgs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">content</span>.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#e6db74">&#39;img&#39;</span>)
+          Array.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">forEach</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">imgs</span>, <span style="color:#a6e22e">img</span> =&gt; {
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">attributes</span>.<span style="color:#a6e22e">src</span>.<span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;http&#39;</span>) <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+              <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">post</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">attributes</span>.<span style="color:#a6e22e">src</span>.<span style="color:#a6e22e">value</span>
+            }
+          })
+        })        
+      },
+</code></pre></div><p><br></br></p>
+<ul>
+<li>v-html內的script
+<ul>
+<li>貼文插入codepen之類的問題，之前試過將script的element加到document內再次執行，但感覺不是很好，還是將插入的block改為iframe</li>
+</ul>
+</li>
+</ul>
+<p><br></br>
+接下來就等看看升級成Vue3了</p>

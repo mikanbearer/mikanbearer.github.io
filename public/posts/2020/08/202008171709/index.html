@@ -1,0 +1,242 @@
+<p>作為往後可能需要自訂Exporter的預習，就試著拿<a href="https://prometheus.io/docs/instrumenting/clientlibs/">Prometheus client library</a>來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter</p>
+<ul>
+<li><a href="#1">測試Prometheus Client Library</a></li>
+<li><a href="#2">搭配Node exporter text collector</a></li>
+<li><a href="#3">搭配Pushgateway</a></li>
+</ul>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id=1>測試Prometheus Client Library</h3>
+</li>
+</ul>
+<p><br></br>
+環境是debian 9及python 3.5.3</p>
+<pre><code>$  cat /etc/*-release
+PRETTY_NAME=&quot;Debian GNU/Linux 9 (stretch)&quot;
+NAME=&quot;Debian GNU/Linux&quot;
+VERSION_ID=&quot;9&quot;
+VERSION=&quot;9 (stretch)&quot;
+ID=debian
+HOME_URL=&quot;https://www.debian.org/&quot;
+SUPPORT_URL=&quot;https://www.debian.org/support&quot;
+BUG_REPORT_URL=&quot;https://bugs.debian.org/&quot;
+
+$ python --version
+Python 3.5.3
+</code></pre><p><br></br>
+先用一下好久沒碰的Pipenv，避免環境弄亂</p>
+<pre><code>$ pip3 install -U pipenv
+$ pipenv --python 3
+</code></pre><p><br></br>
+下載prometheus client，然後用shell</p>
+<pre><code>$ pipenv install prometheus-client
+$ pipenv shell
+</code></pre><p><br></br>
+<a href="https://github.com/prometheus/node_exporter/">readme.md</a>中的範例，是使用start_http_server，因為本身就是一個頗為簡短的script，
+使用while True來持續執行</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> start_http_server, Summary
+<span style="color:#f92672">import</span> random
+<span style="color:#f92672">import</span> time
+
+<span style="color:#75715e"># Create a metric to track time spent and requests made.</span>
+REQUEST_TIME <span style="color:#f92672">=</span> Summary(<span style="color:#e6db74">&#39;request_processing_seconds&#39;</span>, <span style="color:#e6db74">&#39;Time spent processing request&#39;</span>)
+
+<span style="color:#75715e"># Decorate function with metric.</span>
+<span style="color:#a6e22e">@REQUEST_TIME.time</span>()
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_request</span>(t):
+    <span style="color:#e6db74">&#34;&#34;&#34;A dummy function that takes some time.&#34;&#34;&#34;</span>
+    time<span style="color:#f92672">.</span>sleep(t)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    <span style="color:#75715e"># Start up the server to expose the metrics.</span>
+    start_http_server(<span style="color:#ae81ff">8000</span>)
+    <span style="color:#75715e"># Generate some requests.</span>
+    <span style="color:#66d9ef">while</span> True:
+        process_request(random<span style="color:#f92672">.</span>random())
+</code></pre></div><p><br></br>
+來看看start_http_server的廬山真面目</p>
+<pre><code>&gt;&gt;&gt; import prometheus_client
+&gt;&gt;&gt; import inspect
+
+&gt;&gt;&gt; print(inspect.getsource(prometheus_client.start_http_server))
+def start_wsgi_server(port, addr='', registry=REGISTRY):
+    &quot;&quot;&quot;Starts a WSGI server for prometheus metrics as a daemon thread.&quot;&quot;&quot;
+    app = make_wsgi_app(registry)
+    httpd = make_server(addr, port, app, ThreadingWSGIServer, handler_class=_SilentHandler)
+    t = threading.Thread(target=httpd.serve_forever)
+    t.daemon = True
+    t.start()
+
+&gt;&gt;&gt; print(inspect.getsource(prometheus_client.start_wsgi_server))
+def start_wsgi_server(port, addr='', registry=REGISTRY):
+    &quot;&quot;&quot;Starts a WSGI server for prometheus metrics as a daemon thread.&quot;&quot;&quot;
+    app = make_wsgi_app(registry)
+    httpd = make_server(addr, port, app, ThreadingWSGIServer, handler_class=_SilentHandler)
+    t = threading.Thread(target=httpd.serve_forever)
+    t.daemon = True
+    t.start()
+
+</code></pre><p>由此可見start_http_server和start_wsgi_server是同一個function，當這支script執行完了後，Thread也一併結束
+<br></br>
+執行後一樣cURL測試一下取得的metrics</p>
+<pre><code>$ curl http://localhost:8000
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 2.17821184e+08
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 2.0774912e+07
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.59764690706e+09
+</code></pre><p><br></br>
+當然也可以用custom collector，記得要用REGISTRY.register將collector註冊</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> prometheus_client.core <span style="color:#f92672">import</span> GaugeMetricFamily, REGISTRY
+<span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> start_http_server
+<span style="color:#f92672">import</span> random
+<span style="color:#f92672">import</span> time
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomCollector</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect</span>(self):
+        g <span style="color:#f92672">=</span> GaugeMetricFamily(<span style="color:#e6db74">&#39;my_Gauge&#39;</span>, <span style="color:#e6db74">&#39;Help text&#39;</span>, labels<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;foo&#39;</span>])
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;bar&#39;</span>], random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span>))
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;baz&#39;</span>], random<span style="color:#f92672">.</span>random())
+        <span style="color:#66d9ef">yield</span> g
+
+REGISTRY<span style="color:#f92672">.</span>register(CustomCollector())
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    start_http_server(<span style="color:#ae81ff">8000</span>)
+    <span style="color:#66d9ef">while</span> True:
+        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">10</span>)
+</code></pre></div><p><br></br>
+可以看到metrics包含剛才測試的custom collector了，看得出start_http_server是指向REGISTRY，而REGISTRY又包含了collector，所以server每pull一次，就會執行一次註冊到REGISTRY的collector</p>
+<pre><code>$ curl http://localhost:8000 
+# HELP my_Gauge Help text
+# TYPE my_Gauge gauge
+my_Gauge{foo=&quot;bar&quot;} 84.0
+...
+</code></pre><p>大致上是這樣，雖然能動，但單單是這樣似乎有點不太夠，畢竟單獨使用的話功能實在有點陽春</p>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id=2>搭配Node exporter text collector</h3>
+</li>
+</ul>
+<p><br></br>
+<a href="https://github.com/prometheus/node_exporter">Node exporter</a>出馬的時候又到了，Node Exporter的Textfile collector就能在此發揮作用</p>
+<p>現在更改剛才測試用的.py如下</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> prometheus_client.core <span style="color:#f92672">import</span> GaugeMetricFamily, REGISTRY
+<span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> write_to_textfile
+<span style="color:#f92672">import</span> random
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomCollector</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect</span>(self):
+        g <span style="color:#f92672">=</span> GaugeMetricFamily(<span style="color:#e6db74">&#39;my_Gauge&#39;</span>, <span style="color:#e6db74">&#39;Help text&#39;</span>, labels<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;foo&#39;</span>])
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;bar&#39;</span>], random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span>))
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;baz&#39;</span>], random<span style="color:#f92672">.</span>random())
+        <span style="color:#66d9ef">yield</span> g
+
+REGISTRY<span style="color:#f92672">.</span>register(CustomCollector())
+
+<span style="display:block;width:100%;background-color:#3c3d38">write_to_textfile(<span style="color:#e6db74">&#39;test.prom&#39;</span>, REGISTRY)
+</span></code></pre></td></tr></table>
+</div>
+</div><p>這樣就會將registry的中的metrics通通輸出到一個叫做&quot;test.prom&quot;的file裡了
+<br></br>
+之後Node exporter再使用&ndash;collector.textfile.directory這個flag就能取得指定目錄下*.prom內的metrics，範例指令如下：</p>
+<pre><code>./node_exporter  --web.listen-address=&quot;0.0.0.0:9100&quot; --collector.textfile.directory ~/test
+</code></pre><p><br></br>
+一樣測試一下</p>
+<pre><code>$ curl http://127.0.0.1:9000/metrics
+...
+my_Gauge{foo=&quot;bar&quot;} 90
+my_Gauge{foo=&quot;baz&quot;} 0.7249480740635738
+</code></pre><p>這樣就能pull file裡面的東西了</p>
+<p>如此一來不只能用crontab之類的來排程，甚至在其他程式裡加上write_to_textfile，到時候只需要讓node_exporter去指定目錄抓就好，彈性又便利，這是這做法會犧牲掉Counter</p>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id=3>搭配Pushgateway</h3>
+</li>
+</ul>
+<p><br></br>
+Client library除了能使用write_to_textfile來搭配Node exporter，也能配合Pushgateway</p>
+<p>修改剛才測試的py如下：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> prometheus_client.core <span style="color:#f92672">import</span> GaugeMetricFamily, REGISTRY
+<span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> push_to_gateway
+<span style="color:#f92672">import</span> random
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomCollector</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect</span>(self):
+        g <span style="color:#f92672">=</span> GaugeMetricFamily(<span style="color:#e6db74">&#39;my_Gauge&#39;</span>, <span style="color:#e6db74">&#39;Help text&#39;</span>, labels<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;foo&#39;</span>])
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;bar&#39;</span>], random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span>))
+        g<span style="color:#f92672">.</span>add_metric([<span style="color:#e6db74">&#39;baz&#39;</span>], random<span style="color:#f92672">.</span>random())
+        <span style="color:#66d9ef">yield</span> g
+
+REGISTRY<span style="color:#f92672">.</span>register(CustomCollector())
+
+<span style="display:block;width:100%;background-color:#3c3d38">push_to_gateway(<span style="color:#e6db74">&#39;localhost:9091&#39;</span>, job<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;batchA&#39;</span>, registry<span style="color:#f92672">=</span>REGISTRY)
+</span></code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+cURL測試一下</p>
+<pre><code>$ curl http://localhost:9091/metrics
+...
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation=&quot;0&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;} 42
+python_gc_collections_total{generation=&quot;1&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;} 3
+python_gc_collections_total{generation=&quot;2&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;} 0
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation=&quot;0&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;} 145
+python_gc_objects_collected_total{generation=&quot;1&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;} 25
+python_gc_objects_collected_total{generation=&quot;2&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;} 0
+# HELP python_gc_objects_uncollectable_total Uncollectable object found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation=&quot;0&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;} 0
+python_gc_objects_uncollectable_total{generation=&quot;1&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;} 0
+python_gc_objects_uncollectable_total{generation=&quot;2&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;} 0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation=&quot;CPython&quot;,instance=&quot;&quot;,job=&quot;batchA&quot;,major=&quot;3&quot;,minor=&quot;6&quot;,patchlevel=&quot;8&quot;,version=&quot;3.6.8&quot;} 1
+</code></pre><p><br></br>
+完</p>

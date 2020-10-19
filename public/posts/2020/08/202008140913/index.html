@@ -1,0 +1,106 @@
+<p>Prometheus在設計上是採用pull的模式，但在網路架構的規劃上，並不是所有的target能讓Prometheus去pull，這時候就是Pushgateway出馬的時候了</p>
+<p>Pushgateway顧名思義，能讓所需要監控的設備及服務用push的方式將metrics放在Pushgateway，再讓Prometheus來pull</p>
+<p>如下圖所示：</p>
+<p><img src="0.png" alt="">
+<br></br>
+接下來就試著做一遍了</p>
+<ul>
+<li><a href="#1">下載並執行Pushgateway</a></li>
+<li><a href="#2">使用Pushgateway API</a></li>
+<li><a href="#3">從Pushgateway取得metrics</a></li>
+</ul>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id=1>下載並執行Pushgateway</h3>
+</li>
+</ul>
+<p><br></br>
+直接在github上就能下載到，檔案不大十分快速，解開來一樣是binary file</p>
+<pre><code>$ wget https://github.com/prometheus/pushgateway/releases/download/v1.2.0/pushgateway-1.2.0.linux-amd64.tar.gz
+$ tar zxvf pushgateway-1.2.0.linux-amd64.tar.gz
+$ cd pushgateway-1.2.0.linux-amd64.tar.gz
+</code></pre><p><br></br>
+執行和exporter差不多，一樣用&ndash;web.listen-address來決定listen address及port，&ndash;persistence.file pg_file能指定一個暫存用的檔案，以防重新啟動時丟失當前的metrics</p>
+<pre><code>$ ./pushgateway --web.listen-address 0.0.0.0:9091 --persistence.file pg_file
+level=info ts=2020-08-18T07:04:00.332Z caller=main.go:83 msg=&quot;starting pushgateway&quot; version=&quot;(version=1.2.0, branch=HEAD, revision=b7e0167e9574f4f88404dde9653ee1d3c940f2eb)&quot;
+level=info ts=2020-08-18T07:04:00.332Z caller=main.go:84 build_context=&quot;(go=go1.13.8, user=root@0e823ccfff84, date=20200311-18:51:01&quot;
+level=info ts=2020-08-18T07:04:00.334Z caller=main.go:137 listen_address=0.0.0.0:9091
+</code></pre><p><br></br>
+接下來就能簡單pull測試一下metrics了</p>
+<pre><code>$ curl 0.0.0.0:9091/metrics
+...
+# HELP pushgateway_build_info A metric with a constant '1' value labeled by version, revision, branch, and goversion from which pushgateway was built.
+# TYPE pushgateway_build_info gauge
+pushgateway_build_info{branch=&quot;HEAD&quot;,goversion=&quot;go1.13.8&quot;,revision=&quot;b7e0167e9574f4f88404dde9653ee1d3c940f2eb&quot;,version=&quot;1.2.0&quot;} 1
+# HELP pushgateway_http_requests_total Total HTTP requests processed by the Pushgateway, excluding scrapes.
+# TYPE pushgateway_http_requests_total counter
+pushgateway_http_requests_total{code=&quot;200&quot;,handler=&quot;status&quot;,method=&quot;get&quot;} 1
+</code></pre><p><br></br>
+也能用從web查看，因為現在沒東西push，所以是空空如也
+<img src="1.png" alt=""></p>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id=2>使用Pushgateway API</h3>
+</li>
+</ul>
+<p><br></br>
+現在來嘗試push metrics</p>
+<pre><code>$ cat &lt;&lt;EOF | curl --data-binary @- http://127.0.0.1:9091/metrics/job/some_job/instance/some_instance
+# TYPE some_metric counter
+some_metric{label=&quot;val1&quot;} 42
+# TYPE another_metric gauge
+# HELP another_metric Just an example.
+another_metric 2398.283
+EOF
+</code></pre><p><br></br>
+嫌指令長也能使用@file name的方式POST檔案</p>
+<pre><code>$ curl --data-binary @teest.prom http://127.0.0.1:9091/metrics/job/some_job/instance/some_
+instance
+</code></pre><p><br></br>
+當然除了POST，也能使用DELETE刪除指定的instance</p>
+<pre><code>$ curl -X DELETE http://127.0.0.1:9091/metrics/job/some_job/instance/some_instance
+</code></pre><p><br></br>
+也可以用PUT來覆蓋</p>
+<pre><code> curl -X PUT  --data-binary @teest.prom http://127.0.0.1:9091/metrics/job/some_job/instance/some_instance
+</code></pre><p><br></br>
+Web也能看到剛才push的metrics
+<img src="2.png" alt=""></p>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id=3>從Pushgateway取得metrics</h3>
+</li>
+</ul>
+<p><br></br>
+雖然能用file-based sd，但這次就偷懶一下用static config了，畢竟只是想演示一遍</p>
+<p>只要在prometheus.yml的target指定Pushgateway</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.yml" data-lang=":prometheus.yml">...
+
+  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;pushgateway&#39;</span>
+    <span style="color:#66d9ef">static_configs</span>:
+    - <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;127.0.0.1:9091&#39;</span>]
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">instance</span>: pushgateway
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+接下來就能看到endpoint多了Pushgateway
+<img src="3.png" alt="">
+<br></br>
+也可以query了
+<img src="4.png" alt="">
+<br></br>
+完</p>

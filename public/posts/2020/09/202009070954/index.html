@@ -1,0 +1,448 @@
+<p>從爬蟲開始的實作，分析資料前總得先有資料吧(;&lsquo;∀&rsquo;)</p>
+<p>作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…</p>
+<p>完成的souce code已放上github：<a href="https://github.com/mikanbearer/scrapy_sample">https://github.com/mikanbearer/scrapy_sample</a></p>
+<ul>
+<li><a href="#1">使用Scrapy抓取資料</a></li>
+<li><a href="#2">使用Matplotlib製圖</a></li>
+<li><a href="#3">使用Jupyter Notebook</a>
+<br></br></li>
+</ul>
+<h3 id="p-id1使用爬蟲抓取資料p"><p id=1>使用爬蟲抓取資料</p></h3>
+<hr>
+<p>首先把環境部屬好</p>
+<pre><code>$ scrapy startproject scrapy_sample
+$ cd scrapy_sample/scrapy_sample/spiders
+$ scrapy genspider ptt_gossiping www.ptt.cc/bbs/Gossiping
+</code></pre><p><br></br>
+編輯第一個spider，當然response是PTT確認年齡的頁面，之後要再改改</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py"><span style="color:#f92672">import</span> scrapy
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PttGossipingSpider</span>(scrapy<span style="color:#f92672">.</span>Spider):
+    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ptt_gossiping&#39;</span>
+    allowed_domains <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;www.ptt.cc/bbs/Gossiping&#39;</span>]
+    start_urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;http://www.ptt.cc/bbs/Gossiping&#39;</span>]
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse</span>(self, response):
+        <span style="color:#66d9ef">print</span>(response<span style="color:#f92672">.</span>text)
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+可以從source code得知年齡確認用了一個form，會post兩種value，yes和no，現在就就直接post了，省時省力</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py"><span style="color:#f92672">import</span> scrapy
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PttGossipingSpider</span>(scrapy<span style="color:#f92672">.</span>Spider):
+    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ptt_gossiping&#39;</span>
+    allowed_domains <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;www.ptt.cc/bbs/Gossiping&#39;</span>]
+    start_urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;http://www.ptt.cc/bbs/Gossiping&#39;</span>]
+
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse</span>(self, response):
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">return</span> scrapy<span style="color:#f92672">.</span>FormRequest<span style="color:#f92672">.</span>from_response(
+</span><span style="display:block;width:100%;background-color:#3c3d38">            response,
+</span><span style="display:block;width:100%;background-color:#3c3d38">            formdata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;yes&#39;</span>: <span style="color:#e6db74">&#39;yes&#39;</span>},
+</span><span style="display:block;width:100%;background-color:#3c3d38">            callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>after_ask,
+</span><span style="display:block;width:100%;background-color:#3c3d38">            dont_filter<span style="color:#f92672">=</span>True
+</span><span style="display:block;width:100%;background-color:#3c3d38">        )
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">after_ask</span>(self, response):
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">print</span>(response<span style="color:#f92672">.</span>text)
+</span></code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+再來就要開始換頁，把spider改成這樣，頁是最好先限制一下，不然好幾萬頁有點吃不消</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py"><span style="color:#f92672">import</span> scrapy
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PttGossipingSpider</span>(scrapy<span style="color:#f92672">.</span>Spider):
+    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ptt_gossiping&#39;</span>
+    allowed_domains <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;www.ptt.cc/bbs/Gossiping&#39;</span>]
+    start_urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;http://www.ptt.cc/bbs/Gossiping&#39;</span>]
+
+<span style="display:block;width:100%;background-color:#3c3d38">    max_page <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e">#最大頁數</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    page_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">#計數用</span>
+</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse</span>(self, response):
+        <span style="color:#66d9ef">return</span> scrapy<span style="color:#f92672">.</span>FormRequest<span style="color:#f92672">.</span>from_response(
+            response,
+            formdata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;yes&#39;</span>: <span style="color:#e6db74">&#39;yes&#39;</span>},
+            callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>after_ask,
+            dont_filter<span style="color:#f92672">=</span>True
+        )
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">after_ask</span>(self, response):
+<span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>page_count <span style="color:#f92672">&lt;</span> self<span style="color:#f92672">.</span>max_page:
+</span><span style="display:block;width:100%;background-color:#3c3d38">            next <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>xpath(
+</span><span style="display:block;width:100%;background-color:#3c3d38">                <span style="color:#e6db74">&#39;//div[@id=&#34;action-bar-container&#34;]//a[contains(text(), &#34;上頁&#34;)]/@href&#39;</span>)<span style="color:#f92672">.</span>get(default<span style="color:#f92672">=</span>None) <span style="color:#75715e">#抓innertext為&#34;上頁&#34;的element</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">if</span> next:
+</span><span style="display:block;width:100%;background-color:#3c3d38">                url <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>urljoin(next)
+</span><span style="display:block;width:100%;background-color:#3c3d38">                <span style="color:#66d9ef">print</span>(url)
+</span><span style="display:block;width:100%;background-color:#3c3d38">                self<span style="color:#f92672">.</span>page_count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">                <span style="color:#66d9ef">yield</span> scrapy<span style="color:#f92672">.</span>Request(url<span style="color:#f92672">=</span>url, callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>after_ask, dont_filter<span style="color:#f92672">=</span>True) <span style="color:#75715e">#再call一次after_ask</span>
+</span></code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+接下來再小小修改一下after_ask()，使用一個for來多開幾個Reuqest，callback為parse_post</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">after_ask</span>(self, response):
+<span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">for</span> href <span style="color:#f92672">in</span> response<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;div.r-ent div.title a::attr(href)&#39;</span>)<span style="color:#f92672">.</span>getall():
+</span><span style="display:block;width:100%;background-color:#3c3d38">            url <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>urljoin(href)
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">yield</span> scrapy<span style="color:#f92672">.</span>Request(url<span style="color:#f92672">=</span>url, callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>parse_post, dont_filter<span style="color:#f92672">=</span>True)
+</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>page_count <span style="color:#f92672">&lt;</span> self<span style="color:#f92672">.</span>max_page:
+            next <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>xpath(
+                <span style="color:#e6db74">&#39;//div[@id=&#34;action-bar-container&#34;]//a[contains(text(), &#34;上頁&#34;)]/@href&#39;</span>)<span style="color:#f92672">.</span>get(default<span style="color:#f92672">=</span>None)
+            <span style="color:#66d9ef">if</span> next:
+                self<span style="color:#f92672">.</span>page_count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                url <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>urljoin(next)
+                <span style="color:#66d9ef">yield</span> scrapy<span style="color:#f92672">.</span>Request(url<span style="color:#f92672">=</span>url, callback<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>after_ask, dont_filter<span style="color:#f92672">=</span>True)
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+先定義這個簡單的function，就能看到response.url是個標題的網址，如此一來就可以開始抓內容了</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse_post</span>(self, response):
+        <span style="color:#66d9ef">print</span>(response<span style="color:#f92672">.</span>url)
+</code></pre></div><p><br></br>
+準備好items</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/items.py" data-lang=":scrapy_sample/items.py"><span style="color:#f92672">import</span> scrapy
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostItem</span>(scrapy<span style="color:#f92672">.</span>Item):
+    url <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    title <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    author <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    date <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    content <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    comments <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+    score <span style="color:#f92672">=</span> scrapy<span style="color:#f92672">.</span>Field()
+
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+接下來回到spider，修改成下列的樣子就差不多大功告成</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:scrapy_sample/spiders/ptt_gossiping.py" data-lang=":scrapy_sample/spiders/ptt_gossiping.py">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse_post</span>(self, response):
+        item <span style="color:#f92672">=</span> PostItem()
+        item[<span style="color:#e6db74">&#39;title&#39;</span>] <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;meta[property=&#34;og:title&#34;]::attr(content)&#39;</span>)<span style="color:#f92672">.</span>get()
+        item[<span style="color:#e6db74">&#39;author&#39;</span>] <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>xpath(
+            <span style="color:#e6db74">&#39;//div[@class=&#34;article-metaline&#34;]/span[text()=&#34;作者&#34;]/following-sibling::span[1]/text()&#39;</span>)<span style="color:#f92672">.</span>get()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39; &#39;</span>)[<span style="color:#ae81ff">0</span>]
+
+        datetime_str <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>xpath(
+            <span style="color:#e6db74">&#39;//div[@class=&#34;article-metaline&#34;]/span[text()=&#34;時間&#34;]/following-sibling::span[1]/text()&#39;</span>)<span style="color:#f92672">.</span>get()
+        item[<span style="color:#e6db74">&#39;date&#39;</span>] <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>strptime(datetime_str, <span style="color:#e6db74">&#39;%a %b </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> %H:%M:%S %Y&#39;</span>)
+        item[<span style="color:#e6db74">&#39;content&#39;</span>] <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;div#main-content::text&#39;</span>)<span style="color:#f92672">.</span>get()
+        comments <span style="color:#f92672">=</span> []
+        score_total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+        <span style="color:#66d9ef">for</span> comment <span style="color:#f92672">in</span> response<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;div.push&#39;</span>):
+            tag <span style="color:#f92672">=</span> comment<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;span.push-tag::text&#39;</span>)<span style="color:#f92672">.</span>get()
+            user <span style="color:#f92672">=</span> comment<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;span.push-userid::text&#39;</span>)<span style="color:#f92672">.</span>get()
+            content <span style="color:#f92672">=</span> comment<span style="color:#f92672">.</span>css(<span style="color:#e6db74">&#39;span.push-content::text&#39;</span>)<span style="color:#f92672">.</span>get()
+
+            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;推&#39;</span> <span style="color:#f92672">in</span> tag:
+                score <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">elif</span> <span style="color:#e6db74">&#39;噓&#39;</span> <span style="color:#f92672">in</span> tag:
+                score <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                score <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+            score_total <span style="color:#f92672">+=</span> score
+
+            comments<span style="color:#f92672">.</span>append({
+                <span style="color:#e6db74">&#39;user&#39;</span>: user,
+                <span style="color:#e6db74">&#39;score&#39;</span>: score,
+                <span style="color:#e6db74">&#39;content&#39;</span>: content
+            })
+
+        item[<span style="color:#e6db74">&#39;comments&#39;</span>] <span style="color:#f92672">=</span> comments
+        item[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">=</span> score_total
+        item[<span style="color:#e6db74">&#39;url&#39;</span>] <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>url
+
+        <span style="color:#66d9ef">yield</span> item
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+完成輸入指令，就能看到貼文被抓下來啦</p>
+<pre><code>$ scrapy crawl ptt_gossiping -o test.json
+</code></pre><p>遲來的資料分析，原本想通通和爬蟲一起塞一篇，但一次做太多自己沒辦法進入狀況，只好先練習資料可視化開始熟悉手邊工具，之後再循序漸進繼續深入</p>
+<!--more-->
+<p>這篇比較有點過渡期的味道，畢竟沒有太多內容，所以就索性加了一點點Jupyter notebook</p>
+<p><br></br>
+練習的檔案，是用之前抓的PTT貼文
+<a href="https://github.com/mikanbearer/scrapy_sample">https://github.com/mikanbearer/scrapy_sample</a>
+<br></br></p>
+<h3 id="p-id2使用matplotlib製圖p"><p id=2>使用Matplotlib製圖</p></h3>
+<hr>
+<p><br></br>
+首先用pip下載需要用的包</p>
+<pre><code>$ pip install matplotlib
+</code></pre><p><br></br>
+接下來將json做個簡單的處理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> json
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;pttgossip.json&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    posts <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>load(f) <span style="color:#75715e">#讀取練習的jason</span>
+
+<span style="color:#75715e">#建立defaultdict物件，value type為int</span>
+comments_total <span style="color:#f92672">=</span> defaultdict(int)
+pushes_total <span style="color:#f92672">=</span> defaultdict(int)
+hates_total <span style="color:#f92672">=</span> defaultdict(int)
+
+<span style="color:#66d9ef">for</span> post <span style="color:#f92672">in</span> posts:
+    <span style="color:#66d9ef">for</span> comment <span style="color:#f92672">in</span> post[<span style="color:#e6db74">&#39;comments&#39;</span>]:
+        user <span style="color:#f92672">=</span> comment[<span style="color:#e6db74">&#39;user&#39;</span>]
+
+        comments_total[user] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+        <span style="color:#66d9ef">if</span> comment[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+            pushes_total[user] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+        <span style="color:#66d9ef">elif</span> comment[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+            hates_total[user] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</code></pre></div><p>這樣就能以user為key，value則是一個count
+<br></br>
+接著可以畫圖囉，以user為x，那麼回應、推、噓三個則為y值，以這構想大概這樣做</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e">#以comment數來排序成user list，長度取50</span>
+sorted_users <span style="color:#f92672">=</span> [item[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> sorted(comments_total<span style="color:#f92672">.</span>items(), key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: <span style="color:#f92672">-</span>x[<span style="color:#ae81ff">1</span>])][:]
+<span style="color:#75715e">#以user list來排序回覆count</span>
+y_comments <span style="color:#f92672">=</span> [comments_total[u] <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> sorted_users]
+<span style="color:#75715e">#以user list來排序推文count</span>
+y_pushes <span style="color:#f92672">=</span> [pushes_total[u] <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> sorted_users]
+<span style="color:#75715e">#以user list來排序噓文count</span>
+y_hates <span style="color:#f92672">=</span> [hates_total[u] <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> sorted_users]
+</code></pre></div><p>這樣就處理好x與三個y
+<br></br>
+接下來就能用mtatplotlib產生簡單的圖</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">comment_graph</span>(comments, pushes, hates, max_x):
+    sorted_users <span style="color:#f92672">=</span> [item[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> sorted(comments<span style="color:#f92672">.</span>items(), key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: <span style="color:#f92672">-</span>x[<span style="color:#ae81ff">1</span>])][:max_x]
+    y_comments <span style="color:#f92672">=</span> [comments[u] <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> sorted_users]
+    y_pushes <span style="color:#f92672">=</span> [pushes[u] <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> sorted_users]
+    y_hates <span style="color:#f92672">=</span> [hates[u] <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> sorted_users]
+
+    x <span style="color:#f92672">=</span> range(len(sorted_users))
+
+    plt<span style="color:#f92672">.</span>plot(x, y_comments, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blue&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;comments&#39;</span>)
+    plt<span style="color:#f92672">.</span>plot(x, y_pushes, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;green&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pushes&#39;</span>)
+    plt<span style="color:#f92672">.</span>plot(x, y_hates, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;hates&#39;</span>)
+    plt<span style="color:#f92672">.</span>legend()
+    plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><br></br>
+最後完成的code如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> json
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;pttgossip.json&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    posts <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>load(f)
+
+comments_total <span style="color:#f92672">=</span> defaultdict(int)
+pushes_total <span style="color:#f92672">=</span> defaultdict(int)
+hates_total <span style="color:#f92672">=</span> defaultdict(int)
+
+<span style="color:#66d9ef">for</span> post <span style="color:#f92672">in</span> posts:
+    <span style="color:#66d9ef">for</span> comment <span style="color:#f92672">in</span> post[<span style="color:#e6db74">&#39;comments&#39;</span>]:
+        user <span style="color:#f92672">=</span> comment[<span style="color:#e6db74">&#39;user&#39;</span>]
+        comments_total[user] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+        <span style="color:#66d9ef">if</span> comment[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+            pushes_total[user] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+        <span style="color:#66d9ef">elif</span> comment[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+            hates_total[user] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">comment_graph</span>(comments, pushes, hates, max_x):
+    sorted_users <span style="color:#f92672">=</span> [item[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> sorted(comments<span style="color:#f92672">.</span>items(), key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: <span style="color:#f92672">-</span>x[<span style="color:#ae81ff">1</span>])][:max_x]
+    y_comments <span style="color:#f92672">=</span> [comments[u] <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> sorted_users]
+    y_pushes <span style="color:#f92672">=</span> [pushes[u] <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> sorted_users]
+    y_hates <span style="color:#f92672">=</span> [hates[u] <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> sorted_users]
+
+    x <span style="color:#f92672">=</span> range(len(sorted_users))
+
+    plt<span style="color:#f92672">.</span>plot(x, y_comments, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blue&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;comments&#39;</span>)
+    plt<span style="color:#f92672">.</span>plot(x, y_pushes, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;green&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pushes&#39;</span>)
+    plt<span style="color:#f92672">.</span>plot(x, y_hates, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;hates&#39;</span>)
+    plt<span style="color:#f92672">.</span>legend()
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;total comments&#39;</span>)
+    plt<span style="color:#f92672">.</span>show()
+
+comment_graph(comments_total, pushes_total, hates_total, <span style="color:#ae81ff">100</span>)
+</code></pre></div><p><br></br>
+這樣就能看到前幾名回應活躍的user了
+<img src="1.png" alt="">
+<br></br></p>
+<h3 id="p-id3使用jupyter-notebookp"><p id=3>使用Jupyter Notebook</p></h3>
+<hr>
+<p><br></br>
+畢竟要做資料練習，果然還是有個shell一般的操作方式最好吧？可用又可讀，如同IPython notebook，但這次來用用Jupyter</p>
+<pre><code>$ pip install ipython jupyter
+</code></pre><p><br></br>
+輸入指令啟動notebook</p>
+<pre><code>$ jupyter notebook
+...
+[I 09:56:21.690 NotebookApp] Jupyter Notebook 6.1.3 is running at:
+[I 09:56:21.690 NotebookApp] http://localhost:8888/?token=389282ffb93c1426ba34e094ef8b8667ad6812ad8575a0f6
+[I 09:56:21.691 NotebookApp]  or http://127.0.0.1:8888/?token=389282ffb93c1426ba34e094ef8b8667ad6812ad8575a0f6
+</code></pre><p><br></br><br>
+接下來開啟帶有token的網址，把要分析的json上傳
+<img src="4.png" alt="">
+<br></br>
+接著建立新的Pyhon3 Notebook
+<img src="5.png" alt="">
+<br></br>
+接下來就能進入notebook操作了
+<img src="6.png" alt="">
+<br></br>
+加上下列就能將圖片inline顯示</p>
+<pre><code>%matplotlib notebook
+</code></pre><p><br></br>
+run完結果範例就像是這樣
+<img src="7.png" alt="">
+<br></br>
+notebook也能以.ipynb以外的格式download下來用其他工具閱讀
+<img src="8.png" alt="">
+完成的notebook(.ipynb)放在<a href="https://github.com/mikanbearer/scrapy_sample/blob/master/notebook1.ipynb">這裡</a>可直接觀看喔</p>

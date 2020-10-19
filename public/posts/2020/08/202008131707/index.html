@@ -1,0 +1,317 @@
+<p>Prometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：</p>
+<ul>
+<li>Prometheus：監控方，定期收集資料並存在資料庫</li>
+<li>Exporter：被監控方，回傳監控方需要的資料</li>
+</ul>
+<p>為了往後學習方便，先來實作一遍這個方便利用的工具</p>
+<p>Prometheus的基礎運用架構很單純，大在就像下圖：
+<img src="0.png" alt=""></p>
+<p>從圖中可見，Prometheus收集時間序列資料(metrics)都是由自己主動向Exporter發起的，這次大概會做這些：</p>
+<ul>
+<li><a href="#1">啟動Prometheus</a></li>
+<li><a href="#2">啟動Exporter</a></li>
+<li><a href="#3">使用static config監控</a></li>
+<li><a href="#4" >使用file-based service discovery取得target</a></li>
+</ul>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id=1>啟動Prometheus</h3>
+</li>
+</ul>
+<p><br></br>
+部屬Prometheus非常簡單，就只是binary配上一個設定檔，指令如下：</p>
+<pre><code>$ wget https://github.com/prometheus/prometheus/releases/download/v2.20.1/prometheus-2.20.1.linux-amd64.tar.gz
+$ tar zxvf prometheus-2.20.1.linux-amd64.tar.gz
+$ cd prometheus-2.20.1.linux-amd64
+</code></pre><p><br></br></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.yml" data-lang=":prometheus.yml"><span style="color:#75715e"># my global config</span>
+<span style="color:#66d9ef">global</span>:
+  <span style="color:#66d9ef">scrape_interval</span>:     15s <span style="color:#75715e"># Set the scrape interval to every 15 seconds. Default is every 1 minute.</span>
+  <span style="color:#66d9ef">evaluation_interval</span>: 15s <span style="color:#75715e"># Evaluate rules every 15 seconds. The default is every 1 minute.</span>
+  <span style="color:#75715e"># scrape_timeout is set to the global default (10s).</span>
+
+<span style="color:#75715e"># Alertmanager configuration</span>
+<span style="color:#66d9ef">alerting</span>:
+  <span style="color:#66d9ef">alertmanagers</span>:
+  - <span style="color:#66d9ef">static_configs</span>:
+    - <span style="color:#66d9ef">targets</span>:
+      <span style="color:#75715e"># - alertmanager:9093</span>
+
+<span style="color:#75715e"># Load rules once and periodically evaluate them according to the global &#39;evaluation_interval&#39;.</span>
+<span style="color:#66d9ef">rule_files</span>:
+  <span style="color:#75715e"># - &#34;first_rules.yml&#34;</span>
+  <span style="color:#75715e"># - &#34;second_rules.yml&#34;</span>
+
+<span style="color:#75715e"># A scrape configuration containing exactly one endpoint to scrape:</span>
+<span style="color:#75715e"># Here it&#39;s Prometheus itself.</span>
+<span style="color:#66d9ef">scrape_configs</span>:
+  <span style="color:#75715e"># The job name is added as a label `job=&lt;job_name&gt;` to any timeseries scraped from this config.</span>
+  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;prometheus&#39;</span>
+
+    <span style="color:#75715e"># metrics_path defaults to &#39;/metrics&#39;</span>
+    <span style="color:#75715e"># scheme defaults to &#39;http&#39;.</span>
+
+    <span style="color:#66d9ef">static_configs</span>:
+    - <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:9090&#39;</span>]
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br></p>
+<pre><code>$ ./prometheus --config.file=prometheus.yml
+</code></pre><p><br></br>
+使用cURL測試一下metrics</p>
+<pre><code>$ curl localhost:9090/metrics
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile=&quot;0&quot;} 8.412e-06
+go_gc_duration_seconds{quantile=&quot;0.25&quot;} 6.8151e-05
+go_gc_duration_seconds{quantile=&quot;0.5&quot;} 0.000435588
+go_gc_duration_seconds{quantile=&quot;0.75&quot;} 0.000661594
+go_gc_duration_seconds{quantile=&quot;1&quot;} 0.001019489
+go_gc_duration_seconds_sum 0.002193234
+go_gc_duration_seconds_count 5
+# HELP go_goroutines Number of goroutines that currently exist.
+# TYPE go_goroutines gauge
+...
+</code></pre><p><strong>就算加上下載，整個過程也不到五分鐘…</strong></p>
+<p>拿到metrics就是這麼快速，也能進web看看graph，在瀏覽器打上http://prometheus_ip:9090/graph就能看到了，
+tab選擇graph也能看到些簡單的圖表
+<img src="1.png" alt=""></p>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id="2">啟動Exporter</h3>
+</li>
+</ul>
+<p><br></br>
+既然Prometheus已經起來了，那麼來試著監控些什麼，就下載個node exporter來測試</p>
+<pre><code>wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+tar zxvf node_exporter-1.0.1.linux-amd64.tar.gz
+cd node_exporter-1.0.1.linux-amd64
+</code></pre><p><br></br>
+裡面一樣是個binary file，執行下去</p>
+<pre><code> ./node_exporter --web.listen-address 127.0.0.1:8080
+curl 127.0.0.1:8080/metrics
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile=&quot;0&quot;} 0
+go_gc_duration_seconds{quantile=&quot;0.25&quot;} 0
+go_gc_duration_seconds{quantile=&quot;0.5&quot;} 0
+go_gc_duration_seconds{quantile=&quot;0.75&quot;} 0
+go_gc_duration_seconds{quantile=&quot;1&quot;} 0
+go_gc_duration_seconds_sum 0
+go_gc_duration_seconds_count 0
+</code></pre><p><br></br>
+cURL測試metrics</p>
+<pre><code>$ curl localhost:8080/metrics
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile=&quot;0&quot;} 9.31e-06
+go_gc_duration_seconds{quantile=&quot;0.25&quot;} 5.488e-05
+go_gc_duration_seconds{quantile=&quot;0.5&quot;} 0.000112915
+go_gc_duration_seconds{quantile=&quot;0.75&quot;} 0.000194093
+go_gc_duration_seconds{quantile=&quot;1&quot;} 0.004481425
+go_gc_duration_seconds_sum 0.175059981
+go_gc_duration_seconds_count 957
+# HELP go_goroutines Number of goroutines that currently exist.
+# TYPE go_goroutines gauge
+go_goroutines 8
+# HELP go_info Information about the Go environment.
+# TYPE go_info gauge
+...
+</code></pre><p>一樣簡單快速</p>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id="3">使用static config進行監控</h3>
+</li>
+</ul>
+<p><br></br>
+既然exporter沒問題，那麼是時候建立一個job來get metrics了，就依照<a href="https://prometheus.io/docs/prometheus/latest/getting_started/">這裡的範例</a>，一步步操作吧</p>
+<p>依照範例，建立prometheus.rules.yml，用於依照需求控制紀錄的方式，能降低監控造成的負擔，此範例是記錄下五分鐘平均的cpu狀態</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.rules.yml" data-lang=":prometheus.rules.yml"><span style="color:#66d9ef">groups</span>:
+- <span style="color:#66d9ef">name</span>: cpu-node
+  <span style="color:#66d9ef">rules</span>:
+  - <span style="color:#66d9ef">record</span>: job_instance_mode:node_cpu_seconds:avg_rate5m
+    <span style="color:#66d9ef">expr</span>: avg by (job, instance, mode) (rate(node_cpu_seconds_total[5m]))
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+然後修改prometheus.yml，除了增加rule，也新增job，並<a href="">之前</a>啟動的exporter</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.yml" data-lang=":prometheus.yml"><span style="color:#66d9ef">global</span>:
+  <span style="color:#66d9ef">scrape_interval</span>:     15s <span style="color:#75715e"># By default, scrape targets every 15 seconds.</span>
+  <span style="color:#66d9ef">evaluation_interval</span>: 15s <span style="color:#75715e"># Evaluate rules every 15 seconds.</span>
+
+  <span style="color:#75715e"># Attach these extra labels to all timeseries collected by this Prometheus instance.</span>
+  <span style="color:#66d9ef">external_labels</span>:
+    <span style="color:#66d9ef">monitor</span>: <span style="color:#e6db74">&#39;codelab-monitor&#39;</span>
+
+<span style="color:#66d9ef">rule_files</span>:
+<span style="display:block;width:100%;background-color:#3c3d38">  - <span style="color:#e6db74">&#39;prometheus.rules.yml&#39;</span>
+</span>
+<span style="color:#66d9ef">scrape_configs</span>:
+  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;prometheus&#39;</span>
+
+    <span style="color:#75715e"># Override the global default and scrape targets from this job every 5 seconds.</span>
+    <span style="color:#66d9ef">scrape_interval</span>: 5s
+
+    <span style="color:#66d9ef">static_configs</span>:
+      - <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:9090&#39;</span>]
+
+<span style="display:block;width:100%;background-color:#3c3d38">  - <span style="color:#66d9ef">job_name</span>:       <span style="color:#e6db74">&#39;node&#39;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#75715e"># Override the global default and scrape targets from this job every 5 seconds.</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">scrape_interval</span>: 5s
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">static_configs</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:8080&#39;</span>, <span style="color:#e6db74">&#39;localhost:8081&#39;</span>]
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">labels</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#66d9ef">group</span>: <span style="color:#e6db74">&#39;production&#39;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:8082&#39;</span>]
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">labels</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#66d9ef">group</span>: <span style="color:#e6db74">&#39;canary&#39;</span>
+</span></code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+重新啟動prometheus後，就能用去query job instance了
+<img src="2.png" alt=""></p>
+<p><br></br></p>
+<ul>
+<li>
+<h3 id="4">使用file-based service discovery取得target</h3>
+</li>
+</ul>
+<p><br></br>
+在實務上，不可能每增加個exporter就重新啟動一次，這時候file-based service discovery就很重要，
+這種方式和static config不同，只要修改檔案讓prometheus能去讀取就行，不需要reload</p>
+<p>先在目錄中建立一個空的file_sd.yml，並修改prometheus.yml</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.yml" data-lang=":prometheus.yml">  - <span style="color:#66d9ef">job_name</span>:       <span style="color:#e6db74">&#39;node&#39;</span>
+
+    <span style="color:#75715e"># Override the global default and scrape targets from this job every 5 seconds.</span>
+    <span style="color:#66d9ef">scrape_interval</span>: 5s
+
+    <span style="color:#66d9ef">file_sd_configs</span>:
+      - <span style="color:#66d9ef">files</span>:
+<span style="display:block;width:100%;background-color:#3c3d38">        - ./file_sd.yml
+</span></code></pre></td></tr></table>
+</div>
+</div><p><br></br></p>
+<p>重新啟動prometheus後，就發現targets回到空空如也的狀態了
+<img src="3.png" alt="">
+<br></br></p>
+<p>接下來就是要用file來增加targets了，把前版的prometheus.yml中的static config放到file_sd.yml</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:file_sd.yml" data-lang=":file_sd.yml">- <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:8080&#39;</span>, <span style="color:#e6db74">&#39;localhost:8081&#39;</span>]
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">group</span>: <span style="color:#e6db74">&#39;production&#39;</span>
+
+- <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:8082&#39;</span>]
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">group</span>: <span style="color:#e6db74">&#39;canary&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br></p>
+<p>接下來不需要重新啟動prometheus，也能新增targets了
+<img src="4.png" alt=""></p>
