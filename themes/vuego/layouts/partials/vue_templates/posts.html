@@ -4,43 +4,41 @@
         <v-slide-x-transition>
             <div class="post-list" v-show="displayPosts.length">
                 <v-card class="content mb-5" v-for="(post, index) in displayPosts" :key="index">
-                    <v-list-item three-line>
+                    <v-list-item two-line>
                         <v-list-item-content>
-                            <div class="mb-2 text-body-2 grey--text text--lighten-1">
 
-                                <div class="post-subtitle">
-                                    <v-icon small color="grey lighten-1">
-                                        mdi-calendar
-                                    </v-icon>
-                                    [[ post.date.slice(0,10) ]]
-                                    <v-divider vertical></v-divider>
-                                    <v-icon small color="grey lighten-1">
-                                        mdi-note-text
-                                    </v-icon>
-                                    [[ post.wordcount ]] words
-                                    <v-divider vertical></v-divider>
-                                    <v-icon small color="grey lighten-1">
-                                        mdi-folder
-                                    </v-icon>
-                                    <div v-for="(category, index) in post.categories" class="d-inline">
-                                        <span v-if="index">, </span>
-                                        <router-link
-                                            :to="{path: '/', query: {category: category}}"
-                                        >
-                                            [[ category ]]
-                                        </router-link>
-                                    </div>
-                                </div>
-
-                            </div>
                             <v-list-item-title class="text-h6 grey--text text--lighten-2">
-                                <router-link class="post-title" v-html="post.title" :to="{path: 'post', query: {url: post.url}}">
-                                </router-link>
+                                <router-link class="post-title" v-html="post.title" :to="{path: 'post', query: {url: post.url}}"></router-link>
                             </v-list-item-title>
+
                             <v-list-item-subtitle>
                                 <div class="mt-2 text-body-2 grey--text text--lighten-1">
 
-                                    <div>
+                                    <div class="post-subtitle">
+                                        <v-icon small color="grey lighten-1">
+                                            mdi-calendar
+                                        </v-icon>
+                                        [[ post.date.slice(0,10) ]]
+                                        <v-divider vertical></v-divider>
+                                        <v-icon small color="grey lighten-1">
+                                            mdi-note-text
+                                        </v-icon>
+                                        [[ post.wordcount ]] words
+                                        <v-divider vertical></v-divider>
+                                        <v-icon small color="grey lighten-1">
+                                            mdi-folder
+                                        </v-icon>
+                                        <div v-for="(category, index) in post.categories" class="d-inline">
+                                            <span v-if="index">, </span>
+                                            <router-link
+                                                :to="{path: '/', query: {category: category}}"
+                                            >
+                                                [[ category ]]
+                                            </router-link>
+                                        </div>
+                                    </div>
+
+                                    <div class="post-subtitle">
                                         <v-icon small color="grey lighten-1">
                                             mdi-tag-multiple
                                         </v-icon>
