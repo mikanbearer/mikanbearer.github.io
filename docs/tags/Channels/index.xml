@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Channels on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/Channels/</link>
+    <description>Recent content in Channels on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
+    <lastBuildDate>Mon, 10 Aug 2020 01:08:04 +0800</lastBuildDate>
+    
+	<atom:link href="https://mikanbearer.github.io/tags/Channels/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Django &#43; Channels部屬WebSocket簡易聊天室</title>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008100108/</link>
+      <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008100108/</guid>
+      <description>&lt;p&gt;製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，
+剛好可作為Message Queue及Web Socket的練習。&lt;/p&gt;
+&lt;p&gt;本篇Message Queue使用RabbitMQ，Framework使用Django，並且由Channels來實現Web Socket&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

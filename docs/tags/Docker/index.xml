@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/Docker/</link>
+    <description>Recent content in Docker on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
+    <lastBuildDate>Thu, 03 Sep 2020 14:56:05 +0800</lastBuildDate>
+    
+	<atom:link href="https://mikanbearer.github.io/tags/Docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Ansible部屬Docker Swarm</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009031456/</link>
+      <pubDate>Thu, 03 Sep 2020 14:56:05 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009031456/</guid>
+      <description>&lt;p&gt;偶然看到這個&lt;a href=&#34;https://github.com/atosatto/ansible-dockerswarm&#34;&gt;Ansible Role: Docker&lt;/a&gt;就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用docker-compose部屬Nginx &#43; uWSGI &#43; Django</title>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007291642/</link>
+      <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007291642/</guid>
+      <description>&lt;p&gt;雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…&lt;/p&gt;
+&lt;p&gt;這次使用以下兩篇舊文的範例來練習&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

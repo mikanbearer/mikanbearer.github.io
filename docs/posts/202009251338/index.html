@@ -1,0 +1,40 @@
+<p>工作測試用的放上來自己參考</p>
+<p>這裡的source code：<a href="https://gist.github.com/marcelom/4218010">https://gist.github.com/marcelom/4218010</a></p>
+<p>順序稍微調了下，大部分維持原樣</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:loggingServer.py" data-lang=":loggingServer.py"><span style="color:#f92672">import</span> logging
+<span style="color:#f92672">import</span> socketserver <span style="color:#f92672">as</span> SocketServer
+
+LOG_FILE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;youlogfile.log&#39;</span>
+HOST, PORT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, <span style="color:#ae81ff">514</span>
+
+logging<span style="color:#f92672">.</span>basicConfig(level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>INFO, format<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%(message)s</span><span style="color:#e6db74">&#39;</span>, datefmt<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>, filename<span style="color:#f92672">=</span>LOG_FILE, filemode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;a&#39;</span>)
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SyslogUDPHandler</span>(SocketServer<span style="color:#f92672">.</span>BaseRequestHandler):
+
+	<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle</span>(self):
+		data <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span>decode(self<span style="color:#f92672">.</span>request[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>strip())
+		socket <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>request[<span style="color:#ae81ff">1</span>]
+		<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> : &#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>client_address[<span style="color:#ae81ff">0</span>], str(data))
+		logging<span style="color:#f92672">.</span>info(str(data))
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+	<span style="color:#66d9ef">try</span>:
+		server <span style="color:#f92672">=</span> SocketServer<span style="color:#f92672">.</span>UDPServer((HOST,PORT), SyslogUDPHandler)
+		server<span style="color:#f92672">.</span>serve_forever(poll_interval<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
+	<span style="color:#66d9ef">except</span> (<span style="color:#a6e22e">IOError</span>, <span style="color:#a6e22e">SystemExit</span>):
+		<span style="color:#66d9ef">raise</span>
+	<span style="color:#66d9ef">except</span> <span style="color:#a6e22e">KeyboardInterrupt</span>:
+		<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Crtl+C Pressed. Shutting down.&#39;</span>)
+</code></pre></div><p><br></br>
+而這是client的部分</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:loggingClient.py" data-lang=":loggingClient.py"><span style="color:#f92672">from</span> logging <span style="color:#f92672">import</span> getLogger, handlers, DEBUG
+
+logger <span style="color:#f92672">=</span> getLogger(__name__)
+handler <span style="color:#f92672">=</span> handlers<span style="color:#f92672">.</span>SysLogHandler((<span style="color:#e6db74">&#39;127.0.0.1&#39;</span>, <span style="color:#ae81ff">514</span>))
+logger<span style="color:#f92672">.</span>setLevel(DEBUG)
+logger<span style="color:#f92672">.</span>addHandler(handler)
+logger<span style="color:#f92672">.</span>propagate <span style="color:#f92672">=</span> False
+
+logger<span style="color:#f92672">.</span>debug(<span style="color:#e6db74">&#39;hiahiahia&#39;</span>)
+
+</code></pre></div>

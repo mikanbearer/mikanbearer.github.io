@@ -1,0 +1,73 @@
+<p>弄這個blog遇到的問題，想使用Vue Router來取代Hugo部分list功能的小筆記</p>
+<p>在Hugo的情況是會產生出新的靜態頁面</p>
+<pre><code>http://localhost:1313/tags/Hugo/
+</code></pre><p><br></br>
+為了實現SPA，想法是取得Vue Router的Query來進行搜尋，求的是url後面那段query string</p>
+<pre><code>http://localhost:1313/#/?tag=Hugo
+</code></pre><p><br></br>
+為了在任何location都能回到&rsquo;/'，所以使用method來進行回首頁的動作來搜尋本blog的貼文</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">...
+<span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">toFilteredList</span> () {
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">push</span>({
+            <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/&#39;</span>,
+            <span style="color:#a6e22e">query</span><span style="color:#f92672">:</span> {
+              <span style="color:#a6e22e">keyword</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">keyword</span>,
+              <span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedCategories</span>, 
+              <span style="color:#a6e22e">tag</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedTags</span>
+            }
+          })
+      },
+    }
+</code></pre></div><p><br></br>
+但是如果目標的path和當前的一樣，會無法刷新，產生以下error
+<img src="1.png" alt=""></p>
+<p>畢竟路徑一樣呢
+<br></br>
+在stackoverflow看到了這篇<a href="https://stackoverflow.com/questions/41301099/do-we-have-router-reload-in-vue-router">https://stackoverflow.com/questions/41301099/do-we-have-router-reload-in-vue-router</a></p>
+<p>裡面不少人提起了router.go()，但不論是用window的go還是Vue Router的router.go()，都是瀏覽器reload整個頁面，不符合需求，
+畢竟當初只是想傳值而已，所以要用Vue Router解決的話必然會是push與replace，不會是go</p>
+<p>是最後的解決方法是改為router.history.push，這樣不論怎麼call，當前頁還是頁面，都不會跳轉，但是$route是確確實實更新了</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">...
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">toFilteredList</span> () {
+        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">path</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;/&#39;</span>) {
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">push</span>({
+            <span style="color:#a6e22e">query</span><span style="color:#f92672">:</span> {
+              <span style="color:#a6e22e">keyword</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">keyword</span>,
+              <span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedCategories</span>, 
+              <span style="color:#a6e22e">tag</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedTags</span>
+            }
+          })
+        }
+        <span style="color:#66d9ef">else</span> {
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">push</span>({
+            <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/&#39;</span>,
+            <span style="color:#a6e22e">query</span><span style="color:#f92672">:</span> {
+              <span style="color:#a6e22e">keyword</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">keyword</span>,
+              <span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedCategories</span>, 
+              <span style="color:#a6e22e">tag</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedTags</span>
+            }
+          })
+        }
+      },
+</code></pre></div><p><br></br>
+再來只要到components中使用watch來監控route，就能去拿到新的query string了</p>
+<pre><code>const List = {
+    ...
+    computed: {
+      getQuery () {
+        return this.$route.query
+      }
+    },
+
+
+    watch: {
+      getQuery (to, from) {
+         console.log(to)
+       }
+    },
+}
+</code></pre><p><br></br>
+結果姑且算是理想
+<img src="1.gif" alt=""></p>

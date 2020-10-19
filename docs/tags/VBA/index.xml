@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VBA on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/VBA/</link>
+    <description>Recent content in VBA on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
+    <webMaster>youremail@domain.com (Zhang San)</webMaster>
+    <lastBuildDate>Tue, 21 Jul 2020 15:16:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://mikanbearer.github.io/tags/VBA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用VBA在Excel中使用nslookup</title>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007211516/</link>
+      <pubDate>Tue, 21 Jul 2020 15:16:46 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007211516/</guid>
+      <description>&lt;p&gt;工作中常常用到的功能，不筆記會忘記，
+主要是在Excel Macro調用Wshshell，把A欄的結果輸出到B欄&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

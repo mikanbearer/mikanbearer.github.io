@@ -1,0 +1,1009 @@
+<p>練習的時候到啦，這次一樣是用登入畫面，本篇寫作風格有點改變，嘗試放多一點圖(尤其gif)，內文不包含API的部分，大部分都是盲做，不完善的地方非常之多…</p>
+<p>畢竟，熟能生巧嘛(;´Д`A ```</p>
+<p>API使用之前Django REST Framework的練習：</p>
+<p><a href="https://github.com/mikanbearer/django_rest_example">https://github.com/mikanbearer/django_rest_example</a></p>
+<p>是個功能有點少的API，只有兩個url</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>url</th>
+<th>field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>api/api-auth-token/</td>
+<td>username, password</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>api/api-auth-verify/</td>
+<td>token</td>
+</tr>
+<tr>
+<td><br></br></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>以下是練習環境：</p>
+<pre><code>     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+    
+
+Angular CLI: 10.1.2
+Node: 12.16.1
+OS: win32 x64
+
+Angular: 10.1.2
+... animations, cli, common, compiler, compiler-cli, core, forms
+... platform-browser, platform-browser-dynamic, router
+Ivy Workspace: Yes
+
+Package                         Version
+---------------------------------------------------------
+@angular-devkit/architect       0.1001.2
+@angular-devkit/build-angular   0.1001.2
+@angular-devkit/core            10.1.2
+@angular-devkit/schematics      10.1.2
+@angular/cdk                    10.2.2
+@angular/material               10.2.2
+@schematics/angular             10.1.2
+@schematics/update              0.1001.2
+rxjs                            6.6.3
+typescript                      4.0.3
+</code></pre><p><br></br></p>
+<ul>
+<li><a href=#1>事前準備</a></li>
+<li><a href=#2>製作登入畫面</a></li>
+<li><a href=#3>製作登入功能</a></li>
+<li><a href=#4>製作主畫面與登出功能</a></li>
+<li><a href=#5>驗證登入狀態</a>
+<br></br></li>
+</ul>
+<h3 id="p-id1事前準備p"><p id=1>事前準備<p></h3>
+<hr>
+<p><br></br>
+建立project</p>
+<pre><code>$ ng new angular-login-example
+</code></pre><p><br></br>
+建立名為login的component</p>
+<pre><code>$ cd angular-login-example
+$ ng generate component components/login
+</code></pre><p><br></br>
+打★為新增的部分</p>
+<pre><code>│  app-routing.module.ts
+│  app.component.css
+│  app.component.html
+│  app.component.spec.ts
+│  app.component.ts
+│  app.module.ts
+│
+└─components ★
+    └─login　★
+            login.component.css　★
+            login.component.html　★
+            login.component.spec.ts　★
+            login.component.ts　★
+</code></pre><p><br></br>
+將剛才建立的component加進routing module</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
+<span style="display:block;width:100%;background-color:#3c3d38">  { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;login&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">LoginComponent</span> },
+</span>];
+
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">RouterModule</span>.<span style="color:#a6e22e">forRoot</span>(<span style="color:#a6e22e">routes</span>)],
+  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">RouterModule</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppRoutingModule</span> { }
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+再來把app.component.html改了</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.component.html" data-lang=":app/app.component.html">&lt;<span style="color:#f92672">router-outlet</span>&gt;&lt;/<span style="color:#f92672">router-outlet</span>&gt;
+</code></pre></div><p><br></br>
+輸入網址後能看到畫面就沒問題了</p>
+<p><img src="1.png" alt="">
+<br></br></p>
+<h3 id="p-id2製作登入畫面p"><p id=2>製作登入畫面</p></h3>
+<hr>
+<p><br></br>
+接下來準備一個登入的form，這次採用Angular material作為練習</p>
+<pre><code>$ ng add @angular/material
+</code></pre><p><br></br>
+把會用到的module加進來</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.module.ts" data-lang=":app/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppRoutingModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app-routing.module&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserAnimationsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser/animations&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38">
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatCardModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/card&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatInputModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/input&#39;</span>; 
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatFormFieldModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/form-field&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatButtonModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/button&#39;</span>; 
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatMenuModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/menu&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatIconModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/icon&#39;</span>; 
+</span>
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">AppComponent</span>,
+    <span style="color:#a6e22e">LoginComponent</span>,
+  ],
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">BrowserModule</span>,
+    <span style="color:#a6e22e">AppRoutingModule</span>,
+    <span style="color:#a6e22e">BrowserAnimationsModule</span>,
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">ReactiveFormsModule</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">HttpClientModule</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">MatCardModule</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">MatFormFieldModule</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">MatInputModule</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">MatToolbarModule</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">MatMenuModule</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">MatButtonModule</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">MatIconModule</span>
+</span>  ],
+  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [],
+  <span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppComponent</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> { }
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+新增一個FormGroup與名為login的function，稍後用來測試FormControl是否有作用</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/login/login.component.ts" data-lang=":app/components/login/login.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FormControl</span>, <span style="color:#a6e22e">FormGroup</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+
+<span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-login&#39;</span>,
+  <span style="color:#a6e22e">templateUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./login.component.html&#39;</span>,
+  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./login.component.css&#39;</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoginComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span> {
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">loginForm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FormGroup</span>({
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FormControl</span>(<span style="color:#e6db74">&#39;&#39;</span>),
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FormControl</span>(<span style="color:#e6db74">&#39;&#39;</span>),
+</span>  });
+  
+  <span style="color:#66d9ef">constructor</span>() { }
+
+  <span style="color:#a6e22e">ngOnInit</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+  }
+
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">login</span>() <span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loginForm</span>.<span style="color:#a6e22e">value</span>)
+</span><span style="display:block;width:100%;background-color:#3c3d38">  }
+</span>}
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+接下來做一個簡單的template，因為偷工減掉的關係所以很醜</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/login/login.component.html" data-lang=":app/components/login/login.component.html">&lt;<span style="color:#f92672">mat-card</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example-card&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;max-width: 600px; margin: 10px auto; top: 30%;&#34;</span>&gt;
+  &lt;<span style="color:#f92672">mat-card-header</span>&gt;
+    &lt;<span style="color:#f92672">mat-card-title</span>&gt;Login&lt;/<span style="color:#f92672">mat-card-title</span>&gt;
+  &lt;/<span style="color:#f92672">mat-card-header</span>&gt;
+  &lt;<span style="color:#f92672">mat-card-content</span>&gt;
+    &lt;<span style="color:#f92672">form</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">formGroup</span><span style="color:#960050;background-color:#1e0010">]=&#34;</span><span style="color:#a6e22e">loginForm</span><span style="color:#960050;background-color:#1e0010">&#34;</span>&gt;
+      &lt;<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">mat-form-field</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example-full-width&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 80%;&#34;</span>&gt;
+          &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">matInput</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Username&#34;</span> <span style="color:#a6e22e">formControlName</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#a6e22e">required</span>&gt;
+        &lt;/<span style="color:#f92672">mat-form-field</span>&gt;
+      &lt;/<span style="color:#f92672">p</span>&gt;
+      &lt;<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">mat-form-field</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example-full-width&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 80%;&#34;</span>&gt;
+          &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">matInput</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Password&#34;</span> <span style="color:#a6e22e">formControlName</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">required</span>&gt;
+        &lt;/<span style="color:#f92672">mat-form-field</span>&gt;
+      &lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;/<span style="color:#f92672">form</span>&gt;
+  &lt;/<span style="color:#f92672">mat-card-content</span>&gt;
+  &lt;<span style="color:#f92672">mat-card-actions</span>&gt;
+    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">mat-raised-button</span> <span style="color:#a6e22e">color</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;primary&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">disabled</span><span style="color:#960050;background-color:#1e0010">]=&#34;!</span><span style="color:#a6e22e">loginForm</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">valid</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">click</span><span style="color:#960050;background-color:#1e0010">)=&#34;</span><span style="color:#a6e22e">login</span><span style="color:#960050;background-color:#1e0010">()&#34;</span>&gt;Submit&lt;/<span style="color:#f92672">button</span>&gt;
+  &lt;/<span style="color:#f92672">mat-card-actions</span>&gt;
+&lt;/<span style="color:#f92672">mat-card</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+重新run起來就能看到畫面了
+<img src="2.png" alt="">
+<br></br>
+嘗試看看click()能否觸發conponent中的function login
+<img src="1.gif" alt="">
+到此為止外觀算是完成
+<br></br></p>
+<h3 id="製作登入功能">製作登入功能</h3>
+<hr>
+<p><br></br>
+接下來就是主軸的認證機制了，目標是使用Http Client取得Json Web Token，首先需要的是http client的是module</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.module.ts" data-lang=":app/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppRoutingModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app-routing.module&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserAnimationsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser/animations&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClientModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+</span>
+
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatCardModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/card&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatInputModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/input&#39;</span>; 
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatFormFieldModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/form-field&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatButtonModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/button&#39;</span>; 
+
+
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">AppComponent</span>,
+    <span style="color:#a6e22e">LoginComponent</span>,
+  ],
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">BrowserModule</span>,
+    <span style="color:#a6e22e">AppRoutingModule</span>,
+    <span style="color:#a6e22e">BrowserAnimationsModule</span>,
+    <span style="color:#a6e22e">ReactiveFormsModule</span>,
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">HttpClientModule</span>,
+</span>    <span style="color:#a6e22e">MatCardModule</span>,
+    <span style="color:#a6e22e">MatFormFieldModule</span>,
+    <span style="color:#a6e22e">MatInputModule</span>,
+    <span style="color:#a6e22e">MatButtonModule</span>,
+  ],
+  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [],
+  <span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppComponent</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> { }
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+建立一個service，之後的function主要都放在這裡</p>
+<pre><code>$ ng generate service services/auth
+</code></pre><p><br></br>
+再來測試http client靈不靈，看看form → http這段是否真能作用</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/services/auth.service.ts" data-lang=":app/services/auth.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BehaviorSubject</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">baseUrl</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8000/api/&#39;</span>;
+
+<span style="color:#66d9ef">@Injectable</span>({
+  <span style="color:#a6e22e">providedIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;root&#39;</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthService</span> {
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">privete</span> <span style="color:#a6e22e">loggedIn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BehaviorSubject</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#66d9ef">false</span>);
+</span><span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">token</span>: <span style="color:#66d9ef">string</span>;
+</span>
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>) { }
+
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">username</span>, <span style="color:#a6e22e">password</span>) {
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">baseUrl</span><span style="color:#e6db74">}</span><span style="color:#e6db74">api-token-auth/`</span>, { <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">username</span>, <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">password</span> })
+</span><span style="display:block;width:100%;background-color:#3c3d38">    .<span style="color:#a6e22e">subscribe</span>((<span style="color:#a6e22e">response</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">response</span>)})
+</span><span style="display:block;width:100%;background-color:#3c3d38">  }
+</span>}
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+那麼咱們的login page就使用service了</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/login/login.component.ts" data-lang=":app/components/login/login.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FormControl</span>, <span style="color:#a6e22e">FormGroup</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../../services/auth.service&#39;</span>;
+</span>
+<span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-login&#39;</span>,
+  <span style="color:#a6e22e">templateUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./login.component.html&#39;</span>,
+  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./login.component.css&#39;</span>],
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoginComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span> {
+  <span style="color:#a6e22e">loginForm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FormGroup</span>({
+    <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FormControl</span>(<span style="color:#e6db74">&#39;&#39;</span>),
+    <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FormControl</span>(<span style="color:#e6db74">&#39;&#39;</span>),
+  });
+  
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">authService</span>: <span style="color:#66d9ef">AuthService</span>) { }
+
+  <span style="color:#a6e22e">ngOnInit</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+  }
+
+  <span style="color:#a6e22e">login</span>() <span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">username</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loginForm</span>.<span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">username</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">password</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loginForm</span>.<span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">password</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">authService</span>.<span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">username</span>, <span style="color:#a6e22e">password</span>);
+</span>  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+CORS沒問題的話，沒意外就能拿到token了
+<img src="2.gif" alt="">
+<br></br>
+接下來回過頭到auth.service.ts，把login改成這樣</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-::app/services/auth.service.ts" data-lang="::app/services/auth.service.ts">  <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">username</span>, <span style="color:#a6e22e">password</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">baseUrl</span><span style="color:#e6db74">}</span><span style="color:#e6db74">api-token-auth/`</span>, { <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">username</span>, <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">password</span> })
+    .<span style="color:#a6e22e">subscribe</span>((<span style="color:#a6e22e">response</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {
+<span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">token</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span>) {
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">token</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loggedIn</span>.<span style="color:#a6e22e">next</span>(<span style="color:#66d9ef">true</span>);
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">setItem</span>(<span style="color:#e6db74">&#39;user&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">token</span>);
+</span>      }
+    })
+  }
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+如此一來就能透過localStorage.setItem把token保存起來，就能以此保存登入狀態了
+<img src="3.png" alt="">
+<br></br></p>
+<h3 id="p-id4製作主畫面與登出功能a"><p id=4>製作主畫面與登出功能</a></h3>
+<hr>
+<p><br></br>
+接下來做登入後的主畫面，就叫home唄</p>
+<pre><code>$ ng generate component components/home
+</code></pre><p><br></br>
+routing加入剛才新增的component</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HomeComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/home/home.component&#39;</span>;
+</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
+  { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;login&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">LoginComponent</span> },
+<span style="display:block;width:100%;background-color:#3c3d38">  { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">HomeComponent</span> },
+</span>];
+
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">RouterModule</span>.<span style="color:#a6e22e">forRoot</span>(<span style="color:#a6e22e">routes</span>)],
+  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">RouterModule</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppRoutingModule</span> { }
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+auth.service也跟進增加下列的部分</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/services/auth.service.ts" data-lang=":app/services/auth.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BehaviorSubject</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Router</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">baseUrl</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8000/api/&#39;</span>;
+
+<span style="color:#66d9ef">@Injectable</span>({
+  <span style="color:#a6e22e">providedIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;root&#39;</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthService</span> {
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">loggedIn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BehaviorSubject</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#66d9ef">false</span>);
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">token</span>: <span style="color:#66d9ef">string</span>;
+
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>, <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">router</span>: <span style="color:#66d9ef">Router</span>) { }
+</span>
+  <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">username</span>, <span style="color:#a6e22e">password</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">baseUrl</span><span style="color:#e6db74">}</span><span style="color:#e6db74">api-token-auth/`</span>, { <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">username</span>, <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">password</span> })
+    .<span style="color:#a6e22e">subscribe</span>((<span style="color:#a6e22e">response</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">token</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span>) {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">token</span>;
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loggedIn</span>.<span style="color:#a6e22e">next</span>(<span style="color:#66d9ef">true</span>);
+        <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">setItem</span>(<span style="color:#e6db74">&#39;user&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">token</span>);
+<span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">navigateByUrl</span>(<span style="color:#e6db74">&#39;&#39;</span>);
+</span>      }
+    })
+  }
+
+  <span style="color:#a6e22e">logout() {</span>
+    <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">removeItem</span>(<span style="color:#e6db74">&#39;user&#39;</span>);
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loggedIn</span>.<span style="color:#a6e22e">next</span>(<span style="color:#66d9ef">false</span>);
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">navigateByUrl</span>(<span style="color:#e6db74">&#39;/login&#39;</span>);
+  }
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+接下來就是主畫面的home</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/home.component.ts" data-lang=":app/components/home.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../../services/auth.service&#39;</span>;
+</span>
+<span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-home&#39;</span>,
+  <span style="color:#a6e22e">templateUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./home.component.html&#39;</span>,
+  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./home.component.css&#39;</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HomeComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span> {
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">loggedIn</span>: <span style="color:#66d9ef">boolean</span>;
+</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">authService</span>: <span style="color:#66d9ef">AuthService</span>) { }
+</span>
+  <span style="color:#a6e22e">ngOnInit</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+<span style="display:block;width:100%;background-color:#3c3d38">  }
+</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">logout</span>() <span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">authService</span>.<span style="color:#a6e22e">logout</span>();
+</span><span style="display:block;width:100%;background-color:#3c3d38">  }
+</span>}
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+然後是不入流的template</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/home.component.html" data-lang=":app/components/home.component.html">&lt;<span style="color:#f92672">mat-toolbar</span> <span style="color:#a6e22e">color</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;primary&#34;</span>&gt;
+  &lt;<span style="color:#f92672">mat-toolbar-row</span>&gt;
+    &lt;<span style="color:#f92672">span</span>&gt;My App&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;flex: 1 1 auto;&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">mat-icon-button</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">matMenuTriggerFor</span><span style="color:#960050;background-color:#1e0010">]=&#34;</span><span style="color:#a6e22e">menu</span><span style="color:#960050;background-color:#1e0010">&#34;</span>&gt;
+      &lt;<span style="color:#f92672">mat-icon</span>&gt;more_vert&lt;/<span style="color:#f92672">mat-icon</span>&gt;
+    &lt;/<span style="color:#f92672">button</span>&gt;
+    &lt;<span style="color:#f92672">mat-menu</span> <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">menu</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;matMenu&#34;</span>&gt;
+      &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">mat-menu-item</span> <span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">click</span><span style="color:#960050;background-color:#1e0010">)=&#34;</span><span style="color:#a6e22e">logout</span><span style="color:#960050;background-color:#1e0010">()&#34;</span>&gt;Logout&lt;/<span style="color:#f92672">button</span>&gt;
+    &lt;/<span style="color:#f92672">mat-menu</span>&gt;
+  &lt;/<span style="color:#f92672">mat-toolbar-row</span>&gt;
+&lt;/<span style="color:#f92672">mat-toolbar</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+就可以嘗試登入和登出了，可以看到local storage也符合期望被清空！接下來是頁面轉移的部分
+<img src="3.gif" alt=""></p>
+<h3 id="p-id5驗證登入狀態p"><p id=5>驗證登入狀態</p></h3>
+<hr>
+<p><br></br>
+最後的部分就是驗證登入狀態了，理想的情況是檢查LocalStorage是否有token，這樣就不用每次都要登入</p>
+<p>在auth.service.ts最後增加tryloggedIn()，為了方便之後用promise的方式sync，使用map</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/services/auth.service.ts" data-lang=":app/services/auth.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BehaviorSubject</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+</span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Router</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">baseUrl</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8000/api/&#39;</span>;
+
+<span style="color:#66d9ef">@Injectable</span>({
+  <span style="color:#a6e22e">providedIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;root&#39;</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthService</span> {
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">loggedIn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BehaviorSubject</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#66d9ef">false</span>);
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">token</span>: <span style="color:#66d9ef">string</span>;
+
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">http</span>: <span style="color:#66d9ef">HttpClient</span>, <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">router</span>: <span style="color:#66d9ef">Router</span>) { }
+
+  <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">username</span>, <span style="color:#a6e22e">password</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">baseUrl</span><span style="color:#e6db74">}</span><span style="color:#e6db74">api-token-auth/`</span>, { <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">username</span>, <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">password</span> })
+    .<span style="color:#a6e22e">subscribe</span>((<span style="color:#a6e22e">response</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">token</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span>) {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">token</span>;
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loggedIn</span>.<span style="color:#a6e22e">next</span>(<span style="color:#66d9ef">true</span>);
+        <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">setItem</span>(<span style="color:#e6db74">&#39;user&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">token</span>);
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">navigateByUrl</span>(<span style="color:#e6db74">&#39;&#39;</span>);
+      }
+    })
+  }
+
+  <span style="color:#a6e22e">logout() {</span>
+    <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">removeItem</span>(<span style="color:#e6db74">&#39;user&#39;</span>);
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loggedIn</span>.<span style="color:#a6e22e">next</span>(<span style="color:#66d9ef">false</span>);
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">navigateByUrl</span>(<span style="color:#e6db74">&#39;/login&#39;</span>);
+  }
+
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">tryloggedIn</span>(<span style="color:#a6e22e">token</span>) {
+</span><span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">post</span>&lt;<span style="color:#f92672">any</span>&gt;(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">baseUrl</span><span style="color:#e6db74">}</span><span style="color:#e6db74">api-token-verify/`</span>, {<span style="color:#a6e22e">token</span>: <span style="color:#66d9ef">token</span>})
+</span><span style="display:block;width:100%;background-color:#3c3d38">      .<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">map</span>(
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#a6e22e">response</span><span style="color:#f92672">=&gt;</span>{
+</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">token</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">token</span>) {
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loggedIn</span>.<span style="color:#a6e22e">next</span>(<span style="color:#66d9ef">true</span>);
+</span><span style="display:block;width:100%;background-color:#3c3d38">          }
+</span><span style="display:block;width:100%;background-color:#3c3d38">        }
+</span><span style="display:block;width:100%;background-color:#3c3d38">      ));
+</span><span style="display:block;width:100%;background-color:#3c3d38">  }
+</span>
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+建立一個router guard</p>
+<pre><code>$ ng generate guard guards/auth  
+</code></pre><p><br></br>
+然後把剛才的tryloggedIn()放進來</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/guards/auth.guard.ts" data-lang=":app/guards/auth.guard.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CanActivate</span>, <span style="color:#a6e22e">ActivatedRouteSnapshot</span>, <span style="color:#a6e22e">RouterStateSnapshot</span>, <span style="color:#a6e22e">UrlTree</span>, <span style="color:#a6e22e">Router</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../services/auth.service&#39;</span>;
+</span>
+<span style="color:#66d9ef">@Injectable</span>({
+  <span style="color:#a6e22e">providedIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;root&#39;</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthGuard</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">CanActivate</span> {
+
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">router</span>: <span style="color:#66d9ef">Router</span>, <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">authService</span>: <span style="color:#66d9ef">AuthService</span>) { }
+</span>
+  <span style="color:#a6e22e">canActivate</span>(
+    <span style="color:#a6e22e">route</span>: <span style="color:#66d9ef">ActivatedRouteSnapshot</span>,
+    <span style="color:#a6e22e">state</span>: <span style="color:#66d9ef">RouterStateSnapshot</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">UrlTree</span>&gt; <span style="color:#f92672">|</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">boolean</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">UrlTree</span>&gt; <span style="color:#f92672">|</span> <span style="color:#66d9ef">boolean</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">UrlTree</span> {
+    
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">&#39;user&#39;</span>) <span style="color:#75715e">//嘗試從LocalStorage取得token
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">token</span>) {
+</span><span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">authService</span>.<span style="color:#a6e22e">tryloggedIn</span>(<span style="color:#a6e22e">token</span>).<span style="color:#a6e22e">toPromise</span>() <span style="color:#75715e">//observable to promise
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#75715e"></span>      .<span style="color:#a6e22e">then</span>(()<span style="color:#f92672">=&gt;</span>{<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>})
+</span><span style="display:block;width:100%;background-color:#3c3d38">      .<span style="color:#66d9ef">catch</span>(()<span style="color:#f92672">=&gt;</span>{
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">navigateByUrl</span>(<span style="color:#e6db74">&#39;/login&#39;</span>);
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>});
+</span><span style="display:block;width:100%;background-color:#3c3d38">    }<span style="color:#66d9ef">else</span>{
+</span><span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">navigateByUrl</span>(<span style="color:#e6db74">&#39;/login&#39;</span>)
+</span><span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38">    }
+</span><span style="display:block;width:100%;background-color:#3c3d38">  }
+</span>  
+}
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+接下來就用剛才建立的AuthGuard保護咱們的主頁</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HomeComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/home/home.component&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthGuard</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./guards/auth.guard&#39;</span>;
+</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
+  { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;login&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">LoginComponent</span> },
+<span style="display:block;width:100%;background-color:#3c3d38">  { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">HomeComponent</span>, <span style="color:#a6e22e">canActivate</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AuthGuard</span>] }, <span style="color:#75715e">//追加Guard
+</span></span><span style="color:#75715e"></span>];
+
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">RouterModule</span>.<span style="color:#a6e22e">forRoot</span>(<span style="color:#a6e22e">routes</span>)],
+  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">RouterModule</span>]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppRoutingModule</span> { }
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+如此一來在local storage沒有token的情況，會直接導去登入頁面，而有token的話則會去嘗試驗證
+<img src="4.gif" alt="">
+<br></br></p>
+<h3 id="檢討">檢討</h3>
+<hr>
+<p><br></br>
+這次練習還是有很多不完善的地方，以下一一列出</p>
+<ul>
+<li>對Observable不夠熟悉：因為之前沒什麼接觸rxjs，實在用得不輪轉，最後Guard還是用了Promise</li>
+<li>API功能太少：練習用的API太陽春，沒放上驗證以外的功能，理想的情況是每次與backend通訊都在header裡加上token，而不是一開始的post token</li>
+<li>SPA不完全：這次練習的重點幾乎放在Guard上了，其實應該在LocalStorage裡加上token到期日可能會好一點？</li>
+</ul>
+<p><br></br>
+不過經過此練習也能有點概念了，之後大概會使用其他大神的JWT Helper</p>
+<p>這次練習一樣會放在github上：<a href="https://github.com/mikanbearer/angular-login-example">https://github.com/mikanbearer/angular-login-example</a></p>
+<p>之後有更完善的版本會考慮關閉</p>
