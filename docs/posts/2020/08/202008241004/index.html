@@ -1,17 +1,17 @@
 <p>要是不想用自帶的UI，也不想用Grafana怎麼辦！！那當然就是自己動手做啦，自己動手做的好處就是能整合其他功能做成多合一的Web app，但這次就先練習如何取用Prometheus上的資料，製作成動態圖表</p>
 <p>步驟稍微多一點</p>
 <ul>
-<li><a href="#建立空空的View Model">建立空空的View Model</a></li>
-<li><a href="#整理API Query Parameters">整理API Query Parameters</a></li>
-<li><a href="#準備API Query URL">準備API Query URL</a></li>
-<li><a href="#使用Axios取得Prometheus上的資料">使用Axios取得Prometheus上的資料</a></li>
-<li><a href="#使用Echarts製圖">使用Echarts製圖</a></li>
-<li><a href="#Echarts動態更新">Echarts動態更新</a></li>
+<li><a onclick="window.scrollTo({top: document.getElementById(1).offsetTop, behavior: 'smooth'})">建立空空的View Model</a></li>
+<li><a onclick="window.scrollTo({top: document.getElementById(2).offsetTop, behavior: 'smooth'})">整理API Query Parameters</a></li>
+<li><a onclick="window.scrollTo({top: document.getElementById(3).offsetTop, behavior: 'smooth'})">準備API Query URL</a></li>
+<li><a onclick="window.scrollTo({top: document.getElementById(4).offsetTop, behavior: 'smooth'})">使用Axios取得Prometheus上的資料</a></li>
+<li><a onclick="window.scrollTo({top: document.getElementById(5).offsetTop, behavior: 'smooth'})">使用Echarts製圖</a></li>
+<li><a onclick="window.scrollTo({top: document.getElementById(6).offsetTop, behavior: 'smooth'})">Echarts動態更新</a></li>
 </ul>
 <p><br></br>
 那麼就來重頭動手做✌(&lsquo;ω'✌ )三✌(&lsquo;ω&rsquo;)✌三( ✌'ω&rsquo;)✌
 <br></br></p>
-<h3 id="建立空空的View Model">建立空空的View Model</h3>
+<h3 id=1>建立空空的View Model</h3>
 <hr>
 <p><br></br>
 首先，建立一個空空如也的Vue Instance</p>
@@ -101,7 +101,7 @@
 按鈕完成囉</p>
 <p><img src="1.PNG" alt=""></p>
 <p><br></br></p>
-<h3 id="整理API Query Parameters">整理API Query Parameters</h3>
+<h3 id=2>整理API Query Parameters</h3>
 <hr>
 <p><br></br>
 再來就是url的部分了，回顧一下<a href="https://prometheus.io/docs/prometheus/latest/querying/api/">Prometheus API</a>的query</p>
@@ -310,7 +310,7 @@
 測試一下</p>
 <p><img src="2.PNG" alt=""></p>
 <p><br></br></p>
-<h3 id="準備API Query URL">準備API Query URL</h3>
+<h3 id=3>準備API Query URL</h3>
 <hr>
 <p><br></br>
 接下來就準備url了，現在會需要兩個url，一個是初期query range的url，一個則是live update的url，時間的部分就由moment.js處理</p>
@@ -909,7 +909,7 @@ methods增加</p>
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br></p>
-<h3 id="使用Axios取得Prometheus上的資料">使用Axios取得Prometheus上的資料</h3>
+<h3 id=4>使用Axios取得Prometheus上的資料</h3>
 <hr>
 <p><br></br>
 接下來就是http的部分了，首先加上CDN版的Axios</p>
@@ -1029,7 +1029,7 @@ methods增加</p>
 就能看到資料成為符合Echarts需求的樣子了
 <img src="6.PNG" alt="">
 <br></br></p>
-<h3 id="使用Echarts製圖">使用Echarts製圖</h3>
+<h3 id=5>使用Echarts製圖</h3>
 <hr>
 <p><br></br>
 接下來可以開始畫圖囉！使用之前預告過的Echarts</p>
@@ -1160,7 +1160,7 @@ methods增加</p>
 接著圖片就出來啦</p>
 <p><img src="7.PNG" alt="">
 <br></br></p>
-<h3 id="Echarts動態更新">Echarts動態更新</h3>
+<h3 id=6>Echarts動態更新</h3>
 <hr>
 <p><br></br>
 再來就是處理update了，axios出馬的時候又到了，一樣借$data.response來觀察一下</p>

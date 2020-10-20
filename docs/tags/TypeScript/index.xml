@@ -8,10 +8,21 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Mon, 21 Sep 2020 11:36:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2020 14:57:25 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/tags/TypeScript/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>從今天開始學NestJS</title>
+      <link>https://mikanbearer.github.io/posts/202010151457/</link>
+      <pubDate>Thu, 15 Oct 2020 14:57:25 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202010151457/</guid>
+      <description>&lt;p&gt;好久不見的從今天開始系列…&lt;/p&gt;
+&lt;p&gt;這次的NestJS是個能用TypeScript撰寫的framework，有提供nest-cli來迅速建立project，適合用來做些小型的backend app
+，其十分Angular的風格也是其吸引人之處&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用Angular嘗試製作SPA登入畫面</title>

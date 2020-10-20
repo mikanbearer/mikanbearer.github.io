@@ -8,10 +8,21 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Wed, 14 Oct 2020 16:35:05 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2020 14:57:25 +0800</lastBuildDate>
     
 	<atom:link href="https://mikanbearer.github.io/categories/%E7%B6%B2%E9%A0%81%E8%A3%BD%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>從今天開始學NestJS</title>
+      <link>https://mikanbearer.github.io/posts/202010151457/</link>
+      <pubDate>Thu, 15 Oct 2020 14:57:25 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/202010151457/</guid>
+      <description>&lt;p&gt;好久不見的從今天開始系列…&lt;/p&gt;
+&lt;p&gt;這次的NestJS是個能用TypeScript撰寫的framework，有提供nest-cli來迅速建立project，適合用來做些小型的backend app
+，其十分Angular的風格也是其吸引人之處&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用YouTube影片作為網頁背景</title>
@@ -106,6 +117,15 @@
       <author>youremail@domain.com (Zhang San)</author>
       <guid>https://mikanbearer.github.io/posts/2020/08/202008271612/</guid>
       <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Prometheus入門練習-自訂篇2】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表</title>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008241004/</link>
+      <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008241004/</guid>
+      <description>&lt;p&gt;要是不想用自帶的UI，也不想用Grafana怎麼辦！！那當然就是自己動手做啦，自己動手做的好處就是能整合其他功能做成多合一的Web app，但這次就先練習如何取用Prometheus上的資料，製作成動態圖表&lt;/p&gt;</description>
     </item>
     
     <item>
