@@ -93,11 +93,9 @@
             </div>
         </v-slide-x-transition>
 
-        <div v-show="!displayPosts.length" style="height: 150vh;"></div>
-
         <v-snackbar
             v-model="resultSnackbar"
-            :timeout=3000
+            :timeout=2000
         >
             Found [[ filteredPosts.length ]] Posts.
             <template v-slot:action="{ attrs }">

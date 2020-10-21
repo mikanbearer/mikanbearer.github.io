@@ -3,9 +3,10 @@
     <v-app id="inspire">
       <v-app-bar
         app
+        fixed
         hide-on-scroll
-        
         fade-img-on-scroll
+        v-model="appBar"
         src="{{ "img/0.jpg" | absURL }}"    
       >
 
@@ -16,12 +17,21 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn v-if="notInSearch" icon @click.stop="searchModal = !searchModal">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn v-else icon @click.stop="searchModal = !searchModal"  color="error">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            @click.stop="searchModal = !searchModal"
+            v-bind="attrs"
+            v-on="on"
+            icon
+          >
+            <v-icon v-if="notInSearch">mdi-magnify</v-icon>
+            <v-icon v-else color="error lighten-1">mdi-magnify</v-icon>
+          </v-btn>
+        </template>
+        <span>Click here to search</span>
+      </v-tooltip>
   
       <template v-slot:img="{ props }">
         <v-img

@@ -92,9 +92,10 @@
     <v-app id="inspire">
       <v-app-bar
         app
+        fixed
         hide-on-scroll
-        
         fade-img-on-scroll
+        v-model="appBar"
         src="https://mikanbearer.github.io/img/0.jpg"    
       >
 
@@ -105,12 +106,21 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn v-if="notInSearch" icon @click.stop="searchModal = !searchModal">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn v-else icon @click.stop="searchModal = !searchModal"  color="error">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            @click.stop="searchModal = !searchModal"
+            v-bind="attrs"
+            v-on="on"
+            icon
+          >
+            <v-icon v-if="notInSearch">mdi-magnify</v-icon>
+            <v-icon v-else color="error lighten-1">mdi-magnify</v-icon>
+          </v-btn>
+        </template>
+        <span>Click here to search</span>
+      </v-tooltip>
   
       <template v-slot:img="{ props }">
         <v-img
@@ -335,11 +345,9 @@
             </div>
         </v-slide-x-transition>
 
-        <div v-show="!displayPosts.length" style="height: 150vh;"></div>
-
         <v-snackbar
             v-model="resultSnackbar"
-            :timeout=3000
+            :timeout=2000
         >
             Found [[ filteredPosts.length ]] Posts.
             <template v-slot:action="{ attrs }">
@@ -480,7 +488,7 @@
 
   {
     id:  0 ,
-    url: 'https:\/\/mikanbearer.github.io\/posts\/202010151457\/',
+    url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/10\/202010151457\/',
     
       title: '從今天開始學NestJS',
     
@@ -505,7 +513,7 @@
 
   {
     id:  1 ,
-    url: 'https:\/\/mikanbearer.github.io\/posts\/202010141635\/',
+    url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/10\/202010141635\/',
     
       title: '使用YouTube影片作為網頁背景',
     
@@ -530,7 +538,7 @@
 
   {
     id:  2 ,
-    url: 'https:\/\/mikanbearer.github.io\/posts\/202010081713\/',
+    url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/10\/202010081713\/',
     
       title: '主題更新',
     
@@ -550,12 +558,12 @@
     
       author: '',
     
-    wordcount: '959'
+    wordcount: '880'
   },
 
   {
     id:  3 ,
-    url: 'https:\/\/mikanbearer.github.io\/posts\/202010061053\/',
+    url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/10\/202010061053\/',
     
       title: 'Vue Router在同一route component傳遞新的query string',
     
@@ -580,7 +588,7 @@
 
   {
     id:  4 ,
-    url: 'https:\/\/mikanbearer.github.io\/posts\/202009261450\/',
+    url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009261450\/',
     
       title: '使用Vue Loading Overlay追加過場動畫',
     
@@ -605,7 +613,7 @@
 
   {
     id:  5 ,
-    url: 'https:\/\/mikanbearer.github.io\/posts\/202009251338\/',
+    url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009251338\/',
     
       title: 'Python收送log',
     
@@ -2121,21 +2129,16 @@ const title_list = [
 
       pageChange (pageNumber) {
         this.displayPosts = []
-        if (window.pageYOffset >= 60) {
-          window.scroll({top: 60, behavior: 'instant'})
-        }
-        setTimeout(() => {
-          window.scroll({top: 0, behavior: 'smooth'})
-        }, 10)
+        window.scroll({top: 0, behavior: 'instant'})
         setTimeout(() => {
           this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber - 1), this.pageSize*(pageNumber))
-        }, 100)
+        }, 200)
       },
 
       pageInit () {
         this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
         this.page = 1
-        setTimeout(this.pageChange, 150, 1)
+        this.pageChange(1)
       },
 
       searchPosts () {
@@ -2199,13 +2202,8 @@ const title_list = [
 
   
   router.beforeEach((to, from, next) => {
-    if (window.pageYOffset >= 60) {
-      window.scroll({top: 60, behavior: 'instant'})
-    }
-    setTimeout(() => {
-      window.scroll({top: 0, behavior: 'smooth'})
-    }, 10)
-    setTimeout(next, 100)
+    window.scroll({top: 0, behavior: 'instant'})
+    next()
   })
 
 
@@ -2226,7 +2224,8 @@ const title_list = [
         keyword: ''
       },
       searchModal: false,
-      commentBlock: false
+      commentBlock: false,
+      appBar: true
     },
 
     computed: {
@@ -2265,6 +2264,7 @@ const title_list = [
     },
 
     updated () {
+      this.showAppBar()
       this.showComment()
     },
 
@@ -2351,7 +2351,14 @@ const title_list = [
         } else {
           this.commentBlock = false
         }
-      }
+      },
+
+      showAppBar () {
+        if (window.scrollY === 0) {
+          this.appBar = true
+        }
+      },
+
     }
   })
 
