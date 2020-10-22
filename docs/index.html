@@ -36,6 +36,12 @@
 
       .post-list .post-title {
         color: #eeeeee;
+        white-space: normal;
+        overflow-wrap: break-word;
+      }
+
+      .post-list {
+        margin-top: -12px;
       }
 
 
@@ -253,97 +259,118 @@
 <script type="text/x-template" id="posts">
 
     <div>
+        
         <v-slide-x-transition>
-            <div class="post-list" v-show="displayPosts.length">
-                <v-card class="content mb-5" v-for="(post, index) in displayPosts" :key="index">
-                    <v-list-item three-line>
-                        <v-list-item-content>
-
-                            <div class="overline">
-                                <div class="post-subtitle grey--text">
-                                    <v-icon small color="grey lighten-1">
-                                        mdi-calendar
-                                    </v-icon>
-                                    [[ post.date.slice(0,10) ]]
-                                    <v-divider vertical></v-divider>
-                                    <v-icon small color="grey lighten-1">
-                                        mdi-folder-multiple
-                                    </v-icon>
-                                    <div v-for="(category, index) in post.categories" class="d-inline">
-                                        <span v-if="index">, </span>
-                                        <router-link
-                                            :to="{path: '/', query: {category: category}}"
-                                        >
-                                            [[ category ]]
-                                        </router-link>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <v-list-item-title class="text-h6 grey--text text--lighten-2">
-                                <router-link class="post-title" v-html="post.title" :to="{path: 'post', query: {url: post.url}}"></router-link>
-                            </v-list-item-title>
-
-                            <v-list-item-subtitle>
-                                <div class="mt-2 text-body-2 grey--text text--lighten-1">
-
-                                    <div class="post-subtitle">
+            <v-row v-show="displayPosts.length" class="post-list">
+                <v-col v-for="(post, index) in displayPosts" :key="index" cols="12" xs="12" sm="6" md="6" lg="4" xl="3">
+                
+                    <v-card class="content">
+                        <v-list-item three-line>
+                            <v-list-item-content>
+                            
+                                <div class="overline">
+                                    <div class="post-subtitle grey--text">
                                         <v-icon small color="grey lighten-1">
-                                            mdi-tag-multiple
+                                            mdi-calendar
                                         </v-icon>
-                                        <div v-for="tag in post.tags" class="d-inline">
-                                            <v-chip
-                                                color="accent"
-                                                label
-                                                text-color="grey lighten-3"
-                                                x-small
-                                                class="mr-1"
-                                                :key="tag"
-                                                :to="{path: '/', query: {tag: tag}}"
-                                                v-if="searchConditions.selectedTags.includes(tag)"
-                                                :class="['v-chip--active']"
+                                        [[ post.date.slice(0,10) ]]
+                                        <v-divider vertical></v-divider>
+                                        <v-icon small color="grey lighten-1">
+                                            mdi-folder-multiple
+                                        </v-icon>
+                                        <div v-for="(category, index) in post.categories" class="d-inline">
+                                            <span v-if="index">, </span>
+                                            <router-link
+                                                :to="{path: '/', query: {category: category}}"
                                             >
-                                                [[ tag ]]
-                                            </v-chip>
-                                            <v-chip
-                                                color="accent"
-                                                label
-                                                text-color="grey lighten-3"
-                                                x-small
-                                                class="mr-1"
-                                                :key="tag"
-                                                :to="{path: '/', query: {tag: tag}}"
-                                                v-else
-                                            >
-                                                [[ tag ]]
-                                            </v-chip>
+                                                [[ category ]]
+                                            </router-link>
                                         </div>
                                     </div>
+                                </div>
+                            
+                                <v-list-item-title class="text-h6 grey--text text--lighten-2">
+                                    <router-link 
+                                        class="post-title" 
+                                        v-html="post.title" 
+                                        :to="{path: 'post', query: {url: post.url}}"
+                                    >
+                                    </router-link>
+                                
+                                </v-list-item-title>
+                            
+                                <v-list-item-subtitle>
+                                    <div class="mt-2 text-body-2 grey--text text--lighten-1">
                                     
-                                </div>                      
-                            </v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-
-                    <v-divider inset></v-divider>
+                                        <div class="post-subtitle">
+                                            <v-icon small color="grey lighten-1">
+                                                mdi-tag-multiple
+                                            </v-icon>
+                                            <div v-for="tag in post.tags" class="d-inline">
+                                                <v-chip
+                                                    color="accent"
+                                                    label
+                                                    text-color="grey lighten-3"
+                                                    x-small
+                                                    class="mr-1"
+                                                    :key="tag"
+                                                    :to="{path: '/', query: {tag: tag}}"
+                                                    v-if="searchConditions.selectedTags.includes(tag)"
+                                                    :class="['v-chip--active']"
+                                                >
+                                                    [[ tag ]]
+                                                </v-chip>
+                                                <v-chip
+                                                    color="accent"
+                                                    label
+                                                    text-color="grey lighten-3"
+                                                    x-small
+                                                    class="mr-1"
+                                                    :key="tag"
+                                                    :to="{path: '/', query: {tag: tag}}"
+                                                    v-else
+                                                >
+                                                    [[ tag ]]
+                                                </v-chip>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>                      
+                                </v-list-item-subtitle>
+                            </v-list-item-content>
+                        </v-list-item>
                     
-                    <v-card-text class="text-body-2 grey--text text--lighten-2">
-                        <div class="post-content" v-html="post.summary"></div>
+                        <v-divider inset></v-divider>
+                        
+                        <v-card-text class="text-body-2 grey--text text--lighten-2">
+                            <div class="post-content" v-html="post.summary"></div>
 
-                        <v-row justify="end">
-                            <v-btn :to="{path: 'post', query: {url: post.url}}" color="primary" small text>
-                                Continue Reading
-                                <v-icon right small>
-                                    mdi-chevron-right
-                                </v-icon>
-                            </v-btn>
-                        </v-row>
-                    </v-card-text>
-                </v-card>
+                            <v-row justify="end">
 
-                <v-pagination v-if="displayPosts.length" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
-            </div>
+                                <v-tooltip bottom>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <div
+                                            v-bind="attrs"
+                                            v-on="on"
+                                        >
+                                            <v-btn :to="{path: 'post', query: {url: post.url}}" color="primary" small text>
+                                                Continue Reading
+                                                <v-icon right small>
+                                                    mdi-chevron-right
+                                                </v-icon>
+                                            </v-btn>
+                                        </div>
+                                    </template>
+                                    <span>[[ post.wordcount ]] words</span>
+                                </v-tooltip> 
+                            </v-row>
+                        </v-card-text>
+
+                    </v-card>
+                </v-col>
+            </v-row>
         </v-slide-x-transition>
+        <v-pagination v-if="displayPosts.length" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
 
         <v-snackbar
             v-model="resultSnackbar"
@@ -488,6 +515,31 @@
 
   {
     id:  0 ,
+    url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/10\/202010191429\/',
+    
+      title: '使用docker-compose輕鬆部屬監控工具',
+    
+    
+      summary: '\u003cp\u003e回味一下以前用過的工具們，唯一不同的就是在Docker host上安裝，因為速度很快很適合測試之用，用在正式環境的話稍微tuning一下也不是不能用\u003c\/p\u003e\n\u003cp\u003e這次部屬的有Cacti、Nagios、LibreNMS，單獨部屬太空洞所以三個塞一篇\u003c\/p\u003e',
+      content: '',
+    
+    
+      date: '2020-10-19 14:29',
+    
+    
+      tags: '[Docker LibreNMS Cacti Nagios]',
+    
+    
+      categories: '[運維管理]',
+    
+    
+      author: '',
+    
+    wordcount: '1591'
+  },
+
+  {
+    id:  1 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/10\/202010151457\/',
     
       title: '從今天開始學NestJS',
@@ -503,7 +555,7 @@
       tags: '[NestJS Node.js TypeScript]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -512,7 +564,7 @@
   },
 
   {
-    id:  1 ,
+    id:  2 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/10\/202010141635\/',
     
       title: '使用YouTube影片作為網頁背景',
@@ -528,7 +580,7 @@
       tags: '[JQuery]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -537,7 +589,7 @@
   },
 
   {
-    id:  2 ,
+    id:  3 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/10\/202010081713\/',
     
       title: '主題更新',
@@ -562,7 +614,7 @@
   },
 
   {
-    id:  3 ,
+    id:  4 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/10\/202010061053\/',
     
       title: 'Vue Router在同一route component傳遞新的query string',
@@ -578,7 +630,7 @@
       tags: '[Vue.js]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -587,7 +639,7 @@
   },
 
   {
-    id:  4 ,
+    id:  5 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009261450\/',
     
       title: '使用Vue Loading Overlay追加過場動畫',
@@ -603,7 +655,7 @@
       tags: '[Vue.js]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -612,7 +664,7 @@
   },
 
   {
-    id:  5 ,
+    id:  6 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009251338\/',
     
       title: 'Python收送log',
@@ -637,7 +689,7 @@
   },
 
   {
-    id:  6 ,
+    id:  7 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009221717\/',
     
       title: '讓Hugo輸出JSON格式',
@@ -653,7 +705,7 @@
       tags: '[Hugo]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -662,7 +714,7 @@
   },
 
   {
-    id:  7 ,
+    id:  8 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009211136\/',
     
       title: '使用Angular嘗試製作SPA登入畫面',
@@ -678,7 +730,7 @@
       tags: '[Angular Node.js TypeScript]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -687,7 +739,7 @@
   },
 
   {
-    id:  8 ,
+    id:  9 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009181018\/',
     
       title: '從今天開始學Angular',
@@ -703,7 +755,7 @@
       tags: '[Angular Node.js TypeScript]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -712,7 +764,7 @@
   },
 
   {
-    id:  9 ,
+    id:  10 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009161132\/',
     
       title: 'scikit-learn新手入門之決策樹篇',
@@ -737,7 +789,7 @@
   },
 
   {
-    id:  10 ,
+    id:  11 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009151049\/',
     
       title: '【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection',
@@ -753,7 +805,7 @@
       tags: '[Flask Python]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -762,7 +814,7 @@
   },
 
   {
-    id:  11 ,
+    id:  12 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009141257\/',
     
       title: '【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面',
@@ -778,7 +830,7 @@
       tags: '[Flask Python]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -787,7 +839,7 @@
   },
 
   {
-    id:  12 ,
+    id:  13 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009111635\/',
     
       title: '【Flask入門練習-CRUD篇2】製作簡單的CRUD',
@@ -803,7 +855,7 @@
       tags: '[Flask Python]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -812,7 +864,7 @@
   },
 
   {
-    id:  13 ,
+    id:  14 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009101608\/',
     
       title: '安裝並嘗試使用Arista ZTPServer',
@@ -837,7 +889,7 @@
   },
 
   {
-    id:  14 ,
+    id:  15 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009091346\/',
     
       title: '【Python資料分析練習-入門篇2】自然語言處理與機器學習',
@@ -862,7 +914,7 @@
   },
 
   {
-    id:  15 ,
+    id:  16 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009081138\/',
     
       title: '結巴分詞工具的簡單筆記',
@@ -887,7 +939,7 @@
   },
 
   {
-    id:  16 ,
+    id:  17 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009070954\/',
     
       title: '【Python資料分析練習-入門篇1】使用Scrapy爬取PTT貼文',
@@ -912,7 +964,7 @@
   },
 
   {
-    id:  17 ,
+    id:  18 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009031456\/',
     
       title: '使用Ansible部屬Docker Swarm',
@@ -937,7 +989,7 @@
   },
 
   {
-    id:  18 ,
+    id:  19 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/09\/202009011649\/',
     
       title: '從今天開始學Ansible',
@@ -962,7 +1014,7 @@
   },
 
   {
-    id:  19 ,
+    id:  20 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008281726\/',
     
       title: '從Scrapy開始玩爬蟲',
@@ -987,7 +1039,7 @@
   },
 
   {
-    id:  20 ,
+    id:  21 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008271612\/',
     
       title: '【Flask入門練習-CRUD篇1】在Flask中導入ORM操作',
@@ -1003,7 +1055,7 @@
       tags: '[Flask Python]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1012,7 +1064,7 @@
   },
 
   {
-    id:  21 ,
+    id:  22 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008241004\/',
     
       title: '【Prometheus入門練習-自訂篇2】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表',
@@ -1028,7 +1080,7 @@
       tags: '[Echarts JavaScript Prometheus Vue.js]',
     
     
-      categories: '[運維管理 網頁製作]',
+      categories: '[運維管理 網頁開發]',
     
     
       author: '',
@@ -1037,7 +1089,7 @@
   },
 
   {
-    id:  22 ,
+    id:  23 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008191354\/',
     
       title: '從今天開始學Flask',
@@ -1053,7 +1105,7 @@
       tags: '[Flask Python]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1062,7 +1114,7 @@
   },
 
   {
-    id:  23 ,
+    id:  24 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008181609\/',
     
       title: '【Prometheus入門練習-基本操作篇3】使用Prometheus監控RabbitMQ',
@@ -1087,7 +1139,7 @@
   },
 
   {
-    id:  24 ,
+    id:  25 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008171709\/',
     
       title: '【Prometheus入門練習-自訂篇1】使用Prometheus client library自訂metrics',
@@ -1112,7 +1164,7 @@
   },
 
   {
-    id:  25 ,
+    id:  26 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008151135\/',
     
       title: '使用Moment.js處理日期時間',
@@ -1128,7 +1180,7 @@
       tags: '[JavaScript Moment.js]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1137,7 +1189,7 @@
   },
 
   {
-    id:  26 ,
+    id:  27 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008140913\/',
     
       title: '【Prometheus入門練習-基本操作篇2】使用Pushgateway進行監控',
@@ -1162,7 +1214,7 @@
   },
 
   {
-    id:  27 ,
+    id:  28 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008131707\/',
     
       title: '【Prometheus入門練習-基本操作篇1】從零開始學Prometheus',
@@ -1187,7 +1239,7 @@
   },
 
   {
-    id:  28 ,
+    id:  29 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008100108\/',
     
       title: '使用Django \u002b Channels部屬WebSocket簡易聊天室',
@@ -1203,7 +1255,7 @@
       tags: '[Channels Django Python RabbitMQ]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1212,7 +1264,7 @@
   },
 
   {
-    id:  29 ,
+    id:  30 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008092021\/',
     
       title: '動態更新Echarts',
@@ -1228,7 +1280,7 @@
       tags: '[Echarts JavaScript]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1237,7 +1289,7 @@
   },
 
   {
-    id:  30 ,
+    id:  31 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/08\/202008070930\/',
     
       title: '新主題上線！',
@@ -1262,7 +1314,7 @@
   },
 
   {
-    id:  31 ,
+    id:  32 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007301419\/',
     
       title: '在Nginx或Apache上設定CORS',
@@ -1278,7 +1330,7 @@
       tags: '[Apache Nginx]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1287,7 +1339,7 @@
   },
 
   {
-    id:  32 ,
+    id:  33 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007291642\/',
     
       title: '使用docker-compose部屬Nginx \u002b uWSGI \u002b Django',
@@ -1303,7 +1355,7 @@
       tags: '[Docker Nginx uWSGI]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1312,7 +1364,7 @@
   },
 
   {
-    id:  33 ,
+    id:  34 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007262314\/',
     
       title: '使用Vue.js \u002b Vuetify製作SPA登入畫面',
@@ -1328,7 +1380,7 @@
       tags: '[JavaScript Node.js Vue.js]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1337,10 +1389,10 @@
   },
 
   {
-    id:  34 ,
+    id:  35 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007241554\/',
     
-      title: '【2020\/07\/25解決】在EVE-NG上部屬vEOS LAB',
+      title: '在EVE-NG上部屬vEOS LAB',
     
     
       summary: '\u003cp\u003e第一篇挫折問題紀錄，各種鬼打牆…\n原本想在EVE-NG上做個簡單的LAB，沒想到問題還真不少…\u003c\/p\u003e',
@@ -1362,7 +1414,7 @@
   },
 
   {
-    id:  35 ,
+    id:  36 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007221111\/',
     
       title: '使用Django \u002b Celery進行異步處理',
@@ -1378,7 +1430,7 @@
       tags: '[Celery Django Python RabbitMQ]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1387,7 +1439,7 @@
   },
 
   {
-    id:  36 ,
+    id:  37 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007211516\/',
     
       title: '用VBA在Excel中使用nslookup',
@@ -1403,7 +1455,7 @@
       tags: '[Excel VBA]',
     
     
-      categories: '[小技巧]',
+      categories: '[Windows筆記]',
     
     
       author: '',
@@ -1412,7 +1464,7 @@
   },
 
   {
-    id:  37 ,
+    id:  38 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007201501\/',
     
       title: '【Django API實作-入門篇2】在Django REST framework上導入JWT驗證',
@@ -1428,7 +1480,7 @@
       tags: '[Django Python]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1437,7 +1489,7 @@
   },
 
   {
-    id:  38 ,
+    id:  39 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007201139\/',
     
       title: '使用watch監控的一些寫法',
@@ -1453,7 +1505,7 @@
       tags: '[JavaScript Vue.js]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1462,7 +1514,7 @@
   },
 
   {
-    id:  39 ,
+    id:  40 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007161628\/',
     
       title: '【Django API實作-入門篇1】使用Django REST framework超高速部屬RESTful API',
@@ -1478,7 +1530,7 @@
       tags: '[Python Django]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1487,7 +1539,7 @@
   },
 
   {
-    id:  40 ,
+    id:  41 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007151013\/',
     
       title: '使用Django超高速部屬CRUD',
@@ -1503,7 +1555,7 @@
       tags: '[Django Python]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1512,7 +1564,7 @@
   },
 
   {
-    id:  41 ,
+    id:  42 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007141604\/',
     
       title: '使用VBScript定期送出按鍵',
@@ -1528,7 +1580,7 @@
       tags: '[VBScript]',
     
     
-      categories: '[小技巧]',
+      categories: '[Windows筆記]',
     
     
       author: '',
@@ -1537,7 +1589,7 @@
   },
 
   {
-    id:  42 ,
+    id:  43 ,
     url: 'https:\/\/mikanbearer.github.io\/posts\/2020\/07\/202007101327\/',
     
       title: '紀念用的第一篇',
@@ -1553,7 +1605,7 @@
       tags: '[Hugo]',
     
     
-      categories: '[網頁製作]',
+      categories: '[網頁開發]',
     
     
       author: '',
@@ -1567,6 +1619,10 @@ post_list.forEach(element => {element.categories = element.categories.slice(1, -
 post_list.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
 
 const title_list = [
+
+  
+      '使用docker-compose輕鬆部屬監控工具',
+  
 
   
       '從今天開始學NestJS',
@@ -1705,7 +1761,7 @@ const title_list = [
   
 
   
-      '【2020\/07\/25解決】在EVE-NG上部屬vEOS LAB',
+      '在EVE-NG上部屬vEOS LAB',
   
 
   
@@ -1753,6 +1809,8 @@ const title_list = [
   
   'Apache',
   
+  'Cacti',
+  
   'Celery',
   
   'Channels',
@@ -1777,9 +1835,13 @@ const title_list = [
   
   'Jieba',
   
+  'LibreNMS',
+  
   'Matplotlib',
   
   'Moment.js',
+  
+  'Nagios',
   
   'NestJS',
   
@@ -1828,9 +1890,9 @@ const title_list = [
   
   'Arista筆記',
   
-  '小技巧',
+  'Windows筆記',
   
-  '網頁製作',
+  '網頁開發',
   
   '資料分析',
   
@@ -2064,7 +2126,7 @@ const title_list = [
     data () {
       return {
         page: 1,
-        pageSize: 10,
+        pageSize: 6,
         pageLength: null,
         filteredPosts: post_list,
         displayPosts: [],

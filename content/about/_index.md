@@ -3,12 +3,13 @@ title: "About"
 layout: "single"
 ---
 
-從網管入門的無頭蒼蠅，偶爾記錄自己的學習過程
+垃圾堆中的一小袋垃圾，努力讓自己變得可用
   
 * **Skills：**
   * **Server-side Web Framework**
     * **Django**
     * **Flask**
+    * **NestJS**
   * **Client-side Web Framework**
     * **Vue.js**
     * **Angular**

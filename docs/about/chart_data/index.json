@@ -5,7 +5,7 @@
     "categories_data": {
       "legendData": [
         
-          "網頁製作"
+          "網頁開發"
         
           ,"運維管理"
         
@@ -13,7 +13,7 @@
         
           ,"雜記"
         
-          ,"小技巧"
+          ,"Windows筆記"
         
           ,"Arista筆記"
         
@@ -22,13 +22,13 @@
       "seriesData": [
         
           {
-            "name": "網頁製作",
+            "name": "網頁開發",
             "value": 25
           }
         
           ,{
             "name": "運維管理",
-            "value": 7
+            "value": 8
           }
         
           ,{
@@ -42,7 +42,7 @@
           }
         
           ,{
-            "name": "小技巧",
+            "name": "Windows筆記",
             "value": 2
           }
         
@@ -55,7 +55,7 @@
 
       "selected": {
         
-          "網頁製作": 
+          "網頁開發": 
           true
           
         
@@ -71,7 +71,7 @@
           true
           
         
-          ,"小技巧": 
+          ,"Windows筆記": 
           true
           
         
@@ -102,6 +102,8 @@
         
           ,"Node.js"
         
+          ,"Docker"
+        
           ,"RabbitMQ"
         
           ,"TypeScript"
@@ -109,8 +111,6 @@
           ,"Angular"
         
           ,"Ansible"
-        
-          ,"Docker"
         
           ,"Echarts"
         
@@ -124,6 +124,8 @@
         
           ,"Apache"
         
+          ,"Cacti"
+        
           ,"Celery"
         
           ,"Channels"
@@ -134,9 +136,13 @@
         
           ,"JQuery"
         
+          ,"LibreNMS"
+        
           ,"Matplotlib"
         
           ,"Moment.js"
+        
+          ,"Nagios"
         
           ,"NestJS"
         
@@ -201,6 +207,11 @@
           }
         
           ,{
+            "name": "Docker",
+            "value": 3
+          }
+        
+          ,{
             "name": "RabbitMQ",
             "value": 3
           }
@@ -217,11 +228,6 @@
         
           ,{
             "name": "Ansible",
-            "value": 2
-          }
-        
-          ,{
-            "name": "Docker",
             "value": 2
           }
         
@@ -256,6 +262,11 @@
           }
         
           ,{
+            "name": "Cacti",
+            "value": 1
+          }
+        
+          ,{
             "name": "Celery",
             "value": 1
           }
@@ -281,12 +292,22 @@
           }
         
           ,{
+            "name": "LibreNMS",
+            "value": 1
+          }
+        
+          ,{
             "name": "Matplotlib",
             "value": 1
           }
         
           ,{
             "name": "Moment.js",
+            "value": 1
+          }
+        
+          ,{
+            "name": "Nagios",
             "value": 1
           }
         
@@ -371,6 +392,10 @@
           true
           
         
+          ,"Docker": 
+          true
+          
+        
           ,"RabbitMQ": 
           true
           
@@ -384,10 +409,6 @@
           
         
           ,"Ansible": 
-          true
-          
-        
-          ,"Docker": 
           true
           
         
@@ -415,6 +436,10 @@
           false
           
         
+          ,"Cacti": 
+          false
+          
+        
           ,"Celery": 
           false
           
@@ -435,11 +460,19 @@
           false
           
         
+          ,"LibreNMS": 
+          false
+          
+        
           ,"Matplotlib": 
           false
           
         
           ,"Moment.js": 
+          false
+          
+        
+          ,"Nagios": 
           false
           
         
