@@ -479,14 +479,6 @@ const title_list = [
         return this.$route.query
       },
 
-      getTitles () {
-        if (this.searchConditions.keyword) {
-          return this.titles
-        }else{
-          return []
-        }
-      },
-
       notInSearch () {
         const queryKeys = Object.keys(this.$route.query)
         if (queryKeys.length === 0) {
@@ -574,6 +566,14 @@ const title_list = [
             path: '/',
             query: query
           })
+        }
+      },
+
+      getItems (key, items) {
+        if (key) {
+          return items
+        }else{
+          return []
         }
       },
 
