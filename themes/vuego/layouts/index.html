@@ -79,8 +79,8 @@
     
             <v-card-text>
               <v-combobox 
-                v-model="searchConditions.keyword"
-                :items="titles"
+                :search-input.sync="searchConditions.keyword"
+                :items="getTitles"
                 clearable
                 hide-selected
                 hide-details
