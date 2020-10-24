@@ -1,13 +1,75 @@
 <script type="text/x-template" id="works">
-    <div v-if="content">
-        <v-card class="content" id="post-content">
+    <div v-if="works">
+        <v-row justify="center" class="mt-n8">
+            <v-col v-for="(work, i) in works" :key="i">
+                <v-card flat color="transparent">
+                    <v-card-text>
+                        <v-row>
+                            <v-col xs="12" sm="6" md="6" lg="6" xl="6">
+                                <v-carousel hide-delimiters height="100%">
+                                    <v-carousel-item
+                                        v-for="(item, i) in work.images"
+                                        :key="i"
+                                        :src="item"
+                                    ></v-carousel-item>
+                                </v-carousel>
+                            </v-col>
+
+                            <v-col xs="12" sm="6" md="6" lg="6" xl="6">
+                                <v-card height="100%" flat color="transparent">
+                                    <v-card-title>
+                                        [[ work.title ]]
+                                    </v-card-title>
+                                
+                                    <v-card-text>
+                                        [[ work.summary ]]
+                                    </v-card-text>
+                                    <v-card-subtitle>
+                                        <v-icon small color="grey lighten-1">
+                                            mdi-tag-multiple
+                                        </v-icon>
+                                        <v-chip
+                                            v-for="tag in work.powered_by"
+                                            v-bind:key="tag.id"
+                                            color="blue-grey darken-1"
+                                            label
+                                            text-color="white"
+                                            x-small
+                                            class="mr-1"
+                                        >
+                                            [[ tag ]]
+                                        </v-chip>
+                                    </v-card-subtitle>
+                                    <v-card-actions style="position: absolute; bottom: 0; right: 0;">
+                                        <v-btn
+                                            :to="work.demo_url" 
+                                            :disabled="!work.demo_url" 
+                                            target="_blank"
+                                            color="secondary"
+                                            small
+                                        >
+                                            Demo
+                                        </v-btn>
+                                        <v-btn
+                                            :to="work.download_url"
+                                            :disabled="!work.download_url" 
+                                            target="_blank"
+                                            color="primary"
+                                            small
+                                        >
+                                            Download
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-card-text>
+                </v-card>
+                <v-divider></v-divider>
+            </v-col>
+        </v-row>
 
 
-            <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
-                <div class="mr-2 ml-2 post-content">
-                    Comming soon...
-                </div>
-            </v-card-text>
-        </v-card>
+
     </div>
 </script>

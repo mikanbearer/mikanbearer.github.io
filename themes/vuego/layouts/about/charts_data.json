@@ -20,7 +20,7 @@
       "selected": {
         {{ range $key, $value := $taxonomy.ByCount }}
           {{ if $key }},{{ end }}"{{ $value.Name }}": 
-          {{ if ge $key 15 }}false
+          {{ if ge $key 10 }}false
           {{ else }}true
           {{ end }}
         {{ end }}
@@ -47,7 +47,7 @@
       "selected": {
         {{ range $key, $value := $taxonomy.ByCount }}
           {{ if $key }},{{ end }}"{{ $value.Name }}": 
-          {{ if ge $key 15 }}false
+          {{ if ge $key 10 }}false
           {{ else }}true
           {{ end }}
         {{ end }}
