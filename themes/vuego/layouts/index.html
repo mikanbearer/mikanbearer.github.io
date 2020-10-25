@@ -72,7 +72,7 @@
 
 
     <v-dialog v-model="searchModal" max-width="600">
-      <v-card color="warning">
+      <v-card color="grey darken-3">
         <v-card-title>
           Search Posts
         </v-card-title>
@@ -87,6 +87,7 @@
             prepend-inner-icon="mdi-text"
             label="Title"
             height="42"
+            menu-props="light"
           >  
           </v-combobox>
 
@@ -100,6 +101,7 @@
             prepend-inner-icon="mdi-folder-multiple"
             label="Categories"
             height="42"
+            menu-props="light"
           >  
           </v-combobox>
 
@@ -113,6 +115,7 @@
             hide-details
             prepend-inner-icon="mdi-tag-multiple"
             label="Tags"
+            menu-props="light"
           >
             <template v-slot:selection="{ attrs, item, select, selected }">
               <v-chip

@@ -167,7 +167,7 @@
 
 
     <v-dialog v-model="searchModal" max-width="600">
-      <v-card color="warning">
+      <v-card color="grey darken-3">
         <v-card-title>
           Search Posts
         </v-card-title>
@@ -182,6 +182,7 @@
             prepend-inner-icon="mdi-text"
             label="Title"
             height="42"
+            menu-props="light"
           >  
           </v-combobox>
 
@@ -195,6 +196,7 @@
             prepend-inner-icon="mdi-folder-multiple"
             label="Categories"
             height="42"
+            menu-props="light"
           >  
           </v-combobox>
 
@@ -208,6 +210,7 @@
             hide-details
             prepend-inner-icon="mdi-tag-multiple"
             label="Tags"
+            menu-props="light"
           >
             <template v-slot:selection="{ attrs, item, select, selected }">
               <v-chip
@@ -257,7 +260,7 @@
         
         <v-slide-x-transition>
             <v-row v-show="displayPosts.length" class="post-list">
-                <v-col v-for="(post, index) in displayPosts" :key="index" cols="12" xs="12" sm="6" md="6" lg="4" xl="3">
+                <v-col v-for="(post, index) in displayPosts" :key="index" cols="12" xs="12" sm="6" md="6" lg="4" xl="4">
                 
                     <v-card class="content">
                         <v-list-item three-line>
@@ -469,7 +472,8 @@
                                         v-for="(item, i) in work.images"
                                         :key="i"
                                         :src="item"
-                                    ></v-carousel-item>
+                                    >
+                                    </v-carousel-item>
                                 </v-carousel>
                             </v-col>
 
@@ -483,24 +487,23 @@
                                         [[ work.summary ]]
                                     </v-card-text>
                                     <v-card-subtitle>
-                                        <v-icon small color="grey lighten-1">
-                                            mdi-tag-multiple
-                                        </v-icon>
                                         <v-chip
                                             v-for="tag in work.powered_by"
                                             v-bind:key="tag.id"
                                             color="blue-grey darken-1"
+                                            outlined
                                             label
-                                            text-color="white"
-                                            x-small
+                                            text-color="blue-grey lighten-4"
+                                            small
                                             class="mr-1"
+                                            pill
                                         >
                                             [[ tag ]]
                                         </v-chip>
                                     </v-card-subtitle>
-                                    <v-card-actions style="position: absolute; bottom: 0; right: 0;">
+                                    <v-card-actions>
                                         <v-btn
-                                            :to="work.demo_url" 
+                                            :href="work.demo_url" 
                                             :disabled="!work.demo_url" 
                                             target="_blank"
                                             color="secondary"
@@ -509,7 +512,7 @@
                                             Demo
                                         </v-btn>
                                         <v-btn
-                                            :to="work.download_url"
+                                            :href="work.download_url"
                                             :disabled="!work.download_url" 
                                             target="_blank"
                                             color="primary"
@@ -2197,7 +2200,7 @@ const title_list = [
     data () {
       return {
         page: 1,
-        pageSize: 12,
+        pageSize: 6,
         pageLength: null,
         filteredPosts: post_list,
         displayPosts: [],

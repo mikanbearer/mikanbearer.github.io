@@ -11,7 +11,8 @@
                                         v-for="(item, i) in work.images"
                                         :key="i"
                                         :src="item"
-                                    ></v-carousel-item>
+                                    >
+                                    </v-carousel-item>
                                 </v-carousel>
                             </v-col>
 
@@ -25,24 +26,23 @@
                                         [[ work.summary ]]
                                     </v-card-text>
                                     <v-card-subtitle>
-                                        <v-icon small color="grey lighten-1">
-                                            mdi-tag-multiple
-                                        </v-icon>
                                         <v-chip
                                             v-for="tag in work.powered_by"
                                             v-bind:key="tag.id"
                                             color="blue-grey darken-1"
+                                            outlined
                                             label
-                                            text-color="white"
-                                            x-small
+                                            text-color="blue-grey lighten-4"
+                                            small
                                             class="mr-1"
+                                            pill
                                         >
                                             [[ tag ]]
                                         </v-chip>
                                     </v-card-subtitle>
-                                    <v-card-actions style="position: absolute; bottom: 0; right: 0;">
+                                    <v-card-actions>
                                         <v-btn
-                                            :to="work.demo_url" 
+                                            :href="work.demo_url" 
                                             :disabled="!work.demo_url" 
                                             target="_blank"
                                             color="secondary"
@@ -51,7 +51,7 @@
                                             Demo
                                         </v-btn>
                                         <v-btn
-                                            :to="work.download_url"
+                                            :href="work.download_url"
                                             :disabled="!work.download_url" 
                                             target="_blank"
                                             color="primary"

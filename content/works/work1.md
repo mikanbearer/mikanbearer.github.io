@@ -2,7 +2,7 @@
 title: "hugo-vue-mix"
 images: [1.png, 2.png, 3.png]
 download_url: "https://github.com/mikanbearer/hugo-vue-mix"
-demo_url: "q"
+demo_url: ""
 powered_by: [Vue.js, Vuetify]
 
 outputs:
