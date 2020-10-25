@@ -15,9 +15,11 @@
         
             "NestJS"
         
-            , "Node.js"
+            , "TypeORM"
         
             , "TypeScript"
+        
+            , "Node.js"
         
     ],
 

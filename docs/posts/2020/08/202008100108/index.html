@@ -32,20 +32,20 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:rabbitmq/docker-compose.yml" data-lang=":rabbitmq/docker-compose.yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:rabbitmq/docker-compose.yml" data-lang=":rabbitmq/docker-compose.yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
 
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">my-queue</span>:
-    <span style="color:#66d9ef">container_name</span>: rabbitmq
-    <span style="color:#66d9ef">image</span>: rabbitmq:<span style="color:#ae81ff">3.7.4</span>-management
-    <span style="color:#66d9ef">ports</span>:
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">my-queue</span>:
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">rabbitmq</span>
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">rabbitmq:3.7.4-management</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#39;5672:5672&#39;</span>
       - <span style="color:#e6db74">&#39;15672:15672&#39;</span>
-    <span style="color:#66d9ef">volumes</span>:
-      - rabbitmq-data:/var/lib/rabbitmq
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">rabbitmq-data:/var/lib/rabbitmq</span>
 
-<span style="color:#66d9ef">volumes</span>:
-    <span style="color:#66d9ef">rabbitmq-data</span>:
+<span style="color:#f92672">volumes</span>:
+    <span style="color:#f92672">rabbitmq-data</span>:
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br>

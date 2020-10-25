@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>About on 垃圾堆</title>
+    <title>Abouts on 垃圾堆</title>
     <link>https://mikanbearer.github.io/about/</link>
-    <description>Recent content in About on 垃圾堆</description>
+    <description>Recent content in Abouts on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
-    <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    
-	<atom:link href="https://mikanbearer.github.io/about/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <webMaster>youremail@domain.com (Zhang San)</webMaster><atom:link href="https://mikanbearer.github.io/about/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About</title>
-      <link>https://mikanbearer.github.io/about/chart_data/</link>
+      <title></title>
+      <link>https://mikanbearer.github.io/about/about_me/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/about/chart_data/</guid>
-      <description>從網管入門的無頭蒼蠅，偶爾記錄自己的學習過程
- Skills：  Server-side Web Framework  Django Flask   Client-side Web Framework  Vue.js Angular &amp;hellip;etc      </description>
+      <guid>https://mikanbearer.github.io/about/about_me/</guid>
+      <description>垃圾堆中的一小袋垃圾，努力讓自己變得可用
+ Skills：  Server-side Web Framework  Django Flask NestJS   Client-side Web Framework  Vue.js Angular &amp;hellip;etc      </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mikanbearer.github.io/about/chart_data/index.json</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/about/chart_data/index.json</guid>
+      <description></description>
     </item>
     
   </channel>

@@ -56,12 +56,12 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/main.ts" data-lang=":src/main.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestFactory</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.module&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/main.ts" data-lang=":src/main.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestFactory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.module&#39;</span>;
 
-<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">bootstrap() {</span>
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">NestFactory</span>.<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">AppModule</span>);
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>);
+<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">bootstrap() {</span>
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">NestFactory</span>.<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">AppModule</span>);
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>);
 </span>}
 <span style="color:#a6e22e">bootstrap</span>();
 </code></pre></td></tr></table>
@@ -87,9 +87,9 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.module.ts" data-lang=":src/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.module.ts" data-lang=":src/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
 
 <span style="color:#66d9ef">@Module</span>({
   <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [],
@@ -118,12 +118,12 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.controller.ts" data-lang=":src/app.controller.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.controller.ts" data-lang=":src/app.controller.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
 
 <span style="color:#66d9ef">@Controller</span>()
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppController</span> {
-  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">appService</span>: <span style="color:#66d9ef">AppService</span>) {}
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">appService</span>: <span style="color:#66d9ef">AppService</span>) {}
 
   <span style="color:#66d9ef">@Get</span>()
   <span style="color:#a6e22e">getHello</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
@@ -150,12 +150,12 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.controller.ts" data-lang=":src/app.controller.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.controller.ts" data-lang=":src/app.controller.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
 
 <span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#39;app&#39;</span>)
 </span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppController</span> {
-  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">appService</span>: <span style="color:#66d9ef">AppService</span>) {}
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">appService</span>: <span style="color:#66d9ef">AppService</span>) {}
 
 <span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;QAQ&#39;</span>)
 </span>  <span style="color:#a6e22e">getHello</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
@@ -194,15 +194,15 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.module.ts" data-lang=":src/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TypeOrmModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.module.ts" data-lang=":src/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TypeOrmModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
 </span>
 <span style="color:#66d9ef">@Module</span>({
   <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [        
 <span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">TypeOrmModule</span>.<span style="color:#a6e22e">forRoot</span>({
-</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;sqlite&#39;</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;sqlite&#39;</span>,
 </span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#a6e22e">database</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;db/sqlitedb.db&#39;</span>,
 </span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#a6e22e">synchronize</span>: <span style="color:#66d9ef">true</span>,
 </span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#a6e22e">entities</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;dist/**/*.entity{.ts,.js}&#39;</span>]
@@ -241,10 +241,10 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.module.ts" data-lang=":src/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TypeOrmModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.module.ts" data-lang=":src/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TypeOrmModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
 </span>
 <span style="color:#66d9ef">@Module</span>({
 <span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">TypeOrmModule</span>.<span style="color:#a6e22e">forRoot</span>()],
@@ -282,7 +282,7 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/entities/memo.entity.ts" data-lang=":src/entities/memo.entity.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Entity</span>, <span style="color:#a6e22e">Column</span>, <span style="color:#a6e22e">PrimaryGeneratedColumn</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;typeorm&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/entities/memo.entity.ts" data-lang=":src/entities/memo.entity.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Entity</span>, <span style="color:#a6e22e">Column</span>, <span style="color:#a6e22e">PrimaryGeneratedColumn</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;typeorm&#39;</span>;
 
 <span style="color:#66d9ef">@Entity</span>()
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Memo</span> {
@@ -303,17 +303,17 @@
 $ npx typeorm migration:generate -d src/migrations -n memo-migration
 </code></pre><p><br></br></p>
 <p>產生出的migration像這樣</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/migrations/1603171551971-memo-migration.ts" data-lang=":src/migrations/1603171551971-memo-migration.ts"><span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">MigrationInterface</span>, <span style="color:#a6e22e">QueryRunner</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;typeorm&#34;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/migrations/1603171551971-memo-migration.ts" data-lang=":src/migrations/1603171551971-memo-migration.ts"><span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">MigrationInterface</span>, <span style="color:#a6e22e">QueryRunner</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;typeorm&#34;</span>;
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">memoMigration1603171551971</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">MigrationInterface</span> {
     <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;memoMigration1603171551971&#39;</span>
 
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">up</span>(<span style="color:#a6e22e">queryRunner</span>: <span style="color:#66d9ef">QueryRunner</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">void</span>&gt; {
-        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">queryRunner</span>.<span style="color:#a6e22e">query</span>(<span style="color:#e6db74">`CREATE TABLE &#34;memo&#34; (&#34;id&#34; integer PRIMARY KEY AUTOINCREMENT NOT NULL, &#34;title&#34; varchar(250) NOT NULL, &#34;description&#34; text NOT NULL)`</span>);
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">up</span>(<span style="color:#a6e22e">queryRunner</span>: <span style="color:#66d9ef">QueryRunner</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">void</span>&gt; {
+        <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryRunner</span>.<span style="color:#a6e22e">query</span>(<span style="color:#e6db74">`CREATE TABLE &#34;memo&#34; (&#34;id&#34; integer PRIMARY KEY AUTOINCREMENT NOT NULL, &#34;title&#34; varchar(250) NOT NULL, &#34;description&#34; text NOT NULL)`</span>);
     }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">down</span>(<span style="color:#a6e22e">queryRunner</span>: <span style="color:#66d9ef">QueryRunner</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">void</span>&gt; {
-        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">queryRunner</span>.<span style="color:#a6e22e">query</span>(<span style="color:#e6db74">`DROP TABLE &#34;memo&#34;`</span>);
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">down</span>(<span style="color:#a6e22e">queryRunner</span>: <span style="color:#66d9ef">QueryRunner</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">void</span>&gt; {
+        <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryRunner</span>.<span style="color:#a6e22e">query</span>(<span style="color:#e6db74">`DROP TABLE &#34;memo&#34;`</span>);
     }
 
 }
@@ -353,11 +353,11 @@ UPDATE src/memo/memo.module.ts (240 bytes)
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.module.ts" data-lang=":src/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TypeOrmModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MemoModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./memo/memo.module&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/app.module.ts" data-lang=":src/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TypeOrmModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MemoModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./memo/memo.module&#39;</span>;
 </span>
 <span style="color:#66d9ef">@Module</span>({
 <span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">TypeOrmModule</span>.<span style="color:#a6e22e">forRoot</span>(), <span style="color:#a6e22e">MemoModule</span>],
@@ -385,11 +385,11 @@ UPDATE src/memo/memo.module.ts (240 bytes)
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/memo/memo.module.ts" data-lang=":src/memo/memo.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MemoController</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./memo.controller&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MemoService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./memo.service&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Memo</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;src/entities/memo.entity&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TypeOrmModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/memo/memo.module.ts" data-lang=":src/memo/memo.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MemoController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./memo.controller&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MemoService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./memo.service&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Memo</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;src/entities/memo.entity&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TypeOrmModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
 </span>
 <span style="color:#66d9ef">@Module</span>({
   <span style="color:#a6e22e">controllers</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">MemoController</span>],
@@ -437,10 +437,10 @@ UPDATE src/memo/memo.module.ts (240 bytes)
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/memo/memo.service.ts" data-lang=":src/memo/memo.service.ts"><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">InjectRepository</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Repository</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;typeorm&#39;</span>;
-</span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Memo</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;src/entities/memo.entity&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/memo/memo.service.ts" data-lang=":src/memo/memo.service.ts"><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">InjectRepository</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/typeorm&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Repository</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;typeorm&#39;</span>;
+</span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Memo</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;src/entities/memo.entity&#39;</span>;
 
 <span style="color:#66d9ef">@Injectable</span>()
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MemoService</span> {
@@ -464,8 +464,8 @@ UPDATE src/memo/memo.module.ts (240 bytes)
 </span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">memosRepository</span>.<span style="color:#a6e22e">insert</span>(<span style="color:#a6e22e">memo</span>);
 </span><span style="display:block;width:100%;background-color:#3c3d38">    }
 </span><span style="display:block;width:100%;background-color:#3c3d38">
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">remove</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">void</span>&gt; {
-</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#a6e22e">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">memosRepository</span>.<span style="color:#66d9ef">delete</span>(<span style="color:#a6e22e">id</span>);
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">remove</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">void</span>&gt; {
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">memosRepository</span>.<span style="color:#66d9ef">delete</span>(<span style="color:#a6e22e">id</span>);
 </span><span style="display:block;width:100%;background-color:#3c3d38">    }
 </span>}
 
@@ -499,12 +499,12 @@ UPDATE src/memo/memo.module.ts (240 bytes)
 </span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/memo/memo.controller.ts" data-lang=":src/memo/memo.controller.ts"><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span>, <span style="color:#a6e22e">Post</span>, <span style="color:#a6e22e">Query</span>, <span style="color:#a6e22e">Param</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MemoService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./memo.service&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:src/memo/memo.controller.ts" data-lang=":src/memo/memo.controller.ts"><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span>, <span style="color:#a6e22e">Post</span>, <span style="color:#a6e22e">Query</span>, <span style="color:#a6e22e">Param</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MemoService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./memo.service&#39;</span>;
 </span>
 <span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#39;memo&#39;</span>)
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MemoController</span> {
-    <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">service</span>: <span style="color:#66d9ef">MemoService</span>) { }
+    <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">service</span>: <span style="color:#66d9ef">MemoService</span>) { }
 
 <span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">@Get</span>()
 </span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#a6e22e">findAll() {</span>

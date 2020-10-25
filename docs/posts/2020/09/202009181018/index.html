@@ -10,7 +10,7 @@
 首先安裝Angular CLI</p>
 <pre><code># npm install -g @angular/cli
 </code></pre><p><br></br>
-這樣就能使用Angular CLI的指令&quot;ng&rdquo;，這裡就直接建立一個project，stylesheet就選擇CSS好了，建立好之後就直接進入稍後要編集的目錄</p>
+這樣就能使用Angular CLI的指令&quot;ng&quot;，這裡就直接建立一個project，stylesheet就選擇CSS好了，建立好之後就直接進入稍後要編集的目錄</p>
 <pre><code>$ ng new my-app
 
 ? Would you like to add Angular routing? Yes
@@ -78,12 +78,12 @@ UPDATE src/app/app.module.ts (537 bytes)
         test.component.ts
 </code></pre><p><br></br>
 同時會自動在app.module.ts中import剛才建立的component</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.module.ts" data-lang=":app/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.module.ts" data-lang=":app/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppRoutingModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app-routing.module&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TestComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./test/test.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppRoutingModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app-routing.module&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TestComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./test/test.component&#39;</span>;
 </span>
 <span style="color:#66d9ef">@NgModule</span>({
   <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [
@@ -100,7 +100,7 @@ UPDATE src/app/app.module.ts (537 bytes)
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> { }
 </code></pre></div><p><br></br>
 而component長得像是這樣</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test/test.component.ts" data-lang=":app/test/test.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test/test.component.ts" data-lang=":app/test/test.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
 <span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">@Component</span>({
 </span><span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-test&#39;</span>,
@@ -135,7 +135,7 @@ index.html預設是app-root，也就是剛才run的畫面，如果將index.html�
 </code></pre></div><p><br></br>
 也將app.module.ts中的bootstrap array改成剛才建立的component</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.module.ts" data-lang=":app/app.module.ts">...
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TestComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./test/test.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TestComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./test/test.component&#39;</span>;
 
 <span style="color:#66d9ef">@NgModule</span>({
   <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [
@@ -184,7 +184,7 @@ index.html預設是app-root，也就是剛才run的畫面，如果將index.html�
 <pre><code>$ ng generate service test
 </code></pre><p><br></br>
 接著修改test.service.ts，以console.log測試</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test.service.ts" data-lang=":app/test.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test.service.ts" data-lang=":app/test.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
 <span style="color:#66d9ef">@Injectable</span>({
   <span style="color:#a6e22e">providedIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;root&#39;</span>
@@ -197,8 +197,8 @@ index.html預設是app-root，也就是剛才run的畫面，如果將index.html�
 
 </code></pre></div><p><br></br>
 service可以用以下方式使用</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test/test.component.ts" data-lang=":app/test/test.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TestService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../test.service&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test/test.component.ts" data-lang=":app/test/test.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TestService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../test.service&#39;</span>;
 </span>
 
 <span style="color:#66d9ef">@Component</span>({
@@ -219,7 +219,7 @@ service可以用以下方式使用</p>
 }
 </code></pre></div><p><br></br>
 值得注意的是service有階層化，若在@Injectable中，providedIn不是root的情形下，如範例</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test.service.ts" data-lang=":app/test.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test.service.ts" data-lang=":app/test.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
 <span style="color:#66d9ef">@Injectable</span>({
   <span style="color:#a6e22e">providedIn</span>: <span style="color:#66d9ef">null</span>
@@ -228,8 +228,8 @@ service可以用以下方式使用</p>
 <span style="display:block;width:100%;background-color:#3c3d38">...
 </span></code></pre></div><p><br></br>
 則component要依賴service的話，必須要在providers指定service</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test/test.component.ts" data-lang=":app/test/test.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TestService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../test.service&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/test/test.component.ts" data-lang=":app/test/test.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TestService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../test.service&#39;</span>;
 
 
 <span style="color:#66d9ef">@Component</span>({
@@ -291,8 +291,8 @@ Two-way binding範例：</p>
 <pre><code>$ ng generate module app-routing --flat --module=app
 </code></pre><p><br><br>
 剛建立的Routes是空的，routing由此定義</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
 
 <span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [];
 </span>
@@ -308,10 +308,10 @@ Two-way binding範例：</p>
 $ ng generate component bar
 </code></pre><p><br></br>
 import剛才建立的component，並加到routes</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FooComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./foo/foo.component&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BarComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./bar/bar.component&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FooComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./foo/foo.component&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BarComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./bar/bar.component&#39;</span>;
 </span>
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
 <span style="display:block;width:100%;background-color:#3c3d38">  { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;foo&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">BarComponent</span> },
@@ -338,7 +338,7 @@ import剛才建立的component，並加到routes</p>
 輸入不同的path(foo, bar)就會layout指定的component</p>
 <p><img src="5.gif" alt="">
 <br></br>
-若是使用routes以外的path，則會mapping到&rsquo;**'，像範例會導回首頁</p>
+若是使用routes以外的path，則會mapping到'**'，像範例會導回首頁</p>
 <p><img src="6.gif" alt="">
 <br></br></p>
 <p>基礎練習大概就到此為止，下次大概就從Material UI到試做Login畫面了，Angular大概會成為個人做SPA的另一個選項</p>

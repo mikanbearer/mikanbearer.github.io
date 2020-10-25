@@ -8,11 +8,7 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Mon, 19 Oct 2020 14:29:51 +0800</lastBuildDate>
-    
-	<atom:link href="https://mikanbearer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 19 Oct 2020 14:29:51 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cacti</title>
       <link>https://mikanbearer.github.io/tags/Cacti/</link>
@@ -68,6 +64,15 @@
     </item>
     
     <item>
+      <title>TypeORM</title>
+      <link>https://mikanbearer.github.io/tags/TypeORM/</link>
+      <pubDate>Thu, 15 Oct 2020 14:57:25 +0800</pubDate>
+      <author>youremail@domain.com (Zhang San)</author>
+      <guid>https://mikanbearer.github.io/tags/TypeORM/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>TypeScript</title>
       <link>https://mikanbearer.github.io/tags/TypeScript/</link>
       <pubDate>Thu, 15 Oct 2020 14:57:25 +0800</pubDate>
@@ -77,11 +82,11 @@
     </item>
     
     <item>
-      <title>JQuery</title>
-      <link>https://mikanbearer.github.io/tags/JQuery/</link>
+      <title>jQuery</title>
+      <link>https://mikanbearer.github.io/tags/jQuery/</link>
       <pubDate>Wed, 14 Oct 2020 16:35:05 +0800</pubDate>
       <author>youremail@domain.com (Zhang San)</author>
-      <guid>https://mikanbearer.github.io/tags/JQuery/</guid>
+      <guid>https://mikanbearer.github.io/tags/jQuery/</guid>
       <description></description>
     </item>
     

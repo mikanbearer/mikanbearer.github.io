@@ -25,21 +25,21 @@ compose file增加port 15692</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-compose.yml" data-lang=":docker-compose.yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-compose.yml" data-lang=":docker-compose.yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
 
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">my-queue</span>:
-    <span style="color:#66d9ef">container_name</span>: rabbitmq
-<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">build</span>: ./
-</span>    <span style="color:#66d9ef">ports</span>:
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">my-queue</span>:
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">rabbitmq</span>
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">./</span>
+</span>    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#39;5672:5672&#39;</span>
       - <span style="color:#e6db74">&#39;15672:15672&#39;</span>
 <span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#e6db74">&#39;15692:15692&#39;</span>
-</span>    <span style="color:#66d9ef">volumes</span>:
-      - rabbitmq-data:/var/lib/rabbitmq
+</span>    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">rabbitmq-data:/var/lib/rabbitmq</span>
 
-<span style="color:#66d9ef">volumes</span>:
-    <span style="color:#66d9ef">rabbitmq-data</span>:
+<span style="color:#f92672">volumes</span>:
+    <span style="color:#f92672">rabbitmq-data</span>:
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br>
@@ -67,13 +67,13 @@ rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cl
 </code></pre><p>巴拉巴拉一大堆
 <br></br>
 適當增加一下prometheus的config，反正只是測試一下，就姑且用static config吧</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">scrape_configs</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">scrape_configs</span>:
 ...
-  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;rabbitmq-exporter&#39;</span>
-    <span style="color:#66d9ef">scrape_interval</span>: 60s
-    <span style="color:#66d9ef">scrape_timeout</span>: 59s
-    <span style="color:#66d9ef">static_configs</span>:
-      - <span style="color:#66d9ef">targets</span>:
+  - <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#39;rabbitmq-exporter&#39;</span>
+    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">60s</span>
+    <span style="color:#f92672">scrape_timeout</span>: <span style="color:#ae81ff">59s</span>
+    <span style="color:#f92672">static_configs</span>:
+      - <span style="color:#f92672">targets</span>:
           - <span style="color:#e6db74">&#39;rabbitmq-exporter:15692&#39;</span>
 </code></pre></div><p><br></br>
 能看到endpoint增加了

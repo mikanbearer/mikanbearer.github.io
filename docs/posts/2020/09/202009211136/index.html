@@ -111,9 +111,9 @@ $ ng generate component components/login
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
 </span>
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
 <span style="display:block;width:100%;background-color:#3c3d38">  { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;login&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">LoginComponent</span> },
@@ -183,21 +183,21 @@ $ ng generate component components/login
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.module.ts" data-lang=":app/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.module.ts" data-lang=":app/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppRoutingModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app-routing.module&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserAnimationsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser/animations&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppRoutingModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app-routing.module&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserAnimationsModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser/animations&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
 </span><span style="display:block;width:100%;background-color:#3c3d38">
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatCardModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/card&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatInputModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/input&#39;</span>; 
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatFormFieldModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/form-field&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatButtonModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/button&#39;</span>; 
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatMenuModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/menu&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatIconModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/icon&#39;</span>; 
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatCardModule</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/card&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatInputModule</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/input&#39;</span>; 
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatFormFieldModule</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/form-field&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatButtonModule</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/button&#39;</span>; 
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatMenuModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/menu&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatIconModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/icon&#39;</span>; 
 </span>
 <span style="color:#66d9ef">@NgModule</span>({
   <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [
@@ -253,8 +253,8 @@ $ ng generate component components/login
 </span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/login/login.component.ts" data-lang=":app/components/login/login.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FormControl</span>, <span style="color:#a6e22e">FormGroup</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/login/login.component.ts" data-lang=":app/components/login/login.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FormControl</span>, <span style="color:#a6e22e">FormGroup</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
 
 <span style="color:#66d9ef">@Component</span>({
   <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-login&#39;</span>,
@@ -383,21 +383,21 @@ $ ng generate component components/login
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.module.ts" data-lang=":app/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.module.ts" data-lang=":app/app.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppRoutingModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app-routing.module&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserAnimationsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser/animations&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClientModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppRoutingModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app-routing.module&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserAnimationsModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser/animations&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactiveFormsModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClientModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
 </span>
 
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatCardModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/card&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatInputModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/input&#39;</span>; 
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatFormFieldModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/form-field&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatButtonModule</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/material/button&#39;</span>; 
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatCardModule</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/card&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatInputModule</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/input&#39;</span>; 
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatFormFieldModule</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/form-field&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MatButtonModule</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/material/button&#39;</span>; 
 
 
 <span style="color:#66d9ef">@NgModule</span>({
@@ -451,9 +451,9 @@ $ ng generate component components/login
 </span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/services/auth.service.ts" data-lang=":app/services/auth.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BehaviorSubject</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/services/auth.service.ts" data-lang=":app/services/auth.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BehaviorSubject</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
 </span>
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">baseUrl</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8000/api/&#39;</span>;
 
@@ -505,9 +505,9 @@ $ ng generate component components/login
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/login/login.component.ts" data-lang=":app/components/login/login.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FormControl</span>, <span style="color:#a6e22e">FormGroup</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../../services/auth.service&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/login/login.component.ts" data-lang=":app/components/login/login.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FormControl</span>, <span style="color:#a6e22e">FormGroup</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../../services/auth.service&#39;</span>;
 </span>
 <span style="color:#66d9ef">@Component</span>({
   <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-login&#39;</span>,
@@ -594,10 +594,10 @@ routing加入剛才新增的component</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HomeComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/home/home.component&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HomeComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./components/home/home.component&#39;</span>;
 </span>
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
   { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;login&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">LoginComponent</span> },
@@ -652,10 +652,10 @@ auth.service也跟進增加下列的部分</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/services/auth.service.ts" data-lang=":app/services/auth.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BehaviorSubject</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Router</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/services/auth.service.ts" data-lang=":app/services/auth.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BehaviorSubject</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Router</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
 </span>
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">baseUrl</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8000/api/&#39;</span>;
 
@@ -715,8 +715,8 @@ auth.service也跟進增加下列的部分</p>
 </span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/home.component.ts" data-lang=":app/components/home.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../../services/auth.service&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/components/home.component.ts" data-lang=":app/components/home.component.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../../services/auth.service&#39;</span>;
 </span>
 <span style="color:#66d9ef">@Component</span>({
   <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-home&#39;</span>,
@@ -829,11 +829,11 @@ auth.service也跟進增加下列的部分</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/services/auth.service.ts" data-lang=":app/services/auth.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BehaviorSubject</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
-</span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Router</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/services/auth.service.ts" data-lang=":app/services/auth.service.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/common/http&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BehaviorSubject</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">map</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+</span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Router</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
 
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">baseUrl</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8000/api/&#39;</span>;
 
@@ -918,10 +918,10 @@ auth.service也跟進增加下列的部分</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/guards/auth.guard.ts" data-lang=":app/guards/auth.guard.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CanActivate</span>, <span style="color:#a6e22e">ActivatedRouteSnapshot</span>, <span style="color:#a6e22e">RouterStateSnapshot</span>, <span style="color:#a6e22e">UrlTree</span>, <span style="color:#a6e22e">Router</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../services/auth.service&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/guards/auth.guard.ts" data-lang=":app/guards/auth.guard.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CanActivate</span>, <span style="color:#a6e22e">ActivatedRouteSnapshot</span>, <span style="color:#a6e22e">RouterStateSnapshot</span>, <span style="color:#a6e22e">UrlTree</span>, <span style="color:#a6e22e">Router</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;rxjs&#39;</span>;
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../services/auth.service&#39;</span>;
 </span>
 <span style="color:#66d9ef">@Injectable</span>({
   <span style="color:#a6e22e">providedIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;root&#39;</span>
@@ -972,11 +972,11 @@ auth.service也跟進增加下列的部分</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HomeComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/home/home.component&#39;</span>;
-<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthGuard</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./guards/auth.guard&#39;</span>;
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app-routing.module.ts" data-lang=":app/app-routing.module.ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Routes</span>, <span style="color:#a6e22e">RouterModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LoginComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./components/login/login.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HomeComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./components/home/home.component&#39;</span>;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthGuard</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./guards/auth.guard&#39;</span>;
 </span>
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
   { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;login&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">LoginComponent</span> },

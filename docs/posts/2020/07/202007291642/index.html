@@ -102,41 +102,41 @@ web server要使用tcp socket連到api，所以兩者使用一個docker network�
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-compose.yml" data-lang=":docker-compose.yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">api</span>:
-    <span style="color:#66d9ef">restart</span>: always
-    <span style="color:#66d9ef">build</span>: ./api
-    <span style="color:#66d9ef">ports</span>:
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-compose.yml" data-lang=":docker-compose.yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">api</span>:
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">./api</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
-    <span style="color:#66d9ef">volumes</span>:
-      - ./api:/api
-    <span style="color:#66d9ef">networks</span>:
-      <span style="color:#66d9ef">backend</span>:
-        <span style="color:#66d9ef">ipv4_address</span>: <span style="color:#ae81ff">172.16.238.11</span>
-    <span style="color:#66d9ef">deploy</span>:
-      <span style="color:#66d9ef">restart_policy</span>:
-        <span style="color:#66d9ef">condition</span>: on-failure
-    <span style="color:#66d9ef">command</span>: uwsgi --ini uwsgi.ini
-  <span style="color:#66d9ef">web</span>:
-    <span style="color:#66d9ef">image</span>: nginx:<span style="color:#ae81ff">1.19.1</span>
-    <span style="color:#66d9ef">ports</span>:
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">./api:/api</span>
+    <span style="color:#f92672">networks</span>:
+      <span style="color:#f92672">backend</span>:
+        <span style="color:#f92672">ipv4_address</span>: <span style="color:#ae81ff">172.16.238.11</span>
+    <span style="color:#f92672">deploy</span>:
+      <span style="color:#f92672">restart_policy</span>:
+        <span style="color:#f92672">condition</span>: <span style="color:#66d9ef">on</span>-<span style="color:#ae81ff">failure</span>
+    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">uwsgi --ini uwsgi.ini</span>
+  <span style="color:#f92672">web</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx:1.19.1</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;80:80&#34;</span>
-    <span style="color:#66d9ef">volumes</span>:
-      - ./web:/usr/share/nginx/html
-      - ./nginx:/etc/nginx/conf.d
-    <span style="color:#66d9ef">networks</span>:
-      <span style="color:#66d9ef">backend</span>:
-        <span style="color:#66d9ef">ipv4_address</span>: <span style="color:#ae81ff">172.16.238.10</span>
-    <span style="color:#66d9ef">deploy</span>:
-      <span style="color:#66d9ef">restart_policy</span>:
-        <span style="color:#66d9ef">condition</span>: on-failure
-<span style="color:#66d9ef">networks</span>:
-  <span style="color:#66d9ef">backend</span>: 
-      <span style="color:#66d9ef">ipam</span>:
-        <span style="color:#66d9ef">driver</span>: default
-        <span style="color:#66d9ef">config</span>:
-          - <span style="color:#66d9ef">subnet</span>: <span style="color:#e6db74">&#34;172.16.238.0/24&#34;</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">./web:/usr/share/nginx/html</span>
+      - <span style="color:#ae81ff">./nginx:/etc/nginx/conf.d</span>
+    <span style="color:#f92672">networks</span>:
+      <span style="color:#f92672">backend</span>:
+        <span style="color:#f92672">ipv4_address</span>: <span style="color:#ae81ff">172.16.238.10</span>
+    <span style="color:#f92672">deploy</span>:
+      <span style="color:#f92672">restart_policy</span>:
+        <span style="color:#f92672">condition</span>: <span style="color:#66d9ef">on</span>-<span style="color:#ae81ff">failure</span>
+<span style="color:#f92672">networks</span>:
+  <span style="color:#f92672">backend</span>: 
+      <span style="color:#f92672">ipam</span>:
+        <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">default</span>
+        <span style="color:#f92672">config</span>:
+          - <span style="color:#f92672">subnet</span>: <span style="color:#e6db74">&#34;172.16.238.0/24&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Dockerfile如下，使用python 3.8.4的image</p>

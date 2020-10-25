@@ -63,6 +63,11 @@
   </url>
   
   <url>
+    <loc>https://mikanbearer.github.io/tags/TypeORM/</loc>
+    <lastmod>2020-10-15T14:57:25+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mikanbearer.github.io/tags/TypeScript/</loc>
     <lastmod>2020-10-15T14:57:25+08:00</lastmod>
   </url>
@@ -78,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/tags/JQuery/</loc>
+    <loc>https://mikanbearer.github.io/tags/jQuery/</loc>
     <lastmod>2020-10-14T16:35:05+08:00</lastmod>
   </url>
   
@@ -463,11 +468,23 @@
   </url>
   
   <url>
+    <loc>https://mikanbearer.github.io/about/about_me/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/about/chart_data/index.json</loc>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/works/index.json</loc>
+  </url>
+  
+  <url>
     <loc>https://mikanbearer.github.io/about/</loc>
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/about/chart_data/</loc>
+    <loc>https://mikanbearer.github.io/works/work1/</loc>
   </url>
   
 </urlset>

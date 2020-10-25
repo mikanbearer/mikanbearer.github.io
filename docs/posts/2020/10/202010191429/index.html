@@ -162,49 +162,49 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker/examples/compose/docker-compose.yml" data-lang=":docker/examples/compose/docker-compose.yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3.5&#34;</span>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker/examples/compose/docker-compose.yml" data-lang=":docker/examples/compose/docker-compose.yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.5&#34;</span>
 
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">db</span>:
-    <span style="color:#66d9ef">image</span>: mariadb:<span style="color:#ae81ff">10.4</span>
-    <span style="color:#66d9ef">container_name</span>: librenms_db
-    <span style="color:#66d9ef">command</span>:
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">db</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mariadb:10.4</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">librenms_db</span>
+    <span style="color:#f92672">command</span>:
       - <span style="color:#e6db74">&#34;mysqld&#34;</span>
       - <span style="color:#e6db74">&#34;--innodb-file-per-table=1&#34;</span>
       - <span style="color:#e6db74">&#34;--lower-case-table-names=0&#34;</span>
       - <span style="color:#e6db74">&#34;--character-set-server=utf8&#34;</span>
       - <span style="color:#e6db74">&#34;--collation-server=utf8_unicode_ci&#34;</span>
-    <span style="color:#66d9ef">volumes</span>:
+    <span style="color:#f92672">volumes</span>:
       - <span style="color:#e6db74">&#34;./db:/var/lib/mysql&#34;</span>
-    <span style="color:#66d9ef">environment</span>:
+    <span style="color:#f92672">environment</span>:
       - <span style="color:#e6db74">&#34;TZ=${TZ}&#34;</span>
       - <span style="color:#e6db74">&#34;MYSQL_ALLOW_EMPTY_PASSWORD=yes&#34;</span>
       - <span style="color:#e6db74">&#34;MYSQL_DATABASE=${MYSQL_DATABASE}&#34;</span>
       - <span style="color:#e6db74">&#34;MYSQL_USER=${MYSQL_USER}&#34;</span>
       - <span style="color:#e6db74">&#34;MYSQL_PASSWORD=${MYSQL_PASSWORD}&#34;</span>
-    <span style="color:#66d9ef">restart</span>: always
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
 
-  <span style="color:#66d9ef">memcached</span>:
-    <span style="color:#66d9ef">image</span>: memcached:alpine
-    <span style="color:#66d9ef">container_name</span>: librenms_memcached
-    <span style="color:#66d9ef">environment</span>:
+  <span style="color:#f92672">memcached</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">memcached:alpine</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">librenms_memcached</span>
+    <span style="color:#f92672">environment</span>:
       - <span style="color:#e6db74">&#34;TZ=${TZ}&#34;</span>
-    <span style="color:#66d9ef">restart</span>: always
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
 
-  <span style="color:#66d9ef">redis</span>:
-    <span style="color:#66d9ef">image</span>: redis:<span style="color:#ae81ff">5.0</span>-alpine
-    <span style="color:#66d9ef">container_name</span>: librenms_redis
-    <span style="color:#66d9ef">environment</span>:
+  <span style="color:#f92672">redis</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:5.0-alpine</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">librenms_redis</span>
+    <span style="color:#f92672">environment</span>:
       - <span style="color:#e6db74">&#34;TZ=${TZ}&#34;</span>
-    <span style="color:#66d9ef">restart</span>: always
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
 
-  <span style="color:#66d9ef">rrdcached</span>:
-    <span style="color:#66d9ef">image</span>: crazymax/rrdcached
-    <span style="color:#66d9ef">container_name</span>: librenms_rrdcached
-    <span style="color:#66d9ef">volumes</span>:
+  <span style="color:#f92672">rrdcached</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">crazymax/rrdcached</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">librenms_rrdcached</span>
+    <span style="color:#f92672">volumes</span>:
       - <span style="color:#e6db74">&#34;./librenms/rrd:/data/db&#34;</span>
       - <span style="color:#e6db74">&#34;./rrd-journal:/data/journal&#34;</span>
-    <span style="color:#66d9ef">environment</span>:
+    <span style="color:#f92672">environment</span>:
       - <span style="color:#e6db74">&#34;TZ=${TZ}&#34;</span>
       - <span style="color:#e6db74">&#34;PUID=${PUID}&#34;</span>
       - <span style="color:#e6db74">&#34;PGID=${PGID}&#34;</span>
@@ -213,33 +213,33 @@
       - <span style="color:#e6db74">&#34;WRITE_JITTER=1800&#34;</span>
       - <span style="color:#e6db74">&#34;WRITE_THREADS=4&#34;</span>
       - <span style="color:#e6db74">&#34;FLUSH_DEAD_DATA_INTERVAL=3600&#34;</span>
-    <span style="color:#66d9ef">restart</span>: always
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
 
-  <span style="color:#66d9ef">msmtpd</span>:
-    <span style="color:#66d9ef">image</span>: crazymax/msmtpd:latest
-    <span style="color:#66d9ef">container_name</span>: librenms_msmtpd
-    <span style="color:#66d9ef">env_file</span>:
+  <span style="color:#f92672">msmtpd</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">crazymax/msmtpd:latest</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">librenms_msmtpd</span>
+    <span style="color:#f92672">env_file</span>:
 <span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#e6db74">&#34;./msmtpd.env&#34;</span>
-</span>    <span style="color:#66d9ef">restart</span>: always
+</span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
 
-  <span style="color:#66d9ef">librenms</span>:
-    <span style="color:#66d9ef">image</span>: librenms/librenms:latest
-    <span style="color:#66d9ef">container_name</span>: librenms
-    <span style="color:#66d9ef">hostname</span>: librenms
-    <span style="color:#66d9ef">ports</span>:
-      - <span style="color:#66d9ef">target</span>: <span style="color:#ae81ff">8000</span>
-        <span style="color:#66d9ef">published</span>: <span style="color:#ae81ff">8000</span>
-        <span style="color:#66d9ef">protocol</span>: tcp
-    <span style="color:#66d9ef">depends_on</span>:
-      - db
-      - memcached
-      - rrdcached
-      - msmtpd
-    <span style="color:#66d9ef">volumes</span>:
+  <span style="color:#f92672">librenms</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">librenms/librenms:latest</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">librenms</span>
+    <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">librenms</span>
+    <span style="color:#f92672">ports</span>:
+      - <span style="color:#f92672">target</span>: <span style="color:#ae81ff">8000</span>
+        <span style="color:#f92672">published</span>: <span style="color:#ae81ff">8000</span>
+        <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">tcp</span>
+    <span style="color:#f92672">depends_on</span>:
+      - <span style="color:#ae81ff">db</span>
+      - <span style="color:#ae81ff">memcached</span>
+      - <span style="color:#ae81ff">rrdcached</span>
+      - <span style="color:#ae81ff">msmtpd</span>
+    <span style="color:#f92672">volumes</span>:
       - <span style="color:#e6db74">&#34;./librenms:/data&#34;</span>
-    <span style="color:#66d9ef">env_file</span>:
+    <span style="color:#f92672">env_file</span>:
 <span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#e6db74">&#34;./librenms.env&#34;</span>
-</span>    <span style="color:#66d9ef">environment</span>:
+</span>    <span style="color:#f92672">environment</span>:
       - <span style="color:#e6db74">&#34;TZ=${TZ}&#34;</span>
       - <span style="color:#e6db74">&#34;PUID=${PUID}&#34;</span>
       - <span style="color:#e6db74">&#34;PGID=${PGID}&#34;</span>
@@ -248,20 +248,20 @@
       - <span style="color:#e6db74">&#34;DB_USER=${MYSQL_USER}&#34;</span>
       - <span style="color:#e6db74">&#34;DB_PASSWORD=${MYSQL_PASSWORD}&#34;</span>
       - <span style="color:#e6db74">&#34;DB_TIMEOUT=60&#34;</span>
-    <span style="color:#66d9ef">restart</span>: always
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
 
-  <span style="color:#66d9ef">dispatcher</span>:
-    <span style="color:#66d9ef">image</span>: librenms/librenms:latest
-    <span style="color:#66d9ef">container_name</span>: librenms_dispatcher
-    <span style="color:#66d9ef">hostname</span>: librenms-dispatcher
-    <span style="color:#66d9ef">depends_on</span>:
-      - librenms
-      - redis
-    <span style="color:#66d9ef">volumes</span>:
+  <span style="color:#f92672">dispatcher</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">librenms/librenms:latest</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">librenms_dispatcher</span>
+    <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">librenms-dispatcher</span>
+    <span style="color:#f92672">depends_on</span>:
+      - <span style="color:#ae81ff">librenms</span>
+      - <span style="color:#ae81ff">redis</span>
+    <span style="color:#f92672">volumes</span>:
       - <span style="color:#e6db74">&#34;./librenms:/data&#34;</span>
-    <span style="color:#66d9ef">env_file</span>:
+    <span style="color:#f92672">env_file</span>:
 <span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#e6db74">&#34;./librenms.env&#34;</span>
-</span>    <span style="color:#66d9ef">environment</span>:
+</span>    <span style="color:#f92672">environment</span>:
       - <span style="color:#e6db74">&#34;TZ=${TZ}&#34;</span>
       - <span style="color:#e6db74">&#34;PUID=${PUID}&#34;</span>
       - <span style="color:#e6db74">&#34;PGID=${PGID}&#34;</span>
@@ -275,26 +275,26 @@
       - <span style="color:#e6db74">&#34;REDIS_PORT=6379&#34;</span>
       - <span style="color:#e6db74">&#34;REDIS_DB=0&#34;</span>
       - <span style="color:#e6db74">&#34;SIDECAR_DISPATCHER=1&#34;</span>
-    <span style="color:#66d9ef">restart</span>: always
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
 
-  <span style="color:#66d9ef">syslogng</span>:
-    <span style="color:#66d9ef">image</span>: librenms/librenms:latest
-    <span style="color:#66d9ef">container_name</span>: librenms_syslogng
-    <span style="color:#66d9ef">hostname</span>: librenms-syslogng
-    <span style="color:#66d9ef">depends_on</span>:
-      - librenms
-    <span style="color:#66d9ef">ports</span>:
-      - <span style="color:#66d9ef">target</span>: <span style="color:#ae81ff">514</span>
-        <span style="color:#66d9ef">published</span>: <span style="color:#ae81ff">514</span>
-        <span style="color:#66d9ef">protocol</span>: tcp
-      - <span style="color:#66d9ef">target</span>: <span style="color:#ae81ff">514</span>
-        <span style="color:#66d9ef">published</span>: <span style="color:#ae81ff">514</span>
-        <span style="color:#66d9ef">protocol</span>: udp
-    <span style="color:#66d9ef">volumes</span>:
+  <span style="color:#f92672">syslogng</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">librenms/librenms:latest</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">librenms_syslogng</span>
+    <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">librenms-syslogng</span>
+    <span style="color:#f92672">depends_on</span>:
+      - <span style="color:#ae81ff">librenms</span>
+    <span style="color:#f92672">ports</span>:
+      - <span style="color:#f92672">target</span>: <span style="color:#ae81ff">514</span>
+        <span style="color:#f92672">published</span>: <span style="color:#ae81ff">514</span>
+        <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">tcp</span>
+      - <span style="color:#f92672">target</span>: <span style="color:#ae81ff">514</span>
+        <span style="color:#f92672">published</span>: <span style="color:#ae81ff">514</span>
+        <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">udp</span>
+    <span style="color:#f92672">volumes</span>:
       - <span style="color:#e6db74">&#34;./librenms:/data&#34;</span>
-    <span style="color:#66d9ef">env_file</span>:
+    <span style="color:#f92672">env_file</span>:
 <span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#e6db74">&#34;./librenms.env&#34;</span>
-</span>    <span style="color:#66d9ef">environment</span>:
+</span>    <span style="color:#f92672">environment</span>:
       - <span style="color:#e6db74">&#34;TZ=${TZ}&#34;</span>
       - <span style="color:#e6db74">&#34;PUID=${PUID}&#34;</span>
       - <span style="color:#e6db74">&#34;PGID=${PGID}&#34;</span>
@@ -304,7 +304,7 @@
       - <span style="color:#e6db74">&#34;DB_PASSWORD=${MYSQL_PASSWORD}&#34;</span>
       - <span style="color:#e6db74">&#34;DB_TIMEOUT=60&#34;</span>
       - <span style="color:#e6db74">&#34;SIDECAR_SYSLOGNG=1&#34;</span>
-    <span style="color:#66d9ef">restart</span>: always
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br>
@@ -354,73 +354,73 @@ $ cd cacti
 $ git clone https://github.com/scline/docker-cacti
 </code></pre><p><br></br>
 這裡選擇的是cacti_single_install.yml，cacti_multi_.yml與cacti_multi_shared.yml是multi node用的</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-cacti/docker-compose/cacti_single_install.yml" data-lang=":docker-cacti/docker-compose/cacti_single_install.yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;2&#39;</span>
-<span style="color:#66d9ef">services</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-cacti/docker-compose/cacti_single_install.yml" data-lang=":docker-cacti/docker-compose/cacti_single_install.yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;2&#39;</span>
+<span style="color:#f92672">services</span>:
 
 
-  <span style="color:#66d9ef">cacti</span>:
-    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;smcline06/cacti&#34;</span>
-    <span style="color:#66d9ef">container_name</span>: cacti
-    <span style="color:#66d9ef">domainname</span>: example.com
-    <span style="color:#66d9ef">hostname</span>: cacti
-    <span style="color:#66d9ef">ports</span>:
+  <span style="color:#f92672">cacti</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#e6db74">&#34;smcline06/cacti&#34;</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">cacti</span>
+    <span style="color:#f92672">domainname</span>: <span style="color:#ae81ff">example.com</span>
+    <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">cacti</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;80:80&#34;</span>
       - <span style="color:#e6db74">&#34;443:443&#34;</span>
-    <span style="color:#66d9ef">environment</span>:
-      - DB_NAME=cacti_master
-      - DB_USER=cactiuser
-      - DB_PASS=cactipassword
-      - DB_HOST=db
-      - DB_PORT=<span style="color:#ae81ff">3306</span>
-      - DB_ROOT_PASS=rootpassword
-      - INITIALIZE_DB=<span style="color:#ae81ff">1</span>
-      - TZ=America/Los_Angeles
-    <span style="color:#66d9ef">volumes</span>:
-      - cacti-data:/cacti
-      - cacti-spine:/spine
-      - cacti-backups:/backups
-    <span style="color:#66d9ef">links</span>:
-      - db
+    <span style="color:#f92672">environment</span>:
+      - <span style="color:#ae81ff">DB_NAME=cacti_master</span>
+      - <span style="color:#ae81ff">DB_USER=cactiuser</span>
+      - <span style="color:#ae81ff">DB_PASS=cactipassword</span>
+      - <span style="color:#ae81ff">DB_HOST=db</span>
+      - <span style="color:#ae81ff">DB_PORT=3306</span>
+      - <span style="color:#ae81ff">DB_ROOT_PASS=rootpassword</span>
+      - <span style="color:#ae81ff">INITIALIZE_DB=1</span>
+      - <span style="color:#ae81ff">TZ=America/Los_Angeles</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">cacti-data:/cacti</span>
+      - <span style="color:#ae81ff">cacti-spine:/spine</span>
+      - <span style="color:#ae81ff">cacti-backups:/backups</span>
+    <span style="color:#f92672">links</span>:
+      - <span style="color:#ae81ff">db</span>
 
 
-  <span style="color:#66d9ef">db</span>:
-    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;mariadb:10.3&#34;</span>
-    <span style="color:#66d9ef">container_name</span>: cacti_db
-    <span style="color:#66d9ef">domainname</span>: example.com
-    <span style="color:#66d9ef">hostname</span>: db
-    <span style="color:#66d9ef">ports</span>:
+  <span style="color:#f92672">db</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#e6db74">&#34;mariadb:10.3&#34;</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">cacti_db</span>
+    <span style="color:#f92672">domainname</span>: <span style="color:#ae81ff">example.com</span>
+    <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">db</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;3306:3306&#34;</span>
-    <span style="color:#66d9ef">command</span>:
-      - mysqld
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_unicode_ci
-      - --max_connections=<span style="color:#ae81ff">200</span>
-      - --max_heap_table_size=128M
-      - --max_allowed_packet=32M
-      - --tmp_table_size=128M
-      - --join_buffer_size=128M
-      - --innodb_buffer_pool_size=1G
-      - --innodb_doublewrite=ON
-      - --innodb_flush_log_at_timeout=<span style="color:#ae81ff">3</span>
-      - --innodb_read_io_threads=<span style="color:#ae81ff">32</span>
-      - --innodb_write_io_threads=<span style="color:#ae81ff">16</span>
-      - --innodb_buffer_pool_instances=<span style="color:#ae81ff">9</span>
-      - --innodb_file_format=Barracuda
-      - --innodb_large_prefix=<span style="color:#ae81ff">1</span>
-      - --innodb_io_capacity=<span style="color:#ae81ff">5000</span>
-      - --innodb_io_capacity_max=<span style="color:#ae81ff">10000</span>
-    <span style="color:#66d9ef">environment</span>:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - TZ=America/Los_Angeles
-    <span style="color:#66d9ef">volumes</span>:
-      - cacti-db:/var/lib/mysql
+    <span style="color:#f92672">command</span>:
+      - <span style="color:#ae81ff">mysqld</span>
+      - --<span style="color:#ae81ff">character-set-server=utf8mb4</span>
+      - --<span style="color:#ae81ff">collation-server=utf8mb4_unicode_ci</span>
+      - --<span style="color:#ae81ff">max_connections=200</span>
+      - --<span style="color:#ae81ff">max_heap_table_size=128M</span>
+      - --<span style="color:#ae81ff">max_allowed_packet=32M</span>
+      - --<span style="color:#ae81ff">tmp_table_size=128M</span>
+      - --<span style="color:#ae81ff">join_buffer_size=128M</span>
+      - --<span style="color:#ae81ff">innodb_buffer_pool_size=1G</span>
+      - --<span style="color:#ae81ff">innodb_doublewrite=ON</span>
+      - --<span style="color:#ae81ff">innodb_flush_log_at_timeout=3</span>
+      - --<span style="color:#ae81ff">innodb_read_io_threads=32</span>
+      - --<span style="color:#ae81ff">innodb_write_io_threads=16</span>
+      - --<span style="color:#ae81ff">innodb_buffer_pool_instances=9</span>
+      - --<span style="color:#ae81ff">innodb_file_format=Barracuda</span>
+      - --<span style="color:#ae81ff">innodb_large_prefix=1</span>
+      - --<span style="color:#ae81ff">innodb_io_capacity=5000</span>
+      - --<span style="color:#ae81ff">innodb_io_capacity_max=10000</span>
+    <span style="color:#f92672">environment</span>:
+      - <span style="color:#ae81ff">MYSQL_ROOT_PASSWORD=rootpassword</span>
+      - <span style="color:#ae81ff">TZ=America/Los_Angeles</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">cacti-db:/var/lib/mysql</span>
 
 
-<span style="color:#66d9ef">volumes</span>:
-  <span style="color:#66d9ef">cacti-db</span>:
-  <span style="color:#66d9ef">cacti-data</span>:
-  <span style="color:#66d9ef">cacti-spine</span>:
-  <span style="color:#66d9ef">cacti-backups</span>:
+<span style="color:#f92672">volumes</span>:
+  <span style="color:#f92672">cacti-db</span>:
+  <span style="color:#f92672">cacti-data</span>:
+  <span style="color:#f92672">cacti-spine</span>:
+  <span style="color:#f92672">cacti-backups</span>:
 </code></pre></div><p><br></br>
 docker-compose的設定預設是抓docker-compose.yml或docker-compose.yaml，不更改檔名的話就加上-f這個option</p>
 <pre><code>$ cd docker-cacti/docker-compose
@@ -439,48 +439,48 @@ docker-compose的設定預設是抓docker-compose.yml或docker-compose.yaml，�
 # git clone https://github.com/ethnchao/docker-nagios
 </code></pre><p><br></br>
 裡面就一個compose file</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-nagios/docker-compose.yml" data-lang=":docker-nagios/docker-compose.yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;2&#39;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">nagios</span>:
-    <span style="color:#66d9ef">image</span>: ethnchao/nagios
-    <span style="color:#66d9ef">container_name</span>: nagios
-    <span style="color:#66d9ef">command</span>: --enable-ndo --create-db --server-url http://<span style="color:#ae81ff">192.168.101.100</span>:<span style="color:#ae81ff">4000</span>
-    <span style="color:#66d9ef">ports</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-nagios/docker-compose.yml" data-lang=":docker-nagios/docker-compose.yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;2&#39;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">nagios</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ethnchao/nagios</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">nagios</span>
+    <span style="color:#f92672">command</span>: --<span style="color:#ae81ff">enable-ndo --create-db --server-url http://192.168.101.100:4000</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#ae81ff">4000</span>:<span style="color:#ae81ff">80</span>
       - <span style="color:#ae81ff">4001</span>:<span style="color:#ae81ff">3000</span>
-    <span style="color:#66d9ef">restart</span>: always
-    <span style="color:#66d9ef">logging</span>:
-      <span style="color:#66d9ef">options</span>:
-        <span style="color:#66d9ef">max-size</span>: <span style="color:#e6db74">&#34;10m&#34;</span>
-        <span style="color:#66d9ef">max-file</span>: <span style="color:#e6db74">&#34;10&#34;</span>
-    <span style="color:#66d9ef">depends_on</span>:
-      - nagios_mysql
-    <span style="color:#66d9ef">volumes</span>:
-      - ./data/plugin:/data/plugin
-      - ./data/conf:/usr/local/nagios/etc/mount
-      - ./data/example:/data/example
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">logging</span>:
+      <span style="color:#f92672">options</span>:
+        <span style="color:#f92672">max-size</span>: <span style="color:#e6db74">&#34;10m&#34;</span>
+        <span style="color:#f92672">max-file</span>: <span style="color:#e6db74">&#34;10&#34;</span>
+    <span style="color:#f92672">depends_on</span>:
+      - <span style="color:#ae81ff">nagios_mysql</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">./data/plugin:/data/plugin</span>
+      - <span style="color:#ae81ff">./data/conf:/usr/local/nagios/etc/mount</span>
+      - <span style="color:#ae81ff">./data/example:/data/example</span>
 
-  <span style="color:#66d9ef">nagios_mysql</span>:
-    <span style="color:#66d9ef">image</span>: mysql:<span style="color:#ae81ff">5.6</span>
-    <span style="color:#66d9ef">container_name</span>: mysql
-    <span style="color:#66d9ef">ports</span>:
+  <span style="color:#f92672">nagios_mysql</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mysql:5.6</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">mysql</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#ae81ff">3306</span>:<span style="color:#ae81ff">3306</span>
-    <span style="color:#66d9ef">restart</span>: always
-    <span style="color:#66d9ef">logging</span>:
-      <span style="color:#66d9ef">options</span>:
-        <span style="color:#66d9ef">max-size</span>: <span style="color:#e6db74">&#34;10m&#34;</span>
-        <span style="color:#66d9ef">max-file</span>: <span style="color:#e6db74">&#34;10&#34;</span>
-    <span style="color:#66d9ef">environment</span>:
-      - MYSQL_USER=nagios
-      - MYSQL_PASSWORD=nagios
-      - MYSQL_ADDRESS=nagios_mysql
-      - MYSQL_DATABASE=nagios
-      - MYSQL_RANDOM_ROOT_PASSWORD=yes
-    <span style="color:#66d9ef">volumes</span>:
-      - nagios_db_data:/var/lib/mysql
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">logging</span>:
+      <span style="color:#f92672">options</span>:
+        <span style="color:#f92672">max-size</span>: <span style="color:#e6db74">&#34;10m&#34;</span>
+        <span style="color:#f92672">max-file</span>: <span style="color:#e6db74">&#34;10&#34;</span>
+    <span style="color:#f92672">environment</span>:
+      - <span style="color:#ae81ff">MYSQL_USER=nagios</span>
+      - <span style="color:#ae81ff">MYSQL_PASSWORD=nagios</span>
+      - <span style="color:#ae81ff">MYSQL_ADDRESS=nagios_mysql</span>
+      - <span style="color:#ae81ff">MYSQL_DATABASE=nagios</span>
+      - <span style="color:#ae81ff">MYSQL_RANDOM_ROOT_PASSWORD=yes</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">nagios_db_data:/var/lib/mysql</span>
 
-<span style="color:#66d9ef">volumes</span>:
-  <span style="color:#66d9ef">nagios_db_data</span>:
+<span style="color:#f92672">volumes</span>:
+  <span style="color:#f92672">nagios_db_data</span>:
 </code></pre></div><p><br></br>
 指令按下去就能部屬了</p>
 <pre><code>$ cd docker-nagios

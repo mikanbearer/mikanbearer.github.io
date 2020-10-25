@@ -8,11 +8,7 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Thu, 15 Oct 2020 14:57:25 +0800</lastBuildDate>
-    
-	<atom:link href="https://mikanbearer.github.io/tags/Node.js/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 15 Oct 2020 14:57:25 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Node.js/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>從今天開始學NestJS</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010151457/</link>

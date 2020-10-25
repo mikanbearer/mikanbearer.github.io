@@ -59,34 +59,34 @@ $ cd prometheus-2.20.1.linux-amd64
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.yml" data-lang=":prometheus.yml"><span style="color:#75715e"># my global config</span>
-<span style="color:#66d9ef">global</span>:
-  <span style="color:#66d9ef">scrape_interval</span>:     15s <span style="color:#75715e"># Set the scrape interval to every 15 seconds. Default is every 1 minute.</span>
-  <span style="color:#66d9ef">evaluation_interval</span>: 15s <span style="color:#75715e"># Evaluate rules every 15 seconds. The default is every 1 minute.</span>
+<span style="color:#f92672">global</span>:
+  <span style="color:#f92672">scrape_interval</span>:     <span style="color:#ae81ff">15s</span> <span style="color:#75715e"># Set the scrape interval to every 15 seconds. Default is every 1 minute.</span>
+  <span style="color:#f92672">evaluation_interval</span>: <span style="color:#ae81ff">15s</span> <span style="color:#75715e"># Evaluate rules every 15 seconds. The default is every 1 minute.</span>
   <span style="color:#75715e"># scrape_timeout is set to the global default (10s).</span>
 
 <span style="color:#75715e"># Alertmanager configuration</span>
-<span style="color:#66d9ef">alerting</span>:
-  <span style="color:#66d9ef">alertmanagers</span>:
-  - <span style="color:#66d9ef">static_configs</span>:
-    - <span style="color:#66d9ef">targets</span>:
+<span style="color:#f92672">alerting</span>:
+  <span style="color:#f92672">alertmanagers</span>:
+  - <span style="color:#f92672">static_configs</span>:
+    - <span style="color:#f92672">targets</span>:
       <span style="color:#75715e"># - alertmanager:9093</span>
 
 <span style="color:#75715e"># Load rules once and periodically evaluate them according to the global &#39;evaluation_interval&#39;.</span>
-<span style="color:#66d9ef">rule_files</span>:
+<span style="color:#f92672">rule_files</span>:
   <span style="color:#75715e"># - &#34;first_rules.yml&#34;</span>
   <span style="color:#75715e"># - &#34;second_rules.yml&#34;</span>
 
 <span style="color:#75715e"># A scrape configuration containing exactly one endpoint to scrape:</span>
 <span style="color:#75715e"># Here it&#39;s Prometheus itself.</span>
-<span style="color:#66d9ef">scrape_configs</span>:
+<span style="color:#f92672">scrape_configs</span>:
   <span style="color:#75715e"># The job name is added as a label `job=&lt;job_name&gt;` to any timeseries scraped from this config.</span>
-  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;prometheus&#39;</span>
+  - <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#39;prometheus&#39;</span>
 
     <span style="color:#75715e"># metrics_path defaults to &#39;/metrics&#39;</span>
     <span style="color:#75715e"># scheme defaults to &#39;http&#39;.</span>
 
-    <span style="color:#66d9ef">static_configs</span>:
-    - <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:9090&#39;</span>]
+    <span style="color:#f92672">static_configs</span>:
+    - <span style="color:#f92672">targets</span>: [<span style="color:#e6db74">&#39;localhost:9090&#39;</span>]
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br></p>
@@ -171,11 +171,11 @@ go_goroutines 8
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.rules.yml" data-lang=":prometheus.rules.yml"><span style="color:#66d9ef">groups</span>:
-- <span style="color:#66d9ef">name</span>: cpu-node
-  <span style="color:#66d9ef">rules</span>:
-  - <span style="color:#66d9ef">record</span>: job_instance_mode:node_cpu_seconds:avg_rate5m
-    <span style="color:#66d9ef">expr</span>: avg by (job, instance, mode) (rate(node_cpu_seconds_total[5m]))
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.rules.yml" data-lang=":prometheus.rules.yml"><span style="color:#f92672">groups</span>:
+- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cpu-node</span>
+  <span style="color:#f92672">rules</span>:
+  - <span style="color:#f92672">record</span>: <span style="color:#ae81ff">job_instance_mode:node_cpu_seconds:avg_rate5m</span>
+    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">avg by (job, instance, mode) (rate(node_cpu_seconds_total[5m]))</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br>
@@ -217,39 +217,39 @@ go_goroutines 8
 </span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
 </span></span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.yml" data-lang=":prometheus.yml"><span style="color:#66d9ef">global</span>:
-  <span style="color:#66d9ef">scrape_interval</span>:     15s <span style="color:#75715e"># By default, scrape targets every 15 seconds.</span>
-  <span style="color:#66d9ef">evaluation_interval</span>: 15s <span style="color:#75715e"># Evaluate rules every 15 seconds.</span>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.yml" data-lang=":prometheus.yml"><span style="color:#f92672">global</span>:
+  <span style="color:#f92672">scrape_interval</span>:     <span style="color:#ae81ff">15s</span> <span style="color:#75715e"># By default, scrape targets every 15 seconds.</span>
+  <span style="color:#f92672">evaluation_interval</span>: <span style="color:#ae81ff">15s</span> <span style="color:#75715e"># Evaluate rules every 15 seconds.</span>
 
   <span style="color:#75715e"># Attach these extra labels to all timeseries collected by this Prometheus instance.</span>
-  <span style="color:#66d9ef">external_labels</span>:
-    <span style="color:#66d9ef">monitor</span>: <span style="color:#e6db74">&#39;codelab-monitor&#39;</span>
+  <span style="color:#f92672">external_labels</span>:
+    <span style="color:#f92672">monitor</span>: <span style="color:#e6db74">&#39;codelab-monitor&#39;</span>
 
-<span style="color:#66d9ef">rule_files</span>:
+<span style="color:#f92672">rule_files</span>:
 <span style="display:block;width:100%;background-color:#3c3d38">  - <span style="color:#e6db74">&#39;prometheus.rules.yml&#39;</span>
 </span>
-<span style="color:#66d9ef">scrape_configs</span>:
-  - <span style="color:#66d9ef">job_name</span>: <span style="color:#e6db74">&#39;prometheus&#39;</span>
+<span style="color:#f92672">scrape_configs</span>:
+  - <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#39;prometheus&#39;</span>
 
     <span style="color:#75715e"># Override the global default and scrape targets from this job every 5 seconds.</span>
-    <span style="color:#66d9ef">scrape_interval</span>: 5s
+    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">5s</span>
 
-    <span style="color:#66d9ef">static_configs</span>:
-      - <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:9090&#39;</span>]
+    <span style="color:#f92672">static_configs</span>:
+      - <span style="color:#f92672">targets</span>: [<span style="color:#e6db74">&#39;localhost:9090&#39;</span>]
 
-<span style="display:block;width:100%;background-color:#3c3d38">  - <span style="color:#66d9ef">job_name</span>:       <span style="color:#e6db74">&#39;node&#39;</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  - <span style="color:#f92672">job_name</span>:       <span style="color:#e6db74">&#39;node&#39;</span>
 </span><span style="display:block;width:100%;background-color:#3c3d38">
 </span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#75715e"># Override the global default and scrape targets from this job every 5 seconds.</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">scrape_interval</span>: 5s
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">5s</span>
 </span><span style="display:block;width:100%;background-color:#3c3d38">
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">static_configs</span>:
-</span><span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:8080&#39;</span>, <span style="color:#e6db74">&#39;localhost:8081&#39;</span>]
-</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">labels</span>:
-</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#66d9ef">group</span>: <span style="color:#e6db74">&#39;production&#39;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">static_configs</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#f92672">targets</span>: [<span style="color:#e6db74">&#39;localhost:8080&#39;</span>, <span style="color:#e6db74">&#39;localhost:8081&#39;</span>]
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#f92672">labels</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#f92672">group</span>: <span style="color:#e6db74">&#39;production&#39;</span>
 </span><span style="display:block;width:100%;background-color:#3c3d38">
-</span><span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:8082&#39;</span>]
-</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">labels</span>:
-</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#66d9ef">group</span>: <span style="color:#e6db74">&#39;canary&#39;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#f92672">targets</span>: [<span style="color:#e6db74">&#39;localhost:8082&#39;</span>]
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#f92672">labels</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#f92672">group</span>: <span style="color:#e6db74">&#39;canary&#39;</span>
 </span></code></pre></td></tr></table>
 </div>
 </div><p><br></br>
@@ -277,14 +277,14 @@ go_goroutines 8
 </span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
 </span></span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.yml" data-lang=":prometheus.yml">  - <span style="color:#66d9ef">job_name</span>:       <span style="color:#e6db74">&#39;node&#39;</span>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:prometheus.yml" data-lang=":prometheus.yml">  - <span style="color:#f92672">job_name</span>:       <span style="color:#e6db74">&#39;node&#39;</span>
 
     <span style="color:#75715e"># Override the global default and scrape targets from this job every 5 seconds.</span>
-    <span style="color:#66d9ef">scrape_interval</span>: 5s
+    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">5s</span>
 
-    <span style="color:#66d9ef">file_sd_configs</span>:
-      - <span style="color:#66d9ef">files</span>:
-<span style="display:block;width:100%;background-color:#3c3d38">        - ./file_sd.yml
+    <span style="color:#f92672">file_sd_configs</span>:
+      - <span style="color:#f92672">files</span>:
+<span style="display:block;width:100%;background-color:#3c3d38">        - <span style="color:#ae81ff">./file_sd.yml</span>
 </span></code></pre></td></tr></table>
 </div>
 </div><p><br></br></p>
@@ -303,13 +303,13 @@ go_goroutines 8
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:file_sd.yml" data-lang=":file_sd.yml">- <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:8080&#39;</span>, <span style="color:#e6db74">&#39;localhost:8081&#39;</span>]
-  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">group</span>: <span style="color:#e6db74">&#39;production&#39;</span>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:file_sd.yml" data-lang=":file_sd.yml">- <span style="color:#f92672">targets</span>: [<span style="color:#e6db74">&#39;localhost:8080&#39;</span>, <span style="color:#e6db74">&#39;localhost:8081&#39;</span>]
+  <span style="color:#f92672">labels</span>:
+    <span style="color:#f92672">group</span>: <span style="color:#e6db74">&#39;production&#39;</span>
 
-- <span style="color:#66d9ef">targets</span>: [<span style="color:#e6db74">&#39;localhost:8082&#39;</span>]
-  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">group</span>: <span style="color:#e6db74">&#39;canary&#39;</span>
+- <span style="color:#f92672">targets</span>: [<span style="color:#e6db74">&#39;localhost:8082&#39;</span>]
+  <span style="color:#f92672">labels</span>:
+    <span style="color:#f92672">group</span>: <span style="color:#e6db74">&#39;canary&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br></p>

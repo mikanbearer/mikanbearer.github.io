@@ -8,11 +8,7 @@
     <language>en-us</language>
     <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
     <webMaster>youremail@domain.com (Zhang San)</webMaster>
-    <lastBuildDate>Tue, 15 Sep 2020 10:49:11 +0800</lastBuildDate>
-    
-	<atom:link href="https://mikanbearer.github.io/tags/Flask/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 15 Sep 2020 10:49:11 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Flask/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009151049/</link>

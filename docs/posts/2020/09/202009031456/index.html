@@ -15,30 +15,30 @@
 └── playbook.yml
 </code></pre><p><br></br>
 Inventory file主要分為[docker_swarm_manager]和[docker_swarm_worker]兩個group，這個role是用group name來區別manager和worker</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">all</span>:
-  <span style="color:#66d9ef">children</span>:
-    <span style="color:#66d9ef">docker_swarm_manager</span>:
-      <span style="color:#66d9ef">hosts</span>:
-        <span style="color:#66d9ef">manager01</span>:
-          <span style="color:#66d9ef">ansible_host</span>: <span style="color:#ae81ff">192.168.149.131</span>
-          <span style="color:#66d9ef">swarm_labels</span>: deploy
-    <span style="color:#66d9ef">docker_swarm_worker</span>:
-      <span style="color:#66d9ef">hosts</span>:
-        <span style="color:#66d9ef">worker01</span>:
-          <span style="color:#66d9ef">ansible_host</span>: <span style="color:#ae81ff">192.168.149.133</span>
-          <span style="color:#66d9ef">swarm_labels</span>: [<span style="color:#e6db74">&#39;foo&#39;</span>, <span style="color:#e6db74">&#39;bar&#39;</span>]
-  <span style="color:#66d9ef">vars</span>:
-    <span style="color:#66d9ef">ansible_user</span>: qaz
-    <span style="color:#66d9ef">ansible_password</span>: <span style="color:#ae81ff">123</span>
-    <span style="color:#66d9ef">ansible_python_interpreter</span>: auto_legacy_silent
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">all</span>:
+  <span style="color:#f92672">children</span>:
+    <span style="color:#f92672">docker_swarm_manager</span>:
+      <span style="color:#f92672">hosts</span>:
+        <span style="color:#f92672">manager01</span>:
+          <span style="color:#f92672">ansible_host</span>: <span style="color:#ae81ff">192.168.149.131</span>
+          <span style="color:#f92672">swarm_labels</span>: <span style="color:#ae81ff">deploy</span>
+    <span style="color:#f92672">docker_swarm_worker</span>:
+      <span style="color:#f92672">hosts</span>:
+        <span style="color:#f92672">worker01</span>:
+          <span style="color:#f92672">ansible_host</span>: <span style="color:#ae81ff">192.168.149.133</span>
+          <span style="color:#f92672">swarm_labels</span>: [<span style="color:#e6db74">&#39;foo&#39;</span>, <span style="color:#e6db74">&#39;bar&#39;</span>]
+  <span style="color:#f92672">vars</span>:
+    <span style="color:#f92672">ansible_user</span>: <span style="color:#ae81ff">qaz</span>
+    <span style="color:#f92672">ansible_password</span>: <span style="color:#ae81ff">123</span>
+    <span style="color:#f92672">ansible_python_interpreter</span>: <span style="color:#ae81ff">auto_legacy_silent</span>
 </code></pre></div><p><br></br></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:playbook.yaml" data-lang=":playbook.yaml">
 ---
-- <span style="color:#66d9ef">hosts</span>: all
-  <span style="color:#66d9ef">become</span>: yes
-  <span style="color:#66d9ef">become_method</span>: su
-  <span style="color:#66d9ef">roles</span>:
-    - { <span style="color:#66d9ef">role</span>: atosatto.docker-swarm }
+- <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">all</span>
+  <span style="color:#f92672">become</span>: <span style="color:#66d9ef">yes</span>
+  <span style="color:#f92672">become_method</span>: <span style="color:#ae81ff">su</span>
+  <span style="color:#f92672">roles</span>:
+    - { <span style="color:#f92672">role</span>: <span style="color:#ae81ff">atosatto.docker-swarm }</span>
 </code></pre></div><p><br></br>
 就這樣出發！！然後會出現兩個error</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ansible-playbook playbook.yml -i hosts -K
@@ -112,36 +112,36 @@ worker01                   : ok<span style="color:#f92672">=</span><span style="
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:~/.ansible/roles/atosatto.docker-swarm/tasks/setup-swarm-labels.yml" data-lang=":~/.ansible/roles/atosatto.docker-swarm/tasks/setup-swarm-labels.yml">---
 
-- <span style="color:#66d9ef">name</span>: Get list of labels.
-  <span style="color:#66d9ef">command</span>: &gt;<span style="color:#e6db74">-
-</span><span style="color:#e6db74">         docker inspect</span>
-         --format {% raw %}<span style="color:#e6db74">&#39;{{ range $key, $value := .Spec.Labels }}{{ printf &#34;%s\n&#34; $key }}{{ end }}&#39;</span>{% endraw %}
-<span style="display:block;width:100%;background-color:#3c3d38">         {{ ansible_fqdn|lower }}
-</span>  <span style="color:#66d9ef">register</span>: docker_swarm_labels
-  <span style="color:#66d9ef">changed_when</span>: <span style="color:#66d9ef">false</span>
-  <span style="color:#66d9ef">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
-  <span style="color:#66d9ef">delegate_facts</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">tags</span>:
-    - swarm_labels
+- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Get list of labels.</span>
+  <span style="color:#f92672">command</span>: &gt;-<span style="color:#e6db74">
+</span><span style="color:#e6db74">         docker inspect
+</span><span style="color:#e6db74">         --format {% raw %}&#39;{{ range $key, $value := .Spec.Labels }}{{ printf &#34;%s\n&#34; $key }}{{ end }}&#39;{% endraw %}
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#e6db74">         {{ ansible_fqdn|lower }}</span>         
+</span>  <span style="color:#f92672">register</span>: <span style="color:#ae81ff">docker_swarm_labels</span>
+  <span style="color:#f92672">changed_when</span>: <span style="color:#66d9ef">false</span>
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
+  <span style="color:#f92672">delegate_facts</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">tags</span>:
+    - <span style="color:#ae81ff">swarm_labels</span>
 
-- <span style="color:#66d9ef">name</span>: Remove labels from swarm node.
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">command</span>: docker node update --label-rm {{ item }} {{ ansible_fqdn|lower }}
-</span>  <span style="color:#66d9ef">with_items</span>: <span style="color:#e6db74">&#34;{{ docker_swarm_labels.stdout_lines }}&#34;</span>
-  <span style="color:#66d9ef">when</span>: item not in swarm_labels
-  <span style="color:#66d9ef">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
-  <span style="color:#66d9ef">delegate_facts</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">tags</span>:
-    - swarm_labels
+- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Remove labels from swarm node.</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">command</span>: <span style="color:#ae81ff">docker node update --label-rm {{ item }} {{ ansible_fqdn|lower }}</span>
+</span>  <span style="color:#f92672">with_items</span>: <span style="color:#e6db74">&#34;{{ docker_swarm_labels.stdout_lines }}&#34;</span>
+  <span style="color:#f92672">when</span>: <span style="color:#ae81ff">item not in swarm_labels</span>
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
+  <span style="color:#f92672">delegate_facts</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">tags</span>:
+    - <span style="color:#ae81ff">swarm_labels</span>
 
-- <span style="color:#66d9ef">name</span>: Assign labels to swarm nodes if any.
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">command</span>: docker node update --label-add {{ item }}=<span style="color:#66d9ef">true</span> {{ ansible_fqdn|lower }}
-</span>  <span style="color:#66d9ef">when</span>: item not in docker_swarm_labels.stdout_lines
-  <span style="color:#66d9ef">with_items</span>:
+- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Assign labels to swarm nodes if any.</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">command</span>: <span style="color:#ae81ff">docker node update --label-add {{ item }}=true {{ ansible_fqdn|lower }}</span>
+</span>  <span style="color:#f92672">when</span>: <span style="color:#ae81ff">item not in docker_swarm_labels.stdout_lines</span>
+  <span style="color:#f92672">with_items</span>:
     - <span style="color:#e6db74">&#34;{{ swarm_labels  | default([]) }}&#34;</span>
-  <span style="color:#66d9ef">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
-  <span style="color:#66d9ef">delegate_facts</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">tags</span>:
-    - swarm_labels
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
+  <span style="color:#f92672">delegate_facts</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">tags</span>:
+    - <span style="color:#ae81ff">swarm_labels</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br>
@@ -184,36 +184,36 @@ worker01                   : ok<span style="color:#f92672">=</span><span style="
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:~/.ansible/roles/atosatto.docker-swarm/tasks/setup-swarm-labels.yml" data-lang=":~/.ansible/roles/atosatto.docker-swarm/tasks/setup-swarm-labels.yml">---
 
-- <span style="color:#66d9ef">name</span>: Get list of labels.
-  <span style="color:#66d9ef">command</span>: &gt;<span style="color:#e6db74">-
-</span><span style="color:#e6db74">         docker inspect</span>
-         --format {% raw %}<span style="color:#e6db74">&#39;{{ range $key, $value := .Spec.Labels }}{{ printf &#34;%s\n&#34; $key }}{{ end }}&#39;</span>{% endraw %}
-<span style="display:block;width:100%;background-color:#3c3d38">         {{ ansible_hostname|lower }}
-</span>  <span style="color:#66d9ef">register</span>: docker_swarm_labels
-  <span style="color:#66d9ef">changed_when</span>: <span style="color:#66d9ef">false</span>
-  <span style="color:#66d9ef">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
-  <span style="color:#66d9ef">delegate_facts</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">tags</span>:
-    - swarm_labels
+- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Get list of labels.</span>
+  <span style="color:#f92672">command</span>: &gt;-<span style="color:#e6db74">
+</span><span style="color:#e6db74">         docker inspect
+</span><span style="color:#e6db74">         --format {% raw %}&#39;{{ range $key, $value := .Spec.Labels }}{{ printf &#34;%s\n&#34; $key }}{{ end }}&#39;{% endraw %}
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#e6db74">         {{ ansible_hostname|lower }}</span>         
+</span>  <span style="color:#f92672">register</span>: <span style="color:#ae81ff">docker_swarm_labels</span>
+  <span style="color:#f92672">changed_when</span>: <span style="color:#66d9ef">false</span>
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
+  <span style="color:#f92672">delegate_facts</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">tags</span>:
+    - <span style="color:#ae81ff">swarm_labels</span>
 
-- <span style="color:#66d9ef">name</span>: Remove labels from swarm node.
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">command</span>: docker node update --label-rm {{ item }} {{ ansible_hostname|lower }}
-</span>  <span style="color:#66d9ef">with_items</span>: <span style="color:#e6db74">&#34;{{ docker_swarm_labels.stdout_lines }}&#34;</span>
-  <span style="color:#66d9ef">when</span>: item not in swarm_labels
-  <span style="color:#66d9ef">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
-  <span style="color:#66d9ef">delegate_facts</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">tags</span>:
-    - swarm_labels
+- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Remove labels from swarm node.</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">command</span>: <span style="color:#ae81ff">docker node update --label-rm {{ item }} {{ ansible_hostname|lower }}</span>
+</span>  <span style="color:#f92672">with_items</span>: <span style="color:#e6db74">&#34;{{ docker_swarm_labels.stdout_lines }}&#34;</span>
+  <span style="color:#f92672">when</span>: <span style="color:#ae81ff">item not in swarm_labels</span>
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
+  <span style="color:#f92672">delegate_facts</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">tags</span>:
+    - <span style="color:#ae81ff">swarm_labels</span>
 
-- <span style="color:#66d9ef">name</span>: Assign labels to swarm nodes if any.
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">command</span>: docker node update --label-add {{ item }}=<span style="color:#66d9ef">true</span> {{ ansible_hostname|lower }}
-</span>  <span style="color:#66d9ef">when</span>: item not in docker_swarm_labels.stdout_lines
-  <span style="color:#66d9ef">with_items</span>:
+- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Assign labels to swarm nodes if any.</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">command</span>: <span style="color:#ae81ff">docker node update --label-add {{ item }}=true {{ ansible_hostname|lower }}</span>
+</span>  <span style="color:#f92672">when</span>: <span style="color:#ae81ff">item not in docker_swarm_labels.stdout_lines</span>
+  <span style="color:#f92672">with_items</span>:
     - <span style="color:#e6db74">&#34;{{ swarm_labels  | default([]) }}&#34;</span>
-  <span style="color:#66d9ef">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
-  <span style="color:#66d9ef">delegate_facts</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">tags</span>:
-    - swarm_labels
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#e6db74">&#34;{{ groups[&#39;docker_swarm_manager&#39;][0] }}&#34;</span>
+  <span style="color:#f92672">delegate_facts</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">tags</span>:
+    - <span style="color:#ae81ff">swarm_labels</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><br></br>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-	<meta name="generator" content="Hugo 0.73.0" />
+	<meta name="generator" content="Hugo 0.76.5" />
     <title>垃圾堆</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
@@ -22,6 +22,8 @@
       .post-title {
         font-family: 'Noto Sans TC', sans-serif !important;
         font-weight: 400;
+        white-space: normal;
+        overflow-wrap: break-word;
       }
 
       .post-subtitle {
@@ -36,8 +38,6 @@
 
       .post-list .post-title {
         color: #eeeeee;
-        white-space: normal;
-        overflow-wrap: break-word;
       }
 
       .post-list {
@@ -166,88 +166,83 @@
     </v-main> 
 
 
-    <v-dialog v-model="searchModal" max-width="600" light>
-      <v-card color="#e6eae3">
+    <v-dialog v-model="searchModal" max-width="600">
+      <v-card color="warning">
         <v-card-title>
           Search Posts
         </v-card-title>
-    
-            <v-card-text>
-              <v-combobox 
-                v-model="searchConditions.keyword"
-                :items="titles"
-                clearable
-                hide-selected
-                hide-details
-                prepend-inner-icon="mdi-text"
-                label="Title"
-                height="42"
-              >  
-              </v-combobox>
-    
-              <v-combobox 
-                v-model="searchConditions.selectedTags"
-                :items="tags"
-                chips
-                clearable
-                multiple
-                hide-selected
-                hide-details
-                prepend-inner-icon="mdi-tag-multiple"
-                label="Tags"
-              >
-                <template v-slot:selection="{ attrs, item, select, selected }">
-                  <v-chip
-                    color="accent"
-                    v-bind="attrs"
-                    :input-value="selected"
-                    close
-                    @click:close="removeItem('selectedTags', item)"
-                  >
-                   [[ item ]]
-                  </v-chip>
-                </template>              
-              </v-combobox>
-      
-              <v-combobox 
-                v-model="searchConditions.selectedCategories"
-                :items="categories"
-                clearable
-                multiple
-                hide-selected
-                hide-details
-                prepend-inner-icon="mdi-folder-multiple"
-                label="Categories"
-                height="42"
-              >  
-              </v-combobox>
-            </v-card-text>
-    
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                :disabled="notInSearch"
-                color="error"
-                @click="$router.history.push('/')"
-                small
-              >
-                Clear
-              </v-btn>
-              <v-btn color="primary" @click="toFilteredPosts" small>
-                Search
-              </v-btn>
-            </v-card-actions>
+        <v-card-text>
 
-        </v-tabs-items>
+          <v-combobox 
+            :search-input.sync="searchConditions.keyword"
+            :items="getItems(searchConditions.keyword, titles)"
+            clearable
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-text"
+            label="Title"
+            height="42"
+          >  
+          </v-combobox>
+
+          <v-combobox 
+            v-model="searchConditions.selectedCategories"
+            :items="categories"
+            clearable
+            multiple
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-folder-multiple"
+            label="Categories"
+            height="42"
+          >  
+          </v-combobox>
+
+          <v-combobox 
+            v-model="searchConditions.selectedTags"
+            :items="tags"
+            chips
+            clearable
+            multiple
+            hide-selected
+            hide-details
+            prepend-inner-icon="mdi-tag-multiple"
+            label="Tags"
+          >
+            <template v-slot:selection="{ attrs, item, select, selected }">
+              <v-chip
+                color="accent"
+                v-bind="attrs"
+                :input-value="selected"
+                close
+                @click:close="removeItem('selectedTags', item)"
+              >
+               [[ item ]]
+              </v-chip>
+            </template>              
+          </v-combobox>
+
+        </v-card-text>
+    
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            :disabled="notInSearch"
+            color="error"
+            @click="$router.history.push('/')"
+            small
+          >
+            Clear
+          </v-btn>
+          <v-btn color="primary" @click="toFilteredPosts" small>
+            Search
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-dialog>
 
-
   </v-app>
 </div>
-
-<script>
-</script>
 
         </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
@@ -460,50 +455,122 @@
 
  
     </div>
-    <div v-else style="height: 100vh;">
-    </div>
 </script>
 <script type="text/x-template" id="works">
-    <div v-if="content">
-        <v-card class="content" id="post-content">
+    <div v-if="works">
+        <v-row justify="center" class="mt-n8">
+            <v-col v-for="(work, i) in works" :key="i">
+                <v-card flat color="transparent">
+                    <v-card-text>
+                        <v-row>
+                            <v-col xs="12" sm="6" md="6" lg="6" xl="6">
+                                <v-carousel hide-delimiters height="100%">
+                                    <v-carousel-item
+                                        v-for="(item, i) in work.images"
+                                        :key="i"
+                                        :src="item"
+                                    ></v-carousel-item>
+                                </v-carousel>
+                            </v-col>
+
+                            <v-col xs="12" sm="6" md="6" lg="6" xl="6">
+                                <v-card height="100%" flat color="transparent">
+                                    <v-card-title>
+                                        [[ work.title ]]
+                                    </v-card-title>
+                                
+                                    <v-card-text>
+                                        [[ work.summary ]]
+                                    </v-card-text>
+                                    <v-card-subtitle>
+                                        <v-icon small color="grey lighten-1">
+                                            mdi-tag-multiple
+                                        </v-icon>
+                                        <v-chip
+                                            v-for="tag in work.powered_by"
+                                            v-bind:key="tag.id"
+                                            color="blue-grey darken-1"
+                                            label
+                                            text-color="white"
+                                            x-small
+                                            class="mr-1"
+                                        >
+                                            [[ tag ]]
+                                        </v-chip>
+                                    </v-card-subtitle>
+                                    <v-card-actions style="position: absolute; bottom: 0; right: 0;">
+                                        <v-btn
+                                            :to="work.demo_url" 
+                                            :disabled="!work.demo_url" 
+                                            target="_blank"
+                                            color="secondary"
+                                            small
+                                        >
+                                            Demo
+                                        </v-btn>
+                                        <v-btn
+                                            :to="work.download_url"
+                                            :disabled="!work.download_url" 
+                                            target="_blank"
+                                            color="primary"
+                                            small
+                                        >
+                                            Download
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-card-text>
+                </v-card>
+                <v-divider></v-divider>
+            </v-col>
+        </v-row>
 
 
-            <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
-                <div class="mr-2 ml-2 post-content">
-                    Comming soon...
-                </div>
-            </v-card-text>
-        </v-card>
+
     </div>
 </script>
 <script type="text/x-template" id="about">
     <div v-if="content">
-        <v-card flat color="transparent">
-            <v-row justify="start" class="mt-n8">
-                <v-col md="8">
+        <v-row justify="center" class="mt-n8">
+            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                <v-card flat color="transparent">
+                    <v-card-title>
+                        About me
+                    </v-card-title>
                     <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
                         <div class="mr-2 ml-2 post-content" v-html="content">
                         </div>
                     </v-card-text>
-                    <v-divider inset></v-divider>
-                </v-col>
-            </v-row>
+                </v-card>
+            </v-col>
 
-            <v-row justify="center">
-                <v-col md="8">
+
+            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+            </v-col>
+
+            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                <v-card flat color="transparent">
+                    <v-card-title>
+                        Top Categorie
+                    </v-card-title>
                     <div id="chart_categories" style="width:100%; height:240px;"></div>
-                    <v-divider inset></v-divider>
-                </v-col>
+                </v-card>
+            </v-col>
 
-
-            </v-row>
-            <v-row justify="end">
-                <v-col md="8">
+            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                <v-card  flat color="transparent">
+                    <v-card-title>
+                        Top Tags
+                    </v-card-title>
                     <div id="chart_tags" style="width:100%; height:240px;"></div>
-                    <v-divider inset></v-divider>
-                </v-col>
-            </v-row>
-        </v-card>
+                </v-card>
+            </v-col>
+        </v-row>
+        
+
+     
     </div>
 
 </script>
@@ -552,7 +619,7 @@
       date: '2020-10-15 14:57',
     
     
-      tags: '[NestJS Node.js TypeScript]',
+      tags: '[NestJS TypeORM TypeScript Node.js]',
     
     
       categories: '[網頁開發]',
@@ -577,7 +644,7 @@
       date: '2020-10-14 16:35',
     
     
-      tags: '[JQuery]',
+      tags: '[jQuery]',
     
     
       categories: '[網頁開發]',
@@ -635,7 +702,7 @@
     
       author: '',
     
-    wordcount: '661'
+    wordcount: '655'
   },
 
   {
@@ -760,7 +827,7 @@
     
       author: '',
     
-    wordcount: '1847'
+    wordcount: '1840'
   },
 
   {
@@ -910,7 +977,7 @@
     
       author: '',
     
-    wordcount: '2385'
+    wordcount: '2384'
   },
 
   {
@@ -985,7 +1052,7 @@
     
       author: '',
     
-    wordcount: '1071'
+    wordcount: '1069'
   },
 
   {
@@ -1085,7 +1152,7 @@
     
       author: '',
     
-    wordcount: '3763'
+    wordcount: '3762'
   },
 
   {
@@ -1110,7 +1177,7 @@
     
       author: '',
     
-    wordcount: '1993'
+    wordcount: '1992'
   },
 
   {
@@ -1310,7 +1377,7 @@
     
       author: '',
     
-    wordcount: '675'
+    wordcount: '674'
   },
 
   {
@@ -1385,7 +1452,7 @@
     
       author: '',
     
-    wordcount: '2110'
+    wordcount: '2091'
   },
 
   {
@@ -1427,7 +1494,7 @@
       date: '2020-07-22 11:11',
     
     
-      tags: '[Celery Django Python RabbitMQ]',
+      tags: '[Celery Django Python]',
     
     
       categories: '[網頁開發]',
@@ -1610,7 +1677,7 @@
     
       author: '',
     
-    wordcount: '645'
+    wordcount: '653'
   },
 
 ]
@@ -1829,8 +1896,6 @@ const title_list = [
   
   'Hugo',
   
-  'JQuery',
-  
   'JavaScript',
   
   'Jieba',
@@ -1857,6 +1922,8 @@ const title_list = [
   
   'Scrapy',
   
+  'TypeORM',
+  
   'TypeScript',
   
   'VBA',
@@ -1868,6 +1935,8 @@ const title_list = [
   'Vuetify',
   
   'ZTPServer',
+  
+  'jQuery',
   
   'pandas',
   
@@ -1920,7 +1989,7 @@ const title_list = [
     },
 
     created () {
-      axios.get('https:\/\/mikanbearer.github.io\/about/').then(response => {
+      axios.get('https:\/\/mikanbearer.github.io\/about/about_me/').then(response => {
           setTimeout(() => {this.content = response.data}, 300)
       })
 
@@ -1937,7 +2006,7 @@ const title_list = [
         var option = {
           title: {
             left: 'auto',
-            text: title,
+            
             textStyle: {
               color: '#e0e0e0',
               fontSize: 16,
@@ -1996,12 +2065,14 @@ const title_list = [
 
     data () {
       return {
-        content: null
+        works: null
       }
     },
 
     created () {
-      setTimeout(() => {this.content = true}, 300)
+      axios.get('https:\/\/mikanbearer.github.io\/works/index.json').then(response => {
+          setTimeout(() => {this.works = response.data.result}, 300)
+      })
     },
   }
 
@@ -2126,7 +2197,7 @@ const title_list = [
     data () {
       return {
         page: 1,
-        pageSize: 6,
+        pageSize: 12,
         pageLength: null,
         filteredPosts: post_list,
         displayPosts: [],
@@ -2191,7 +2262,6 @@ const title_list = [
 
       pageChange (pageNumber) {
         this.displayPosts = []
-        window.scroll({top: 0, behavior: 'instant'})
         setTimeout(() => {
           this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber - 1), this.pageSize*(pageNumber))
         }, 200)
@@ -2263,9 +2333,8 @@ const title_list = [
 
 
   
-  router.beforeEach((to, from, next) => {
+  router.afterEach((to, from) => {
     window.scroll({top: 0, behavior: 'instant'})
-    next()
   })
 
 
@@ -2294,6 +2363,7 @@ const title_list = [
       getQuery () {
         return this.$route.query
       },
+
       notInSearch () {
         const queryKeys = Object.keys(this.$route.query)
         if (queryKeys.length === 0) {
@@ -2381,6 +2451,14 @@ const title_list = [
             path: '/',
             query: query
           })
+        }
+      },
+
+      getItems (key, items) {
+        if (key) {
+          return items
+        }else{
+          return []
         }
       },
 

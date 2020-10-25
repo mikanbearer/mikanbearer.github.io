@@ -104,8 +104,6 @@
         
           ,"Docker"
         
-          ,"RabbitMQ"
-        
           ,"TypeScript"
         
           ,"Angular"
@@ -117,6 +115,8 @@
           ,"EVE-NG"
         
           ,"Nginx"
+        
+          ,"RabbitMQ"
         
           ,"scikit-learn"
         
@@ -134,7 +134,7 @@
         
           ,"Jieba"
         
-          ,"JQuery"
+          ,"jQuery"
         
           ,"LibreNMS"
         
@@ -149,6 +149,8 @@
           ,"pandas"
         
           ,"seaborn"
+        
+          ,"TypeORM"
         
           ,"uWSGI"
         
@@ -212,11 +214,6 @@
           }
         
           ,{
-            "name": "RabbitMQ",
-            "value": 3
-          }
-        
-          ,{
             "name": "TypeScript",
             "value": 3
           }
@@ -243,6 +240,11 @@
         
           ,{
             "name": "Nginx",
+            "value": 2
+          }
+        
+          ,{
+            "name": "RabbitMQ",
             "value": 2
           }
         
@@ -287,7 +289,7 @@
           }
         
           ,{
-            "name": "JQuery",
+            "name": "jQuery",
             "value": 1
           }
         
@@ -323,6 +325,11 @@
         
           ,{
             "name": "seaborn",
+            "value": 1
+          }
+        
+          ,{
+            "name": "TypeORM",
             "value": 1
           }
         
@@ -396,31 +403,31 @@
           true
           
         
-          ,"RabbitMQ": 
-          true
-          
-        
           ,"TypeScript": 
           true
           
         
           ,"Angular": 
-          true
+          false
           
         
           ,"Ansible": 
-          true
+          false
           
         
           ,"Echarts": 
-          true
+          false
           
         
           ,"EVE-NG": 
-          true
+          false
           
         
           ,"Nginx": 
+          false
+          
+        
+          ,"RabbitMQ": 
           false
           
         
@@ -456,7 +463,7 @@
           false
           
         
-          ,"JQuery": 
+          ,"jQuery": 
           false
           
         
@@ -485,6 +492,10 @@
           
         
           ,"seaborn": 
+          false
+          
+        
+          ,"TypeORM": 
           false
           
         
