@@ -1,26 +1,39 @@
 {{ define "result" }}
-  {
+  { 
+    "monthly_count": {
+      "x_data": [
+        {{ range $i, $e := (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006-01" }}
+          {{ if $i }},{{ end }}"{{ $e.Key }}"
+        {{ end }}
+      ],
+      "series_data": [
+        {{ range $i, $e := (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006-01" }}
+          {{ if $i }},{{ end }}"{{ len $e.Pages }}"
+        {{ end }}
+      ]
+    },
+
     {{ $taxonomy := .Site.Taxonomies.categories }}
     "categories_data": {
       "legendData": [
-        {{ range $key, $value := $taxonomy.ByCount }}
-          {{ if $key }},{{ end }}"{{ $value.Name }}"
+        {{ range $i, $e := $taxonomy.ByCount }}
+          {{ if $i }},{{ end }}"{{ $e.Name }}"
         {{ end }}
       ],
   
       "seriesData": [
-        {{ range $key, $value := $taxonomy.ByCount }}
-          {{ if $key }},{{ end }}{
-            "name": "{{ $value.Name }}",
-            "value": {{ $value.Count }}
+        {{ range $i, $e := $taxonomy.ByCount }}
+          {{ if $i }},{{ end }}{
+            "name": "{{ $e.Name }}",
+            "value": {{ $e.Count }}
           }
         {{ end }}
       ],
 
       "selected": {
-        {{ range $key, $value := $taxonomy.ByCount }}
-          {{ if $key }},{{ end }}"{{ $value.Name }}": 
-          {{ if ge $key 10 }}false
+        {{ range $i, $e := $taxonomy.ByCount }}
+          {{ if $i }},{{ end }}"{{ $e.Name }}": 
+          {{ if ge $i 10 }}false
           {{ else }}true
           {{ end }}
         {{ end }}
@@ -30,24 +43,24 @@
     {{ $taxonomy := .Site.Taxonomies.tags }}
     "tags_data": {
       "legendData": [
-        {{ range $key, $value := $taxonomy.ByCount }}
-          {{ if $key }},{{ end }}"{{ $value.Name }}"
+        {{ range $i, $e := $taxonomy.ByCount }}
+          {{ if $i }},{{ end }}"{{ $e.Name }}"
         {{ end }}
       ],
   
       "seriesData": [
-        {{ range $key, $value := $taxonomy.ByCount }}
-          {{ if $key }},{{ end }}{
-            "name": "{{ $value.Name }}",
-            "value": {{ $value.Count }}
+        {{ range $i, $e := $taxonomy.ByCount }}
+          {{ if $i }},{{ end }}{
+            "name": "{{ $e.Name }}",
+            "value": {{ $e.Count }}
           }
         {{ end }}
       ],
 
       "selected": {
-        {{ range $key, $value := $taxonomy.ByCount }}
-          {{ if $key }},{{ end }}"{{ $value.Name }}": 
-          {{ if ge $key 10 }}false
+        {{ range $i, $e := $taxonomy.ByCount }}
+          {{ if $i }},{{ end }}"{{ $e.Name }}": 
+          {{ if ge $i 10 }}false
           {{ else }}true
           {{ end }}
         {{ end }}

@@ -45,32 +45,22 @@ disablePathToLower = true
 
 
 
+
+
+
 [Author]
   name = "Zhang San"
-  website = "yourwebsite.com"
-  email = "youremail@domain.com"
-  facebook = "username"
-  github = "username"
-  gitlab = "username"
-  bitbucket = "username"
-  twitter = "username"
-  reddit = "username"
-  linkedin = "username"
+  imageURL = ""
+  email = ""
+  facebook = ""
+  github = "mikanbearer"
+  gitlab = ""
+  
+  twitter = ""
+  linkedin = ""
   xing = "username"
-  stackoverflow = "users/XXXXXXX/username"
-  snapchat = "username"
-  instagram = "username"
-  youtube = "user/username" # or channel/channelname
-  soundcloud = "username"
-  spotify = "username"
-  bandcamp = "username"
-  itchio = "username"
-  vk = "username"
-  paypal = "username"
-  telegram = "username"
-  500px = "username"
-  codepen = "username"
-  mastodon = "url"
-  kaggle = "username"
-  weibo = "username"
-  slack = "username"
+  snapchat = ""
+  instagram = ""
+  youtube = ""
+
+  codepen = ""

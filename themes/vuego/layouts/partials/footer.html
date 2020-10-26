@@ -99,7 +99,54 @@ const title_list = [
 
     data () {
       return {
-        content: null
+        content: null,
+        author: {
+          name: '{{ .Site.Author.name }}',
+          email:'{{ .Site.Author.email }}',
+          socialLinks: [
+            {
+              name: 'github',
+              user: '{{ .Site.Author.github }}',
+              url: 'https://github.com/'
+            },
+            {
+              name: 'gitlab',
+              user: '{{ .Site.Author.gitlab }}',
+              url: 'https://gitlab.com/'
+            },
+            {
+              name: 'codepen',
+              user: '{{ .Site.Author.codepen }}',
+              url: 'https://codepen.io/'
+            },
+            {
+              name: 'linkedin',
+              user: '{{ .Site.Author.twitter }}',
+              url: 'https://linkedin.com/in/'
+            },
+            {
+              name: 'twitter',
+              user: '{{ .Site.Author.twitter }}',
+              url: 'https://twitter.com/'
+            },
+            {
+              name: 'facebook',
+              user: '{{ .Site.Author.facebook }}',
+              url: 'https://www.facebook.com/'
+            },
+            {
+              name: 'instagram',
+              user: '{{ .Site.Author.instagram }}',
+              url: 'https://www.instagram.com/'
+            },
+            {
+              name: 'youtube',
+              user: '{{ .Site.Author.youtube }}',
+              url: 'https://www.youtube.com/user/'
+            }
+          ]
+        }
+
       }
     },
 
@@ -111,13 +158,40 @@ const title_list = [
       axios.get('{{ .Site.BaseURL }}about/chart_data/index.json').then(response => {
           setTimeout(() => {
             var result = response.data.result
-            this.setCharts('Top Categories', 'category', result.categories_data, 'chart_categories')
-            setTimeout(this.setCharts, 500, 'Top Tags', 'tag', result.tags_data, 'chart_tags')
+            this.setPie('Top Categories', 'category', result.categories_data, 'chart_categories')
+            this.setPie('Top Tags', 'tag', result.tags_data, 'chart_tags')
+            this.setArea('', result.monthly_count.x_data, result.monthly_count.series_data, 'monthly')
             }, 500)
       })
     },
     methods: {
-      setCharts (title, series_name, data, element_id) {
+      setArea (title, x_data, series_data, element_id) {
+        option = {
+          tooltip: {
+            trigger: 'axis',
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: x_data.reverse(),
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: series_data.reverse(),
+            type: 'line',
+            areaStyle: {}
+          }],
+          textStyle: {
+              color: '#c2c4c6'
+          }
+        }
+        var chart = echarts.init(document.getElementById(element_id))
+        chart.setOption(option)
+      },
+
+      setPie (title, series_name, data, element_id) {
         var option = {
           title: {
             left: 'auto',
@@ -130,7 +204,7 @@ const title_list = [
           },
           tooltip: {
             trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
+            formatter: '{b} : {c} ({d}%)'
           },
           legend: {
             type: 'scroll',

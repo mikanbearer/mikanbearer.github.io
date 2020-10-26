@@ -1,6 +1,6 @@
 <script type="text/x-template" id="works">
     <div v-if="works">
-        <v-row justify="center" class="mt-n8">
+        <v-row justify="center" class="mt-n5">
             <v-col v-for="(work, i) in works" :key="i">
                 <v-card flat color="transparent">
                     <v-card-text>
@@ -18,27 +18,24 @@
 
                             <v-col xs="12" sm="6" md="6" lg="6" xl="6">
                                 <v-card height="100%" flat color="transparent">
-                                    <v-card-title>
-                                        [[ work.title ]]
+                                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                                        <span class="post-title">
+                                            [[ work.title ]]
+                                        </span>
                                     </v-card-title>
                                 
-                                    <v-card-text>
-                                        [[ work.summary ]]
+                                    <v-card-text class="text-body-2 grey--text text--lighten-2">
+                                        <div class="post-content" v-html="work.summary">
+                                        </div>
                                     </v-card-text>
-                                    <v-card-subtitle>
-                                        <v-chip
+                                    <v-card-subtitle class="post-subtitle grey--text">
+                                        Powered by
+                                        <span
                                             v-for="tag in work.powered_by"
-                                            v-bind:key="tag.id"
-                                            color="blue-grey darken-1"
-                                            outlined
-                                            label
-                                            text-color="blue-grey lighten-4"
-                                            small
                                             class="mr-1"
-                                            pill
                                         >
-                                            [[ tag ]]
-                                        </v-chip>
+                                            #[[ tag ]]
+                                        </span>
                                     </v-card-subtitle>
                                     <v-card-actions>
                                         <v-btn
