@@ -110,9 +110,11 @@
 
                     </v-card>
                 </v-col>
+                <v-col cols="12">
+                    <v-pagination v-show="displayPosts.length" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
+                </v-col>
             </v-row>
         </v-slide-x-transition>
-        <v-pagination v-if="displayPosts.length" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
 
         <v-snackbar
             v-model="resultSnackbar"
