@@ -6,14 +6,12 @@
     <description>Recent content in scikit-learn on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
-    <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Wed, 16 Sep 2020 11:32:49 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/scikit-learn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>scikit-learn新手入門之決策樹篇</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009161132/</link>
       <pubDate>Wed, 16 Sep 2020 11:32:49 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009161132/</guid>
       <description>&lt;p&gt;身為資料分析&amp;amp;機器學習的超級新手，個人還是覺得實際操作一遍比理論更好理解，
 這次練習的是之前曾草草帶過的機械學習工具scikit-learn，主題就決定是決策樹了&lt;/p&gt;</description>
@@ -23,7 +21,7 @@
       <title>【Python資料分析練習-入門篇2】自然語言處理與機器學習</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009091346/</link>
       <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009091346/</guid>
       <description>&lt;p&gt;這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…&lt;/p&gt;</description>
     </item>

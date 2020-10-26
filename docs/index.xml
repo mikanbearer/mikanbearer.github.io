@@ -6,14 +6,12 @@
     <description>Recent content on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
-    <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Mon, 19 Oct 2020 14:29:51 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用docker-compose輕鬆部屬監控工具</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010191429/</link>
       <pubDate>Mon, 19 Oct 2020 14:29:51 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/10/202010191429/</guid>
       <description>&lt;p&gt;回味一下以前用過的工具們，唯一不同的就是在Docker host上安裝，因為速度很快很適合測試之用，用在正式環境的話稍微tuning一下也不是不能用&lt;/p&gt;
 &lt;p&gt;這次部屬的有Cacti、Nagios、LibreNMS，單獨部屬太空洞所以三個塞一篇&lt;/p&gt;</description>
@@ -23,7 +21,7 @@
       <title>從今天開始學NestJS</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010151457/</link>
       <pubDate>Thu, 15 Oct 2020 14:57:25 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/10/202010151457/</guid>
       <description>&lt;p&gt;好久不見的從今天開始系列…&lt;/p&gt;
 &lt;p&gt;這次的NestJS是個能用TypeScript撰寫的framework，有提供nest-cli來迅速建立project，適合用來做些小型的backend app
@@ -34,7 +32,7 @@
       <title>使用YouTube影片作為網頁背景</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010141635/</link>
       <pubDate>Wed, 14 Oct 2020 16:35:05 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/10/202010141635/</guid>
       <description>&lt;p&gt;最近覺得影片當背景的網站挺漂亮的，想想要如法炮製的話總會有個簡單易用的plugin，
 這次找到的就是這個jquery.mb.YTPlayer&lt;/p&gt;
@@ -45,7 +43,7 @@
       <title>主題更新</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010081713/</link>
       <pubDate>Thu, 08 Oct 2020 17:13:00 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/10/202010081713/</guid>
       <description>&lt;p&gt;心一橫把整個BLOG做成Single Page了，但目前還只是雛形，記錄下幾個主要的變更點、想法及待解決的問題&lt;/p&gt;</description>
     </item>
@@ -54,7 +52,7 @@
       <title>Vue Router在同一route component傳遞新的query string</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010061053/</link>
       <pubDate>Tue, 06 Oct 2020 10:53:36 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/10/202010061053/</guid>
       <description>&lt;p&gt;弄這個blog遇到的問題，想使用Vue Router來取代Hugo部分list功能的小筆記&lt;/p&gt;</description>
     </item>
@@ -63,7 +61,7 @@
       <title>使用Vue Loading Overlay追加過場動畫</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009261450/</link>
       <pubDate>Sat, 26 Sep 2020 14:50:43 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009261450/</guid>
       <description>&lt;p&gt;不久前才想用vuetify的v-overlay與v-progress-circular來做個loading的延遲畫面，就意外發現了這個好東西：&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/vue-loading-overlay&#34;&gt;vue-loading-overlay&lt;/a&gt;，馬上就來試一下&lt;/p&gt;</description>
@@ -73,7 +71,7 @@
       <title>Python收送log</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009251338/</link>
       <pubDate>Fri, 25 Sep 2020 13:38:11 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009251338/</guid>
       <description>&lt;p&gt;工作測試用的放上來自己參考&lt;/p&gt;</description>
     </item>
@@ -82,7 +80,7 @@
       <title>讓Hugo輸出JSON格式</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009221717/</link>
       <pubDate>Tue, 22 Sep 2020 17:17:48 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009221717/</guid>
       <description>&lt;p&gt;計畫使用Hugo來製作Single Page，有JSON會方便很多，許多地方寫得不是很清楚所以筆記一下&lt;/p&gt;</description>
     </item>
@@ -91,7 +89,7 @@
       <title>使用Angular嘗試製作SPA登入畫面</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009211136/</link>
       <pubDate>Mon, 21 Sep 2020 11:36:54 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009211136/</guid>
       <description>&lt;p&gt;練習的時候到啦，這次一樣是用登入畫面，本篇寫作風格有點改變，嘗試放多一點圖(尤其gif)，內文不包含API的部分，大部分都是盲做，不完善的地方非常之多…&lt;/p&gt;
 &lt;p&gt;畢竟，熟能生巧嘛(;´Д`A ```&lt;/p&gt;</description>
@@ -101,7 +99,7 @@
       <title>從今天開始學Angular</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009181018/</link>
       <pubDate>Fri, 18 Sep 2020 10:18:52 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009181018/</guid>
       <description>&lt;p&gt;從今天開始系列最新作，沒方向的時候就是學framework的最好時機(？&lt;/p&gt;</description>
     </item>
@@ -110,7 +108,7 @@
       <title>scikit-learn新手入門之決策樹篇</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009161132/</link>
       <pubDate>Wed, 16 Sep 2020 11:32:49 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009161132/</guid>
       <description>&lt;p&gt;身為資料分析&amp;amp;機器學習的超級新手，個人還是覺得實際操作一遍比理論更好理解，
 這次練習的是之前曾草草帶過的機械學習工具scikit-learn，主題就決定是決策樹了&lt;/p&gt;</description>
@@ -120,7 +118,7 @@
       <title>【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009151049/</link>
       <pubDate>Tue, 15 Sep 2020 10:49:11 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009151049/</guid>
       <description>&lt;p&gt;暫定是最後一個入門練習，這次使用Flask-WTF來做CSRF Protection，Flask-WTF是WTForms結合Flask用的module&lt;/p&gt;</description>
     </item>
@@ -129,7 +127,7 @@
       <title>【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009141257/</link>
       <pubDate>Mon, 14 Sep 2020 12:57:20 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009141257/</guid>
       <description>&lt;p&gt;這次實作目標是導入Flask-Login，讓咱們的app受驗證機制保護&lt;/p&gt;</description>
     </item>
@@ -138,7 +136,7 @@
       <title>【Flask入門練習-CRUD篇2】製作簡單的CRUD</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009111635/</link>
       <pubDate>Fri, 11 Sep 2020 16:35:19 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009111635/</guid>
       <description>&lt;p&gt;經過了前面的練習，咱們的小App已經有了ORM，既然有了ORM，不做成CRUD(Create、Read、Update、Delete)怎麼行？&lt;/p&gt;
 &lt;p&gt;所以繼續動手做&lt;/p&gt;</description>
@@ -148,7 +146,7 @@
       <title>安裝並嘗試使用Arista ZTPServer</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009101608/</link>
       <pubDate>Thu, 10 Sep 2020 16:08:09 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009101608/</guid>
       <description>&lt;p&gt;繼之前在架設lab的過程中被許許多多的狀況「折磨」過後(參照&lt;a href=&#34;https://mikanbearer.github.io/posts/202007241554/&#34;&gt;這裡&lt;/a&gt;)，終於找到時間接續下去了，這次就來部屬&lt;a href=&#34;https://github.com/arista-eosplus/ztpserver&#34;&gt;Arista ZTPServer&lt;/a&gt;，並稍微驗證一下client與server之間的動作，以確定正常能用
 ，畢竟就算是最新的1.5.0版也很久沒更新了&lt;/p&gt;</description>
@@ -158,7 +156,7 @@
       <title>【Python資料分析練習-入門篇2】自然語言處理與機器學習</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009091346/</link>
       <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009091346/</guid>
       <description>&lt;p&gt;這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…&lt;/p&gt;</description>
     </item>
@@ -167,7 +165,7 @@
       <title>結巴分詞工具的簡單筆記</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009081138/</link>
       <pubDate>Tue, 08 Sep 2020 11:38:55 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009081138/</guid>
       <description>&lt;p&gt;這次來使用大名鼎鼎的&amp;quot;結巴中文分詞&amp;quot;了，應該是目前最好的的斷詞工具，之後的實作會用上所以稍微筆記一下&lt;/p&gt;</description>
     </item>
@@ -176,7 +174,7 @@
       <title>【Python資料分析練習-入門篇1】使用Scrapy爬取PTT貼文</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009070954/</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009070954/</guid>
       <description>&lt;p&gt;從爬蟲開始的實作，分析資料前總得先有資料吧(;&amp;lsquo;∀&amp;rsquo;)&lt;/p&gt;
 &lt;p&gt;作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…&lt;/p&gt;</description>
@@ -186,7 +184,7 @@
       <title>使用Ansible部屬Docker Swarm</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009031456/</link>
       <pubDate>Thu, 03 Sep 2020 14:56:05 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009031456/</guid>
       <description>&lt;p&gt;偶然看到這個&lt;a href=&#34;https://github.com/atosatto/ansible-dockerswarm&#34;&gt;Ansible Role: Docker&lt;/a&gt;就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍&lt;/p&gt;</description>
     </item>
@@ -195,7 +193,7 @@
       <title>從今天開始學Ansible</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009011649/</link>
       <pubDate>Tue, 01 Sep 2020 16:49:15 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/09/202009011649/</guid>
       <description>&lt;p&gt;雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就先練習一遍，熟悉點再來自己寫role&lt;/p&gt;
 &lt;p&gt;參考文件：&lt;a href=&#34;https://docs.ansible.com/&#34;&gt;https://docs.ansible.com/&lt;/a&gt;&lt;/p&gt;</description>
@@ -205,7 +203,7 @@
       <title>從Scrapy開始玩爬蟲</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008281726/</link>
       <pubDate>Fri, 28 Aug 2020 17:26:08 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008281726/</guid>
       <description>&lt;p&gt;為了之後的學習方向做準備，來練習一下Scrapy，Scrapy就是處理response的工具，並從中取得自己需要的資料，&lt;/p&gt;
 &lt;p&gt;這次就做個最低限度的練習&lt;/p&gt;</description>
@@ -215,7 +213,7 @@
       <title>【Flask入門練習-CRUD篇1】在Flask中導入ORM操作</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008271612/</link>
       <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008271612/</guid>
       <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
     </item>
@@ -224,7 +222,7 @@
       <title>【Prometheus入門練習-自訂篇2】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008241004/</link>
       <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008241004/</guid>
       <description>&lt;p&gt;要是不想用自帶的UI，也不想用Grafana怎麼辦！！那當然就是自己動手做啦，自己動手做的好處就是能整合其他功能做成多合一的Web app，但這次就先練習如何取用Prometheus上的資料，製作成動態圖表&lt;/p&gt;</description>
     </item>
@@ -233,7 +231,7 @@
       <title>從今天開始學Flask</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008191354/</link>
       <pubDate>Wed, 19 Aug 2020 13:54:41 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008191354/</guid>
       <description>&lt;p&gt;以往用的framework都是Django，但總不可能靠一招就打天下…所以便來轉戰Flask了，畢竟在某些情境下，使用這種輕量化的framework會更合適&lt;/p&gt;
 &lt;p&gt;和Django不同，Flask不像Django這麼複雜，預設也只有最低限度的功能，也不像Django自帶ORM，
@@ -244,7 +242,7 @@
       <title>【Prometheus入門練習-基本操作篇3】使用Prometheus監控RabbitMQ</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008181609/</link>
       <pubDate>Tue, 18 Aug 2020 16:09:08 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008181609/</guid>
       <description>&lt;p&gt;想特地找個一個有自帶plugin的軟體練習一下幫助記憶，剛剛好是常常使用RabbitMQ！這次就來測試看看，當作實務運用的練習&lt;/p&gt;</description>
     </item>
@@ -253,7 +251,7 @@
       <title>【Prometheus入門練習-自訂篇1】使用Prometheus client library自訂metrics</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008171709/</link>
       <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008171709/</guid>
       <description>&lt;p&gt;作為往後可能需要自訂Exporter的預習，就試著拿&lt;a href=&#34;https://prometheus.io/docs/instrumenting/clientlibs/&#34;&gt;Prometheus client library&lt;/a&gt;來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter&lt;/p&gt;</description>
     </item>
@@ -262,7 +260,7 @@
       <title>使用Moment.js處理日期時間</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008151135/</link>
       <pubDate>Sat, 15 Aug 2020 11:35:45 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008151135/</guid>
       <description>&lt;p&gt;一個處理時間的library，覺得蠻好用得所以筆記一下&lt;/p&gt;</description>
     </item>
@@ -271,7 +269,7 @@
       <title>【Prometheus入門練習-基本操作篇2】使用Pushgateway進行監控</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008140913/</link>
       <pubDate>Fri, 14 Aug 2020 09:13:49 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008140913/</guid>
       <description>&lt;p&gt;Prometheus在設計上是採用pull的模式，但在網路架構的規劃上，並不是所有的target能讓Prometheus去pull，這時候就是Pushgateway出馬的時候了&lt;/p&gt;</description>
     </item>
@@ -280,7 +278,7 @@
       <title>【Prometheus入門練習-基本操作篇1】從零開始學Prometheus</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008131707/</link>
       <pubDate>Thu, 13 Aug 2020 17:07:15 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008131707/</guid>
       <description>&lt;p&gt;Prometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：&lt;/p&gt;
 &lt;ul&gt;
@@ -294,7 +292,7 @@
       <title>使用Django &#43; Channels部屬WebSocket簡易聊天室</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008100108/</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008100108/</guid>
       <description>&lt;p&gt;製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，
 剛好可作為Message Queue及Web Socket的練習。&lt;/p&gt;
@@ -305,7 +303,7 @@
       <title>動態更新Echarts</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008092021/</link>
       <pubDate>Sun, 09 Aug 2020 20:21:46 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008092021/</guid>
       <description>&lt;p&gt;之前工作上需要一個前端的圖表庫，最後就相中了百度的Echarts，像是要做監控的話，前端的圖表要動態更新就變得很重要了&lt;/p&gt;</description>
     </item>
@@ -314,7 +312,7 @@
       <title>新主題上線！</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008070930/</link>
       <pubDate>Fri, 07 Aug 2020 09:30:55 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/08/202008070930/</guid>
       <description>&lt;p&gt;原本使用&lt;a href=&#34;https://github.com/halogenica/beautifulhugo&#34;&gt;Beautifulhugo&lt;/a&gt;(個人蠻喜歡的)，但發現會有一些小問題…&lt;/p&gt;
 &lt;p&gt;這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…&lt;/p&gt;</description>
@@ -324,7 +322,7 @@
       <title>在Nginx或Apache上設定CORS</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007301419/</link>
       <pubDate>Thu, 30 Jul 2020 14:19:49 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007301419/</guid>
       <description>&lt;p&gt;Web Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用&lt;a href=&#34;https://mikanbearer.github.io/myblog/posts/202007291642/&#34;&gt;這篇&lt;/a&gt;來實作，本篇包含Nginx及Apache的設定範例&lt;/p&gt;</description>
     </item>
@@ -333,7 +331,7 @@
       <title>使用docker-compose部屬Nginx &#43; uWSGI &#43; Django</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007291642/</link>
       <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007291642/</guid>
       <description>&lt;p&gt;雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…&lt;/p&gt;
 &lt;p&gt;這次使用以下兩篇舊文的範例來練習&lt;/p&gt;</description>
@@ -343,7 +341,7 @@
       <title>使用Vue.js &#43; Vuetify製作SPA登入畫面</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007262314/</link>
       <pubDate>Sun, 26 Jul 2020 23:14:14 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007262314/</guid>
       <description>&lt;p&gt;利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，
 往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…&lt;/p&gt;</description>
@@ -353,7 +351,7 @@
       <title>在EVE-NG上部屬vEOS LAB</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007241554/</link>
       <pubDate>Fri, 24 Jul 2020 15:54:30 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007241554/</guid>
       <description>&lt;p&gt;第一篇挫折問題紀錄，各種鬼打牆…
 原本想在EVE-NG上做個簡單的LAB，沒想到問題還真不少…&lt;/p&gt;</description>
@@ -363,7 +361,7 @@
       <title>使用Django &#43; Celery進行異步處理</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007221111/</link>
       <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007221111/</guid>
       <description>&lt;p&gt;本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，
 目前只提供簡單的範例，不包含異步任務的情境應用&lt;/p&gt;</description>
@@ -373,7 +371,7 @@
       <title>用VBA在Excel中使用nslookup</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007211516/</link>
       <pubDate>Tue, 21 Jul 2020 15:16:46 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007211516/</guid>
       <description>&lt;p&gt;工作中常常用到的功能，不筆記會忘記，
 主要是在Excel Macro調用Wshshell，把A欄的結果輸出到B欄&lt;/p&gt;</description>
@@ -383,7 +381,7 @@
       <title>【Django API實作-入門篇2】在Django REST framework上導入JWT驗證</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007201501/</link>
       <pubDate>Mon, 20 Jul 2020 15:01:14 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007201501/</guid>
       <description>&lt;p&gt;承之前的範例，這次要用JSON Web Token驗證，並加上Cross-Origin Resource Sharing&lt;/p&gt;</description>
     </item>
@@ -392,7 +390,7 @@
       <title>使用watch監控的一些寫法</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007201139/</link>
       <pubDate>Mon, 20 Jul 2020 11:39:17 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007201139/</guid>
       <description>&lt;p&gt;想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法&lt;/p&gt;</description>
     </item>
@@ -401,7 +399,7 @@
       <title>【Django API實作-入門篇1】使用Django REST framework超高速部屬RESTful API</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007161628/</link>
       <pubDate>Thu, 16 Jul 2020 16:28:26 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007161628/</guid>
       <description>&lt;p&gt;這次作為複習，利用djangorestframework製作一個陽春的REST API
 何謂RESTful就不贅述了，直接開始實做&lt;/p&gt;</description>
@@ -411,7 +409,7 @@
       <title>使用Django超高速部屬CRUD</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007151013/</link>
       <pubDate>Wed, 15 Jul 2020 10:14:15 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007151013/</guid>
       <description>&lt;p&gt;這次僅是做一個超級簡易，能做到Create、Read、Update、Delete的Web App，&lt;br&gt;
 為了避免版面過長，此篇僅有陽春的Template View，並沒有做Filter及Pagenation…&lt;/p&gt;</description>
@@ -421,7 +419,7 @@
       <title>使用VBScript定期送出按鍵</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007141604/</link>
       <pubDate>Tue, 14 Jul 2020 16:04:42 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007141604/</guid>
       <description>&lt;p&gt;在客戶環境中操作，並需要客戶代為登入的情況下給自己用的小筆記，
 免得一不注意就被policy弄到進入省電模式/登出，到時候又要請客戶的人來幫忙key帳號密碼…
@@ -433,7 +431,7 @@
       <title>紀念用的第一篇</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007101327/</link>
       <pubDate>Fri, 10 Jul 2020 13:27:20 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/07/202007101327/</guid>
       <description>&lt;p&gt;最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣，
 就到&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;https://www.staticgen.com/&lt;/a&gt;找個人氣度高的來用，之後就選上了這個&lt;strong&gt;Hugo&lt;/strong&gt;，
@@ -444,7 +442,7 @@
       <title></title>
       <link>https://mikanbearer.github.io/about/about_me/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/about/about_me/</guid>
       <description>垃圾堆中的一小袋垃圾，努力讓自己變得可用
  Skills：  Server-side Web Framework  Django Flask NestJS   Client-side Web Framework  Vue.js Angular &amp;hellip;etc      </description>
@@ -454,7 +452,7 @@
       <title></title>
       <link>https://mikanbearer.github.io/about/chart_data/index.json</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/about/chart_data/index.json</guid>
       <description></description>
     </item>
@@ -463,7 +461,7 @@
       <title>hugo-vue-mix</title>
       <link>https://mikanbearer.github.io/works/work1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/works/work1/</guid>
       <description>靜態網站產生器Hugo的一個自製主題，同時也是本BLOG的前主題，目前為平行開發的狀態，使用Vue.js完成搜尋功能，並使用Vuetify導入Material Design，持續增加功能中</description>
     </item>

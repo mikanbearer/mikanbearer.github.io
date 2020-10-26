@@ -18,7 +18,6 @@
         font-family: 'Noto Sans TC', sans-serif !important;
       }
  
-
       .post-title {
         font-family: 'Noto Sans TC', sans-serif !important;
         font-weight: 400;
@@ -40,11 +39,6 @@
         color: #eeeeee;
       }
 
-      .post-list {
-        margin-top: -12px;
-      }
-
-
       body {
         width: 100%;
         height: 100%;
@@ -61,11 +55,6 @@
   
       #inspire {
         background: none;
-      }
-      
-
-      div.v-input__prepend-inner div.v-input__icon {
-        margin-top: 4px;
       }
 
       a.v-chip--active.accent {
@@ -85,11 +74,7 @@
         max-width: 100%;
       }
 
-      .post-list .theme--dark.v-expansion-panels .v-expansion-panel--active {
-        background-color: #333a40;
-      }
-
-      
+    
     </style>
   
   </head>
@@ -154,7 +139,7 @@
             <v-scroll-x-transition>
               <router-view></router-view>
             </v-scroll-x-transition>
-            <v-card class="mt-4 content" v-show="commentBlock">
+            <v-card class="mt-4" v-show="commentBlock" color="#333a40">
               <v-card-text>
                 <div id="disqus_thread"></div>
                 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
@@ -259,10 +244,10 @@
     <div>
         
         <v-slide-x-transition>
-            <v-row v-show="displayPosts.length" class="post-list">
+            <v-row v-show="displayPosts.length" class="post-list mt-n5">
                 <v-col v-for="(post, index) in displayPosts" :key="index" cols="12" xs="12" sm="6" md="6" lg="4" xl="4">
                 
-                    <v-card class="content">
+                    <v-card color="#333a40">
                         <v-list-item three-line>
                             <v-list-item-content>
                             
@@ -392,8 +377,8 @@
 
 </script>
 <script type="text/x-template" id="post">
-    <div v-if="content">
-        <v-card class="content">
+    <div v-if="content" class="mt-n2">
+        <v-card color="#333a40">
             <v-list-item three-line>
                 <v-list-item-content>
 
@@ -461,7 +446,7 @@
 </script>
 <script type="text/x-template" id="works">
     <div v-if="works">
-        <v-row justify="center" class="mt-n8">
+        <v-row justify="center" class="mt-n5">
             <v-col v-for="(work, i) in works" :key="i">
                 <v-card flat color="transparent">
                     <v-card-text>
@@ -479,27 +464,24 @@
 
                             <v-col xs="12" sm="6" md="6" lg="6" xl="6">
                                 <v-card height="100%" flat color="transparent">
-                                    <v-card-title>
-                                        [[ work.title ]]
+                                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                                        <span class="post-title">
+                                            [[ work.title ]]
+                                        </span>
                                     </v-card-title>
                                 
-                                    <v-card-text>
-                                        [[ work.summary ]]
+                                    <v-card-text class="text-body-2 grey--text text--lighten-2">
+                                        <div class="post-content" v-html="work.summary">
+                                        </div>
                                     </v-card-text>
-                                    <v-card-subtitle>
-                                        <v-chip
+                                    <v-card-subtitle class="post-subtitle grey--text">
+                                        Powered by
+                                        <span
                                             v-for="tag in work.powered_by"
-                                            v-bind:key="tag.id"
-                                            color="blue-grey darken-1"
-                                            outlined
-                                            label
-                                            text-color="blue-grey lighten-4"
-                                            small
                                             class="mr-1"
-                                            pill
                                         >
-                                            [[ tag ]]
-                                        </v-chip>
+                                            #[[ tag ]]
+                                        </span>
                                     </v-card-subtitle>
                                     <v-card-actions>
                                         <v-btn
@@ -536,40 +518,96 @@
 </script>
 <script type="text/x-template" id="about">
     <div v-if="content">
-        <v-row justify="center" class="mt-n8">
+        <v-row justify="center" class="mt-n5">
             <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                 <v-card flat color="transparent">
-                    <v-card-title>
-                        About me
+                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title">
+                            About Me
+                        </span>
                     </v-card-title>
                     <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
                         <div class="mr-2 ml-2 post-content" v-html="content">
                         </div>
                     </v-card-text>
+                    
                 </v-card>
-            </v-col>
-
-
-            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
             </v-col>
 
             <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                 <v-card flat color="transparent">
-                    <v-card-title>
-                        Top Categorie
+                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title">
+                            Profile
+                        </span>
+                    </v-card-title>
+                    <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
+                        <div class="mr-2 ml-2 post-content">
+                            Name: [[ author.name ]]
+                        </div>
+                    </v-card-text>
+
+                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title">
+                            Social Links
+                        </span>
+                    </v-card-title>
+                    <v-card-text class="d-flex justify-space-around text-body-2 grey--text text--lighten-2">
+                        <v-btn
+                            icon
+                            :disabled="!author.email"
+                            :href="'mailto:' + author.email" 
+                        >
+                            <v-icon>mdi-email</v-icon>
+                        </v-btn>
+                 
+                        <v-btn
+                            icon
+                            v-for="(item, index) in author.socialLinks"
+                            :key="index"
+                            :disabled="!item.user"
+                            :href="item.url + item.user"
+                            target="_blank"
+                        >
+                            <v-icon>mdi-[[item.name]]</v-icon>
+                        </v-btn>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+
+            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                <v-card flat color="transparent">
+                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title">
+                            Top Categorie
+                        </span>
                     </v-card-title>
                     <div id="chart_categories" style="width:100%; height:240px;"></div>
                 </v-card>
             </v-col>
 
             <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                <v-card  flat color="transparent">
-                    <v-card-title>
-                        Top Tags
+                <v-card flat color="transparent">
+                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title">
+                            Top Tags
+                        </span>
                     </v-card-title>
                     <div id="chart_tags" style="width:100%; height:240px;"></div>
                 </v-card>
             </v-col>
+
+            <v-col cols="12">
+                <v-card flat color="transparent">
+                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title">
+                            Monthly Post Count
+                        </span>
+                    </v-card-title>
+                    <div id="monthly" style="width:100%; height:240px;"></div>
+                </v-card>
+            </v-col>
+
         </v-row>
         
 
@@ -950,7 +988,7 @@
       tags: '[EVE-NG vEOS ZTPServer]',
     
     
-      categories: '[Arista筆記]',
+      categories: '[Arista]',
     
     
       author: '',
@@ -1525,7 +1563,7 @@
       tags: '[Excel VBA]',
     
     
-      categories: '[Windows筆記]',
+      categories: '[Windows]',
     
     
       author: '',
@@ -1650,7 +1688,7 @@
       tags: '[VBScript]',
     
     
-      categories: '[Windows筆記]',
+      categories: '[Windows]',
     
     
       author: '',
@@ -1960,9 +1998,9 @@ const title_list = [
 
   const category_list = [
   
-  'Arista筆記',
+  'Arista',
   
-  'Windows筆記',
+  'Windows',
   
   '網頁開發',
   
@@ -1987,7 +2025,54 @@ const title_list = [
 
     data () {
       return {
-        content: null
+        content: null,
+        author: {
+          name: 'Zhang San',
+          email:'',
+          socialLinks: [
+            {
+              name: 'github',
+              user: 'mikanbearer',
+              url: 'https://github.com/'
+            },
+            {
+              name: 'gitlab',
+              user: '',
+              url: 'https://gitlab.com/'
+            },
+            {
+              name: 'codepen',
+              user: '',
+              url: 'https://codepen.io/'
+            },
+            {
+              name: 'linkedin',
+              user: '',
+              url: 'https://linkedin.com/in/'
+            },
+            {
+              name: 'twitter',
+              user: '',
+              url: 'https://twitter.com/'
+            },
+            {
+              name: 'facebook',
+              user: '',
+              url: 'https://www.facebook.com/'
+            },
+            {
+              name: 'instagram',
+              user: '',
+              url: 'https://www.instagram.com/'
+            },
+            {
+              name: 'youtube',
+              user: '',
+              url: 'https://www.youtube.com/user/'
+            }
+          ]
+        }
+
       }
     },
 
@@ -1999,13 +2084,40 @@ const title_list = [
       axios.get('https:\/\/mikanbearer.github.io\/about/chart_data/index.json').then(response => {
           setTimeout(() => {
             var result = response.data.result
-            this.setCharts('Top Categories', 'category', result.categories_data, 'chart_categories')
-            setTimeout(this.setCharts, 500, 'Top Tags', 'tag', result.tags_data, 'chart_tags')
+            this.setPie('Top Categories', 'category', result.categories_data, 'chart_categories')
+            this.setPie('Top Tags', 'tag', result.tags_data, 'chart_tags')
+            this.setArea('', result.monthly_count.x_data, result.monthly_count.series_data, 'monthly')
             }, 500)
       })
     },
     methods: {
-      setCharts (title, series_name, data, element_id) {
+      setArea (title, x_data, series_data, element_id) {
+        option = {
+          tooltip: {
+            trigger: 'axis',
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: x_data.reverse(),
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: series_data.reverse(),
+            type: 'line',
+            areaStyle: {}
+          }],
+          textStyle: {
+              color: '#c2c4c6'
+          }
+        }
+        var chart = echarts.init(document.getElementById(element_id))
+        chart.setOption(option)
+      },
+
+      setPie (title, series_name, data, element_id) {
         var option = {
           title: {
             left: 'auto',
@@ -2018,7 +2130,7 @@ const title_list = [
           },
           tooltip: {
             trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
+            formatter: '{b} : {c} ({d}%)'
           },
           legend: {
             type: 'scroll',

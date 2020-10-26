@@ -6,14 +6,12 @@
     <description>Recent content in jQuery on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <managingEditor>youremail@domain.com (Zhang San)</managingEditor>
-    <webMaster>youremail@domain.com (Zhang San)</webMaster>
     <lastBuildDate>Wed, 14 Oct 2020 16:35:05 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/jQuery/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用YouTube影片作為網頁背景</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010141635/</link>
       <pubDate>Wed, 14 Oct 2020 16:35:05 +0800</pubDate>
-      <author>youremail@domain.com (Zhang San)</author>
+      
       <guid>https://mikanbearer.github.io/posts/2020/10/202010141635/</guid>
       <description>&lt;p&gt;最近覺得影片當背景的網站挺漂亮的，想想要如法炮製的話總會有個簡單易用的plugin，
 這次找到的就是這個jquery.mb.YTPlayer&lt;/p&gt;

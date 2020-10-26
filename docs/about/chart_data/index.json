@@ -1,6 +1,31 @@
 {
     "result" : 
-  {
+  { 
+    "monthly_count": {
+      "x_data": [
+        
+          "2020-10"
+        
+          ,"2020-09"
+        
+          ,"2020-08"
+        
+          ,"2020-07"
+        
+      ],
+      "series_data": [
+        
+          "5"
+        
+          ,"15"
+        
+          ,"12"
+        
+          ,"12"
+        
+      ]
+    },
+
     
     "categories_data": {
       "legendData": [
@@ -13,9 +38,9 @@
         
           ,"雜記"
         
-          ,"Windows筆記"
+          ,"Windows"
         
-          ,"Arista筆記"
+          ,"Arista"
         
       ],
   
@@ -42,12 +67,12 @@
           }
         
           ,{
-            "name": "Windows筆記",
+            "name": "Windows",
             "value": 2
           }
         
           ,{
-            "name": "Arista筆記",
+            "name": "Arista",
             "value": 1
           }
         
@@ -71,11 +96,11 @@
           true
           
         
-          ,"Windows筆記": 
+          ,"Windows": 
           true
           
         
-          ,"Arista筆記": 
+          ,"Arista": 
           true
           
         
