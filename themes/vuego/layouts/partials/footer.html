@@ -459,7 +459,9 @@ const title_list = [
       pageInit () {
         this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
         this.page = 1
-        this.pageChange(1)
+        setTimeout(() => {
+          this.pageChange(1)
+        }, 150)
       },
 
       searchPosts () {
