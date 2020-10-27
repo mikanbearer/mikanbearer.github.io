@@ -1,10 +1,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.common.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
 {{ partial "vue_templates/posts.html" . }}
 {{ partial "vue_templates/post.html" . }}
 {{ partial "vue_templates/works.html" . }}
@@ -89,10 +88,6 @@ const title_list = [
 
 
 /////////////////////////////////////////////////////////////////////
-
-  Vue.use(VueLoading)
-  Vue.component('loading', VueLoading)
-
   const About = {
     template: '#about',
     delimiters: ['[[', ']]'],
@@ -576,15 +571,11 @@ const title_list = [
 
     created () {
       this.$vuetify.theme.dark = true
-      this.loader = this.$loading.show(
-        {loader: 'dots', color: '#fff', backgroundColor: '#272727', opacity: 1}
-          )
       this.setSearchConditionsToData()
       this.addingDISQUS()
     },
 
     mounted () {
-      this.loader.hide()
       this.showComment()
     },
 
