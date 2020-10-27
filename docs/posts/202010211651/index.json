@@ -1,0 +1,30 @@
+{
+    "result" : 
+{
+    "title": "使用docker-compose來Docker化Node.js的Web App",
+    "date": "2020-10-21 16:51",
+    "draft": "false",
+    "categories": 
+    [
+        
+            "WebDev"
+        
+            , "Operation"
+        
+    ],
+    "tags":
+    [
+        
+            "Docker"
+        
+            , "NestJS"
+        
+            , "Node.js"
+        
+    ],
+
+    "url": "https://mikanbearer.github.io/posts/202010211651/",
+    "wordcount": "975"
+}
+
+}

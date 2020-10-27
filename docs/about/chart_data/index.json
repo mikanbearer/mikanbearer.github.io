@@ -15,7 +15,7 @@
       ],
       "series_data": [
         
-          "5"
+          "6"
         
           ,"15"
         
@@ -56,7 +56,7 @@
         
           {
             "name": "WebDev",
-            "value": 24
+            "value": 25
           }
         
           ,{
@@ -71,7 +71,7 @@
         
           ,{
             "name": "Operation",
-            "value": 3
+            "value": 4
           }
         
           ,{
@@ -165,13 +165,13 @@
         
           ,"JavaScript"
         
-          ,"Prometheus"
-        
-          ,"Hugo"
-        
           ,"Node.js"
         
+          ,"Prometheus"
+        
           ,"Docker"
+        
+          ,"Hugo"
         
           ,"TypeScript"
         
@@ -182,6 +182,8 @@
           ,"Echarts"
         
           ,"EVE-NG"
+        
+          ,"NestJS"
         
           ,"Nginx"
         
@@ -212,8 +214,6 @@
           ,"Moment.js"
         
           ,"Nagios"
-        
-          ,"NestJS"
         
           ,"pandas"
         
@@ -263,23 +263,23 @@
           }
         
           ,{
+            "name": "Node.js",
+            "value": 5
+          }
+        
+          ,{
             "name": "Prometheus",
             "value": 5
           }
         
           ,{
+            "name": "Docker",
+            "value": 4
+          }
+        
+          ,{
             "name": "Hugo",
             "value": 4
-          }
-        
-          ,{
-            "name": "Node.js",
-            "value": 4
-          }
-        
-          ,{
-            "name": "Docker",
-            "value": 3
           }
         
           ,{
@@ -304,6 +304,11 @@
         
           ,{
             "name": "EVE-NG",
+            "value": 2
+          }
+        
+          ,{
+            "name": "NestJS",
             "value": 2
           }
         
@@ -383,11 +388,6 @@
           }
         
           ,{
-            "name": "NestJS",
-            "value": 1
-          }
-        
-          ,{
             "name": "pandas",
             "value": 1
           }
@@ -456,19 +456,19 @@
           true
           
         
-          ,"Prometheus": 
-          true
-          
-        
-          ,"Hugo": 
-          true
-          
-        
           ,"Node.js": 
           true
           
         
+          ,"Prometheus": 
+          true
+          
+        
           ,"Docker": 
+          true
+          
+        
+          ,"Hugo": 
           true
           
         
@@ -489,6 +489,10 @@
           
         
           ,"EVE-NG": 
+          false
+          
+        
+          ,"NestJS": 
           false
           
         
@@ -549,10 +553,6 @@
           
         
           ,"Nagios": 
-          false
-          
-        
-          ,"NestJS": 
           false
           
         

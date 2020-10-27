@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Oct 2020 14:29:51 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Oct 2020 16:51:28 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用docker-compose來Docker化Node.js的Web App</title>
+      <link>https://mikanbearer.github.io/posts/202010211651/</link>
+      <pubDate>Wed, 21 Oct 2020 16:51:28 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202010211651/</guid>
+      <description>&lt;p&gt;慢慢補足實務上會用到的基礎知識，這次來看看如何把用Node.js製作的app用Docker執行，並加上web server，本次範例是Nginx + NestJS&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>使用docker-compose輕鬆部屬監控工具</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010191429/</link>
