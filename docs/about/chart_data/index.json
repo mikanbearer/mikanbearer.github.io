@@ -30,49 +30,77 @@
     "categories_data": {
       "legendData": [
         
-          "網頁開發"
+          "WebDev"
         
-          ,"運維管理"
+          ,"未分類"
         
-          ,"資料分析"
+          ,"Monitoring"
         
-          ,"雜記"
-        
-          ,"Windows"
+          ,"Operation"
         
           ,"Arista"
+        
+          ,"MachineLearning"
+        
+          ,"Provisioning"
+        
+          ,"WebCrawler"
+        
+          ,"DataScience"
+        
+          ,"Opration"
         
       ],
   
       "seriesData": [
         
           {
-            "name": "網頁開發",
-            "value": 25
+            "name": "WebDev",
+            "value": 24
           }
         
           ,{
-            "name": "運維管理",
-            "value": 8
+            "name": "未分類",
+            "value": 6
           }
         
           ,{
-            "name": "資料分析",
+            "name": "Monitoring",
             "value": 5
           }
         
           ,{
-            "name": "雜記",
-            "value": 4
-          }
-        
-          ,{
-            "name": "Windows",
-            "value": 2
+            "name": "Operation",
+            "value": 3
           }
         
           ,{
             "name": "Arista",
+            "value": 2
+          }
+        
+          ,{
+            "name": "MachineLearning",
+            "value": 2
+          }
+        
+          ,{
+            "name": "Provisioning",
+            "value": 2
+          }
+        
+          ,{
+            "name": "WebCrawler",
+            "value": 2
+          }
+        
+          ,{
+            "name": "DataScience",
+            "value": 1
+          }
+        
+          ,{
+            "name": "Opration",
             "value": 1
           }
         
@@ -80,27 +108,43 @@
 
       "selected": {
         
-          "網頁開發": 
+          "WebDev": 
           true
           
         
-          ,"運維管理": 
+          ,"未分類": 
           true
           
         
-          ,"資料分析": 
+          ,"Monitoring": 
           true
           
         
-          ,"雜記": 
-          true
-          
-        
-          ,"Windows": 
+          ,"Operation": 
           true
           
         
           ,"Arista": 
+          true
+          
+        
+          ,"MachineLearning": 
+          true
+          
+        
+          ,"Provisioning": 
+          true
+          
+        
+          ,"WebCrawler": 
+          true
+          
+        
+          ,"DataScience": 
+          true
+          
+        
+          ,"Opration": 
           true
           
         
