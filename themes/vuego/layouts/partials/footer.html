@@ -451,15 +451,13 @@ const title_list = [
         this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber - 1), this.pageSize*(pageNumber))
         setTimeout(() => {
           this.showPostList = true
-        }, 150)
+        }, 300)
       },
 
       pageInit () {
         this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
         this.page = 1
-        setTimeout(() => {
-          this.pageChange(1)
-        }, 150)
+        this.pageChange(1)
       },
 
       searchPosts () {
