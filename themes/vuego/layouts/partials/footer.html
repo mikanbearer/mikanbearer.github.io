@@ -390,6 +390,7 @@ const title_list = [
         pageLength: null,
         filteredPosts: post_list,
         displayPosts: [],
+        showPostList: false,
         resultSnackbar: false,
         searchConditions: {
           selectedCategories: [],
@@ -450,10 +451,11 @@ const title_list = [
       },
 
       pageChange (pageNumber) {
-        this.displayPosts = []
+        this.showPostList = false
+        this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber - 1), this.pageSize*(pageNumber))
         setTimeout(() => {
-          this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber - 1), this.pageSize*(pageNumber))
-        }, 100)
+          this.showPostList = true
+        }, 150)
       },
 
       pageInit () {
