@@ -2947,7 +2947,7 @@ const title_list = [
     data () {
       return {
         page: 1,
-        pageSize: 12,
+        pageSize: 6,
         pageLength: null,
         filteredPosts: post_list,
         displayPosts: [],
@@ -3023,7 +3023,10 @@ const title_list = [
       pageInit () {
         this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
         this.page = 1
-        this.pageChange(1)
+        setTimeout(() => {
+          this.pageChange(1)
+        }, 50)
+        
       },
 
       searchPosts () {
