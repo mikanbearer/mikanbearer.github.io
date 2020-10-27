@@ -447,6 +447,7 @@ const title_list = [
 
       pageChange (pageNumber) {
         this.showPostList = false
+        window.scroll({top: 0, behavior: 'instant'})
         this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber - 1), this.pageSize*(pageNumber))
         setTimeout(() => {
           this.showPostList = true
