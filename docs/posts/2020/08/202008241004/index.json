@@ -1,13 +1,13 @@
 {
     "result" : 
 {
-    "title": "【Prometheus入門練習-自訂篇2】將Prometheus API取得的資料搭配Vue.js製作Echarts動態圖表",
+    "title": "【Prometheus入門練習-自訂篇2】Prometheus + Vue.js + Echarts製作動態圖表",
     "date": "2020-08-24 10:04",
     "draft": "false",
     "categories": 
     [
         
-            "WebDev"
+            "WebDevelopment"
         
             , "Monitoring"
         

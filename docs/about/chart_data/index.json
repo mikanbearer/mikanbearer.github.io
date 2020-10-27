@@ -15,7 +15,7 @@
       ],
       "series_data": [
         
-          "6"
+          "7"
         
           ,"15"
         
@@ -30,7 +30,7 @@
     "categories_data": {
       "legendData": [
         
-          "WebDev"
+          "WebDevelopment"
         
           ,"未分類"
         
@@ -55,8 +55,8 @@
       "seriesData": [
         
           {
-            "name": "WebDev",
-            "value": 25
+            "name": "WebDevelopment",
+            "value": 26
           }
         
           ,{
@@ -108,7 +108,7 @@
 
       "selected": {
         
-          "WebDev": 
+          "WebDevelopment": 
           true
           
         
@@ -159,19 +159,21 @@
         
           ,"Vue.js"
         
+          ,"Node.js"
+        
           ,"Django"
+        
+          ,"Docker"
         
           ,"Flask"
         
           ,"JavaScript"
         
-          ,"Node.js"
-        
           ,"Prometheus"
         
-          ,"Docker"
-        
           ,"Hugo"
+        
+          ,"NestJS"
         
           ,"TypeScript"
         
@@ -182,8 +184,6 @@
           ,"Echarts"
         
           ,"EVE-NG"
-        
-          ,"NestJS"
         
           ,"Nginx"
         
@@ -248,7 +248,17 @@
           }
         
           ,{
+            "name": "Node.js",
+            "value": 6
+          }
+        
+          ,{
             "name": "Django",
+            "value": 5
+          }
+        
+          ,{
+            "name": "Docker",
             "value": 5
           }
         
@@ -263,23 +273,18 @@
           }
         
           ,{
-            "name": "Node.js",
-            "value": 5
-          }
-        
-          ,{
             "name": "Prometheus",
             "value": 5
           }
         
           ,{
-            "name": "Docker",
+            "name": "Hugo",
             "value": 4
           }
         
           ,{
-            "name": "Hugo",
-            "value": 4
+            "name": "NestJS",
+            "value": 3
           }
         
           ,{
@@ -304,11 +309,6 @@
         
           ,{
             "name": "EVE-NG",
-            "value": 2
-          }
-        
-          ,{
-            "name": "NestJS",
             "value": 2
           }
         
@@ -444,7 +444,15 @@
           true
           
         
+          ,"Node.js": 
+          true
+          
+        
           ,"Django": 
+          true
+          
+        
+          ,"Docker": 
           true
           
         
@@ -456,15 +464,7 @@
           true
           
         
-          ,"Node.js": 
-          true
-          
-        
           ,"Prometheus": 
-          true
-          
-        
-          ,"Docker": 
           true
           
         
@@ -472,8 +472,12 @@
           true
           
         
-          ,"TypeScript": 
+          ,"NestJS": 
           true
+          
+        
+          ,"TypeScript": 
+          false
           
         
           ,"Angular": 
@@ -489,10 +493,6 @@
           
         
           ,"EVE-NG": 
-          false
-          
-        
-          ,"NestJS": 
           false
           
         

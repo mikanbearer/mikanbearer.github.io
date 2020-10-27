@@ -1,13 +1,13 @@
 {
     "result" : 
 {
-    "title": "Vue Router在同一route component傳遞新的query string",
+    "title": "Vue Router在同一route傳遞新的query",
     "date": "2020-10-06 10:53",
     "draft": "false",
     "categories": 
     [
         
-            "WebDev"
+            "WebDevelopment"
         
     ],
     "tags":

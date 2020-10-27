@@ -6,22 +6,22 @@
     <description>Recent content in Categories on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2020 16:51:28 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Oct 2020 17:27:31 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WebDevelopment</title>
+      <link>https://mikanbearer.github.io/categories/WebDevelopment/</link>
+      <pubDate>Mon, 26 Oct 2020 17:27:31 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/categories/WebDevelopment/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Operation</title>
       <link>https://mikanbearer.github.io/categories/Operation/</link>
       <pubDate>Wed, 21 Oct 2020 16:51:28 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/categories/Operation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>WebDev</title>
-      <link>https://mikanbearer.github.io/categories/WebDev/</link>
-      <pubDate>Wed, 21 Oct 2020 16:51:28 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/categories/WebDev/</guid>
       <description></description>
     </item>
     

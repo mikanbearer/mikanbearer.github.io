@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 21 Oct 2020 16:51:28 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Operation/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>使用docker-compose來Docker化Node.js的Web App</title>
+      <title>Docker化Node.js的Web App</title>
       <link>https://mikanbearer.github.io/posts/202010211651/</link>
       <pubDate>Wed, 21 Oct 2020 16:51:28 +0800</pubDate>
       
