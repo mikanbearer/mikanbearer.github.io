@@ -15,7 +15,7 @@
       ],
       "series_data": [
         
-          "7"
+          "8"
         
           ,"15"
         
@@ -61,7 +61,7 @@
         
           ,{
             "name": "未分類",
-            "value": 6
+            "value": 7
           }
         
           ,{
@@ -167,11 +167,11 @@
         
           ,"Flask"
         
+          ,"Hugo"
+        
           ,"JavaScript"
         
           ,"Prometheus"
-        
-          ,"Hugo"
         
           ,"NestJS"
         
@@ -268,6 +268,11 @@
           }
         
           ,{
+            "name": "Hugo",
+            "value": 5
+          }
+        
+          ,{
             "name": "JavaScript",
             "value": 5
           }
@@ -275,11 +280,6 @@
           ,{
             "name": "Prometheus",
             "value": 5
-          }
-        
-          ,{
-            "name": "Hugo",
-            "value": 4
           }
         
           ,{
@@ -460,15 +460,15 @@
           true
           
         
+          ,"Hugo": 
+          true
+          
+        
           ,"JavaScript": 
           true
           
         
           ,"Prometheus": 
-          true
-          
-        
-          ,"Hugo": 
           true
           
         
