@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/Python/</link>
+    <description>Recent content in Python on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Sep 2020 13:38:11 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python收送log</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009251338/</link>
+      <pubDate>Fri, 25 Sep 2020 13:38:11 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009251338/</guid>
+      <description>&lt;p&gt;工作測試用的放上來自己參考&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>scikit-learn新手入門之決策樹篇</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009161132/</link>
+      <pubDate>Wed, 16 Sep 2020 11:32:49 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009161132/</guid>
+      <description>&lt;p&gt;身為資料分析&amp;amp;機器學習的超級新手，個人還是覺得實際操作一遍比理論更好理解，
+這次練習的是之前曾草草帶過的機械學習工具scikit-learn，主題就決定是決策樹了&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009151049/</link>
+      <pubDate>Tue, 15 Sep 2020 10:49:11 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009151049/</guid>
+      <description>&lt;p&gt;暫定是最後一個入門練習，這次使用Flask-WTF來做CSRF Protection，Flask-WTF是WTForms結合Flask用的module&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009141257/</link>
+      <pubDate>Mon, 14 Sep 2020 12:57:20 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009141257/</guid>
+      <description>&lt;p&gt;這次實作目標是導入Flask-Login，讓咱們的app受驗證機制保護&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Flask入門練習-CRUD篇2】製作簡單的CRUD</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009111635/</link>
+      <pubDate>Fri, 11 Sep 2020 16:35:19 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009111635/</guid>
+      <description>&lt;p&gt;經過了前面的練習，咱們的小App已經有了ORM，既然有了ORM，不做成CRUD(Create、Read、Update、Delete)怎麼行？&lt;/p&gt;
+&lt;p&gt;所以繼續動手做&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Python資料分析練習-入門篇2】自然語言處理與機器學習</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009091346/</link>
+      <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009091346/</guid>
+      <description>&lt;p&gt;這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>結巴分詞工具的簡單筆記</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009081138/</link>
+      <pubDate>Tue, 08 Sep 2020 11:38:55 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009081138/</guid>
+      <description>&lt;p&gt;這次來使用大名鼎鼎的&amp;quot;結巴中文分詞&amp;quot;了，應該是目前最好的的斷詞工具，之後的實作會用上所以稍微筆記一下&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Python資料分析練習-入門篇1】使用Scrapy爬取PTT貼文</title>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009070954/</link>
+      <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009070954/</guid>
+      <description>&lt;p&gt;從爬蟲開始的實作，分析資料前總得先有資料吧(;&amp;lsquo;∀&amp;rsquo;)&lt;/p&gt;
+&lt;p&gt;作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>從Scrapy開始玩爬蟲</title>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008281726/</link>
+      <pubDate>Fri, 28 Aug 2020 17:26:08 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008281726/</guid>
+      <description>&lt;p&gt;為了之後的學習方向做準備，來練習一下Scrapy，Scrapy就是處理response的工具，並從中取得自己需要的資料，&lt;/p&gt;
+&lt;p&gt;這次就做個最低限度的練習&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Flask入門練習-CRUD篇1】在Flask中導入ORM操作</title>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008271612/</link>
+      <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008271612/</guid>
+      <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>從今天開始學Flask</title>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008191354/</link>
+      <pubDate>Wed, 19 Aug 2020 13:54:41 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008191354/</guid>
+      <description>&lt;p&gt;以往用的framework都是Django，但總不可能靠一招就打天下…所以便來轉戰Flask了，畢竟在某些情境下，使用這種輕量化的framework會更合適&lt;/p&gt;
+&lt;p&gt;和Django不同，Flask不像Django這麼複雜，預設也只有最低限度的功能，也不像Django自帶ORM，
+因此是個自由度相當高的framework，接下來就開始動手練習&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Prometheus入門練習-自訂篇1】使用Prometheus client library自訂metrics</title>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008171709/</link>
+      <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008171709/</guid>
+      <description>&lt;p&gt;作為往後可能需要自訂Exporter的預習，就試著拿&lt;a href=&#34;https://prometheus.io/docs/instrumenting/clientlibs/&#34;&gt;Prometheus client library&lt;/a&gt;來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Django &#43; Channels部屬WebSocket簡易聊天室</title>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008100108/</link>
+      <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008100108/</guid>
+      <description>&lt;p&gt;製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，
+剛好可作為Message Queue及Web Socket的練習。&lt;/p&gt;
+&lt;p&gt;本篇Message Queue使用RabbitMQ，Framework使用Django，並且由Channels來實現Web Socket&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Django &#43; Celery進行異步處理</title>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007221111/</link>
+      <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007221111/</guid>
+      <description>&lt;p&gt;本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，
+目前只提供簡單的範例，不包含異步任務的情境應用&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Django API實作-入門篇2】在Django REST framework上導入JWT驗證</title>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007201501/</link>
+      <pubDate>Mon, 20 Jul 2020 15:01:14 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007201501/</guid>
+      <description>&lt;p&gt;承之前的範例，這次要用JSON Web Token驗證，並加上Cross-Origin Resource Sharing&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Django API實作-入門篇1】使用Django REST framework超高速部屬RESTful API</title>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007161628/</link>
+      <pubDate>Thu, 16 Jul 2020 16:28:26 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007161628/</guid>
+      <description>&lt;p&gt;這次作為複習，利用djangorestframework製作一個陽春的REST API
+何謂RESTful就不贅述了，直接開始實做&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Django超高速部屬CRUD</title>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007151013/</link>
+      <pubDate>Wed, 15 Jul 2020 10:14:15 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007151013/</guid>
+      <description>&lt;p&gt;這次僅是做一個超級簡易，能做到Create、Read、Update、Delete的Web App，&lt;br&gt;
+為了避免版面過長，此篇僅有陽春的Template View，並沒有做Filter及Pagenation…&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

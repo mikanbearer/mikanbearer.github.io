@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LibreNMS on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/LibreNMS/</link>
+    <description>Recent content in LibreNMS on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Oct 2020 14:29:51 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/LibreNMS/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用docker-compose輕鬆部屬監控工具</title>
+      <link>https://mikanbearer.github.io/posts/2020/10/202010191429/</link>
+      <pubDate>Mon, 19 Oct 2020 14:29:51 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/10/202010191429/</guid>
+      <description>&lt;p&gt;回味一下以前用過的工具們，唯一不同的就是在Docker host上安裝，因為速度很快很適合測試之用，用在正式環境的話稍微tuning一下也不是不能用&lt;/p&gt;
+&lt;p&gt;這次部屬的有Cacti、Nagios、LibreNMS，單獨部屬太空洞所以三個塞一篇&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

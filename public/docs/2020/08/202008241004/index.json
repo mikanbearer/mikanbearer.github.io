@@ -1,0 +1,32 @@
+{
+    "result" : 
+{
+    "title": "【Prometheus入門練習-自訂篇2】Prometheus + Vue.js + Echarts製作動態圖表",
+    "date": "2020-08-24 10:04",
+    "draft": "false",
+    "categories": 
+    [
+        
+            "WebDevelopment"
+        
+            , "Monitoring"
+        
+    ],
+    "tags":
+    [
+        
+            "Echarts"
+        
+            , "JavaScript"
+        
+            , "Prometheus"
+        
+            , "Vue.js"
+        
+    ],
+
+    "url": "https://mikanbearer.github.io/posts/2020/08/202008241004/",
+    "wordcount": "3762"
+}
+
+}

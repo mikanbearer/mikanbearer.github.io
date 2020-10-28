@@ -1,0 +1,154 @@
+<p>這次來使用大名鼎鼎的&quot;結巴中文分詞&quot;了，應該是目前最好的的斷詞工具，之後的實作會用上所以稍微筆記一下</p>
+<p>安裝</p>
+<pre><code>$ pip install jieba
+</code></pre><p><br></br></p>
+<h3 id="分詞">分詞</h3>
+<hr>
+<p><br></br>
+分詞可使用jieba.cut、jieba.cut_for_search，兩者皆會返回一個generator，</p>
+<p>而jieba.lcut、jieba.lcut_for_search返回的是list</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ipython
+
+In <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>: import jieba
+
+In <span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>: type<span style="color:#f92672">(</span>jieba.cut<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;&#39;</span>, cut_all<span style="color:#f92672">=</span>True<span style="color:#f92672">))</span>
+Out<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>: generator
+
+In <span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>: type<span style="color:#f92672">(</span>jieba.lcut<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;&#39;</span>, cut_all<span style="color:#f92672">=</span>True<span style="color:#f92672">))</span>
+Out<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>: generator
+
+</code></pre></div><p><br></br>
+三種模式的範例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> jieba
+
+seg_list <span style="color:#f92672">=</span> jieba<span style="color:#f92672">.</span>cut(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>, cut_all<span style="color:#f92672">=</span>True)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;【全模式】：&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/ &#39;</span><span style="color:#f92672">.</span>join(seg_list))
+<span style="color:#75715e">#【全模式】：在/ 虛/ 構/ 的/ 故事/ 當/ 中/ 尋/ 求真/ 實/ 感/ 的/ 人/ 腦/ 袋/ 一定/ 定有/ 問/ 題</span>
+
+
+seg_list <span style="color:#f92672">=</span> jieba<span style="color:#f92672">.</span>cut(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>, cut_all<span style="color:#f92672">=</span>False)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;【精確模式】：&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/ &#39;</span><span style="color:#f92672">.</span>join(seg_list))
+<span style="color:#75715e">#【精確模式】：在/ 虛構/ 的/ 故事/ 當中尋/ 求真/ 實感/ 的/ 人/ 腦袋/ 一定/ 有/ 問題</span>
+
+
+seg_list <span style="color:#f92672">=</span> jieba<span style="color:#f92672">.</span>cut_for_search(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;【搜尋引擎模式】：&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/ &#39;</span><span style="color:#f92672">.</span>join(seg_list))
+<span style="color:#75715e">#【搜尋引擎模式】：在/ 虛構/ 的/ 故事/ 當中尋/ 求真/ 實感/ 的/ 人/ 腦袋/ 一定/ 有/ 問題</span>
+</code></pre></div><p><br></br>
+使用隱藏式馬可夫模型（Hidden Markov Model；縮寫：HMM）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> jieba
+
+seg_list <span style="color:#f92672">=</span> jieba<span style="color:#f92672">.</span>cut(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>, cut_all<span style="color:#f92672">=</span>True, HMM<span style="color:#f92672">=</span>True)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;【全模式】：&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/ &#39;</span><span style="color:#f92672">.</span>join(seg_list))
+<span style="color:#75715e">#【全模式】：在/ 虛/ 構/ 的/ 故事/ 當/ 中/ 尋/ 求真/ 實/ 感/ 的/ 人/ 腦/ 袋/ 一定/ 定有/ 問/ 題</span>
+
+seg_list <span style="color:#f92672">=</span> jieba<span style="color:#f92672">.</span>cut(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>, cut_all<span style="color:#f92672">=</span>False, HMM<span style="color:#f92672">=</span>True)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;【精確模式】：&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/ &#39;</span><span style="color:#f92672">.</span>join(seg_list))
+<span style="color:#75715e">#【精確模式】：在/ 虛構/ 的/ 故事/ 當中尋/ 求真/ 實感/ 的/ 人/ 腦袋/ 一定/ 有/ 問題</span>
+
+seg_list <span style="color:#f92672">=</span> jieba<span style="color:#f92672">.</span>cut_for_search(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>, HMM<span style="color:#f92672">=</span>True)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;【搜尋引擎模式】：&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/ &#39;</span><span style="color:#f92672">.</span>join(seg_list))
+<span style="color:#75715e">#【搜尋引擎模式】：在/ 虛構/ 的/ 故事/ 當中尋/ 求真/ 實感/ 的/ 人/ 腦袋/ 一定/ 有/ 問題</span>
+</code></pre></div><p>雖然在這範例看不出分別
+<br></br>
+Paddle模式</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> jieba
+
+jieba<span style="color:#f92672">.</span>enable_paddle()
+seg_list <span style="color:#f92672">=</span> jieba<span style="color:#f92672">.</span>cut(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>, use_paddle<span style="color:#f92672">=</span>True)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;【Paddle模式】：&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/ &#39;</span><span style="color:#f92672">.</span>join(seg_list))
+<span style="color:#75715e">#【Paddle模式】：在/ 虛構/ 的/ 故事/ 當中尋/ 求真/ 實感/ 的/ 人/ 腦袋/ 一定/ 有/ 問題</span>
+</code></pre></div><p><br></br></p>
+<h3 id="自訂辭典">自訂辭典</h3>
+<hr>
+<p><br></br>
+載入檔案</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">jieba<span style="color:#f92672">.</span>load_userdict(<span style="color:#e6db74">&#39;userdict.txt&#39;</span>)
+</code></pre></div><p><br></br>
+調整單詞</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">seg_list <span style="color:#f92672">=</span> jieba<span style="color:#f92672">.</span>cut(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;【調整前】：&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/ &#39;</span><span style="color:#f92672">.</span>join(seg_list))
+<span style="color:#75715e">#【調整前】：在/ 虛構/ 的/ 故事/ 當中尋/ 求真/ 實感/ 的/ 人/ 腦袋/ 一定/ 有/ 問題</span>
+
+jieba<span style="color:#f92672">.</span>add_word(<span style="color:#e6db74">&#39;真實感&#39;</span>)
+seg_list <span style="color:#f92672">=</span> jieba<span style="color:#f92672">.</span>cut(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;【調整後】：&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/ &#39;</span><span style="color:#f92672">.</span>join(seg_list))
+<span style="color:#75715e">#【調整後】：在/ 虛構/ 的/ 故事/ 當中/ 尋求/ 真實感/ 的/ 人/ 腦袋/ 一定/ 有/ 問題</span>
+</code></pre></div><p><br></br></p>
+<h3 id="關鍵詞提取">關鍵詞提取</h3>
+<hr>
+<p><br></br>
+基於TF-IDF的關鍵字提取，公式就不提了…看了頭疼(´；ω；`)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> jieba <span style="color:#f92672">import</span> analyse <span style="color:#66d9ef">as</span> anls
+
+s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;觀自在菩薩。行深般若波羅蜜多時。照見五蘊皆空。度一切苦厄。舍利子。色不異空。空不異色。色即是空。空即是色。受想行識。亦復如是。舍利子。是諸法空相。不生不滅。不垢不淨。不增不減。是故空中無色。無受想行識。無眼耳鼻舌身意。無色聲香味觸法。無眼界。乃至無意識界。無無明。亦無無明盡。乃至無老死。亦無老死盡。無苦集滅道。無智亦無得。以無所得故。菩提薩埵。依般若波羅蜜多故。心無罣礙。無罣礙故。無有恐怖。遠離顛倒夢想。究竟涅槃。三世諸佛。依般若波羅蜜多故。得阿耨多羅三藐三菩提。故知般若波羅蜜多。是大神咒。是大明咒。是無上咒。是無等等咒。能除一切苦。真實不虛。故說般若波羅蜜多咒。即說咒曰。揭諦揭諦。波羅揭諦。波羅僧揭諦。菩提薩婆訶。&#39;</span>
+
+<span style="color:#66d9ef">for</span> x, w <span style="color:#f92672">in</span> anls<span style="color:#f92672">.</span>extract_tags(s, topK<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, withWeight<span style="color:#f92672">=</span>True):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> (x, w))
+
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">波羅蜜 0.6792481535738636
+</span><span style="color:#e6db74">般若 0.5544058480443181
+</span><span style="color:#e6db74">揭諦 0.5433985228590908
+</span><span style="color:#e6db74">菩提 0.31302882206863636
+</span><span style="color:#e6db74">行識 0.2716992614295454
+</span><span style="color:#e6db74">無無明 0.2716992614295454
+</span><span style="color:#e6db74">舍利子 0.25763018851136366
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div><p><br></br>
+基於Text rank的關鍵字提取，原理參照<a href="http://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf">這裡</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#66d9ef">for</span> x, w <span style="color:#f92672">in</span> anls<span style="color:#f92672">.</span>textrank(s, withWeight<span style="color:#f92672">=</span>True):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> (x, w))
+
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">行識 1.0
+</span><span style="color:#e6db74">菩提 0.7557609562914026
+</span><span style="color:#e6db74">老死 0.6746173110357283
+</span><span style="color:#e6db74">揭諦 0.6746173110357283
+</span><span style="color:#e6db74">諸法 0.6294985968338874
+</span><span style="color:#e6db74">空相 0.6259970709534944
+</span><span style="color:#e6db74">觀自 0.5081817230893458
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div><p><br></br></p>
+<h3 id="詞性標註">詞性標註</h3>
+<hr>
+<p><br></br>
+標註詞性的範例如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> jieba <span style="color:#f92672">import</span> posseg
+
+result <span style="color:#f92672">=</span> posseg<span style="color:#f92672">.</span>cut(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>)
+
+<span style="color:#66d9ef">for</span> word, flag <span style="color:#f92672">in</span> result:
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;{0} {1}&#34;</span><span style="color:#f92672">.</span>format(word, flag))
+
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">在 p
+</span><span style="color:#e6db74">虛構 n
+</span><span style="color:#e6db74">的 uj
+</span><span style="color:#e6db74">故事 n
+</span><span style="color:#e6db74">當中 s
+</span><span style="color:#e6db74">尋 v
+</span><span style="color:#e6db74">求真 nz
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div><p><br></br></p>
+<h3 id="返回起始位置">返回起始位置</h3>
+<hr>
+<p><br></br></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> jieba <span style="color:#f92672">import</span> tokenize
+
+result <span style="color:#f92672">=</span> tokenize(<span style="color:#e6db74">&#39;在虛構的故事當中尋求真實感的人腦袋一定有問題&#39;</span>)
+
+<span style="color:#66d9ef">for</span> tk <span style="color:#f92672">in</span> result:
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;word: {0} </span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74"> start: {1} </span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74"> end: {2}&#34;</span><span style="color:#f92672">.</span>format(tk[<span style="color:#ae81ff">0</span>],tk[<span style="color:#ae81ff">1</span>],tk[<span style="color:#ae81ff">2</span>]))
+
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">word: 在 		 start: 0 		 end: 1
+</span><span style="color:#e6db74">word: 虛構 		 start: 1 		 end: 3
+</span><span style="color:#e6db74">word: 的 		 start: 3 		 end: 4
+</span><span style="color:#e6db74">word: 故事 		 start: 4 		 end: 6
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div>

@@ -1,0 +1,142 @@
+<p>這次實作目標是導入Flask-Login，讓咱們的app受驗證機制保護</p>
+<p>完成的source code放在<a href="https://github.com/mikanbearer/flask_crud_example/releases/tag/append_login_page">這裡</a></p>
+<p>首先下載Flask-Login</p>
+<pre><code>$ pip install Flask-Login
+</code></pre><p><br></br>
+因為原本測試的model就叫username了，為了避免混淆，login的user叫admin</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.py" data-lang=":app/app.py"><span style="color:#f92672">import</span> flask_login
+
+<span style="color:#f92672">...</span>
+
+login_manager <span style="color:#f92672">=</span> flask_login<span style="color:#f92672">.</span>LoginManager()
+login_manager<span style="color:#f92672">.</span>init_app(app)
+
+app<span style="color:#f92672">.</span>secret_key <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;_5#y2L&#34;F4Q8z</span><span style="color:#ae81ff">\n\xec</span><span style="color:#e6db74">]/&#39;</span>
+
+<span style="color:#75715e">#測試用的帳號</span>
+admins <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;testadmin&#39;</span>: {<span style="color:#e6db74">&#39;password&#39;</span>: <span style="color:#e6db74">&#39;123&#39;</span>}}
+
+<span style="color:#75715e">#繼承自UserMixin</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Admin</span>(flask_login<span style="color:#f92672">.</span>UserMixin):
+    <span style="color:#66d9ef">pass</span>
+
+
+<span style="color:#75715e">#存放session用</span>
+<span style="color:#a6e22e">@login_manager.user_loader</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">user_loader</span>(admin_name):
+    <span style="color:#66d9ef">if</span> admin_name <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> admins:
+        <span style="color:#66d9ef">return</span>
+
+    admin <span style="color:#f92672">=</span> Admin()
+    admin<span style="color:#f92672">.</span>id <span style="color:#f92672">=</span> admin_name
+    <span style="color:#66d9ef">return</span> admin
+
+
+    admin <span style="color:#f92672">=</span> Admin()
+    admin<span style="color:#f92672">.</span>id <span style="color:#f92672">=</span> admin_name
+    admin<span style="color:#f92672">.</span>is_authenticated <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>form[<span style="color:#e6db74">&#39;password&#39;</span>] <span style="color:#f92672">==</span> admins[admin_name][<span style="color:#e6db74">&#39;password&#39;</span>]
+
+    <span style="color:#66d9ef">return</span> admin
+</code></pre></div><p>這樣login_manager就能動了
+<br></br>
+接下來加上decorator，就能測試動作了</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/&#39;</span>)
+<span style="color:#a6e22e">@flask_login.login_required</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">list</span>():
+    users <span style="color:#f92672">=</span> User<span style="color:#f92672">.</span>query<span style="color:#f92672">.</span>all()
+    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;list.html&#39;</span>, users<span style="color:#f92672">=</span>users)
+</code></pre></div><p><br></br>
+<img style="display:inline;" width="200" src="1.png"></p>
+<p><br></br>
+可以使用@unauthorized_handler這個decorator，在Unauthorized時做自己想要的動作，比如redirect，下列的範例是導向回login</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.py" data-lang=":app/app.py"><span style="color:#a6e22e">@app.login_manager.unauthorized_handler</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">unauth</span>():
+    <span style="color:#66d9ef">return</span> redirect(url_for(<span style="color:#e6db74">&#39;login&#39;</span>))
+</code></pre></div><p><br></br>
+接下來增加一個新的view，就是剛才提到的login</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.py" data-lang=":app/app.py"><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/login&#39;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;GET&#39;</span>, <span style="color:#e6db74">&#39;POST&#39;</span>])
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">login</span>():
+    <span style="color:#66d9ef">if</span> request<span style="color:#f92672">.</span>method <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;POST&#39;</span>:
+        admin_name <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>form[<span style="color:#e6db74">&#39;user&#39;</span>]
+        <span style="color:#66d9ef">try</span>:
+            <span style="color:#66d9ef">if</span> request<span style="color:#f92672">.</span>form[<span style="color:#e6db74">&#39;password&#39;</span>] <span style="color:#f92672">==</span> admins[admin_name][<span style="color:#e6db74">&#39;password&#39;</span>]:
+                admin <span style="color:#f92672">=</span> Admin()
+                admin<span style="color:#f92672">.</span>id <span style="color:#f92672">=</span> admin_name
+                flask_login<span style="color:#f92672">.</span>login_user(admin)
+                <span style="color:#66d9ef">return</span> redirect(url_for(<span style="color:#e6db74">&#39;list&#39;</span>))
+        <span style="color:#66d9ef">except</span>:
+            <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;login.html&#39;</span>, error<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Login Failed&#39;</span>)
+    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;login.html&#39;</span>)
+</code></pre></div><p>這樣子驗證不過的話，同樣會回到login，成功的話則重新導向到list
+<br></br></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/template/login.html" data-lang=":app/template/login.html"><span style="color:#75715e">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+  &lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;Flask CRUD Example&lt;/<span style="color:#f92672">title</span>&gt;
+  &lt;/<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">body</span>&gt;
+   &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container mt-4&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-12&#34;</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card&#34;</span>&gt;
+                &lt;<span style="color:#f92672">h5</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-header&#34;</span>&gt;
+                    Login
+                &lt;/<span style="color:#f92672">h5</span>&gt;
+                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+                    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>&gt;
+                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-group&#34;</span>&gt;
+                            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Username&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span>&gt;
+                        &lt;/<span style="color:#f92672">div</span>&gt;
+                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-group&#34;</span>&gt;
+                            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Password&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span>&gt;
+                        &lt;/<span style="color:#f92672">div</span>&gt;
+                        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Submit&lt;/<span style="color:#f92672">button</span>&gt;
+                    &lt;/<span style="color:#f92672">form</span>&gt;
+                    {% if error %}
+                        {{ error }}
+                    {% endif %}
+                &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;/<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://code.jquery.com/jquery-3.2.1.slim.min.js&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>到這裡login就算完成了
+<br></br>
+接下來就是logout，這次做簡單一點，就直接導向回login</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/app.py" data-lang=":app/app.py"><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/logout&#39;</span>)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">logout</span>():
+    flask_login<span style="color:#f92672">.</span>logout_user()
+    <span style="color:#66d9ef">return</span> redirect(url_for(<span style="color:#e6db74">&#39;login&#39;</span>))
+</code></pre></div><p><br></br>
+接著在base.html上增加logout的按鈕</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:app/templates/base.html" data-lang=":app/templates/base.html">    &lt;/<span style="color:#f92672">ul</span>&gt;
+<span style="display:block;width:100%;background-color:#3c3d38">    {% if current_user.is_authenticated %}
+</span><span style="display:block;width:100%;background-color:#3c3d38">      Hi, {{ current_user.id }}!
+</span><span style="display:block;width:100%;background-color:#3c3d38">    &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary btn-sm ml-2&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">{{</span> <span style="color:#a6e22e">url_for</span><span style="color:#960050;background-color:#1e0010">(&#39;</span><span style="color:#a6e22e">logout</span><span style="color:#960050;background-color:#1e0010">&#39;)</span> <span style="color:#960050;background-color:#1e0010">}}</span>&gt;Logout&lt;/<span style="color:#f92672">a</span>&gt;
+</span><span style="display:block;width:100%;background-color:#3c3d38">    {% endif %}
+</span>  &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">nav</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+再適當的用@flask_login.login_required來修飾其他的頁面，就能看看成果了</p>
+<img style="display:inline;" width="200" src="2.png">
+<img style="display:inline;" width="200" src="3.png">
+<p>其實還不算太難看吧？</p>

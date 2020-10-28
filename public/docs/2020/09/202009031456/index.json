@@ -1,0 +1,28 @@
+{
+    "result" : 
+{
+    "title": "使用Ansible部屬Docker Swarm",
+    "date": "2020-09-03 14:56",
+    "draft": "false",
+    "categories": 
+    [
+        
+            "Provisioning"
+        
+            , "Opration"
+        
+    ],
+    "tags":
+    [
+        
+            "Ansible"
+        
+            , "Docker"
+        
+    ],
+
+    "url": "https://mikanbearer.github.io/posts/2020/09/202009031456/",
+    "wordcount": "1069"
+}
+
+}

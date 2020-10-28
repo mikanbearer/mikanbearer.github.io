@@ -1,5 +1,5 @@
 ---
-layout: "charts_data"
+layout: "chart_data"
 outputs:
 - json
 ---

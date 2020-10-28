@@ -1,0 +1,1052 @@
+<p>利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，
+往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…</p>
+<p>參考資料[https://qiita.com/maisuto/items/4671ded9ec1ff329ca98(https://qiita.com/maisuto/items/4671ded9ec1ff329ca98)</p>
+<p>source與demo都放在github了
+<a href="https://github.com/mikanbearer/vue_login_example">https://github.com/mikanbearer/vue_login_example</a></p>
+<p>這次預計會做成這樣的感覺：
+　　</p>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+  </p>
+<table>
+<thead>
+<tr>
+<th>App　　　　　　　　</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>　　　　　　　　　　</td>
+</tr>
+<tr>
+<td>　　　Login　　　　</td>
+</tr>
+<tr>
+<td>　　　　　　　　　　</td>
+</tr>
+<tr>
+<td>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+</td>
+</tr>
+<tr>
+<td>　　　　　↓</td>
+</tr>
+<tr>
+<td>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+</td>
+</tr>
+<tr>
+<td>App　　　　　　　　</td>
+</tr>
+<tr>
+<td>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</td>
+</tr>
+<tr>
+<td>Home</td>
+</tr>
+<tr>
+<td>　　　</td>
+</tr>
+<tr>
+<td>　　　</td>
+</tr>
+<tr>
+<td>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+</td>
+</tr>
+</tbody>
+</table>
+<p>首先是環境，第一步就是偷懶使用create</p>
+<pre><code>$ vue create vue_login_example
+</code></pre><p>package大概會是這樣的</p>
+<pre><code>$ npm version
+{
+  vue_login_example: '0.1.0',
+  npm: '6.13.4',
+  ares: '1.15.0',
+  brotli: '1.0.7',
+  cldr: '35.1',
+  http_parser: '2.9.3',
+  icu: '64.2',
+  llhttp: '2.0.4',
+  modules: '72',
+  napi: '5',
+  nghttp2: '1.40.0',
+  node: '12.16.1',
+  openssl: '1.1.1d',
+  tz: '2019c',
+  unicode: '12.1',
+  uv: '1.34.0',
+  v8: '7.8.279.23-node.31',
+  zlib: '1.2.11'
+}
+</code></pre><p>加入vuetify</p>
+<pre><code>$ vue add vuetify
+</code></pre><p>npm下載其他必要的包</p>
+<pre><code>$ npm install --save vue-router axios vuex vuex-persistedstate
+</code></pre><p>先建立好需要的檔案，樹狀圖會像以下這樣(☆為新增)</p>
+<pre><code>src
+ │  App.vue
+ │  main.js
+ │
+ ├─assets
+ │      logo.png
+ │      logo.svg
+ │
+ ├─components 
+ │      Bar.vue ★
+ │      Foo.vue ★
+ │      HelloWorld.vue
+ │      Home.vue ★
+ │      Login.vue ★
+ │
+ ├─plugins
+ │      vuetify.js
+ │
+ ├─router ★
+ │      index.js ★
+ │
+ └─store ★
+     │  index.js ★
+     │
+     └─modules ★
+             api.js ★
+             auth.js ★
+</code></pre><p>首先是main.js，先import稍後加入的router及store</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:main.js" data-lang=":main.js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./App.vue&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">vuetify</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./plugins/vuetify&#39;</span>
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">router</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@/router&#39;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">store</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@/store&#39;</span>
+</span>
+<span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">productionTip</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+
+<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+  <span style="color:#a6e22e">vuetify</span>,
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">router</span>,
+</span><span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#a6e22e">store</span>,
+</span>  <span style="color:#a6e22e">render</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">h</span> =&gt; <span style="color:#a6e22e">h</span>(<span style="color:#a6e22e">App</span>)
+}).<span style="color:#a6e22e">$mount</span>(<span style="color:#e6db74">&#39;#app&#39;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>再來是App.vue，砍到乾乾淨淨留下router-view</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:App.vue" data-lang=":App.vue">&lt;<span style="color:#f92672">template</span>&gt;
+  &lt;<span style="color:#f92672">v-app</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+    &lt;<span style="color:#f92672">router-view</span>&gt;<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/router-view&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-app&gt;</span>
+&lt;/<span style="color:#f92672">template</span>&gt;
+
+
+&lt;<span style="color:#f92672">script</span>&gt;
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;App&#39;</span>,
+}
+&lt;/<span style="color:#f92672">script</span>&gt;
+
+&lt;<span style="color:#f92672">style</span>&gt;
+&lt;/<span style="color:#f92672">style</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>建立名為:router的目錄，並開一個叫index.js的檔案，使用beforeEach，在從store取得狀態來決定是否重新導向回login</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:router/index.js" data-lang=":router/index.js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Router</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue-router&#39;</span>
+
+<span style="color:#75715e">// components
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Home</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@/components/Home.vue&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Login</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@/components/Login.vue&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Foo</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@/components/Foo.vue&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Bar</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@/components/Bar.vue&#39;</span>
+
+<span style="color:#75715e">// store
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">store</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@/store&#39;</span>
+
+<span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">Router</span>)
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span>  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Router</span>({
+    <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;history&#39;</span>,
+    <span style="color:#a6e22e">routes</span><span style="color:#f92672">:</span> [
+      {
+        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/&#39;</span>,
+        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Home&#39;</span>,
+        <span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Home</span>,
+        <span style="color:#a6e22e">children</span><span style="color:#f92672">:</span> [
+          {
+            <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Foo&#39;</span>,
+            <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;foo&#39;</span>,
+            <span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Foo</span>
+          },
+          {
+            <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bar&#39;</span>,
+            <span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Bar</span>
+          }
+        ]
+      },
+      {
+        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/login&#39;</span>,
+        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Login&#39;</span>,
+        <span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Login</span>,
+        <span style="color:#a6e22e">meta</span><span style="color:#f92672">:</span> {
+          <span style="color:#a6e22e">noNeedLogin</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+        },
+      },
+    ],
+  })
+  
+  
+<span style="color:#75715e">// navigation guard
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">beforeEach</span>((<span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">next</span>) =&gt; {
+  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">to</span>.<span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">noNeedLogin</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">isLoggedIn</span>) <span style="color:#a6e22e">next</span>({ <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/login&#39;</span> })
+  <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">next</span>();
+});
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">router</span>;
+</code></pre></td></tr></table>
+</div>
+</div><p>建立名為store的目錄，並開一個叫index.js的檔案</p>
+<p>由mutations來設定state，而actions則用來提供components來執行mutations，getters則為一個能讓components取得state的function</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:store/index.js" data-lang=":store/index.js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vuex</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vuex&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">client</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@/store/modules/api&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">createPersistedState</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vuex-persistedstate&#39;</span>
+<span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">Vuex</span>)
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">debug</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NODE_ENV</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;production&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">isLoggedIn</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+}
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mutations</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">loggedIn</span> (<span style="color:#a6e22e">state</span>, <span style="color:#a6e22e">token</span>) {
+    <span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">isLoggedIn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+    <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">defaults</span>.<span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">common</span>[<span style="color:#e6db74">&#39;Authorization&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">`JWT </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">token</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
+    <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">setItem</span>(<span style="color:#e6db74">&#39;token&#39;</span>, <span style="color:#a6e22e">token</span>)
+  },
+  <span style="color:#a6e22e">loggedOut</span> (<span style="color:#a6e22e">state</span>) {
+    <span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">isLoggedIn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+    <span style="color:#66d9ef">delete</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">defaults</span>.<span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">common</span>[<span style="color:#e6db74">&#39;Authorization&#39;</span>]
+    <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">clear</span>()
+  },
+}
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">actions</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">login</span> ({<span style="color:#a6e22e">commit</span>}, [<span style="color:#a6e22e">username</span>, <span style="color:#a6e22e">password</span>]) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">auth</span>.<span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">username</span>, <span style="color:#a6e22e">password</span>).<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">res</span> =&gt; {
+      <span style="color:#a6e22e">commit</span>(<span style="color:#e6db74">&#39;loggedIn&#39;</span>, <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">token</span>)
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>
+    })
+  },
+  <span style="color:#a6e22e">logout</span> ({<span style="color:#a6e22e">commit</span>}) {
+    <span style="color:#a6e22e">commit</span>(<span style="color:#e6db74">&#39;loggedOut&#39;</span>)
+  },
+  
+  <span style="color:#a6e22e">tryLoggedIn</span> ({<span style="color:#a6e22e">commit</span>}) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">&#39;token&#39;</span>)
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">token</span>) {
+      <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">auth</span>.<span style="color:#a6e22e">verify</span>(<span style="color:#a6e22e">token</span>).<span style="color:#a6e22e">then</span>(
+        () =&gt; {
+          <span style="color:#a6e22e">commit</span>(<span style="color:#e6db74">&#39;loggedIn&#39;</span>, <span style="color:#a6e22e">token</span>)
+        }, 
+        () =&gt; {
+          <span style="color:#a6e22e">commit</span>(<span style="color:#e6db74">&#39;loggedOut&#39;</span>)
+        }
+      )
+    }
+  },
+}
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getters</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">isLoggedIn</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">state</span> =&gt; {
+    <span style="color:#66d9ef">return</span> () =&gt; <span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">isLoggedIn</span>
+  }
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vuex</span>.<span style="color:#a6e22e">Store</span>({
+  <span style="color:#a6e22e">strict</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">debug</span>,
+  <span style="color:#a6e22e">actions</span>,
+  <span style="color:#a6e22e">getters</span>,
+  <span style="color:#a6e22e">mutations</span>,
+  <span style="color:#a6e22e">state</span>,
+  <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">createPersistedState</span>({
+    <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;example&#39;</span>,
+    <span style="color:#a6e22e">storage</span><span style="color:#f92672">:</span> window.<span style="color:#a6e22e">sessionStorage</span>
+  })]
+})
+</code></pre></td></tr></table>
+</div>
+</div><p>為了避免store太長，拆出兩個小檔案，分別是：
+建立axios object的api.js</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:store/modules/api.js" data-lang=":store/modules/api.js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">axios</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;axios&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">auth</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./auth&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">create</span>({
+  <span style="color:#a6e22e">baseURL</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8000/api&#39;</span>,
+})
+
+<span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">auth</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">auth</span>(<span style="color:#a6e22e">client</span>)
+
+<span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">install</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">Vue</span>) =&gt; {
+  Object.<span style="color:#a6e22e">defineProperty</span>(<span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">prototype</span>, <span style="color:#e6db74">&#39;$request&#39;</span>, {
+    <span style="color:#a6e22e">get</span> () {
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">client</span>
+    },
+  })
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">client</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>還有處理request data的auth.js</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:store/modules/auth.js" data-lang=":store/modules/auth.js"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> (<span style="color:#a6e22e">cli</span>) =&gt; {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">login</span> (<span style="color:#a6e22e">username</span>, <span style="color:#a6e22e">password</span>) {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">params</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">URLSearchParams</span>();
+        <span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;username&#39;</span>, <span style="color:#a6e22e">username</span>);
+        <span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;password&#39;</span>, <span style="color:#a6e22e">password</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cli</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/api-token-auth/&#39;</span>, <span style="color:#a6e22e">params</span>)
+      },
+      <span style="color:#a6e22e">verify</span> (<span style="color:#a6e22e">token</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cli</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/api-token-verify/&#39;</span>, {<span style="color:#a6e22e">token</span>})
+      },
+    }
+  }
+  
+</code></pre></td></tr></table>
+</div>
+</div><p>接下來是components的部分，
+Login和Home主要是參考這裡：</p>
+<p><a href="https://vuetifyjs.com/en/getting-started/pre-made-layouts/"><a href="https://vuetifyjs.com/en/getting-started/pre-made-layouts/">https://vuetifyjs.com/en/getting-started/pre-made-layouts/</a></a></p>
+<p>首先是最主要的Login.vue</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:components/Login.vue" data-lang=":components/Login.vue">&lt;<span style="color:#f92672">template</span>&gt;
+  &lt;<span style="color:#f92672">v-app</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;login&#34;</span>&gt;
+    &lt;<span style="color:#f92672">v-main</span>&gt;
+      &lt;<span style="color:#f92672">v-container</span>
+        <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fill-height&#34;</span>
+        <span style="color:#a6e22e">fluid</span>
+      &gt;
+        &lt;<span style="color:#f92672">v-row</span>
+          <span style="color:#a6e22e">align</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;center&#34;</span>
+          <span style="color:#a6e22e">justify</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;center&#34;</span>
+        &gt;
+          &lt;<span style="color:#f92672">v-col</span>
+            <span style="color:#a6e22e">cols</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;12&#34;</span>
+            <span style="color:#a6e22e">sm</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;8&#34;</span>
+            <span style="color:#a6e22e">md</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;4&#34;</span>
+          &gt;
+            &lt;<span style="color:#f92672">v-card</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;elevation-12&#34;</span>&gt;
+              &lt;<span style="color:#f92672">v-toolbar</span>
+                <span style="color:#a6e22e">color</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;secondary&#34;</span>
+                <span style="color:#a6e22e">dark</span>
+                <span style="color:#a6e22e">flat</span>
+              &gt;
+                &lt;<span style="color:#f92672">v-toolbar-title</span>&gt;<span style="color:#a6e22e">Login</span> <span style="color:#a6e22e">form</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-toolbar-title&gt;</span>
+              <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-toolbar&gt;</span>
+              &lt;<span style="color:#f92672">v-card-text</span>&gt;
+                &lt;<span style="color:#f92672">v-form</span>&gt;
+                  &lt;<span style="color:#f92672">v-text-field</span>
+                    <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Username&#34;</span>
+                    <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span>
+                    <span style="color:#a6e22e">prepend</span><span style="color:#f92672">-icon</span><span style="color:#960050;background-color:#1e0010">=&#34;</span><span style="color:#a6e22e">mdi</span><span style="color:#f92672">-account</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
+                    <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
+                    <span style="color:#f92672">:rules</span><span style="color:#e6db74">=&#34;rules.usernameRules&#34;</span>
+                    <span style="color:#f92672">v-model</span><span style="color:#e6db74">=&#34;username&#34;
+</span><span style="color:#e6db74">                  &gt;&lt;/v-text-field&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">                  &lt;v-text-field
+</span><span style="color:#e6db74">                    id=&#34;password&#34;
+</span><span style="color:#e6db74">                    label=&#34;Password&#34;
+</span><span style="color:#e6db74">                    name=&#34;password&#34;
+</span><span style="color:#e6db74">                    prepend-icon=&#34;mdi-lock&#34;
+</span><span style="color:#e6db74">                    type=&#34;password&#34;
+</span><span style="color:#e6db74">                    :rules=&#34;rules.passwordRules&#34;
+</span><span style="color:#e6db74">                    v-model=&#34;password&#34;
+</span><span style="color:#e6db74">                  &gt;&lt;/v-text-field&gt;
+</span><span style="color:#e6db74">                &lt;/v-form&gt;
+</span><span style="color:#e6db74">              &lt;/v-card-text&gt;
+</span><span style="color:#e6db74">              &lt;v-card-actions&gt;
+</span><span style="color:#e6db74">                &lt;v-spacer&gt;&lt;/v-spacer&gt;
+</span><span style="color:#e6db74">                &lt;v-btn color=&#34;primary&#34; @click=&#34;submit&#34; :loading=&#34;loading&#34; </span><span style="color:#f92672">:disabled</span><span style="color:#e6db74">=&#34;disabled&#34;</span>&gt;<span style="color:#a6e22e">Login</span><span style="color:#960050;background-color:#1e0010">&lt;/</span><span style="color:#f92672">v-btn</span>&gt;
+              <span style="color:#960050;background-color:#1e0010">&lt;/</span><span style="color:#a6e22e">v</span><span style="color:#f92672">-card-actions</span>&gt;
+            <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-card&gt;</span>
+          <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-col&gt;</span>
+        <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-row&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-container&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-main&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-app&gt;</span>
+&lt;/<span style="color:#f92672">template</span>&gt;
+
+&lt;<span style="color:#f92672">script</span>&gt;
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">mapActions</span>, <span style="color:#a6e22e">mapGetters</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vuex&#39;</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Login&#39;</span>,
+  <span style="color:#a6e22e">data</span> () {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">valid</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+      <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>,
+      <span style="color:#a6e22e">password</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>,
+      <span style="color:#a6e22e">loading</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+      <span style="color:#a6e22e">disabled</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+      <span style="color:#a6e22e">showPassword</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+      <span style="color:#a6e22e">nonFieldErrors</span><span style="color:#f92672">:</span> [],
+      <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">usernameRules</span><span style="color:#f92672">:</span> [
+         <span style="color:#a6e22e">v</span> =&gt; <span style="color:#f92672">!!</span><span style="color:#a6e22e">v</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;username is required&#39;</span>,
+        ],
+        <span style="color:#a6e22e">passwordRules</span><span style="color:#f92672">:</span> [
+         <span style="color:#a6e22e">v</span> =&gt; <span style="color:#f92672">!!</span><span style="color:#a6e22e">v</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;password is required&#39;</span>,
+        ],
+      }
+    }
+  },
+  <span style="color:#a6e22e">computed</span><span style="color:#f92672">:</span> {
+    ...<span style="color:#a6e22e">mapGetters</span>([<span style="color:#e6db74">&#39;isLoggedIn&#39;</span>]),
+    <span style="color:#a6e22e">UserPassField</span>() {<span style="color:#66d9ef">return</span> [<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">username</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">password</span>]}
+  },
+
+  <span style="color:#a6e22e">watch</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">UserPassField</span>(<span style="color:#a6e22e">value</span>) {
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">value</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">value</span>[<span style="color:#ae81ff">1</span>]) {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">disabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+      }
+    }
+  },
+
+  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+    ...<span style="color:#a6e22e">mapActions</span>([<span style="color:#e6db74">&#39;login&#39;</span>]),
+    <span style="color:#a6e22e">submit</span> () {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loading</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+      <span style="color:#a6e22e">setTimeout</span>(() =&gt; {<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">loading</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>}, <span style="color:#ae81ff">100000</span>); 
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nonFieldErrors</span> <span style="color:#f92672">=</span> []
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">login</span>([<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">username</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">password</span>]).<span style="color:#a6e22e">then</span>(
+          () =&gt; <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#39;/&#39;</span>), 
+          <span style="color:#a6e22e">err</span> =&gt; {
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>)
+              <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nonFieldErrors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">nonFieldErrors</span>
+              }
+              )
+    },
+  },
+}
+&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>登入後的Home.vue</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:components/Home.vue" data-lang=":components/Home.vue">&lt;<span style="color:#f92672">template</span>&gt;
+  &lt;<span style="color:#f92672">v-app</span>&gt;
+    &lt;<span style="color:#f92672">v-navigation-drawer</span>
+      <span style="color:#f92672">v-model</span><span style="color:#e6db74">=&#34;drawer&#34;
+</span><span style="color:#e6db74">      app
+</span><span style="color:#e6db74">      clipped
+</span><span style="color:#e6db74">    &gt;
+</span><span style="color:#e6db74">      &lt;v-list dense&gt;
+</span><span style="color:#e6db74">        &lt;v-list-item link to=&#34;foo&#34;&gt;
+</span><span style="color:#e6db74">          &lt;v-list-item-action&gt;
+</span><span style="color:#e6db74">            &lt;v-icon&gt;mdi-wrench&lt;/v-icon&gt;
+</span><span style="color:#e6db74">          &lt;/v-list-item-action&gt;
+</span><span style="color:#e6db74">          &lt;v-list-item-content&gt;
+</span><span style="color:#e6db74">            &lt;v-list-item-title&gt;Foo&lt;/v-list-item-title&gt;
+</span><span style="color:#e6db74">          &lt;/v-list-item-content&gt;
+</span><span style="color:#e6db74">        &lt;/v-list-item&gt;
+</span><span style="color:#e6db74">        &lt;v-list-item link to=&#34;bar&#34;&gt;
+</span><span style="color:#e6db74">          &lt;v-list-item-action&gt;
+</span><span style="color:#e6db74">            &lt;v-icon&gt;mdi-wrench&lt;/v-icon&gt;
+</span><span style="color:#e6db74">          &lt;/v-list-item-action&gt;
+</span><span style="color:#e6db74">          &lt;v-list-item-content&gt;
+</span><span style="color:#e6db74">            &lt;v-list-item-title&gt;Bar&lt;/v-list-item-title&gt;
+</span><span style="color:#e6db74">          &lt;/v-list-item-content&gt;
+</span><span style="color:#e6db74">        &lt;/v-list-item&gt;
+</span><span style="color:#e6db74">      &lt;/v-list&gt;
+</span><span style="color:#e6db74">    &lt;/v-navigation-drawer&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &lt;v-app-bar
+</span><span style="color:#e6db74">      app
+</span><span style="color:#e6db74">      clipped-left
+</span><span style="color:#e6db74">    &gt;
+</span><span style="color:#e6db74">      &lt;v-app-bar-nav-icon @click.stop=&#34;drawer = !drawer&#34;&gt;&lt;/v-app-bar-nav-icon&gt;
+</span><span style="color:#e6db74">      &lt;v-toolbar-title&gt;Application&lt;/v-toolbar-title&gt;
+</span><span style="color:#e6db74">      &lt;v-spacer&gt;&lt;/v-spacer&gt;
+</span><span style="color:#e6db74">      &lt;v-btn color=&#34;accent&#34; @click=&#34;logout&#34;&gt;Logout&lt;/v-btn&gt;
+</span><span style="color:#e6db74">    &lt;/v-app-bar&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &lt;v-main&gt;
+</span><span style="color:#e6db74">      &lt;v-container
+</span><span style="color:#e6db74">        class=&#34;fill-height&#34;
+</span><span style="color:#e6db74">        fluid
+</span><span style="color:#e6db74">      &gt;
+</span><span style="color:#e6db74">        &lt;router-view&gt;&lt;/router-view&gt;
+</span><span style="color:#e6db74">      &lt;/v-container&gt;
+</span><span style="color:#e6db74">    &lt;/v-main&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &lt;v-footer app&gt;
+</span><span style="color:#e6db74">      &lt;v-row justify=&#34;center&#34;</span>&gt;
+        &lt;<span style="color:#f92672">span</span>&gt;<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">copy</span>; {{ <span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">getFullYear</span>() }}&lt;/<span style="color:#f92672">span</span>&gt;
+      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-row&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-footer&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-app&gt;</span>
+&lt;/<span style="color:#f92672">template</span>&gt;
+
+
+&lt;<span style="color:#f92672">script</span>&gt;
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">mapGetters</span>, <span style="color:#a6e22e">mapActions</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vuex&#39;</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> () =&gt; ({
+    <span style="color:#a6e22e">drawer</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>,
+    }),
+
+  <span style="color:#a6e22e">computed</span><span style="color:#f92672">:</span> {
+    ...<span style="color:#a6e22e">mapGetters</span>([<span style="color:#e6db74">&#39;isLoggedIn&#39;</span>]),
+    <span style="color:#a6e22e">state</span>() {
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">isLoggedIn</span>()
+    },
+  },
+  
+  <span style="color:#a6e22e">created</span>() {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tryLoggedIn</span>()
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">startVerify</span>()
+  },
+
+  <span style="color:#a6e22e">destroyed</span>() {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">stopVerify</span>()
+  },
+
+  <span style="color:#a6e22e">watch</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">state</span>(<span style="color:#a6e22e">value</span>) {
+      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">value</span>) {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">logout</span>()
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#39;/login&#39;</span>)
+      }
+    }
+  },
+
+  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+    ...<span style="color:#a6e22e">mapActions</span>([<span style="color:#e6db74">&#39;tryLoggedIn&#39;</span>, <span style="color:#e6db74">&#39;logout&#39;</span>]),
+    <span style="color:#a6e22e">startVerify</span>() {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">verify</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setInterval</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tryLoggedIn</span>, <span style="color:#ae81ff">1000</span>)
+    },
+    <span style="color:#a6e22e">stopVerify</span>() {
+      <span style="color:#a6e22e">clearInterval</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">verify</span>)
+    },
+  },
+}
+&lt;/<span style="color:#f92672">script</span>&gt;
+
+&lt;<span style="color:#f92672">style</span>&gt;
+&lt;/<span style="color:#f92672">style</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>再來是demo nested route，大同小異的Foo</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:components/Foo.vue" data-lang=":components/Foo.vue">&lt;<span style="color:#f92672">template</span>&gt;
+  &lt;<span style="color:#f92672">v-card</span>
+    <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mx-auto&#34;</span>
+    <span style="color:#a6e22e">max</span><span style="color:#f92672">-width</span><span style="color:#960050;background-color:#1e0010">=&#34;</span><span style="color:#a6e22e">344</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
+    <span style="color:#a6e22e">outlined</span>
+  &gt;
+    &lt;<span style="color:#f92672">v-list-item</span> <span style="color:#a6e22e">three</span><span style="color:#f92672">-line</span>&gt;
+      &lt;<span style="color:#f92672">v-list-item-content</span>&gt;
+        &lt;<span style="color:#f92672">v-list-item-title</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;headline mb-1&#34;</span>&gt;<span style="color:#a6e22e">Foo</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-list-item-title&gt;</span>
+        &lt;<span style="color:#f92672">v-list-item-subtitle</span>&gt;<span style="color:#a6e22e">This</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">Foo</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-list-item-subtitle&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-list-item-content&gt;  </span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-list-item&gt;  </span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-card&gt;</span>
+&lt;/<span style="color:#f92672">template</span>&gt;
+
+&lt;<span style="color:#f92672">script</span>&gt;
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Foo&#39;</span>,
+}
+&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>還有Bar</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:components/Bar.vue" data-lang=":components/Bar.vue">&lt;<span style="color:#f92672">template</span>&gt;
+  &lt;<span style="color:#f92672">v-card</span>
+    <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mx-auto&#34;</span>
+    <span style="color:#a6e22e">max</span><span style="color:#f92672">-width</span><span style="color:#960050;background-color:#1e0010">=&#34;</span><span style="color:#a6e22e">344</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
+    <span style="color:#a6e22e">outlined</span>
+  &gt;
+    &lt;<span style="color:#f92672">v-list-item</span> <span style="color:#a6e22e">three</span><span style="color:#f92672">-line</span>&gt;
+      &lt;<span style="color:#f92672">v-list-item-content</span>&gt;
+        &lt;<span style="color:#f92672">v-list-item-title</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;headline mb-1&#34;</span>&gt;<span style="color:#a6e22e">Bar</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-list-item-title&gt;</span>
+        &lt;<span style="color:#f92672">v-list-item-subtitle</span>&gt;<span style="color:#a6e22e">This</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">Bar</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-list-item-subtitle&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-list-item-content&gt;  </span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-list-item&gt;  </span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-card&gt;</span>
+&lt;/<span style="color:#f92672">template</span>&gt;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bar&#39;</span>,
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>完成就可以run看看了，細部介紹後補</p>
+<pre><code>$ npm run serve
+</code></pre><img style="display:inline;" width="180" src="2.png">
+<img style="display:inline;" width="180" src="3.png">
+<img style="display:inline;" width="180" src="4.png">
+<img style="display:inline;" width="180" src="5.png">

@@ -1,0 +1,84 @@
+<p>想特地找個一個有自帶plugin的軟體練習一下幫助記憶，剛剛好是常常使用RabbitMQ！這次就來測試看看，當作實務運用的練習</p>
+<p><a href="https://github.com/rabbitmq/rabbitmq-prometheus">rabbitmq-prometheus的repository</a></p>
+<p>一樣求方便使用docker-compose，寫個陽春的Dockerfile會比較方便</p>
+<p>為了使用內建的pulgin，直接用3.8.0以後的image，並且RUN啟用的command</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> rabbitmq:3.8.6-management</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> rabbitmq-plugins enable rabbitmq_prometheus<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p><br></br>
+compose file增加port 15692</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:docker-compose.yml" data-lang=":docker-compose.yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">my-queue</span>:
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">rabbitmq</span>
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">./</span>
+</span>    <span style="color:#f92672">ports</span>:
+      - <span style="color:#e6db74">&#39;5672:5672&#39;</span>
+      - <span style="color:#e6db74">&#39;15672:15672&#39;</span>
+<span style="display:block;width:100%;background-color:#3c3d38">      - <span style="color:#e6db74">&#39;15692:15692&#39;</span>
+</span>    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">rabbitmq-data:/var/lib/rabbitmq</span>
+
+<span style="color:#f92672">volumes</span>:
+    <span style="color:#f92672">rabbitmq-data</span>:
+</code></pre></td></tr></table>
+</div>
+</div><p><br></br>
+接下來就能在host上用cURL測試了</p>
+<pre><code>$ curl -v -H &quot;Accept:text/plain&quot; &quot;http://localhost:15692/metrics&quot;
+...
+# TYPE rabbitmq_consumers gauge
+# HELP rabbitmq_consumers Consumers currently connected
+rabbitmq_consumers 0
+# TYPE rabbitmq_queues gauge
+# HELP rabbitmq_queues Queues available
+rabbitmq_queues 0
+# TYPE rabbitmq_build_info untyped
+# HELP rabbitmq_build_info RabbitMQ &amp; Erlang/OTP version info
+rabbitmq_build_info{rabbitmq_version=&quot;3.8.6&quot;,prometheus_plugin_version=&quot;3.8.6&quot;,prometheus_client_version=&quot;4.6.0&quot;,erlang_version=&quot;23.0.3&quot;} 1
+# TYPE rabbitmq_identity_info untyped
+# HELP rabbitmq_identity_info RabbitMQ node &amp; cluster identity info
+rabbitmq_identity_info{rabbitmq_node=&quot;rabbit@7f33446fce98&quot;,rabbitmq_cluster=&quot;rabbit@7f33446fce98&quot;} 1
+# TYPE telemetry_scrape_duration_seconds summary
+# HELP telemetry_scrape_duration_seconds Scrape duration
+# TYPE telemetry_scrape_size_bytes summary
+# HELP telemetry_scrape_size_bytes Scrape size, not encoded
+# TYPE telemetry_scrape_encoded_size_bytes summary
+...
+</code></pre><p>巴拉巴拉一大堆
+<br></br>
+適當增加一下prometheus的config，反正只是測試一下，就姑且用static config吧</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">scrape_configs</span>:
+...
+  - <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#39;rabbitmq-exporter&#39;</span>
+    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">60s</span>
+    <span style="color:#f92672">scrape_timeout</span>: <span style="color:#ae81ff">59s</span>
+    <span style="color:#f92672">static_configs</span>:
+      - <span style="color:#f92672">targets</span>:
+          - <span style="color:#e6db74">&#39;rabbitmq-exporter:15692&#39;</span>
+</code></pre></div><p><br></br>
+能看到endpoint增加了
+<img src="1.png" alt="">
+<br></br>
+<img src="2.png" alt="">
+這樣就能用Prometheus監控RabbitMQ了</p>
+<p>剩下細部的設定可以參考<a href="https://www.rabbitmq.com/prometheus.html">https://www.rabbitmq.com/prometheus.html</a></p>

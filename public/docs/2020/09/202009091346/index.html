@@ -1,0 +1,249 @@
+<p>這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…</p>
+<p>這次的主要步驟大概如下：</p>
+<ul>
+<li><a onclick="window.scrollTo({top: document.getElementById(1).offsetTop, behavior: 'smooth'})">使用&quot;結巴&quot;進行分詞</a></li>
+<li><a onclick="window.scrollTo({top: document.getElementById(2).offsetTop, behavior: 'smooth'})">使用scikit-learn進行線性預測</a></li>
+<li><a onclick="window.scrollTo({top: document.getElementById(3).offsetTop, behavior: 'smooth'})">使用Pandas製作DataFrame</a></li>
+<li><a onclick="window.scrollTo({top: document.getElementById(4).offsetTop, behavior: 'smooth'})">使用seaborn進行可視化</a>
+<br></br></li>
+</ul>
+<p>首先準備好環境</p>
+<pre><code>pip install jieba sklearn pandas seaborn matplotlib 
+</code></pre><p><br></br></p>
+<h3 id="p-id1使用結巴進行分詞p"><p id=1>使用&quot;結巴&quot;進行分詞</p></h3>
+<hr>
+<p><br></br>
+延續前面的範例檔案，先來回顧一下爬回來的json中，裡面的key為何</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> json
+
+
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;pttgossip.json&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    posts <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>load(f)
+
+<span style="color:#66d9ef">print</span>(posts[<span style="color:#ae81ff">100</span>]<span style="color:#f92672">.</span>keys())
+<span style="color:#75715e">#dict_keys([&#39;title&#39;, &#39;author&#39;, &#39;date&#39;, &#39;content&#39;, &#39;comments&#39;, &#39;score&#39;, &#39;url&#39;])</span>
+<span style="color:#66d9ef">print</span>(posts[<span style="color:#ae81ff">100</span>][<span style="color:#e6db74">&#39;comments&#39;</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>keys())
+<span style="color:#75715e">#dict_keys([&#39;user&#39;, &#39;score&#39;, &#39;content&#39;])</span>
+</code></pre></div><p><br></br>
+接下來利用&quot;結巴分詞&quot;來分斷個別貼文的詞並計數，並把結果append到一個list內，分數也比照辦理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> jieba
+<span style="color:#f92672">import</span> json
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;pttgossip.json&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    posts <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>load(f)
+
+
+seg_posts <span style="color:#f92672">=</span> [] <span style="color:#75715e">#處理過的貼文列表</span>
+p_scores <span style="color:#f92672">=</span> [] <span style="color:#75715e">#分數列表</span>
+
+<span style="color:#66d9ef">for</span> post <span style="color:#f92672">in</span> posts:
+    words <span style="color:#f92672">=</span> defaultdict(int) <span style="color:#75715e">#初始化dict</span>
+    content <span style="color:#f92672">=</span> post[<span style="color:#e6db74">&#39;content&#39;</span>]
+    <span style="color:#66d9ef">if</span> post[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> content<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>): <span style="color:#75715e">#以行為單位分詞</span>
+            <span style="color:#66d9ef">if</span> line:
+                <span style="color:#66d9ef">for</span> word <span style="color:#f92672">in</span> jieba<span style="color:#f92672">.</span>cut(line):
+                    words[word] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> len(words) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+            seg_posts<span style="color:#f92672">.</span>append(words)
+            p_scores<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> post[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>)
+</code></pre></div><p><br></br>
+也使用同樣的思路處理每篇貼文的回覆</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">seg_comments <span style="color:#f92672">=</span> []
+c_scores <span style="color:#f92672">=</span> []
+
+
+<span style="color:#66d9ef">for</span> post <span style="color:#f92672">in</span> posts:
+    <span style="color:#66d9ef">for</span> comment <span style="color:#f92672">in</span> post[<span style="color:#e6db74">&#39;comments&#39;</span>]:
+        words <span style="color:#f92672">=</span> defaultdict(int)
+        line <span style="color:#f92672">=</span> comment[<span style="color:#e6db74">&#39;content&#39;</span>]<span style="color:#f92672">.</span>strip()
+        <span style="color:#66d9ef">if</span> line <span style="color:#f92672">and</span> comment[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">for</span> word <span style="color:#f92672">in</span> jieba<span style="color:#f92672">.</span>cut(line):
+                words[word] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">if</span> len(words) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+                seg_comments<span style="color:#f92672">.</span>append(words)
+                c_scores<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> comment[<span style="color:#e6db74">&#39;score&#39;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>)
+</code></pre></div><p>到這裡為止，資料是初步處理完了
+<br></br></p>
+<h3 id="p-id2使用scikit-learn進行線性預測p"><p id=2>使用scikit-learn進行線性預測</p></h3>
+<hr>
+<p><br></br>
+接下來要處理的就是學習的部分了，照這次實作的題目來說的話，這階段也就是常聽到的&quot;Word2vec&quot;，基於接觸過後學習才會比較有概念，這邊直接進入操作，以後有機會再深入探討…</p>
+<p>首先把剛才收集來的資料用以下方式處理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> sklearn.feature_extraction <span style="color:#f92672">import</span> DictVectorizer
+<span style="color:#f92672">...</span>
+
+dict_vec <span style="color:#f92672">=</span> DictVectorizer(sparse<span style="color:#f92672">=</span>False)
+x_posts <span style="color:#f92672">=</span> dict_vec<span style="color:#f92672">.</span>fit_transform(seg_posts)
+
+
+<span style="color:#66d9ef">print</span>(dict_vec<span style="color:#f92672">.</span>feature_names_) <span style="color:#75715e">#列出column</span>
+
+[<span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#e6db74">&#39;!&#39;</span>, <span style="color:#e6db74">&#39;&#34;&#39;</span>, <span style="color:#e6db74">&#34;&#39;&#34;</span>, <span style="color:#e6db74">&#39;(&#39;</span>, <span style="color:#e6db74">&#39;)&#39;</span>, <span style="color:#e6db74">&#39;+&#39;</span>, <span style="color:#e6db74">&#39;,&#39;</span>, <span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;--&#39;</span>, <span style="color:#e6db74">&#39;-----&#39;</span>, <span style="color:#e6db74">&#39;.&#39;</span>, <span style="color:#e6db74">&#39;..&#39;</span>, <span style="color:#e6db74">&#39;...&#39;</span>, <span style="color:#e6db74">&#39;....&#39;</span>, <span style="color:#e6db74">&#39;......&#39;</span>, <span style="color:#e6db74">&#39;/&#39;</span>, <span style="color:#e6db74">&#39;0.025&#39;</span>, <span style="color:#e6db74">&#39;00&#39;</span>, <span style="color:#e6db74">&#39;000&#39;</span>, <span style="color:#e6db74">&#39;01&#39;</span>, <span style="color:#e6db74">&#39;02&#39;</span>, <span style="color:#e6db74">&#39;05&#39;</span>, <span style="color:#e6db74">&#39;07&#39;</span>, <span style="color:#e6db74">&#39;08&#39;</span>, <span style="color:#e6db74">&#39;09&#39;</span>, <span style="color:#e6db74">&#39;0966&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;1%&#39;</span>, <span style="color:#e6db74">&#39;1.27&#39;</span>, <span style="color:#e6db74">&#39;10&#39;</span>, <span style="color:#e6db74">&#39;10.8&#39;</span>, <span style="color:#e6db74">&#39;100&#39;</span>, <span style="color:#e6db74">&#39;1000&#39;</span>, <span style="color:#e6db74">&#39;100P&#39;</span>, <span style="color:#e6db74">&#39;108&#39;</span>, <span style="color:#e6db74">&#39;11&#39;</span>, <span style="color:#e6db74">&#39;112&#39;</span>, <span style="color:#e6db74">&#39;118&#39;</span>, <span style="color:#e6db74">&#39;12&#39;</span>, <span style="color:#e6db74">&#39;125&#39;</span>, <span style="color:#e6db74">&#39;130&#39;</span>, <span style="color:#e6db74">&#39;13000&#39;</span>, <span style="color:#e6db74">&#39;131&#39;</span>, <span style="color:#e6db74">&#39;14&#39;</span>, <span style="color:#e6db74">&#39;15&#39;</span>, <span style="color:#e6db74">&#39;16&#39;</span>, <span style="color:#e6db74">&#39;160&#39;</span>, <span style="color:#e6db74">&#39;163&#39;</span>, <span style="color:#e6db74">&#39;166&#39;</span>, <span style="color:#e6db74">&#39;17&#39;</span>, <span style="color:#e6db74">&#39;170&#39;</span>, <span style="color:#e6db74">&#39;18&#39;</span>, <span style="color:#e6db74">&#39;180&#39;</span>, <span style="color:#e6db74">&#39;1912&#39;</span>, <span style="color:#e6db74">&#39;1947&#39;</span>, <span style="color:#e6db74">&#39;1984&#39;</span>, <span style="color:#e6db74">&#39;1990&#39;</span>, <span style="color:#e6db74">&#39;1993&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;20&#39;</span>, <span style="color:#e6db74">&#39;2008&#39;</span>, <span style="color:#e6db74">&#39;2009&#39;</span>, <span style="color:#e6db74">&#39;2014&#39;</span>, <span style="color:#e6db74">&#39;2017&#39;</span>, <span style="color:#e6db74">&#39;2018&#39;</span>, <span style="color:#e6db74">&#39;2019&#39;</span>, <span style="color:#e6db74">&#39;2020&#39;</span>, <span style="color:#e6db74">&#39;2022&#39;</span>, <span style="color:#e6db74">&#39;21&#39;</span>, <span style="color:#e6db74">&#39;2203&#39;</span>, <span style="color:#e6db74">&#39;23&#39;</span>, <span style="color:#e6db74">&#39;24&#39;</span>, <span style="color:#e6db74">&#39;27&#39;</span>, <span style="color:#e6db74">&#39;28&#39;</span>, <span style="color:#e6db74">&#39;29&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;3.1&#39;</span>, <span style="color:#e6db74">&#39;30&#39;</span>, <span style="color:#e6db74">&#39;31&#39;</span>, <span style="color:#e6db74">&#39;318&#39;</span>, <span style="color:#e6db74">&#39;36&#39;</span>, <span style="color:#e6db74">&#39;3c&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;4%&#39;</span>, <span style="color:#e6db74">&#39;484&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;50&#39;</span>, <span style="color:#e6db74">&#39;5000&#39;</span>, <span style="color:#e6db74">&#39;54088&#39;</span>, <span style="color:#e6db74">&#39;55&#39;</span>, <span style="color:#e6db74">&#39;550&#39;</span>, <span style="color:#e6db74">&#39;56&#39;</span>, <span style="color:#e6db74">&#39;57&#39;</span>, <span style="color:#e6db74">&#39;577&#39;</span>, <span style="color:#e6db74">&#39;59&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;60&#39;</span>, <span style="color:#e6db74">&#39;686&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;700&#39;</span>, <span style="color:#e6db74">&#39;719&#39;</span>, <span style="color:#e6db74">&#39;78%&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;80&#39;</span>, <span style="color:#e6db74">&#39;800&#39;</span>, <span style="color:#e6db74">&#39;817&#39;</span>, <span style="color:#e6db74">&#39;88&#39;</span>, <span style="color:#e6db74">&#39;8809&#39;</span>, <span style="color:#e6db74">&#39;89&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;90&#39;</span>, <span style="color:#e6db74">&#39;95&#39;</span>, <span style="color:#e6db74">&#39;:&#39;</span>, <span style="color:#e6db74">&#39;&lt;&#39;</span>, <span style="color:#e6db74">&#39;=&#39;</span>, <span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">&#39;?&#39;</span>, <span style="color:#e6db74">&#39;@&#39;</span>, <span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#e6db74">&#39;ABC&#39;</span>, <span style="color:#e6db74">&#39;AID&#39;</span>, <span style="color:#e6db74">&#39;ASUS&#39;</span>, <span style="color:#e6db74">&#39;Adhanom&#39;</span>, <span style="color:#e6db74">&#39;Asus&#39;</span>, <span style="color:#e6db74">&#39;BE&#39;</span>, <span style="color:#e6db74">&#39;BUT&#39;</span>, <span style="color:#e6db74">&#39;Berliner&#39;</span>, <span style="color:#e6db74">&#39;CNN&#39;</span>, <span style="color:#e6db74">&#39;CT&#39;</span>, <span style="color:#e6db74">&#39;CTWANT&#39;</span>, <span style="color:#e6db74">&#39;Christmas&#39;</span>, <span style="color:#e6db74">&#39;D&#39;</span>, <span style="color:#e6db74">&#39;Dcard&#39;</span>, <span style="color:#e6db74">&#39;Dr&#39;</span>, <span style="color:#e6db74">&#39;E&#39;</span>, <span style="color:#e6db74">&#39;ETtoday&#39;</span>, <span style="color:#e6db74">&#39;EUV&#39;</span>, <span style="color:#e6db74">&#39;Eats&#39;</span>, <span style="color:#e6db74">&#39;FB&#39;</span>, <span style="color:#e6db74">&#39;GG&#39;</span>, <span style="color:#e6db74">&#39;GOOGLE&#39;</span>, <span style="color:#e6db74">&#39;Get&#39;</span>, <span style="color:#e6db74">&#39;Ghebreyesus&#39;</span>, <span style="color:#e6db74">&#39;Global&#39;</span>, <span style="color:#e6db74">&#39;H&#39;</span>, <span style="color:#e6db74">&#39;HEAD&#39;</span>, <span style="color:#e6db74">&#39;HMD&#39;</span>, <span style="color:#e6db74">&#39;I01WD&#39;</span>, <span style="color:#e6db74">&#39;I7&#39;</span>, <span style="color:#e6db74">&#39;IG&#39;</span>, <span style="color:#e6db74">&#39;Ich&#39;</span>, <span style="color:#e6db74">&#39;JKF&#39;</span>, <span style="color:#e6db74">&#39;JPTT&#39;</span>, <span style="color:#e6db74">&#39;Judy&#39;</span>, <span style="color:#e6db74">&#39;K&#39;</span>, <span style="color:#e6db74">&#39;KMT&#39;</span>, <span style="color:#e6db74">&#39;Keanna&#39;</span>, <span style="color:#e6db74">&#39;LINE&#39;</span>, <span style="color:#e6db74">&#39;LISTLESS&#39;</span>, <span style="color:#e6db74">&#39;Like&#39;</span>, <span style="color:#e6db74">&#39;Milos&#39;</span>, <span style="color:#e6db74">&#39;MoneyDJ&#39;</span>, <span style="color:#e6db74">&#39;N&#39;</span>, <span style="color:#e6db74">&#39;N950F&#39;</span>, <span style="color:#e6db74">&#39;N9750&#39;</span>, <span style="color:#e6db74">&#39;NEWS&#39;</span>, <span style="color:#e6db74">&#39;NO&#39;</span>, <span style="color:#e6db74">&#39;No.1&#39;</span>, <span style="color:#e6db74">&#39;Nokia&#39;</span>, <span style="color:#e6db74">&#39;Note&#39;</span>, <span style="color:#e6db74">&#39;N年&#39;</span>, <span style="color:#e6db74">&#39;O&#39;</span>, <span style="color:#e6db74">&#39;OL&#39;</span>, <span style="color:#e6db74">&#39;P&#39;</span>, <span style="color:#e6db74">&#39;PASS&#39;</span>, <span style="color:#e6db74">&#39;PO&#39;</span>, <span style="color:#e6db74">&#39;PREPARED&#39;</span>, <span style="color:#e6db74">&#39;PS&#39;</span>, <span style="color:#e6db74">&#39;PTT&#39;</span>, <span style="color:#e6db74">&#39;Party&#39;</span>, <span style="color:#e6db74">&#39;Petrof&#39;</span>, <span style="color:#e6db74">&#39;Prima&#39;</span>, <span style="color:#e6db74">&#39;Q&#39;</span>, <span style="color:#e6db74">&#39;REFUSE&#39;</span>, <span style="color:#e6db74">&#39;Redmi&#39;</span>, <span style="color:#e6db74">&#39;Reuters&#39;</span>, <span style="color:#e6db74">&#39;SM&#39;</span>, <span style="color:#e6db74">&#39;Samsung&#39;</span>, <span style="color:#e6db74">&#39;Sent&#39;</span>, <span style="color:#e6db74">&#39;So&#39;</span>, <span style="color:#e6db74">&#39;T&#39;</span>, <span style="color:#e6db74">&#39;T295&#39;</span>, <span style="color:#e6db74">&#39;TVBS&#39;</span>, <span style="color:#e6db74">&#39;Taiwan&#39;</span>, <span style="color:#e6db74">&#39;Tedros&#39;</span>, <span style="color:#e6db74">&#39;Tvbs&#39;</span>, <span style="color:#e6db74">&#39;U&#39;</span>, <span style="color:#e6db74">&#39;UDN&#39;</span>, <span style="color:#e6db74">&#39;UPUPUP&#39;</span>, <span style="color:#e6db74">&#39;Uber&#39;</span>, <span style="color:#e6db74">&#39;VPN&#39;</span>, <span style="color:#e6db74">&#39;WHO&#39;</span>, <span style="color:#e6db74">&#39;Wiki&#39;</span>, <span style="color:#e6db74">&#39;Xiaomi&#39;</span>, <span style="color:#e6db74">&#39;Yahoo&#39;</span>, <span style="color:#e6db74">&#39;YahooTV&#39;</span>, <span style="color:#e6db74">&#39;YouTube&#39;</span>, <span style="color:#e6db74">&#39;Youtube&#39;</span>, <span style="color:#e6db74">&#39;Zeman&#39;</span>, <span style="color:#e6db74">&#39;_&#39;</span>, <span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;air&#39;</span>, <span style="color:#e6db74">&#39;awkward&#39;</span>, <span style="color:#e6db74">&#39;bed&#39;</span>, <span style="color:#e6db74">&#39;big&#39;</span>, <span style="color:#e6db74">&#39;bin&#39;</span>, <span style="color:#e6db74">&#39;can&#39;</span>, <span style="color:#e6db74">&#39;checks&#39;</span>, <span style="color:#e6db74">&#39;cm&#39;</span>, <span style="color:#e6db74">&#39;code&#39;</span>, <span style="color:#e6db74">&#39;com&#39;</span>, <span style="color:#e6db74">&#39;cos&#39;</span>, <span style="color:#e6db74">&#39;cosplay&#39;</span>, <span style="color:#e6db74">&#39;cot&#39;</span>, <span style="color:#e6db74">&#39;csc&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>, <span style="color:#e6db74">&#39;day&#39;</span>, <span style="color:#e6db74">&#39;depressed&#39;</span>, <span style="color:#e6db74">&#39;ein&#39;</span>, <span style="color:#e6db74">&#39;engineer&#39;</span>, <span style="color:#e6db74">&#39;ex&#39;</span>, <span style="color:#e6db74">&#39;force&#39;</span>, <span style="color:#e6db74">&#39;from&#39;</span>, <span style="color:#e6db74">&#39;good&#39;</span>, <span style="color:#e6db74">&#39;have&#39;</span>, <span style="color:#e6db74">&#39;help&#39;</span>, <span style="color:#e6db74">&#39;iPhone&#39;</span>, <span style="color:#e6db74">&#39;leave&#39;</span>, <span style="color:#e6db74">&#39;marz&#39;</span>, <span style="color:#e6db74">&#39;my&#39;</span>, <span style="color:#e6db74">&#39;neal&#39;</span>, <span style="color:#e6db74">&#39;o&#39;</span>, <span style="color:#e6db74">&#39;on&#39;</span>, <span style="color:#e6db74">&#39;one&#39;</span>, <span style="color:#e6db74">&#39;p&#39;</span>, <span style="color:#e6db74">&#39;s&#39;</span>, <span style="color:#e6db74">&#39;sec&#39;</span>, <span style="color:#e6db74">&#39;set&#39;</span>, <span style="color:#e6db74">&#39;sex&#39;</span>, <span style="color:#e6db74">&#39;show&#39;</span>, <span style="color:#e6db74">&#39;sin&#39;</span>, <span style="color:#e6db74">&#39;some&#39;</span>, <span style="color:#e6db74">&#39;source&#39;</span>, <span style="color:#e6db74">&#39;swag&#39;</span>, <span style="color:#e6db74">&#39;ta&#39;</span>, <span style="color:#e6db74">&#39;tan&#39;</span>, <span style="color:#e6db74">&#39;to&#39;</span>, <span style="color:#e6db74">&#39;want&#39;</span>, <span style="color:#e6db74">&#39;when&#39;</span>, <span style="color:#e6db74">&#39;wifi&#39;</span>, <span style="color:#e6db74">&#39;wreck&#39;</span>, <span style="color:#e6db74">&#39;x&#39;</span>, <span style="color:#e6db74">&#39;you&#39;</span>, <span style="color:#e6db74">&#39;your&#39;</span>, <span style="color:#e6db74">&#39;youtube&#39;</span>, <span style="color:#e6db74">&#39;yt&#39;</span>, <span style="color:#e6db74">&#39;~&#39;</span>, <span style="color:#e6db74">&#39;’&#39;</span>, <span style="color:#e6db74">&#39;…&#39;</span>, <span style="color:#e6db74">&#39;′&#39;</span>, <span style="color:#e6db74">&#39;‵&#39;</span>, <span style="color:#e6db74">&#39;─&#39;</span>, <span style="color:#e6db74">&#39;│&#39;</span>, <span style="color:#e6db74">&#39;┌&#39;</span>, <span style="color:#e6db74">&#39;┐&#39;</span>, <span style="color:#e6db74">&#39;○&#39;</span>, <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\u3000</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74">&#39;、&#39;</span>, <span style="color:#e6db74">&#39;。&#39;</span>, <span style="color:#e6db74">&#39;《&#39;</span>, <span style="color:#e6db74">&#39;》&#39;</span>, <span style="color:#e6db74">&#39;「&#39;</span>, <span style="color:#e6db74">&#39;」&#39;</span>, <span style="color:#e6db74">&#39;『&#39;</span>, <span style="color:#e6db74">&#39;』&#39;</span>, <span style="color:#e6db74">&#39;【&#39;</span>, <span style="color:#e6db74">&#39;】&#39;</span>, <span style="color:#e6db74">&#39;〔&#39;</span>, <span style="color:#e6db74">&#39;〕&#39;</span>, <span style="color:#e6db74">&#39;う&#39;</span>, <span style="color:#e6db74">&#39;お&#39;</span>, <span style="color:#e6db74">&#39;さ&#39;</span>, <span style="color:#e6db74">&#39;で&#39;</span>, <span style="color:#e6db74">&#39;と&#39;</span>, <span style="color:#e6db74">&#39;め&#39;</span>, <span style="color:#e6db74">&#39;ゆ&#39;</span>, <span style="color:#e6db74">&#39;り&#39;</span>, <span style="color:#e6db74">&#39;ァ&#39;</span>, <span style="color:#e6db74">&#39;エ&#39;</span>, <span style="color:#e6db74">&#39;シ&#39;</span>, <span style="color:#e6db74">&#39;ノ&#39;</span>, <span style="color:#e6db74">&#39;ル&#39;</span>, <span style="color:#e6db74">&#39;ヴ&#39;</span>, <span style="color:#e6db74">&#39;・&#39;</span>, <span style="color:#e6db74">&#39;ㄉ&#39;</span>, <span style="color:#e6db74">&#39;ㄙ&#39;</span>, <span style="color:#e6db74">&#39;ㄛ&#39;</span>, <span style="color:#e6db74">&#39;ㄟ&#39;</span>, <span style="color:#e6db74">&#39;一&#39;</span>, <span style="color:#e6db74">&#39;一一&#39;</span>, <span style="color:#e6db74">&#39;一下&#39;</span>, <span style="color:#e6db74">&#39;一中&#39;</span>, <span style="color:#e6db74">&#39;一事&#39;</span>, <span style="color:#e6db74">&#39;一些&#39;</span>, <span style="color:#e6db74">&#39;一人&#39;</span>,<span style="color:#f92672">....</span>
+
+<span style="color:#66d9ef">print</span>(x_posts) <span style="color:#75715e">#查看轉換後的資料</span>
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">[[0. 0. 0. ... 0. 0. 0.]
+</span><span style="color:#e6db74"> [2. 0. 0. ... 0. 0. 0.]
+</span><span style="color:#e6db74"> [7. 0. 0. ... 0. 0. 0.]
+</span><span style="color:#e6db74"> ...
+</span><span style="color:#e6db74"> [0. 0. 0. ... 0. 0. 0.]
+</span><span style="color:#e6db74"> [0. 0. 0. ... 0. 0. 0.]
+</span><span style="color:#e6db74"> [0. 0. 0. ... 0. 0. 0.]]
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div><p>變得有接近目標的樣子了
+<br></br>
+為了畫圖，再使用TfidfTransformer產生特徵向量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> sklearn.feature_extraction.text <span style="color:#f92672">import</span> TfidfTransformer
+<span style="color:#f92672">from</span> sklearn.feature_extraction <span style="color:#f92672">import</span> DictVectorizer
+<span style="color:#f92672">...</span>
+
+dict_vec <span style="color:#f92672">=</span> DictVectorizer(sparse<span style="color:#f92672">=</span>False)
+tfidf_tf <span style="color:#f92672">=</span> TfidfTransformer()
+
+x_posts <span style="color:#f92672">=</span> tfidf_tf<span style="color:#f92672">.</span>fit_transform(dict_vec<span style="color:#f92672">.</span>fit_transform(seg_posts))
+
+<span style="color:#66d9ef">print</span>(x_posts)
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">  (0, 5466)	0.3164131590857888
+</span><span style="color:#e6db74">  (0, 5428)	0.26977341604814975
+</span><span style="color:#e6db74">  (0, 5071)	0.29198209629586447
+</span><span style="color:#e6db74">  (0, 4921)	0.26977341604814975
+</span><span style="color:#e6db74">  (0, 4913)	0.2540161066463822
+</span><span style="color:#e6db74">  ...
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div><p><br></br>
+回覆的部分也比照辦理，並且使用LinearSVC（Linear Support Vector Classification，線性支援向量分類)進行處理，
+兩個在一起的話大概像這樣</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> sklearn.feature_extraction.text <span style="color:#f92672">import</span> TfidfTransformer
+<span style="color:#f92672">from</span> sklearn.feature_extraction <span style="color:#f92672">import</span> DictVectorizer
+<span style="color:#f92672">from</span> sklearn.svm <span style="color:#f92672">import</span> LinearSVC
+<span style="color:#f92672">...</span>
+
+p_dict_vec <span style="color:#f92672">=</span> DictVectorizer(sparse<span style="color:#f92672">=</span>False)
+p_tfidf_tf <span style="color:#f92672">=</span> TfidfTransformer()
+p_x <span style="color:#f92672">=</span> p_tfidf_tf<span style="color:#f92672">.</span>fit_transform(p_dict_vec<span style="color:#f92672">.</span>fit_transform(seg_posts))
+p_svc <span style="color:#f92672">=</span> LinearSVC()
+p_svc<span style="color:#f92672">.</span>fit(p_x, p_scores)
+
+c_dict_vec <span style="color:#f92672">=</span> DictVectorizer(sparse<span style="color:#f92672">=</span>False)
+c_tfidf_tf <span style="color:#f92672">=</span> TfidfTransformer()
+c_x <span style="color:#f92672">=</span> c_tfidf_tf<span style="color:#f92672">.</span>fit_transform(c_dict_vec<span style="color:#f92672">.</span>fit_transform(seg_comments))
+c_svc <span style="color:#f92672">=</span> LinearSVC()
+c_svc<span style="color:#f92672">.</span>fit(c_x, c_scores)
+
+<span style="color:#66d9ef">print</span>(p_svc<span style="color:#f92672">.</span>coef_[<span style="color:#ae81ff">0</span>])
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">[-0.72464228 -0.45262722  0.21239902 ... -0.12832172 -0.12832172
+</span><span style="color:#e6db74"> -0.12832172]
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div><p><br></br></p>
+<h3 id="p-id3使用pandas製作dataframep"><p id=3>使用Pandas製作DataFrame<p></h3>
+<hr>
+<p><br></br>
+讓資料變得簡單可用的過渡步驟，這部分比較單純一點，就是利用Pandas來把剛才處理好的資料做成一個DataFrame表格，首先放上column name，做成一個空的DataFrame</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+
+
+p_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;score&#39;</span>, <span style="color:#e6db74">&#39;word&#39;</span>])
+<span style="color:#66d9ef">print</span>(p_df)
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">Empty DataFrame
+</span><span style="color:#e6db74">Columns: [score, word]
+</span><span style="color:#e6db74">Index: []
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div><p><br></br>
+接者把剛剛LinearSVC完成的資料放進來，回覆也比照辦理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+
+<span style="color:#f92672">...</span>
+p_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;score&#39;</span>, <span style="color:#e6db74">&#39;word&#39;</span>])
+p_df[<span style="color:#e6db74">&#39;score&#39;</span>], p_df[<span style="color:#e6db74">&#39;word&#39;</span>] <span style="color:#f92672">=</span> p_svc<span style="color:#f92672">.</span>coef_[<span style="color:#ae81ff">0</span>], p_dict_vec<span style="color:#f92672">.</span>feature_names_
+
+c_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;score&#39;</span>, <span style="color:#e6db74">&#39;word&#39;</span>])
+c_df[<span style="color:#e6db74">&#39;score&#39;</span>], c_df[<span style="color:#e6db74">&#39;word&#39;</span>] <span style="color:#f92672">=</span> c_svc<span style="color:#f92672">.</span>coef_[<span style="color:#ae81ff">0</span>], c_dict_vec<span style="color:#f92672">.</span>feature_names_
+
+<span style="color:#66d9ef">print</span>(p_df)
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">[5475 rows x 2 columns]
+</span><span style="color:#e6db74">         score word
+</span><span style="color:#e6db74">0    -0.724645     
+</span><span style="color:#e6db74">1    -0.452623    !
+</span><span style="color:#e6db74">2     0.212401    &#34;
+</span><span style="color:#e6db74">3     0.143647    &#39;
+</span><span style="color:#e6db74">4     0.095657    (
+</span><span style="color:#e6db74">...        ...  ...
+</span><span style="color:#e6db74">5470 -0.128321    ｉ
+</span><span style="color:#e6db74">5471 -0.128321    ｎ
+</span><span style="color:#e6db74">5472 -0.128321    ｓ
+</span><span style="color:#e6db74">5473 -0.128321    ｔ
+</span><span style="color:#e6db74">5474 -0.128321    ｙ
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div><p><br></br>
+DataFrame提供了很多便利的操作，能更快速的整理資料，而這次實作單純只用到排序</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">....</span>
+
+<span style="color:#66d9ef">print</span>(p_df<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;score&#39;</span>))
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">         score word
+</span><span style="color:#e6db74">0    -0.724642     
+</span><span style="color:#e6db74">3259 -0.661204   比較
+</span><span style="color:#e6db74">4633 -0.585509   豬肉
+</span><span style="color:#e6db74">4208 -0.539002   胞胎
+</span><span style="color:#e6db74">1174 -0.530751   加入
+</span><span style="color:#e6db74">...        ...  ...
+</span><span style="color:#e6db74">5218  0.389572  電磁學
+</span><span style="color:#e6db74">1412  0.392787   各位
+</span><span style="color:#e6db74">728   0.399305   他們
+</span><span style="color:#e6db74">1529  0.471990    啊
+</span><span style="color:#e6db74">1394  0.515951   台灣
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+
+<span style="color:#66d9ef">print</span>(p_df<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;score&#39;</span>, ascending<span style="color:#f92672">=</span>False))
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">[5475 rows x 2 columns]
+</span><span style="color:#e6db74">         score word
+</span><span style="color:#e6db74">1394  0.515951   台灣
+</span><span style="color:#e6db74">1529  0.471990    啊
+</span><span style="color:#e6db74">728   0.399305   他們
+</span><span style="color:#e6db74">1412  0.392787   各位
+</span><span style="color:#e6db74">5218  0.389572  電磁學
+</span><span style="color:#e6db74">...        ...  ...
+</span><span style="color:#e6db74">1174 -0.530751   加入
+</span><span style="color:#e6db74">4208 -0.539002   胞胎
+</span><span style="color:#e6db74">4633 -0.585509   豬肉
+</span><span style="color:#e6db74">3259 -0.661204   比較
+</span><span style="color:#e6db74">0    -0.724642     
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</code></pre></div><p><br></br></p>
+<h3 id="p-id4使用seaborn進行可視化p"><p id=4>使用seaborn進行可視化</p></h3>
+<hr>
+<p><br></br>
+前一篇已經使用matplotlib了，這次就搭配seaborn，已經儘量簡化了看起來還是有點繁瑣…</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> plt
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_chart</span>(data, top_n, sup):
+    fig, (ax1, ax2) <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(ncols<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, sharey<span style="color:#f92672">=</span>True) <span style="color:#75715e">#建立兩張並排</span>
+    p <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>barplot(x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;word&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;score&#39;</span>, data<span style="color:#f92672">=</span>data<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;score&#39;</span>, ascending<span style="color:#f92672">=</span>False)[:top_n], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;green&#39;</span>, ax<span style="color:#f92672">=</span>ax1) <span style="color:#75715e">#正向分析圖</span>
+    n <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>barplot(x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;word&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;score&#39;</span>, data<span style="color:#f92672">=</span>data<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;score&#39;</span>)[:top_n], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>, ax<span style="color:#f92672">=</span>ax2) <span style="color:#75715e">#負向分析圖</span>
+    p<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;positive&#39;</span>) <span style="color:#75715e">#正向分析標題</span>
+    n<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;negative&#39;</span>) <span style="color:#75715e">#負向分析標題</span>
+    <span style="color:#75715e">#fig.set_size_inches(18.5, 10.5) #有需要的話用來調整尺寸</span>
+    plt<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#39;PTT Gossiping</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">詞彙TOP </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> (sup, top_n), fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>) <span style="color:#75715e">#副標題</span>
+    plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;font.sans-serif&#39;</span>] <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;simhei&#39;</span>] <span style="color:#75715e">#指定中文字體，否則會無法顯示</span>
+    plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><br></br>
+記得PTT的回覆是叫推文來著？總之接下來就能輸出圖片啦</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">show_chart(p_df, <span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#39;本文&#39;</span>)
+show_chart(c_df, <span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#39;推文&#39;</span>)
+</code></pre></div><p><br></br>
+能力不足做不出漂亮圖片…
+<img src="1.png" alt="">
+<img src="2.png" alt="">
+<br></br>
+完成的notebook放在<a href="https://github.com/mikanbearer/scrapy_sample/blob/master/notebook2.ipynb">這裡</a>可直接觀看喔</p>
+<p>收工！</p>

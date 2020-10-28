@@ -1,0 +1,134 @@
+<p>原本使用<a href="https://github.com/halogenica/beautifulhugo">Beautifulhugo</a>(個人蠻喜歡的)，但發現會有一些小問題…</p>
+<p>這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…</p>
+<p>像是個人使用的tag就很容易包含特殊字元，常見一些Node.js啦、Vue.js啦…都會包然這個&quot;.&quot;，而bootstrap是依賴jquery的，
+selector會無法作用，像以下的code；</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:202008070930.md" data-lang=":202008070930.md">---
+title: &#34;新主題上線！&#34;
+date: 2020-08-07T09:30:55+08:00
+draft: true
+categories: [雜記]
+<span style="display:block;width:100%;background-color:#3c3d38">tags: [Hugo, Vue.js, Vuetify]
+</span>---
+</code></pre></td></tr></table>
+</div>
+</div><p>再看看beautifulhugo的寫法</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:beautifulhugo/leyouts/_default/terms.html" data-lang=":beautifulhugo/leyouts/_default/terms.html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;main&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1&#34;</span>&gt; 
+    &lt;<span style="color:#f92672">article</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post-preview&#34;</span>&gt;
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;panel-group&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;accordion&#34;</span>&gt;
+        {{ range $key, $value := .Data.Terms.ByCount }}
+          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;panel panel-default&#34;</span>&gt;
+<span style="display:block;width:100%;background-color:#3c3d38">            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;collapsed&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">data-toggle</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;collapse&#34;</span> <span style="color:#a6e22e">data-target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#collapse{{ $value.Name }}&#34;</span> <span style="color:#a6e22e">data-parent</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#accordion&#34;</span>&gt;
+</span>                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;panel-heading&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;header{{ $value.Name }}&#34;</span>&gt;
+                  &lt;<span style="color:#f92672">h4</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;panel-title&#34;</span>&gt;
+                      {{ $value.Name }}
+                    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;badge&#34;</span>&gt;{{ $value.Count }}&lt;/<span style="color:#f92672">span</span>&gt;
+                  &lt;/<span style="color:#f92672">h4</span>&gt;
+                &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;/<span style="color:#f92672">a</span>&gt;
+<span style="display:block;width:100%;background-color:#3c3d38">            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;collapse{{ $value.Name }}&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;panel-collapse collapse&#34;</span>&gt;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>是不是讓人略顯得無奈，在tag有Vue.js的情況下，最後可變成</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;collapseVue.js&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;panel-collapse collapse&#34;</span>&gt;
+</code></pre></div><p>無法正常作用啊！</p>
+<p>所以與其費神去改，不如做個自己的theme囉！
+…之後就突發奇想，來用個Vue吧？</p>
+<pre><code>$ hugo new theme hugovuetifymix
+</code></pre><p>就變成現在的模樣了…</p>
+<p>想當然爾，結果是一團混亂，考慮到一些效能因素，不會把太多東西塞進instance做成single page，但也要保持著一定的可用性，
+為了避免衝突，要指定vue的delimiter</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:footer.html" data-lang=":footer.html">  var vm = new Vue({
+<span style="display:block;width:100%;background-color:#3c3d38">    delimiters: [&#39;[[&#39;, &#39;]]&#39;],
+</span>    el: &#39;#app&#39;,
+    vuetify: new Vuetify(),
+    props: {
+    },
+    data: {
+</code></pre></td></tr></table>
+</div>
+</div><p>像這樣子的混用是很常見的</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-:footer.html" data-lang=":footer.html"><span style="display:block;width:100%;background-color:#3c3d38">var posts = [
+</span><span style="display:block;width:100%;background-color:#3c3d38">{{ range where site.RegularPages &#34;Type&#34; &#34;in&#34; site.Params.mainSections }}
+</span><span style="display:block;width:100%;background-color:#3c3d38">  {
+</span><span style="display:block;width:100%;background-color:#3c3d38">    url: &#39;{{ .Permalink }}&#39;,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    title: &#39;{{ .Title }}&#39;,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    summary: &#39;{{ .Summary }}&#39;,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    date: &#39;{{ .Params.Date.Format &#34;2006-01-02&#34; }}&#39;,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    tags: &#39;{{ .Params.Tags }}&#39;,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    categories: &#39;{{ .Params.Categories }}&#39;,
+</span><span style="display:block;width:100%;background-color:#3c3d38">    author: &#39;{{ .Params.Author }}&#39;,
+</span><span style="display:block;width:100%;background-color:#3c3d38">  },
+</span><span style="display:block;width:100%;background-color:#3c3d38">{{ end }}
+</span><span style="display:block;width:100%;background-color:#3c3d38">]
+</span>
+posts.forEach(element =&gt; {element.categories = element.categories.slice(1, -1).split(&#39; &#39;)})
+posts.forEach(element =&gt; {element.tags = element.tags.slice(1, -1).split(&#39; &#39;)})
+
+vm.$set(vm.$data, &#39;posts&#39;, posts)
+</code></pre></td></tr></table>
+</div>
+</div><p>用這種方式產出object，接下來就是揮灑vue的instace method了，之後再更新筆記，theme成熟點後也會放上來</p>
