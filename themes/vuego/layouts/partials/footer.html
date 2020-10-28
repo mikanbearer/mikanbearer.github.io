@@ -150,7 +150,7 @@ const title_list = [
           setTimeout(() => {this.content = response.data}, 300)
       })
 
-      axios.get('{{ .Site.BaseURL }}about/charts_data/index.json').then(response => {
+      axios.get('{{ .Site.BaseURL }}about/chart_data/index.json').then(response => {
           setTimeout(() => {
             var result = response.data.result
             this.setPie('Top Categories', 'category', result.categories_data, 'chart_categories')

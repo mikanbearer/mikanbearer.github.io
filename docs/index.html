@@ -2716,7 +2716,7 @@ const title_list = [
           setTimeout(() => {this.content = response.data}, 300)
       })
 
-      axios.get('https:\/\/mikanbearer.github.io\/about/charts_data/index.json').then(response => {
+      axios.get('https:\/\/mikanbearer.github.io\/about/chart_data/index.json').then(response => {
           setTimeout(() => {
             var result = response.data.result
             this.setPie('Top Categories', 'category', result.categories_data, 'chart_categories')
