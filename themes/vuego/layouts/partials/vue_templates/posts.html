@@ -8,19 +8,19 @@
 
                     <div v-if="$vuetify.breakpoint.xs">
                         <div v-for="(post, index) in displayPosts" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
+                            {{ partial "vue_templates/posts/card.html" . }}
                         </div>
                     </div>
 
                     <div v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
                         <div v-for="(post, index) in displayPosts" v-if="index % 2 === 0" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
+                            {{ partial "vue_templates/posts/card.html" . }}
                         </div>
                     </div>
 
                     <div v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
                         <div v-for="(post, index) in displayPosts" v-if="index % 3 === 0" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
+                            {{ partial "vue_templates/posts/card.html" . }}
                         </div>
                     </div>
 
@@ -32,13 +32,13 @@
 
                     <div v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
                         <div v-for="(post, index) in displayPosts" v-if="index % 2 === 1" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
+                            {{ partial "vue_templates/posts/card.html" . }}
                         </div>
                     </div>
 
                     <div v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
                         <div v-for="(post, index) in displayPosts" v-if="index % 3 === 1" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
+                            {{ partial "vue_templates/posts/card.html" . }}
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
 
                     <div v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
                         <div v-for="(post, index) in displayPosts" v-if="index % 3 === 2" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
+                            {{ partial "vue_templates/posts/card.html" . }}
                         </div>
                     </div>
 

@@ -12,50 +12,6 @@
 
 
 <script>
-  const post_list = [
-{{ range $index, $element := where site.RegularPages "Type" "in" site.Params.mainSections }}
-  {
-    id: {{ $index }},
-    url: '{{ $element.Permalink }}',
-    {{if $element.Title }}
-      title: '{{ $element.Title }}',
-    {{ else }}
-      title: '',
-    {{ end }}
-    {{ if $element.Truncated }}
-      summary: '{{ $element.Summary }}',
-      content: '',
-    {{ else }}
-      summary: '',
-      content: '',
-    {{ end }}
-    {{ if $element.Params.Date }}
-      date: '{{ $element.Params.Date.Format "2006-01-02 15:04" }}',
-    {{ else }}
-      date: '',
-    {{ end }}
-    {{ if $element.Params.Tags }}
-      tags: '{{ $element.Params.Tags }}',
-    {{ else }}
-      tags: ' ',
-    {{ end }}
-    {{ if $element.Params.Categories }}
-      categories: '{{ $element.Params.Categories }}',
-    {{ else }}
-      categories: ' ',
-    {{ end }}
-    {{ if $element.Params.Author }}
-      author: '{{ $element.Params.Author }}',
-    {{ else }}
-      author: '',
-    {{ end }}
-    wordcount: '{{ .WordCount }}'
-  },
-{{ end }}
-]
-
-post_list.forEach(element => {element.categories = element.categories.slice(1, -1).split(' ')})
-post_list.forEach(element => {element.tags = element.tags.slice(1, -1).split(' ')})
 
 const title_list = [
 {{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
@@ -255,7 +211,7 @@ const title_list = [
 
     created () {
       axios.get('{{ .Site.BaseURL }}works/index.json').then(response => {
-          setTimeout(() => {this.works = response.data.result}, 300)
+          setTimeout(() => {this.works = response.data.result.pages}, 300)
       })
     },
   }
@@ -267,13 +223,8 @@ const title_list = [
 
     data () {
       return {
-        post: {
-          title: null,
-          date: null,
-          categories: null,
-          tags: null
-        },
-        content: null
+        post: {}, 
+        isLoaded: false
       }
     },
 
@@ -285,20 +236,19 @@ const title_list = [
       setTimeout(this.resetDisqus, 1500, this.$route.query.url)
     },
 
-    updated () {
-      this.replaceImgSrc()
-      this.addCodeBlockTitle()
-    },
-
     methods: {
       replaceImgSrc () {
         var contents = document.getElementsByClassName('post-content')
+        var url = this.post.permalink
+        if (url.includes('index.json')) {
+          url = url.replace('index.json', '')
+        }
 
         Array.prototype.forEach.call(contents, content => {
           var imgs = content.getElementsByTagName('img')
           Array.prototype.forEach.call(imgs, img => {
             if (img.attributes.src.value.indexOf('http') == -1) {
-              img.src = this.post.url + img.attributes.src.value
+              img.src = url + img.attributes.src.value
             }
           })
         })        
@@ -351,11 +301,16 @@ const title_list = [
       },
 
       getPost (url) {
-        axios.get(url + 'index.json').then(response => {
-          this.post = response.data.result
-        })
         axios.get(url).then(response => {
-          setTimeout(() => {this.content = response.data}, 300)
+          this.post = response.data.result
+          setTimeout(() => {
+            this.isLoaded = true
+          }, 50)
+          setTimeout(() => {
+            this.replaceImgSrc()
+            this.addCodeBlockTitle()
+          }, 100)
+
         })
       },
 
@@ -383,7 +338,8 @@ const title_list = [
         page: 1,
         pageSize: 6,
         pageLength: null,
-        filteredPosts: post_list,
+        postList: [],
+        filteredPosts: [],
         displayPosts: [],
         showPostList: false,
         resultSnackbar: false,
@@ -402,7 +358,7 @@ const title_list = [
     },
 
     mounted () {
-      this.postsInit()
+      this.getPostList('{{ .Site.BaseURL }}/posts/index.json')
     },
 
     watch: {
@@ -412,6 +368,13 @@ const title_list = [
     },
 
     methods: {
+      getPostList (url) {
+        axios.get(url).then(response => {
+          this.postList = response.data.result.pages
+          this.postsInit()
+        })
+      },
+
       getSearchConditions () {
         var query = this.getQuery
         const convertToArray = (value) => {
@@ -441,6 +404,7 @@ const title_list = [
           this.searchPosts()
         }
         else {
+          this.filteredPosts = this.postList
           this.pageInit()
         }
       },
@@ -469,7 +433,7 @@ const title_list = [
         var keyword = searchConditions.keyword
         var selectedTags = searchConditions.selectedTags
         var selectedCategories = searchConditions.selectedCategories
-        const posts = JSON.parse(JSON.stringify(post_list))
+        const posts = JSON.parse(JSON.stringify(this.postList))
 
         const checkArray = (target, item) => {
           if (item) {
@@ -481,7 +445,7 @@ const title_list = [
         var checkArrayResult = []
 
         for (const post of posts) {
-          if (checkArray(post.tags, selectedTags) && checkArray(post.categories, selectedCategories)) {
+          if (checkArray(post.params.tags, selectedTags) && checkArray(post.params.categories, selectedCategories)) {
             checkArrayResult.push(post)
           }
         }
@@ -491,12 +455,12 @@ const title_list = [
         if (keyword) {
           var lower_keyword = keyword.toLowerCase()
           for (const post of checkArrayResult) {
-            var lower_title = post.title.toLowerCase()
+            var lower_title = post.params.title.toLowerCase()
             var keywordIndex = lower_title.indexOf(lower_keyword)
 
             if (keywordIndex !== -1) {
-              hl_keyword = '<span style="background-color:#00a381">' + post.title.substring(keywordIndex, keywordIndex + keyword.length) + '</span>'
-              post.title = lower_title.replace(lower_keyword, hl_keyword)
+              hl_keyword = '<span style="background-color:#00a381">' + post.params.title.substring(keywordIndex, keywordIndex + keyword.length) + '</span>'
+              post.params.title = lower_title.replace(lower_keyword, hl_keyword)
               checkKeywordResult.push(post)
             }
           }

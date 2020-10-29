@@ -1,0 +1,25 @@
+{{ define "result" }}
+    {{ if (eq .Kind "section") }}
+
+        {{ if (in site.Params.mainSections .Type) }}
+            {{ $pages := slice }}
+                {{ range .Pages }}
+                    {{ $page :=  dict "kind" .Kind "type" .Type "wordcount" .WordCount "summary" .Summary "permalink" .Permalink "params" .Params }}
+                    {{ $pages = $pages | append $page }}
+                {{ end }}
+            {{ dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "pages" $pages | jsonify (dict "indent" "  ") }}
+        
+
+
+        {{ else if (eq .Type "works") }}
+            {{ $pages := slice }}
+                {{ range .Pages }}
+                    {{ $page :=  dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params }}
+                    {{ $pages = $pages | append $page }}
+                {{ end }}
+            {{ dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "pages" $pages | jsonify (dict "indent" "  ") }}
+        {{ end }}
+
+
+    {{ end }}
+{{ end }}
