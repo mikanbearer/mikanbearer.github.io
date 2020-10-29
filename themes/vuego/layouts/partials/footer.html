@@ -228,11 +228,8 @@ const title_list = [
       }
     },
 
-    created () {
-      this.getPost(this.$route.query.url)
-    },
-
     mounted () {
+      this.getPost(this.$route.query.url)
       setTimeout(this.resetDisqus, 1500, this.$route.query.url)
     },
 
@@ -315,17 +312,18 @@ const title_list = [
       },
 
       resetDisqus (url) {
+        if (url.includes('index.json')) {
+          url = url.replace('index.json', '')
+        }
         if (window.DISQUS) {
           window.DISQUS.reset({
             reload: true,
-            config: function () {  
+            config: function () {
               this.page.url = url
             }
           })
         }
       },
-
-
     }
   }
   
@@ -358,7 +356,7 @@ const title_list = [
     },
 
     mounted () {
-      this.getPostList('{{ .Site.BaseURL }}/posts/index.json')
+      this.getPostList('{{ .Site.BaseURL }}posts/index.json')
     },
 
     watch: {
