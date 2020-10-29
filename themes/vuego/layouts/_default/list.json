@@ -10,7 +10,6 @@
             {{ dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "pages" $pages | jsonify (dict "indent" "  ") }}
         
 
-
         {{ else if (eq .Type "selections") }}
             {{ $titles := slice }}
             {{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
@@ -28,7 +27,6 @@
             {{ dict "titles" $titles "categories" $categories "tags" $tags | jsonify (dict "indent" "  ") }}
 
 
-
         {{ else if (eq .Type "works") }}
             {{ $pages := slice }}
                 {{ range .Pages }}
@@ -36,7 +34,65 @@
                     {{ $pages = $pages | append $page }}
                 {{ end }}
             {{ dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "pages" $pages | jsonify (dict "indent" "  ") }}
+       
+       
+        {{ else if (eq .Type "charts") }}
+            {{ $legend := slice }}
+            {{ range .Site.Taxonomies.tags.ByCount }}
+                {{ $legend = $legend | append .Name }}
+            {{ end }}
+            {{ $series := slice }}
+            {{ range .Site.Taxonomies.tags.ByCount }}
+                {{ $series = $series | append (dict "name" .Name "value" .Count) }}
+            {{ end }}
+            {{ $selected := dict }}
+            {{ range $i, $e := .Site.Taxonomies.tags.ByCount }}
+                {{ if (ge $i 10) }}
+                    {{ $selected = $selected | merge (dict $e.Name false) }}
+                {{ else }}
+                    {{ $selected = $selected | merge (dict $e.Name true) }}
+                {{ end }}
+            {{ end }}
+            {{ $tags_data := dict "legend" $legend "series" $series "selected" $selected }}
+  
+            {{ $legend := slice }}
+            {{ range .Site.Taxonomies.categories.ByCount }}
+                {{ $legend = $legend | append .Name }}
+            {{ end }}
+            {{ $series := slice }}
+            {{ range .Site.Taxonomies.categories.ByCount }}
+                {{ $series = $series | append (dict "name" .Name "value" .Count) }}
+            {{ end }}
+            {{ $selected := dict }}
+            {{ range $i, $e := .Site.Taxonomies.categories.ByCount }}
+            {{ if (ge $i 10) }}
+                {{ $selected = $selected | merge (dict $e.Name false) }}
+            {{ else }}
+                {{ $selected = $selected | merge (dict $e.Name true) }}
+            {{ end }}
+            {{ end }}
+            {{ $categories_data := dict "legend" $legend "series" $series "selected" $selected }}
+
+            {{ $x := slice }}
+            {{ range (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006-01" }}
+                {{ $x = $x | append .Key }}
+            {{ end }}
+            {{ $series := slice }}
+            {{ range (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006-01" }}
+                {{ $series = $series | append (len .Pages) }}
+            {{ end }}
+            {{ $monthly_count := dict "x" $x "series" $series }}
+            {{ dict "monthly_count" $monthly_count "categories_data" $categories_data "tags_data" $tags_data | jsonify (dict "indent" "  ") }}
+
+
+
+
+
+
         {{ end }}
+
+
+        
 
 
     {{ end }}

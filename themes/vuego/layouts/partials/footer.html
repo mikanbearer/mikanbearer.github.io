@@ -75,12 +75,12 @@
           setTimeout(() => {this.content = response.data}, 300)
       })
 
-      axios.get('{{ .Site.BaseURL }}about/chart_data/index.json').then(response => {
+      axios.get('{{ .Site.BaseURL }}charts/index.json').then(response => {
           setTimeout(() => {
             var result = response.data.result
             this.setPie('Top Categories', 'category', result.categories_data, 'chart_categories')
             this.setPie('Top Tags', 'tag', result.tags_data, 'chart_tags')
-            this.setArea('', result.monthly_count.x_data, result.monthly_count.series_data, 'monthly')
+            this.setArea('', result.monthly_count.x, result.monthly_count.series, 'monthly')
             }, 500)
       })
     },
@@ -132,7 +132,7 @@
             right: 0,
             top: 10,
             bottom: 10,
-            data: data.legendData,
+            data: data.legend,
             selected: data.selected,
             inactiveColor: '#686868',
             pageIconColor: '#aaa',
@@ -150,7 +150,7 @@
               type: 'pie',
               radius: '55%',
               center: ['40%', '50%'],
-              data: data.seriesData,
+              data: data.series,
               emphasis: {
                 itemStyle: {
                   shadowBlur: 10,
