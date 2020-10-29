@@ -1,0 +1,6 @@
+{{ $taxonomy := .Site.Taxonomies.tags }}
+
+{{ range $taxonomy.Alphabetical }}
+{{ .Name }}    
+{{ end }}
+  

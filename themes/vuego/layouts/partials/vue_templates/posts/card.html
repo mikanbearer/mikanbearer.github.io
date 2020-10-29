@@ -2,7 +2,28 @@
     <v-card class="post-card" v-if="post" color="#333a40">
         <v-list-item three-line>
             <v-list-item-content>
-            
+
+                <div class="overline">
+                    <div class="post-subtitle grey--text">
+                        <v-icon small color="grey lighten-1">
+                            mdi-calendar
+                        </v-icon>
+                        [[ post.params.date.slice(0,10) ]]
+                        <v-divider vertical></v-divider>
+                        <v-icon small color="grey lighten-1">
+                            mdi-folder-multiple
+                        </v-icon>
+                        <div v-for="(category, index) in post.params.categories" class="d-inline">
+                            <span v-if="index">, </span>
+                            <router-link
+                                :to="{path: '/', query: {category: category}}"
+                            >
+                                [[ category ]]
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+
           
             
                 <v-list-item-title class="text-h6 grey--text text--lighten-2">

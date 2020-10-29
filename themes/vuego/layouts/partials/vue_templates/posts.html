@@ -1,26 +1,24 @@
 <script type="text/x-template" id="posts">
 
-    <div>
-        
-        <v-slide-x-transition>
-            <v-row no-gutters justify="center" v-show="showPostList" class="post-list mt-n4">
+    <div v-show="displayPosts.length">    
+            <v-row no-gutters justify="center" class="post-list mt-n4">
                 <v-col cols="12" xs="12" sm="6" md="6" lg="4" xl="4">
 
                     <div v-if="$vuetify.breakpoint.xs">
                         <div v-for="(post, index) in displayPosts" :key="index">
-                            {{ partial "vue_templates/posts/card.html" . }}
+                            {{ partial "vue_templates/posts/preview.html" . }}
                         </div>
                     </div>
 
                     <div v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
                         <div v-for="(post, index) in displayPosts" v-if="index % 2 === 0" :key="index">
-                            {{ partial "vue_templates/posts/card.html" . }}
+                            {{ partial "vue_templates/posts/preview.html" . }}
                         </div>
                     </div>
 
                     <div v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
                         <div v-for="(post, index) in displayPosts" v-if="index % 3 === 0" :key="index">
-                            {{ partial "vue_templates/posts/card.html" . }}
+                            {{ partial "vue_templates/posts/preview.html" . }}
                         </div>
                     </div>
 
@@ -32,13 +30,13 @@
 
                     <div v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
                         <div v-for="(post, index) in displayPosts" v-if="index % 2 === 1" :key="index">
-                            {{ partial "vue_templates/posts/card.html" . }}
+                            {{ partial "vue_templates/posts/preview.html" . }}
                         </div>
                     </div>
 
                     <div v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
                         <div v-for="(post, index) in displayPosts" v-if="index % 3 === 1" :key="index">
-                            {{ partial "vue_templates/posts/card.html" . }}
+                            {{ partial "vue_templates/posts/preview.html" . }}
                         </div>
                     </div>
 
@@ -48,18 +46,22 @@
 
                     <div v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
                         <div v-for="(post, index) in displayPosts" v-if="index % 3 === 2" :key="index">
-                            {{ partial "vue_templates/posts/card.html" . }}
+                            {{ partial "vue_templates/posts/preview.html" . }}
                         </div>
                     </div>
 
                 </v-col>
 
+            </v-row>
 
-                <v-col cols="12">
-                    <v-pagination v-show="displayPosts.length" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
+            <v-row justidy="center">
+                <v-col>
+                    <v-slide-x-transition>
+                        <v-pagination v-show="showPostList.length === pageSize" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
+                    </v-slide-x-transition>
                 </v-col>
             </v-row>
-        </v-slide-x-transition>
+    
 
         <v-snackbar
             v-model="resultSnackbar"

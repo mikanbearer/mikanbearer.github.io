@@ -3,12 +3,30 @@
 
         {{ if (in site.Params.mainSections .Type) }}
             {{ $pages := slice }}
-                {{ range .Pages }}
-                    {{ $page :=  dict "kind" .Kind "type" .Type "wordcount" .WordCount "summary" .Summary "permalink" .Permalink "params" .Params }}
-                    {{ $pages = $pages | append $page }}
-                {{ end }}
+            {{ range .Pages }}
+                {{ $page :=  dict "kind" .Kind "type" .Type "wordcount" .WordCount "summary" .Summary "permalink" .Permalink "params" .Params }}
+                {{ $pages = $pages | append $page }}
+            {{ end }}
             {{ dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "pages" $pages | jsonify (dict "indent" "  ") }}
         
+
+
+        {{ else if (eq .Type "selections") }}
+            {{ $titles := slice }}
+            {{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
+                {{ $titles = $titles | append .Title }}
+            {{ end }}
+            {{ $categories := slice }}
+            {{ range .Site.Taxonomies.categories.Alphabetical }}
+                {{ $categories = $categories | append .Name }}    
+            {{ end }}
+            {{ $tags := slice }}
+            {{ range .Site.Taxonomies.tags.Alphabetical }}
+                {{ $tags = $tags | append .Name }}    
+            {{ end }}
+            
+            {{ dict "titles" $titles "categories" $categories "tags" $tags | jsonify (dict "indent" "  ") }}
+
 
 
         {{ else if (eq .Type "works") }}
