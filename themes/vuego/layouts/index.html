@@ -53,11 +53,14 @@
     <v-main>
       <v-container class="mt-4" style="min-height: 100vh;">
         <v-row>
-          <v-col>
-       
+          <v-col cols="12">
+            <v-scroll-x-transition>
               <router-view></router-view>
-       
-            <v-card class="mt-4" v-show="commentBlock" color="#333a40">
+            </v-scroll-x-transition>
+          </v-col>
+
+          <v-col cols="12">
+            <v-card v-show="commentBlock" color="#333a40">
               <v-card-text>
                 <div id="disqus_thread"></div>
                 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>

@@ -192,14 +192,14 @@
 
     data () {
       return {
-        post: {}, 
+        post: {},
         isLoaded: false
       }
     },
 
     mounted () {
       this.getPost(this.$route.query.url)
-      setTimeout(this.resetDisqus, 1500, this.$route.query.url)
+      setTimeout(this.resetDisqus, 1000, this.$route.query.url)
     },
 
     methods: {
@@ -270,12 +270,14 @@
         axios.get(url).then(response => {
           this.post = response.data.result
         
-          this.isLoaded = true
-       
           setTimeout(() => {
             this.replaceImgSrc()
             this.addCodeBlockTitle()
-          }, 100)
+          }, 10)
+
+          setTimeout(() => {
+            this.isLoaded = true
+          }, 50)
 
         })
       },
@@ -505,6 +507,13 @@
     },
 
     created () {
+      this.$vuetify.theme.themes.dark.primary = '#F08300'
+      this.$vuetify.theme.themes.dark.secondary = '#006e54'
+      this.$vuetify.theme.themes.dark.warning = '#d3381c'
+      this.$vuetify.theme.themes.dark.error = '#D7003A'
+      this.$vuetify.theme.themes.dark.accent = '#009988'
+      this.$vuetify.theme.themes.dark.header = '#1f3134'
+      this.$vuetify.theme.themes.dark.content = '#333a40'
       this.$vuetify.theme.dark = true
     },
 
@@ -635,15 +644,7 @@
   vm.$vuetify.theme.themes.light.warning = '#F08300'
 
 
-  vm.$vuetify.theme.themes.dark.primary = '#F08300'
-  vm.$vuetify.theme.themes.dark.secondary = '#006e54'
-  vm.$vuetify.theme.themes.dark.warning = '#d3381c'
-  vm.$vuetify.theme.themes.dark.error = '#D7003A'
-  vm.$vuetify.theme.themes.dark.accent = '#009988'
 
-
-  vm.$vuetify.theme.themes.dark.header = '#1f3134'
-  vm.$vuetify.theme.themes.dark.content = '#333a40'
 
 
 

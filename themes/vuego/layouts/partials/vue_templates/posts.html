@@ -1,66 +1,54 @@
 <script type="text/x-template" id="posts">
 
-    <div v-show="displayPosts.length">    
-            <v-row no-gutters justify="center" class="post-list mt-n4">
-                <v-col cols="12" xs="12" sm="6" md="6" lg="4" xl="4">
+    <div v-show="displayPosts.length" class="post-list">
 
-                    <div v-if="$vuetify.breakpoint.xs">
-                        <div v-for="(post, index) in displayPosts" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
-                        </div>
-                    </div>
+        <v-row v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
+            <v-col cols="4">
+                <div v-for="(post, index) in displayPosts" v-if="index % 3 === 0" :key="index">
+                    {{ partial "vue_templates/posts/preview.html" . }}
+                </div>
+            </v-col>
+            <v-col cols="4">
+                <div v-for="(post, index) in displayPosts" v-if="index % 3 === 1" :key="index">
+                    {{ partial "vue_templates/posts/preview.html" . }}
+                </div>
+            </v-col>
+            <v-col cols="4">
+                <div v-for="(post, index) in displayPosts" v-if="index % 3 === 2" :key="index">
+                    {{ partial "vue_templates/posts/preview.html" . }}
+                </div>
+            </v-col>
+        </v-row>
 
-                    <div v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
-                        <div v-for="(post, index) in displayPosts" v-if="index % 2 === 0" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
-                        </div>
-                    </div>
+        <v-row v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
+            <v-col cols="6">
+                <div v-for="(post, index) in displayPosts" v-if="index % 2 === 0" :key="index">
+                    {{ partial "vue_templates/posts/preview.html" . }}
+                </div>
+            </v-col>
+            <v-col cols="6">
+                <div v-for="(post, index) in displayPosts" v-if="index % 2 === 1" :key="index">
+                    {{ partial "vue_templates/posts/preview.html" . }}
+                </div>
+            </v-col>
+        </v-row>
 
-                    <div v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
-                        <div v-for="(post, index) in displayPosts" v-if="index % 3 === 0" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
-                        </div>
-                    </div>
+        <v-row v-if="$vuetify.breakpoint.xs">
+            <v-col cols="12">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    {{ partial "vue_templates/posts/preview.html" . }}
+                </div>
+            </v-col>
+        </v-row>
 
-                </v-col>
 
-
-
-                <v-col cols="12" xs="12" sm="6" md="6" lg="4" xl="4">
-
-                    <div v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
-                        <div v-for="(post, index) in displayPosts" v-if="index % 2 === 1" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
-                        </div>
-                    </div>
-
-                    <div v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
-                        <div v-for="(post, index) in displayPosts" v-if="index % 3 === 1" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
-                        </div>
-                    </div>
-
-                </v-col>
-
-                <v-col cols="12" xs="12" sm="6" md="6" lg="4" xl="4">
-
-                    <div v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
-                        <div v-for="(post, index) in displayPosts" v-if="index % 3 === 2" :key="index">
-                            {{ partial "vue_templates/posts/preview.html" . }}
-                        </div>
-                    </div>
-
-                </v-col>
-
-            </v-row>
-
-            <v-row justidy="center">
-                <v-col>
-                    <v-slide-x-transition>
-                        <v-pagination v-show="showPostList.length === pageSize" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
-                    </v-slide-x-transition>
-                </v-col>
-            </v-row>
+        <v-row no-gutters justidy="center">
+            <v-col>
+                <v-slide-x-transition>
+                    <v-pagination v-show="showPostList.length === pageSize" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
+                </v-slide-x-transition>
+            </v-col>
+        </v-row>
     
 
         <v-snackbar

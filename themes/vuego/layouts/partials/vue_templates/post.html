@@ -1,5 +1,7 @@
 <script type="text/x-template" id="post">
-    <div class="mt-n4" v-if="isLoaded">
-        {{ partial "vue_templates/posts/card.html" . }}
-    </div>
+    <v-row v-if="post.content" >
+        <v-col v-show="isLoaded">
+            {{ partial "vue_templates/posts/card.html" . }}
+        </v-col>
+    </v-row>
 </script>
