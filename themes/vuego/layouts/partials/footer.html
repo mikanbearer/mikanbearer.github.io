@@ -6,6 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
 {{ partial "vue_templates/posts.html" . }}
 {{ partial "vue_templates/post.html" . }}
+{{ partial "vue_templates/post_card.html" . }}
 {{ partial "vue_templates/works.html" . }}
 {{ partial "vue_templates/about.html" . }}
 
@@ -71,16 +72,13 @@
     },
 
     created () {
-      axios.get('{{ .Site.BaseURL }}about/about_me/').then(response => {
-          setTimeout(() => {this.content = response.data}, 300)
-      })
-
-      axios.get('{{ .Site.BaseURL }}charts/index.json').then(response => {
+      axios.get('{{ .Site.BaseURL }}about/index.json').then(response => {
           setTimeout(() => {
-            var result = response.data.result
-            this.setPie('Top Categories', 'category', result.categories_data, 'chart_categories')
-            this.setPie('Top Tags', 'tag', result.tags_data, 'chart_tags')
-            this.setArea('', result.monthly_count.x, result.monthly_count.series, 'monthly')
+            this.content = response.data.result.content
+            var charts = response.data.result.charts
+            this.setPie('Top Categories', 'category', charts.categories_data, 'chart_categories')
+            this.setPie('Top Tags', 'tag', charts.tags_data, 'chart_tags')
+            this.setArea('', charts.monthly_count.x, charts.monthly_count.series, 'monthly')
             }, 500)
       })
     },
@@ -189,6 +187,7 @@
   const Post = {
     template: '#post',
     delimiters: ['[[', ']]'],
+    props: ['name'],
 
     data () {
       return {
@@ -198,8 +197,9 @@
     },
 
     mounted () {
-      this.getPost(this.$route.query.url)
-      setTimeout(this.resetDisqus, 1000, this.$route.query.url)
+      var postUrl = '{{ .Site.BaseURL }}posts/' + this.name + '/index.json'
+      this.getPost(postUrl)
+      setTimeout(this.resetDisqus, 1000, postUrl)
     },
 
     methods: {
@@ -452,10 +452,10 @@
   }
 
   const routes = [
-    { path: '/', component: Posts },
-    { path: '/post', component: Post },
-    { path: '/works', component: Works },
-    { path: '/about', component: About }
+    { path: '/', name: 'main', component: Posts },
+    { path: '/post/:name', name: 'post', component: Post, props: true },
+    { path: '/works', name: 'works', component: Works },
+    { path: '/about', name: 'about', component: About }
   ]
 
   const router = new VueRouter({
@@ -621,7 +621,7 @@
       },
 
       showComment () {
-        if (this.$route.path === '/post') {
+        if (this.$route.name === 'post') {
           setTimeout(() => {this.commentBlock = true}, 3000)
         } else {
           this.commentBlock = false
@@ -637,12 +637,11 @@
     }
   })
 
-  vm.$vuetify.theme.themes.light.primary = '#007C8A'
-  vm.$vuetify.theme.themes.light.secondary = '#44617B'
-  vm.$vuetify.theme.themes.light.accent = '#009BAC'
-  vm.$vuetify.theme.themes.light.error = '#D7003A'
-  vm.$vuetify.theme.themes.light.warning = '#F08300'
-
+  Vue.component('post-card', {
+    props: ['post', 'isLoaded'],
+    template: '#post-card',
+    delimiters: ['[[', ']]']
+  })
 
 
 

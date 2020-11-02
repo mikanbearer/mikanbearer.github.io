@@ -1,7 +1,5 @@
 ---
-layout: "about_me"
-outputs:
-- html
+
 ---
 
 垃圾堆中的一小袋垃圾，努力讓自己變得可用

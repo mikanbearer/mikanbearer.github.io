@@ -1,7 +1,7 @@
 <script type="text/x-template" id="post">
     <v-row v-if="post.content" >
-        <v-col v-show="isLoaded">
-            {{ partial "vue_templates/posts/card.html" . }}
+        <v-col>
+            <post-card :post="post" :isLoaded="isLoaded"></post-card>
         </v-col>
     </v-row>
 </script>

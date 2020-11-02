@@ -4,7 +4,7 @@
         {{ if (in site.Params.mainSections .Type) }}
             {{ $pages := slice }}
             {{ range .Pages }}
-                {{ $page :=  dict "kind" .Kind "type" .Type "wordcount" .WordCount "summary" .Summary "permalink" .Permalink "params" .Params }}
+                {{ $page :=  dict "name" .File.BaseFileName "kind" .Kind "type" .Type "wordcount" .WordCount "summary" .Summary "permalink" .Permalink "params" .Params }}
                 {{ $pages = $pages | append $page }}
             {{ end }}
             {{ dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "pages" $pages | jsonify (dict "indent" "  ") }}
@@ -30,13 +30,13 @@
         {{ else if (eq .Type "works") }}
             {{ $pages := slice }}
                 {{ range .Pages }}
-                    {{ $page :=  dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params }}
+                    {{ $page :=  dict "name" .File.BaseFileName "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params }}
                     {{ $pages = $pages | append $page }}
                 {{ end }}
             {{ dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "pages" $pages | jsonify (dict "indent" "  ") }}
        
        
-        {{ else if (eq .Type "charts") }}
+        {{ else if (eq .Type "about") }}
             {{ $legend := slice }}
             {{ range .Site.Taxonomies.tags.ByCount }}
                 {{ $legend = $legend | append .Name }}
@@ -82,7 +82,9 @@
                 {{ $series = $series | append (len .Pages) }}
             {{ end }}
             {{ $monthly_count := dict "x" $x "series" $series }}
-            {{ dict "monthly_count" $monthly_count "categories_data" $categories_data "tags_data" $tags_data | jsonify (dict "indent" "  ") }}
+            {{ $charts := dict "monthly_count" $monthly_count "categories_data" $categories_data "tags_data" $tags_data }}
+            {{ dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "charts" $charts | jsonify (dict "indent" "  ") }}
+
 
 
 

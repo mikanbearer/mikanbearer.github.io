@@ -2,59 +2,62 @@
     <div>
         <v-row justify="center" class="mt-n5">
             <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                <v-card flat color="transparent">
-                    <v-card-title class="text-h6 grey--text text--lighten-3">
-                        <span class="post-title">
-                            About Me
-                        </span>
-                    </v-card-title>
-                    <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
-                        <div class="mr-2 ml-2 post-content" v-html="content">
-                        </div>
-                    </v-card-text>
-                    
-                </v-card>
+                <v-fade-transition>
+                    <v-card flat color="transparent" v-show="content">
+                        <v-card-title class="text-h6 grey--text text--lighten-3">
+                            <span class="post-title">
+                                About Me
+                            </span>
+                        </v-card-title>
+                        <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
+                            <div class="mr-2 ml-2 post-content" v-html="content">
+                            </div>
+                        </v-card-text>     
+                    </v-card>
+                </v-fade-transition>
             </v-col>
 
             <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                <v-card flat color="transparent">
-                    <v-card-title class="text-h6 grey--text text--lighten-3">
-                        <span class="post-title">
-                            Profile
-                        </span>
-                    </v-card-title>
-                    <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
-                        <div class="mr-2 ml-2 post-content">
-                            Name: [[ author.name ]]
-                        </div>
-                    </v-card-text>
+                <v-fade-transition>
+                    <v-card flat color="transparent" v-show="content">
+                        <v-card-title class="text-h6 grey--text text--lighten-3">
+                            <span class="post-title">
+                                Profile
+                            </span>
+                        </v-card-title>
+                        <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
+                            <div class="mr-2 ml-2 post-content">
+                                Name: [[ author.name ]]
+                            </div>
+                        </v-card-text>
 
-                    <v-card-title class="text-h6 grey--text text--lighten-3">
-                        <span class="post-title">
-                            Social Links
-                        </span>
-                    </v-card-title>
-                    <v-card-text class="d-flex justify-space-around text-body-2 grey--text text--lighten-2">
-                        <v-btn
-                            icon
-                            :disabled="!author.email"
-                            :href="'mailto:' + author.email" 
-                        >
-                            <v-icon>mdi-email</v-icon>
-                        </v-btn>
-                 
-                        <v-btn
-                            icon
-                            v-for="(item, index) in author.socialLinks"
-                            :key="index"
-                            :disabled="!item.user"
-                            :href="item.url + item.user"
-                            target="_blank"
-                        >
-                            <v-icon>mdi-[[item.name]]</v-icon>
-                        </v-btn>
-                    </v-card-text>
-                </v-card>
+                        <v-card-title class="text-h6 grey--text text--lighten-3">
+                            <span class="post-title">
+                                Social Links
+                            </span>
+                        </v-card-title>
+                        <v-card-text class="d-flex justify-space-around text-body-2 grey--text text--lighten-2">
+                            <v-btn
+                                icon
+                                :disabled="!author.email"
+                                :href="'mailto:' + author.email" 
+                            >
+                                <v-icon>mdi-email</v-icon>
+                            </v-btn>
+                        
+                            <v-btn
+                                icon
+                                v-for="(item, index) in author.socialLinks"
+                                :key="index"
+                                :disabled="!item.user"
+                                :href="item.url + item.user"
+                                target="_blank"
+                            >
+                                <v-icon>mdi-[[item.name]]</v-icon>
+                            </v-btn>
+                        </v-card-text>
+                    </v-card>
+                </v-fade-transition>
             </v-col>
 
             <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
