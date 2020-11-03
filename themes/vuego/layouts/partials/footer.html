@@ -76,10 +76,17 @@
           setTimeout(() => {
             this.content = response.data.result.content
             var charts = response.data.result.charts
-            this.setPie('Top Categories', 'category', charts.categories_data, 'chart_categories')
-            this.setPie('Top Tags', 'tag', charts.tags_data, 'chart_tags')
-            this.setArea('', charts.monthly_count.x, charts.monthly_count.series, 'monthly')
+            
+            setTimeout(() => {
+              this.setPie('Top Categories', 'category', charts.categories_data, 'chart_categories')
             }, 500)
+            setTimeout(() => {
+              this.setPie('Top Tags', 'tag', charts.tags_data, 'chart_tags')
+            }, 700)
+            setTimeout(() => {
+              this.setArea('', charts.monthly_count.x, charts.monthly_count.series, 'monthly')
+            }, 1000)
+          }, 500)
       })
     },
     methods: {

@@ -1,5 +1,2 @@
 {{ define "result" }}
-    {{ if (in site.Params.mainSections .Type) }}
-        {{ dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params | jsonify (dict "indent" "  ") }}
-    {{ end }}
 {{ end }}
