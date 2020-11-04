@@ -1,0 +1,802 @@
+
+
+
+
+    
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+        
+
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+        
+
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
+        
+        
+
+    
+
+
+
+
+
+{
+  "result": {
+    "charts": {
+      "categories_data": {
+        "legend": [
+          "WebDevelopment",
+          "未分類",
+          "Monitoring",
+          "Operation",
+          "Arista",
+          "MachineLearning",
+          "Provisioning",
+          "WebCrawler",
+          "DataScience",
+          "Opration"
+        ],
+        "selected": {
+          "Arista": true,
+          "DataScience": true,
+          "MachineLearning": true,
+          "Monitoring": true,
+          "Operation": true,
+          "Opration": true,
+          "Provisioning": true,
+          "WebCrawler": true,
+          "WebDevelopment": true,
+          "未分類": true
+        },
+        "series": [
+          {
+            "name": "WebDevelopment",
+            "value": 29
+          },
+          {
+            "name": "未分類",
+            "value": 6
+          },
+          {
+            "name": "Monitoring",
+            "value": 5
+          },
+          {
+            "name": "Operation",
+            "value": 4
+          },
+          {
+            "name": "Arista",
+            "value": 2
+          },
+          {
+            "name": "MachineLearning",
+            "value": 2
+          },
+          {
+            "name": "Provisioning",
+            "value": 2
+          },
+          {
+            "name": "WebCrawler",
+            "value": 2
+          },
+          {
+            "name": "DataScience",
+            "value": 1
+          },
+          {
+            "name": "Opration",
+            "value": 1
+          }
+        ]
+      },
+      "monthly_count": {
+        "series": [
+          2,
+          8,
+          15,
+          12,
+          12
+        ],
+        "x": [
+          "2020-11",
+          "2020-10",
+          "2020-09",
+          "2020-08",
+          "2020-07"
+        ]
+      },
+      "tags_data": {
+        "legend": [
+          "Python",
+          "Vue.js",
+          "Node.js",
+          "Django",
+          "Docker",
+          "Flask",
+          "Hugo",
+          "JavaScript",
+          "Prometheus",
+          "NestJS",
+          "TypeScript",
+          "Angular",
+          "Ansible",
+          "Echarts",
+          "EVE-NG",
+          "Nginx",
+          "Pelican",
+          "RabbitMQ",
+          "scikit-learn",
+          "Scrapy",
+          "Apache",
+          "Cacti",
+          "Celery",
+          "Channels",
+          "Excel",
+          "Jieba",
+          "jQuery",
+          "LibreNMS",
+          "Matplotlib",
+          "Moment.js",
+          "Nagios",
+          "pandas",
+          "seaborn",
+          "TypeORM",
+          "uWSGI",
+          "VBA",
+          "VBScript",
+          "vEOS",
+          "Vuetify",
+          "ZTPServer"
+        ],
+        "selected": {
+          "Angular": false,
+          "Ansible": false,
+          "Apache": false,
+          "Cacti": false,
+          "Celery": false,
+          "Channels": false,
+          "Django": true,
+          "Docker": true,
+          "EVE-NG": false,
+          "Echarts": false,
+          "Excel": false,
+          "Flask": true,
+          "Hugo": true,
+          "JavaScript": true,
+          "Jieba": false,
+          "LibreNMS": false,
+          "Matplotlib": false,
+          "Moment.js": false,
+          "Nagios": false,
+          "NestJS": true,
+          "Nginx": false,
+          "Node.js": true,
+          "Pelican": false,
+          "Prometheus": true,
+          "Python": true,
+          "RabbitMQ": false,
+          "Scrapy": false,
+          "TypeORM": false,
+          "TypeScript": false,
+          "VBA": false,
+          "VBScript": false,
+          "Vue.js": true,
+          "Vuetify": false,
+          "ZTPServer": false,
+          "jQuery": false,
+          "pandas": false,
+          "scikit-learn": false,
+          "seaborn": false,
+          "uWSGI": false,
+          "vEOS": false
+        },
+        "series": [
+          {
+            "name": "Python",
+            "value": 18
+          },
+          {
+            "name": "Vue.js",
+            "value": 7
+          },
+          {
+            "name": "Node.js",
+            "value": 6
+          },
+          {
+            "name": "Django",
+            "value": 5
+          },
+          {
+            "name": "Docker",
+            "value": 5
+          },
+          {
+            "name": "Flask",
+            "value": 5
+          },
+          {
+            "name": "Hugo",
+            "value": 5
+          },
+          {
+            "name": "JavaScript",
+            "value": 5
+          },
+          {
+            "name": "Prometheus",
+            "value": 5
+          },
+          {
+            "name": "NestJS",
+            "value": 3
+          },
+          {
+            "name": "TypeScript",
+            "value": 3
+          },
+          {
+            "name": "Angular",
+            "value": 2
+          },
+          {
+            "name": "Ansible",
+            "value": 2
+          },
+          {
+            "name": "Echarts",
+            "value": 2
+          },
+          {
+            "name": "EVE-NG",
+            "value": 2
+          },
+          {
+            "name": "Nginx",
+            "value": 2
+          },
+          {
+            "name": "Pelican",
+            "value": 2
+          },
+          {
+            "name": "RabbitMQ",
+            "value": 2
+          },
+          {
+            "name": "scikit-learn",
+            "value": 2
+          },
+          {
+            "name": "Scrapy",
+            "value": 2
+          },
+          {
+            "name": "Apache",
+            "value": 1
+          },
+          {
+            "name": "Cacti",
+            "value": 1
+          },
+          {
+            "name": "Celery",
+            "value": 1
+          },
+          {
+            "name": "Channels",
+            "value": 1
+          },
+          {
+            "name": "Excel",
+            "value": 1
+          },
+          {
+            "name": "Jieba",
+            "value": 1
+          },
+          {
+            "name": "jQuery",
+            "value": 1
+          },
+          {
+            "name": "LibreNMS",
+            "value": 1
+          },
+          {
+            "name": "Matplotlib",
+            "value": 1
+          },
+          {
+            "name": "Moment.js",
+            "value": 1
+          },
+          {
+            "name": "Nagios",
+            "value": 1
+          },
+          {
+            "name": "pandas",
+            "value": 1
+          },
+          {
+            "name": "seaborn",
+            "value": 1
+          },
+          {
+            "name": "TypeORM",
+            "value": 1
+          },
+          {
+            "name": "uWSGI",
+            "value": 1
+          },
+          {
+            "name": "VBA",
+            "value": 1
+          },
+          {
+            "name": "VBScript",
+            "value": 1
+          },
+          {
+            "name": "vEOS",
+            "value": 1
+          },
+          {
+            "name": "Vuetify",
+            "value": 1
+          },
+          {
+            "name": "ZTPServer",
+            "value": 1
+          }
+        ]
+      }
+    },
+    "content": "\u003cp\u003e垃圾堆中的一小袋垃圾，努力讓自己變得可用\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eSkills：\u003c/strong\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eServer-side Web Framework\u003c/strong\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eDjango\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eFlask\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eNestJS\u003c/strong\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eClient-side Web Framework\u003c/strong\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eVue.js\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eAngular\u003c/strong\u003e\n\u0026hellip;etc\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n",
+    "kind": "section",
+    "params": {
+      "draft": false,
+      "iscjklanguage": false
+    },
+    "permalink": "https://mikanbearer.github.io/about/index.json",
+    "type": "about",
+    "wordcount": 14
+  }
+}

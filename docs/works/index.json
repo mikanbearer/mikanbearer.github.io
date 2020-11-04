@@ -1,36 +1,55 @@
-{
-    "result" : 
-[
+
+
+
 
     
-        {
-            "title": "hugo-vue-mix",
-            "summary": "靜態網站產生器Hugo的一個自製主題，同時也是本BLOG的前主題，目前為平行開發的狀態，使用Vue.js完成搜尋功能，並使用Vuetify導入Material Design，持續增加功能中",
-            "images": [
-                
-                    
-                    "https://mikanbearer.github.io/works/work1/1.png"
-                
-                    , 
-                    "https://mikanbearer.github.io/works/work1/2.png"
-                
-                    , 
-                    "https://mikanbearer.github.io/works/work1/3.png"
-                
-            ],
-            "powered_by": [
-                
-                    
-                    "Vue.js"
-                
-                    , 
-                    "Vuetify"
-                
-            ],
-            "download_url": "https://github.com/mikanbearer/hugo-vue-mix",
-            "demo_url": ""
-        }
+        
+        
+            
+            
+        
+        
 
-]
 
+    
+
+
+
+
+
+{
+  "result": {
+    "content": "",
+    "kind": "section",
+    "pages": [
+      {
+        "content": "\u003cp\u003e靜態網站產生器Hugo的一個自製主題，同時也是本BLOG的前主題，目前為平行開發的狀態，使用Vue.js完成搜尋功能，並使用Vuetify導入Material Design，持續增加功能中\u003c/p\u003e\n",
+        "kind": "page",
+        "name": "work1",
+        "params": {
+          "demo_url": "",
+          "download_url": "https://github.com/mikanbearer/hugo-vue-mix",
+          "draft": false,
+          "images": [
+            "works/work1/1.png",
+            "works/work1/2.png",
+            "works/work1/3.png"
+          ],
+          "iscjklanguage": false,
+          "powered_by": [
+            "Vue.js",
+            "Vuetify"
+          ],
+          "title": "hugo-vue-mix"
+        },
+        "permalink": "https://mikanbearer.github.io/works/work1/index.json",
+        "type": "works",
+        "wordcount": 2
+      }
+    ],
+    "params": {},
+    "permalink": "https://mikanbearer.github.io/works/index.json",
+    "type": "works",
+    "wordcount": 0
+  }
 }

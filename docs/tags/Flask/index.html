@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html><head>
+    <title>垃圾堆</title>
+
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://mikanbearer.github.io/css/code-block.css" rel="stylesheet">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <style>
+      .site-title {
+        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+      }
+ 
+      .post-title {
+        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+        font-weight: 500;
+        white-space: normal;
+        overflow-wrap: break-word;
+      }
+
+      .post-subtitle {
+        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+        font-weight: 400;
+        text-transform: none;
+      }
+
+      .post-content {
+        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+        font-weight: 300;
+      }
+
+      .post-card .post-title {
+        color: #eeeeee;
+      }
+
+      .overline .post-subtitle {
+        letter-spacing: .1em !important;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        background-attachment: fixed;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-color: #272727;
+      }
+
+      a {
+        text-decoration:none;
+      }
+  
+      #inspire {
+        background: none;
+      }
+
+      a.v-chip--active.accent {
+        -webkit-filter: brightness(1.1);
+      }
+
+      span.v-chip__content {
+        font-family: Roboto,sans-serif !important;
+        font-weight: 500;
+      }
+
+      a.v-chip--active.accent span {
+        color: #ffffff;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+    
+    </style>
+  
+  </head>
+  <body><div id="content">
+        </div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+<script type="text/x-template" id="posts">
+
+    <div v-show="displayPosts.length" class="post-list">
+
+        <v-row v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
+            <v-col cols="4">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 3 === 0">
+                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+            <v-col cols="4">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 3 === 1">
+                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+            <v-col cols="4">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 3 === 2">
+                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+        </v-row>
+
+        <v-row v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
+            <v-col cols="6">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 2 === 0">
+                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+            <v-col cols="6">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 2 === 1">
+                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+        </v-row>
+
+        <v-row v-if="$vuetify.breakpoint.xs">
+            <v-col cols="12">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div>
+                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+        </v-row>
+
+
+        <v-row no-gutters justidy="center">
+            <v-col>
+                <v-slide-x-transition>
+                    <v-pagination v-show="showPostList.length === pageSize" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
+                </v-slide-x-transition>
+            </v-col>
+        </v-row>
+    
+
+        <v-snackbar
+            v-model="resultSnackbar"
+            :timeout=2000
+        >
+            Found [[ filteredPosts.length ]] Posts.
+            <template v-slot:action="{ attrs }">
+                <v-btn
+                    color="primary"
+                    icon
+                    v-bind="attrs"
+                    @click="resultSnackbar = false"
+                >
+                    <v-icon>
+                        mdi-close
+                    </v-icon>
+                </v-btn>
+            </template>
+        </v-snackbar>
+    </div>
+
+</script>
+<script type="text/x-template" id="post">
+    <v-row v-if="post.content" >
+        <v-col>
+            <post-card :post="post" :isLoaded="isLoaded"></post-card>
+        </v-col>
+    </v-row>
+</script>
+<script type="text/x-template" id="post-card">
+    <v-slide-x-transition>
+        <div v-show="isLoaded">
+    
+            <div class="mb-6">
+                <v-card class="post-card" v-if="post" color="#333a40">
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                        
+                            <div class="overline">
+                                <div class="post-subtitle grey--text">
+                                    <v-icon small color="grey lighten-1">
+                                        mdi-calendar
+                                    </v-icon>
+                                    [[ post.params.date.slice(0,10) ]]
+                                    <v-divider vertical></v-divider>
+                                    <v-icon small color="grey lighten-1">
+                                        mdi-folder-multiple
+                                    </v-icon>
+                                    <div v-for="(category, index) in post.params.categories" class="d-inline">
+                                        <span v-if="index">, </span>
+                                        <router-link
+                                            :to="{path: '/', query: {category: category}}"
+                                        >
+                                            [[ category ]]
+                                        </router-link>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        
+                            <v-list-item-title class="text-h6 grey--text text--lighten-2">
+                                <router-link 
+                                    class="post-title" 
+                                    v-html="post.params.title" 
+                                    :to="{path: 'post', query: {url: post.permalink}}"
+                                >
+                                </router-link>
+                            </v-list-item-title>
+                        
+                            <v-list-item-subtitle>
+                                <div class="mt-2 text-body-2 grey--text text--lighten-1">
+                                
+                                    <div v-if="$router.path == '/'" class="post-subtitle">
+                                        <v-icon small color="grey lighten-1">
+                                            mdi-tag-multiple
+                                        </v-icon>
+                                        <div v-for="tag in post.params.tags" class="d-inline">
+                                            <v-chip
+                                                color="accent"
+                                                label
+                                                text-color="grey lighten-3"
+                                                x-small
+                                                class="mr-1"
+                                                :key="tag"
+                                                :to="{path: '/', query: {tag: tag}}"
+                                                v-if="searchConditions.selectedTags.includes(tag)"
+                                                :class="['v-chip--active']"
+                                            >
+                                                [[ tag ]]
+                                            </v-chip>
+                                            <v-chip
+                                                color="accent"
+                                                label
+                                                text-color="grey lighten-3"
+                                                x-small
+                                                class="mr-1"
+                                                :key="tag"
+                                                :to="{path: '/', query: {tag: tag}}"
+                                                v-else
+                                            >
+                                                [[ tag ]]
+                                            </v-chip>
+                                        </div>
+                                    </div>
+                                
+                                    <div v-else class="post-subtitle">
+                                        <v-icon small color="grey lighten-1">
+                                            mdi-tag-multiple
+                                        </v-icon>
+                                        <div v-for="tag in post.params.tags" class="d-inline">
+                                            <v-chip
+                                                color="accent"
+                                                label
+                                                text-color="grey lighten-3"
+                                                x-small
+                                                class="mr-1"
+                                                :key="tag"
+                                                :to="{path: '/', query: {tag: tag}}"
+                                            >
+                                                [[ tag ]]
+                                            </v-chip>
+                                        </div>
+                                    </div>    
+                                
+                                </div>                      
+                            </v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-item>
+                
+                    <v-divider inset></v-divider>
+                
+                    <v-card-text v-if="post.content" class="text-body-2 grey--text text--lighten-2">
+                        <div class="post-content" v-html="post.content"></div>
+                    </v-card-text>
+                
+                    <v-card-text v-else-if="post.summary" class="text-body-2 grey--text text--lighten-2">
+                        <div class="post-content" v-html="post.summary"></div>
+                        <v-row justify="end">
+                            <v-tooltip bottom>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <div
+                                        v-bind="attrs"
+                                        v-on="on"
+                                    >
+                                        <v-btn :to="{name: 'post', params: {name: post.name}}" color="primary" small text>
+                                            Continue Reading
+                                            <v-icon right small>
+                                                mdi-chevron-right
+                                            </v-icon>
+                                        </v-btn>
+                                    </div>
+                                </template>
+                                <span>[[ post.wordcount ]] words</span>
+                            </v-tooltip> 
+                        </v-row>
+                    </v-card-text>
+                
+                </v-card>
+            </div>
+
+        </div>
+    </v-slide-x-transition>
+</script>
+<script type="text/x-template" id="works">
+    <div v-if="works">
+        <v-row justify="center" class="mt-n5">
+            <v-col>
+                <transition-group name="fade" tag="p">
+
+                    <div v-for="(work, index) in works" :key="work.name">
+                        <v-card flat color="transparent">
+                            <v-card-text>
+                                <v-row>
+                                    <v-col xs="12" sm="6" md="6" lg="6" xl="6">
+                                        <v-carousel hide-delimiters height="100%">
+                                            <v-carousel-item
+                                                v-for="(item, i) in work.params.images"
+                                                :key="i"
+                                                :src="item"
+                                            >
+                                            </v-carousel-item>
+                                        </v-carousel>
+                                    </v-col>
+                                
+                                    <v-col xs="12" sm="6" md="6" lg="6" xl="6">
+                                        <v-card height="100%" flat color="transparent">
+                                            <v-card-title class="text-h6 grey--text text--lighten-3">
+                                                <span class="post-title">
+                                                    [[ work.params.title ]]
+                                                </span>
+                                            </v-card-title>
+                                        
+                                            <v-card-text class="text-body-2 grey--text text--lighten-2">
+                                                <div class="post-content" v-html="work.content">
+                                                </div>
+                                            </v-card-text>
+                                            <v-card-subtitle class="post-subtitle grey--text">
+                                                Powered by
+                                                <span
+                                                    v-for="tag in work.params.powered_by"
+                                                    class="mr-1"
+                                                >
+                                                    #[[ tag ]]
+                                                </span>
+                                            </v-card-subtitle>
+                                            <v-card-actions>
+                                                <v-btn
+                                                    :href="work.demo_url" 
+                                                    :disabled="!work.demo_url" 
+                                                    target="_blank"
+                                                    color="secondary"
+                                                    small
+                                                >
+                                                    Demo
+                                                </v-btn>
+                                                <v-btn
+                                                    :href="work.download_url"
+                                                    :disabled="!work.download_url" 
+                                                    target="_blank"
+                                                    color="primary"
+                                                    small
+                                                >
+                                                    Download
+                                                </v-btn>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
+                            </v-card-text>
+                        </v-card>
+                        <v-divider></v-divider>
+                    </div>
+            
+                </transition-group>
+            </v-col>
+        </v-row>
+
+
+
+    </div>
+</script>
+<script type="text/x-template" id="about">
+    <div>
+        <v-row justify="center" class="mt-n5">
+            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                <v-fade-transition>
+                    <v-card flat color="transparent" v-show="content">
+                        <v-card-title class="text-h6 grey--text text--lighten-3">
+                            <span class="post-title">
+                                About Me
+                            </span>
+                        </v-card-title>
+                        <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
+                            <div class="mr-2 ml-2 post-content" v-html="content">
+                            </div>
+                        </v-card-text>     
+                    </v-card>
+                </v-fade-transition>
+            </v-col>
+
+            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                <v-fade-transition>
+                    <v-card flat color="transparent" v-show="content">
+                        <v-card-title class="text-h6 grey--text text--lighten-3">
+                            <span class="post-title">
+                                Profile
+                            </span>
+                        </v-card-title>
+                        <v-card-text class="text-body-2 grey--text text--lighten-2 mt-2">
+                            <div class="mr-2 ml-2 post-content">
+                                Name: [[ author.name ]]
+                            </div>
+                        </v-card-text>
+
+                        <v-card-title class="text-h6 grey--text text--lighten-3">
+                            <span class="post-title">
+                                Social Links
+                            </span>
+                        </v-card-title>
+                        <v-card-text class="d-flex justify-space-around text-body-2 grey--text text--lighten-2">
+                            <v-btn
+                                icon
+                                :disabled="!author.email"
+                                :href="'mailto:' + author.email" 
+                            >
+                                <v-icon>mdi-email</v-icon>
+                            </v-btn>
+                        
+                            <v-btn
+                                icon
+                                v-for="(item, index) in author.socialLinks"
+                                :key="index"
+                                :disabled="!item.user"
+                                :href="item.url + item.user"
+                                target="_blank"
+                            >
+                                <v-icon>mdi-[[item.name]]</v-icon>
+                            </v-btn>
+                        </v-card-text>
+                    </v-card>
+                </v-fade-transition>
+            </v-col>
+
+            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                <v-card flat color="transparent">
+                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title">
+                            Top Categorie
+                        </span>
+                    </v-card-title>
+                    <div id="chart_categories" style="width:100%; height:240px;"></div>
+                </v-card>
+            </v-col>
+
+            <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                <v-card flat color="transparent">
+                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title">
+                            Top Tags
+                        </span>
+                    </v-card-title>
+                    <div id="chart_tags" style="width:100%; height:240px;"></div>
+                </v-card>
+            </v-col>
+
+            <v-col cols="12">
+                <v-card flat color="transparent">
+                    <v-card-title class="text-h6 grey--text text--lighten-3">
+                        <span class="post-title">
+                            Monthly Post Count
+                        </span>
+                    </v-card-title>
+                    <div id="monthly" style="width:100%; height:240px;"></div>
+                </v-card>
+            </v-col>
+
+        </v-row>
+        
+
+     
+    </div>
+
+</script>
+
+
+
+<script>
+
+  const About = {
+    template: '#about',
+    delimiters: ['[[', ']]'],
+
+    data () {
+      return {
+        content: null,
+        author: {
+          name: 'Zhang San',
+          email:'',
+          socialLinks: [
+            {
+              name: 'github',
+              user: 'mikanbearer',
+              url: 'https://github.com/'
+            },
+            {
+              name: 'gitlab',
+              user: '',
+              url: 'https://gitlab.com/'
+            },
+            {
+              name: 'codepen',
+              user: '',
+              url: 'https://codepen.io/'
+            },
+            {
+              name: 'linkedin',
+              user: '',
+              url: 'https://linkedin.com/in/'
+            },
+            {
+              name: 'twitter',
+              user: '',
+              url: 'https://twitter.com/'
+            },
+            {
+              name: 'facebook',
+              user: '',
+              url: 'https://www.facebook.com/'
+            },
+            {
+              name: 'instagram',
+              user: '',
+              url: 'https://www.instagram.com/'
+            },
+            {
+              name: 'youtube',
+              user: '',
+              url: 'https://www.youtube.com/user/'
+            }
+          ]
+        }
+
+      }
+    },
+
+    created () {
+      axios.get('https:\/\/mikanbearer.github.io\/about/index.json').then(response => {
+          setTimeout(() => {
+            this.content = response.data.result.content
+            var charts = response.data.result.charts
+            
+            setTimeout(() => {
+              this.setPie('Top Categories', 'category', charts.categories_data, 'chart_categories')
+            }, 500)
+            setTimeout(() => {
+              this.setPie('Top Tags', 'tag', charts.tags_data, 'chart_tags')
+            }, 700)
+            setTimeout(() => {
+              this.setArea('', charts.monthly_count.x, charts.monthly_count.series, 'monthly')
+            }, 1000)
+          }, 500)
+      })
+    },
+    methods: {
+      setArea (title, x_data, series_data, element_id) {
+        option = {
+          tooltip: {
+            trigger: 'axis',
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: x_data.reverse(),
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: series_data.reverse(),
+            type: 'line',
+            areaStyle: {}
+          }],
+          textStyle: {
+              color: '#c2c4c6'
+          }
+        }
+        var chart = echarts.init(document.getElementById(element_id))
+        chart.setOption(option)
+      },
+
+      setPie (title, series_name, data, element_id) {
+        var option = {
+          title: {
+            left: 'auto',
+            
+            textStyle: {
+              color: '#e0e0e0',
+              fontSize: 16,
+              fontFamily: 'Noto Sans TC'
+            }
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: '{b} : {c} ({d}%)'
+          },
+          legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 0,
+            top: 10,
+            bottom: 10,
+            data: data.legend,
+            selected: data.selected,
+            inactiveColor: '#686868',
+            pageIconColor: '#aaa',
+            pageIconInactiveColor: '#2f4554',
+            textStyle: {
+              color: '#c2c4c6'
+            },
+            pageTextStyle: {
+              color: '#c2c4c6'
+            }
+          },
+          series: [
+            {
+              name: series_name,
+              type: 'pie',
+              radius: '55%',
+              center: ['40%', '50%'],
+              data: data.series,
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        }
+        var chart = echarts.init(document.getElementById(element_id))
+        chart.setOption(option)
+
+      }
+    }
+  }
+
+  const Works = {
+    template: '#works',
+    delimiters: ['[[', ']]'],
+
+    data () {
+      return {
+        works: null
+      }
+    },
+
+    created () {
+      axios.get('https:\/\/mikanbearer.github.io\/works/index.json').then(response => {
+          setTimeout(() => {this.works = response.data.result.pages}, 300)
+      })
+    },
+  }
+
+
+  const Post = {
+    template: '#post',
+    delimiters: ['[[', ']]'],
+    props: ['name'],
+
+    data () {
+      return {
+        post: {},
+        isLoaded: false
+      }
+    },
+
+    mounted () {
+      var postUrl = 'https:\/\/mikanbearer.github.io\/posts/' + this.name + '/index.json'
+      this.getPost(postUrl)
+      setTimeout(this.resetDisqus, 1000, postUrl)
+    },
+
+    methods: {
+      replaceImgSrc () {
+        var contents = document.getElementsByClassName('post-content')
+        var url = this.post.permalink
+        if (url.includes('index.json')) {
+          url = url.replace('index.json', '')
+        }
+
+        Array.prototype.forEach.call(contents, content => {
+          var imgs = content.getElementsByTagName('img')
+          Array.prototype.forEach.call(imgs, img => {
+            if (img.attributes.src.value.indexOf('http') == -1) {
+              img.src = url + img.attributes.src.value
+            }
+          })
+        })        
+      },
+
+      addCodeBlockTitle () {
+        var code_list = document.body.getElementsByTagName('code')
+        for (i=0; i <= code_list.length-1; i++) {
+          var codeParent = code_list[i].closest('pre')
+          if (codeParent) {
+            if (!codeParent.closest('div.highlight')) {
+              if (/^language-:+/.test(code_list[i].className)) {
+                var div = document.createElement('div')
+                div.classList.add('highlight')
+                var pre = codeParent.cloneNode(true)
+                div.appendChild(pre)
+                codeParent.replaceWith(div)
+              }
+            }
+          }
+        }
+
+        var list = document.body.getElementsByClassName('highlight')
+
+        for(i=0; i <= list.length-1; i++){
+          var table = list[i].firstElementChild.firstElementChild
+          if (table.nodeName == 'TABLE') {
+            var code = table.firstElementChild.firstElementChild.childNodes[2].firstElementChild.firstElementChild
+            var codeName =  code ? code.className.split(':')[1] : null
+            if(codeName) {
+              var div = document.createElement('div')
+              div.textContent = codeName
+              div.classList.add('code-name')
+              table.parentNode.insertBefore(div, table)
+            }
+          } else {
+            var code = table
+            var codeName =  code ? code.className.split(':')[1] : null
+          
+            if(codeName) {
+              var div = document.createElement('div')
+              var br = document.createElement('br')
+              div.textContent = codeName
+              div.classList.add('code-name')
+              code.parentNode.insertBefore(div, code)
+              code.parentNode.insertBefore(br, code)
+            }
+          }
+        }
+      },
+
+      getPost (url) {
+        axios.get(url).then(response => {
+          this.post = response.data.result
+        
+          setTimeout(() => {
+            this.replaceImgSrc()
+            this.addCodeBlockTitle()
+          }, 10)
+
+          setTimeout(() => {
+            this.isLoaded = true
+          }, 50)
+
+        })
+      },
+
+      resetDisqus (url) {
+        if (url.includes('index.json')) {
+          url = url.replace('index.json', '')
+        }
+        if (window.DISQUS) {
+          window.DISQUS.reset({
+            reload: true,
+            config: function () {
+              this.page.url = url
+            }
+          })
+        }
+      },
+    }
+  }
+  
+
+  const Posts = {
+    template: '#posts',
+    delimiters: ['[[', ']]'],
+    data () {
+      return {
+        page: 1,
+        pageSize: 6,
+        pageLength: null,
+        postList: [],
+        filteredPosts: [],
+        displayPosts: [],
+        resultSnackbar: false,
+        searchConditions: {
+          selectedCategories: [],
+          selectedTags: [],
+          keyword: ''
+        },
+        showPostList: [],
+        showFooter: false
+      }
+    },
+
+    computed: {
+      getQuery () {
+        return this.$route.query
+      }
+    },
+
+    mounted () {
+      this.getPostList('https:\/\/mikanbearer.github.io\/posts/index.json')
+    },
+
+    watch: {
+      getQuery (to, from) {
+        this.searchPosts()
+      },
+    },
+
+    methods: {
+      getPostList (url) {
+        axios.get(url).then(response => {
+          this.postList = response.data.result.pages
+          this.postsInit()
+        })
+      },
+
+      getSearchConditions () {
+        var query = this.getQuery
+        const convertToArray = (value) => {
+          if (Array.isArray(value)) {
+            return value
+          } else if (typeof value === 'string') {
+            return value.split(',')
+          } else {
+            return []
+          }
+        }
+
+        var searchConditions = {}
+
+        searchConditions.selectedCategories = convertToArray(query.category)
+        searchConditions.selectedTags = convertToArray(query.tag)
+        if (typeof query.keyword === 'string') {
+          searchConditions.keyword = query.keyword
+        } else {
+          searchConditions.keyword = ''
+        }
+        return searchConditions
+      },
+
+      postsInit () {
+        if (Object.keys(this.$route.query).length) {
+          this.searchPosts()
+        }
+        else {
+          this.filteredPosts = this.postList
+          this.pageInit()
+        }
+      },
+
+      pageChange (pageNumber) {
+        this.showPostList = []
+        window.scroll({top: 0, behavior: 'instant'})
+        setTimeout(() => {
+          this.displayPosts = this.filteredPosts.slice(this.pageSize*(pageNumber - 1), this.pageSize*(pageNumber))
+          for (i = 0; i < this.pageSize; i++) {
+            ((i) => {
+              setTimeout(() => {
+                this.showPostList.push(i)
+              }, i * 170)
+            })(i)  
+          } 
+        }, 180)
+        
+      },
+
+      pageInit () {
+        this.pageLength = Math.ceil(this.filteredPosts.length/this.pageSize)
+        this.page = 1
+        setTimeout(() => {
+          this.pageChange(1)
+        }, 50)
+        
+      },
+
+      searchPosts () {
+        var searchConditions = this.getSearchConditions()
+        this.searchConditions = searchConditions
+        var keyword = searchConditions.keyword
+        var selectedTags = searchConditions.selectedTags
+        var selectedCategories = searchConditions.selectedCategories
+        const posts = JSON.parse(JSON.stringify(this.postList))
+
+        const checkArray = (target, item) => {
+          if (item) {
+            return item.every(v => target.includes(v))
+          }
+          return true
+        }
+
+        var checkArrayResult = []
+
+        for (const post of posts) {
+          if (checkArray(post.params.tags, selectedTags) && checkArray(post.params.categories, selectedCategories)) {
+            checkArrayResult.push(post)
+          }
+        }
+
+        var checkKeywordResult = []
+
+        if (keyword) {
+          var lower_keyword = keyword.toLowerCase()
+          for (const post of checkArrayResult) {
+            var lower_title = post.params.title.toLowerCase()
+            var keywordIndex = lower_title.indexOf(lower_keyword)
+
+            if (keywordIndex !== -1) {
+              hl_keyword = '<span style="background-color:#00a381">' + post.params.title.substring(keywordIndex, keywordIndex + keyword.length) + '</span>'
+              post.params.title = lower_title.replace(lower_keyword, hl_keyword)
+              checkKeywordResult.push(post)
+            }
+          }
+          this.filteredPosts = checkKeywordResult
+        } else {
+          this.filteredPosts = checkArrayResult
+        }
+        this.resultSnackbar = true
+        this.pageInit()
+      },
+    }
+  }
+
+  const routes = [
+    { path: '/', name: 'main', component: Posts },
+    { path: '/post/:name', name: 'post', component: Post, props: true },
+    { path: '/works', name: 'works', component: Works },
+    { path: '/about', name: 'about', component: About }
+  ]
+
+  const router = new VueRouter({
+    routes
+  })
+
+
+  
+  router.afterEach((to, from) => {
+    window.scroll({top: 0, behavior: 'instant'})
+  })
+
+
+  
+
+  var vm = new Vue({
+    router,
+    delimiters: ['[[', ']]'],
+    el: '#app',
+    vuetify: new Vuetify(),
+    data: {
+      searchSelections: {},
+      searchConditions: {},
+      searchModal: false,
+      commentBlock: false,
+      appBar: true
+    },
+
+    computed: {
+      getQuery () {
+        return this.$route.query
+      },
+
+      notInSearch () {
+        const queryKeys = Object.keys(this.$route.query)
+        if (queryKeys.length === 0) {
+          return true
+        }
+        return !queryKeys.every(v => ['keyword', 'category', 'tag'].includes(v))
+      }
+    },
+
+    watch: {
+      getQuery (to, from) {
+        if (this.$route.path == '/') {
+          this.setSearchConditionsToData()
+        }
+      }
+    },
+
+    created () {
+      this.$vuetify.theme.themes.dark.primary = '#F08300'
+      this.$vuetify.theme.themes.dark.secondary = '#006e54'
+      this.$vuetify.theme.themes.dark.warning = '#d3381c'
+      this.$vuetify.theme.themes.dark.error = '#D7003A'
+      this.$vuetify.theme.themes.dark.accent = '#009988'
+      this.$vuetify.theme.themes.dark.header = '#1f3134'
+      this.$vuetify.theme.themes.dark.content = '#333a40'
+      this.$vuetify.theme.dark = true
+    },
+
+    mounted () {
+      this.getSearchSelections('https:\/\/mikanbearer.github.io\/selections/index.json')
+      this.showComment()
+      this.setSearchConditionsToData()
+      this.addingDISQUS()
+    },
+
+    updated () {
+      this.showAppBar()
+      this.showComment()
+    },
+
+    methods: {
+      getSearchSelections (url) {
+        axios.get(url).then(response => {
+          this.searchSelections = response.data.result
+        })
+      },
+
+      getSearchConditions () {
+        var query = this.getQuery
+        const convertToArray = (value) => {
+          if (Array.isArray(value)) {
+            return value
+          } else if (typeof value === 'string') {
+            return value.split(',')
+          } else {
+            return []
+          }
+        }
+
+        var searchConditions = {}
+
+        searchConditions.selectedCategories = convertToArray(query.category)
+        searchConditions.selectedTags = convertToArray(query.tag)
+        if (typeof query.keyword === 'string') {
+          searchConditions.keyword = query.keyword
+        } else {
+          searchConditions.keyword = ''
+        }
+        return searchConditions
+      },
+
+      setSearchConditionsToData () {
+        this.searchConditions = this.getSearchConditions()
+      },
+
+      toFilteredPosts () {
+        var query = {}
+
+        if (this.searchConditions.keyword) {
+          query.keyword = this.searchConditions.keyword
+        }
+        if (this.searchConditions.selectedCategories.length) {
+          query.category = this.searchConditions.selectedCategories
+        }
+        if (this.searchConditions.selectedTags.length) {
+          query.tag = this.searchConditions.selectedTags
+        }
+        if (this.$route.path == '/') {
+          this.$router.history.push({
+            query: query
+          })
+        }
+        else {
+          this.$router.push({
+            path: '/',
+            query: query
+          })
+        }
+      },
+
+      getItems (key, items) {
+        if (key) {
+          return items
+        }else{
+          return []
+        }
+      },
+
+      removeItem (target, item) {
+        const index = this.searchConditions[target].indexOf(item)
+        if (index >= 0) {
+          this.searchConditions[target].splice(index, 1)
+        }
+      },
+
+      addingDISQUS () {
+        (() => {
+          if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.'
+            return
+        }
+        var d = document, s = d.createElement('script')
+        s.async = true
+
+        var disqus_shortname = 'mikanmimi'
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js'
+        s.setAttribute('data-timestamp', +new Date())
+        d.body.appendChild(s)
+        })()
+      },
+
+      showComment () {
+        if (this.$route.name === 'post') {
+          setTimeout(() => {this.commentBlock = true}, 3000)
+        } else {
+          this.commentBlock = false
+        }
+      },
+
+      showAppBar () {
+        if (window.scrollY === 0) {
+          this.appBar = true
+        }
+      },
+
+    }
+  })
+
+  Vue.component('post-card', {
+    props: ['post', 'isLoaded'],
+    template: '#post-card',
+    delimiters: ['[[', ']]']
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+ 
+</body>
+</html>

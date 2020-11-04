@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 09 Sep 2020 13:46:26 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/seaborn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Python資料分析練習-入門篇2】自然語言處理與機器學習</title>
-      <link>https://mikanbearer.github.io/posts/2020/09/202009091346/</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009091346/index.json</link>
       <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/09/202009091346/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009091346/index.json</guid>
       <description>&lt;p&gt;這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…&lt;/p&gt;</description>
     </item>
     

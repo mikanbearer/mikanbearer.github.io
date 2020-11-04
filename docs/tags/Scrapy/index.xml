@@ -9,20 +9,20 @@
     <lastBuildDate>Mon, 07 Sep 2020 09:54:48 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Scrapy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Python資料分析練習-入門篇1】使用Scrapy爬取PTT貼文</title>
-      <link>https://mikanbearer.github.io/posts/2020/09/202009070954/</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009070954/index.json</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/09/202009070954/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009070954/index.json</guid>
       <description>&lt;p&gt;從爬蟲開始的實作，分析資料前總得先有資料吧(;&amp;lsquo;∀&amp;rsquo;)&lt;/p&gt;
 &lt;p&gt;作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>從Scrapy開始玩爬蟲</title>
-      <link>https://mikanbearer.github.io/posts/2020/08/202008281726/</link>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008281726/index.json</link>
       <pubDate>Fri, 28 Aug 2020 17:26:08 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/08/202008281726/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008281726/index.json</guid>
       <description>&lt;p&gt;為了之後的學習方向做準備，來練習一下Scrapy，Scrapy就是處理response的工具，並從中取得自己需要的資料，&lt;/p&gt;
 &lt;p&gt;這次就做個最低限度的練習&lt;/p&gt;</description>
     </item>

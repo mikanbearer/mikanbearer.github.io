@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 10 Sep 2020 16:08:09 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/vEOS/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>安裝並嘗試使用Arista ZTPServer</title>
-      <link>https://mikanbearer.github.io/posts/2020/09/202009101608/</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009101608/index.json</link>
       <pubDate>Thu, 10 Sep 2020 16:08:09 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/09/202009101608/</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009101608/index.json</guid>
       <description>&lt;p&gt;繼之前在架設lab的過程中被許許多多的狀況「折磨」過後(參照&lt;a href=&#34;https://mikanbearer.github.io/posts/202007241554/&#34;&gt;這裡&lt;/a&gt;)，終於找到時間接續下去了，這次就來部屬&lt;a href=&#34;https://github.com/arista-eosplus/ztpserver&#34;&gt;Arista ZTPServer&lt;/a&gt;，並稍微驗證一下client與server之間的動作，以確定正常能用
 ，畢竟就算是最新的1.5.0版也很久沒更新了&lt;/p&gt;</description>
     </item>

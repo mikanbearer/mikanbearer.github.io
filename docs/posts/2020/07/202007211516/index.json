@@ -1,26 +1,35 @@
-{
-    "result" : 
-{
-    "title": "用VBA在Excel中使用nslookup",
-    "date": "2020-07-21 15:16",
-    "draft": "false",
-    "categories": 
-    [
-        
-            "未分類"
-        
-    ],
-    "tags":
-    [
-        
-            "Excel"
-        
-            , "VBA"
-        
-    ],
 
-    "url": "https://mikanbearer.github.io/posts/2020/07/202007211516/",
-    "wordcount": "220"
-}
 
+
+
+    
+        
+    
+
+
+
+
+{
+  "result": {
+    "content": "\u003cp\u003e工作中常常用到的功能，不筆記會忘記，\n主要是在Excel Macro調用Wshshell，把A欄的結果輸出到B欄\u003c/p\u003e\n\u003cp\u003enslookup範例\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\"\u003e\u003ccode class=\"language-vb\" data-lang=\"vb\"\u003e\u003cspan style=\"color:#66d9ef\"\u003eSub\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003enslookup\u003c/span\u003e()\n    \u003cspan style=\"color:#66d9ef\"\u003eDim\u003c/span\u003e WshShell, wExec, cmd, rRes, i, j\n    \u003cspan style=\"color:#66d9ef\"\u003eDim\u003c/span\u003e sBuf() \u003cspan style=\"color:#f92672\"\u003eAs\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eString\u003c/span\u003e\n\n    \u003cspan style=\"color:#66d9ef\"\u003eSet\u003c/span\u003e WshShell \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e CreateObject(\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;WScript.Shell\u0026#34;\u003c/span\u003e)\n    \u003cspan style=\"color:#66d9ef\"\u003eFor\u003c/span\u003e i \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e 1 \u003cspan style=\"color:#66d9ef\"\u003eTo\u003c/span\u003e 3\n        \u003cspan style=\"color:#66d9ef\"\u003eSet\u003c/span\u003e wExec \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e WshShell.exec(\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;nslookup \u0026#34;\u003c/span\u003e \u003cspan style=\"color:#f92672\"\u003e\u0026amp;\u003c/span\u003e Cells(i, 1))\n\n        \u003cspan style=\"color:#66d9ef\"\u003eDo\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eWhile\u003c/span\u003e wExec.Status \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e 0\n            DoEvents\n        \u003cspan style=\"color:#66d9ef\"\u003eLoop\u003c/span\u003e\n        rRes \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e wExec.StdOut.ReadAll\n        sBuf \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e Split(rRes, vbCrLf)\n        \u003cspan style=\"color:#66d9ef\"\u003eFor\u003c/span\u003e j \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e 0 \u003cspan style=\"color:#66d9ef\"\u003eTo\u003c/span\u003e UBound(sBuf)\n            \u003cspan style=\"color:#66d9ef\"\u003eIf\u003c/span\u003e Left(sBuf(j), 5) \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e \u003cspan style=\"color:#e6db74\"\u003e\u0026#34;Name:\u0026#34;\u003c/span\u003e \u003cspan style=\"color:#f92672\"\u003eOr\u003c/span\u003e Left(sBuf(j), 3) \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e \u003cspan style=\"color:#e6db74\"\u003e\u0026#34;名稱:\u0026#34;\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eThen\u003c/span\u003e\n                Cells(i, 2) \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e Trim(Right(sBuf(j), Len(sBuf(j)) \u003cspan style=\"color:#f92672\"\u003e-\u003c/span\u003e 5))\n            \u003cspan style=\"color:#66d9ef\"\u003eEnd\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eIf\u003c/span\u003e\n        \u003cspan style=\"color:#66d9ef\"\u003eNext\u003c/span\u003e j\n    \u003cspan style=\"color:#66d9ef\"\u003eNext\u003c/span\u003e i\n\u003cspan style=\"color:#66d9ef\"\u003eEnd\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eSub\u003c/span\u003e\n\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003cp\u003eping的範例\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\"\u003e\u003ccode class=\"language-vb\" data-lang=\"vb\"\u003e\u003cspan style=\"color:#66d9ef\"\u003eSub\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003eping\u003c/span\u003e()\n    \u003cspan style=\"color:#66d9ef\"\u003eDim\u003c/span\u003e WshShell, wExec, cmd, rRes, i, j\n    \u003cspan style=\"color:#66d9ef\"\u003eDim\u003c/span\u003e sBuf() \u003cspan style=\"color:#f92672\"\u003eAs\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eString\u003c/span\u003e\n\n    \u003cspan style=\"color:#66d9ef\"\u003eSet\u003c/span\u003e WshShell \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e CreateObject(\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;WScript.Shell\u0026#34;\u003c/span\u003e)\n    \u003cspan style=\"color:#66d9ef\"\u003eFor\u003c/span\u003e i \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e 1 \u003cspan style=\"color:#66d9ef\"\u003eTo\u003c/span\u003e 3\n        \u003cspan style=\"color:#66d9ef\"\u003eSet\u003c/span\u003e wExec \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e WshShell.exec(\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;ping \u0026#34;\u003c/span\u003e \u003cspan style=\"color:#f92672\"\u003e\u0026amp;\u003c/span\u003e Cells(i, 1))\n\n        \u003cspan style=\"color:#66d9ef\"\u003eDo\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eWhile\u003c/span\u003e wExec.Status \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e 0\n            DoEvents\n        \u003cspan style=\"color:#66d9ef\"\u003eLoop\u003c/span\u003e\n        rRes \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e wExec.StdOut.ReadAll\n        \u003cspan style=\"color:#66d9ef\"\u003eIf\u003c/span\u003e InStr(rRes, \u003cspan style=\"color:#e6db74\"\u003e\u0026#34;TTL\u0026#34;\u003c/span\u003e) \u003cspan style=\"color:#66d9ef\"\u003eThen\u003c/span\u003e\n            Cells(i, 2) \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e 1\n        \u003cspan style=\"color:#66d9ef\"\u003eElse\u003c/span\u003e\n            Cells(i, 2) \u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e 0\n        \u003cspan style=\"color:#66d9ef\"\u003eEnd\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eIf\u003c/span\u003e\n        \n    \u003cspan style=\"color:#66d9ef\"\u003eNext\u003c/span\u003e i\n\u003cspan style=\"color:#66d9ef\"\u003eEnd\u003c/span\u003e \u003cspan style=\"color:#66d9ef\"\u003eSub\u003c/span\u003e\n\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e",
+    "kind": "page",
+    "params": {
+      "categories": [
+        "未分類"
+      ],
+      "date": "2020-07-21T15:16:46+08:00",
+      "draft": false,
+      "iscjklanguage": true,
+      "lastmod": "2020-07-21T15:16:46+08:00",
+      "publishdate": "2020-07-21T15:16:46+08:00",
+      "tags": [
+        "Excel",
+        "VBA"
+      ],
+      "title": "用VBA在Excel中使用nslookup"
+    },
+    "permalink": "https://mikanbearer.github.io/posts/2020/07/202007211516/index.json",
+    "type": "posts",
+    "wordcount": 220
+  }
 }
