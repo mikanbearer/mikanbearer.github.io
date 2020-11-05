@@ -1,9 +1,8 @@
-<div class="text-body-1 grey--text text--lighten-1 mt-1">
-<div>
+<div class="text-body-1">
 {{ .Date.Format "2006-01-02" }}
 {{ if .Params.Categories }}
   {{ range .Params.Categories }}
-  <a href="{{ $.Site.LanguagePrefix | absURL }}categories/{{ . | urlize }}/">{{ . }}</a>
+  <a href="{{ $.Site.LanguagePrefix | absURL }}/categories/{{ . | urlize }}/">{{ . }}</a>
   {{ end }}
 {{ end }}
 </div>
@@ -12,11 +11,12 @@
 {{ if .Params.tags }}
   {{ range .Params.tags }}
   <v-chip
-    color="accent"
+    color="blue-grey"
     label
     text-color="white"
     x-small
     href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/"
+    
   >
     {{ . }}
   </v-chip>
@@ -26,7 +26,7 @@
 
 <v-divider></v-divider>
 
-<div class="mt-2">
+<div class="text-body-1">
 {{ if .Truncated }}
   {{ .Summary }}
   <div>
@@ -36,5 +36,4 @@
 {{ else }}
   {{ .Content }}
 {{ end }}    
-</div>
 </div>

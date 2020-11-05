@@ -1,9 +1,11 @@
 <v-app-bar
-  app
-  clipped-left
-  dense
-  dark
-  hide-on-scroll
+  absolute
+  shrink-on-scroll
+  prominent
+  scroll-target="#test"
+  scroll-threshold="500"
+      
+  src="https://picsum.photos/1920/1080?random"
 >
 
   <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -275,6 +277,7 @@
             clearable
             hide-selected
             hide-details
+            multiple
             prepend-inner-icon="mdi-folder"
             height="42"
           >
@@ -299,7 +302,7 @@
                       <div v-for="category in post.categories" class="d-inline">
                         <a :href="'{{ "" | absLangURL }}categories/' + category">
                           [[ category ]]
-                        </v-chip>
+                        </a>
                       </div>
                     </td>
                     <td><a :href="post.url">[[ post.title ]]</a></td>

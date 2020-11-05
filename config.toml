@@ -6,8 +6,8 @@ languageCode = "en-us"
 DefaultContentLanguage = "en"
 #DefaultContentLanguage = "ja"
 title = "垃圾堆"
-#theme = "test2"
-theme = "vuego"
+theme = "hugo-vue-mix"
+#theme = "vuego"
 metaDataFormat = "yaml"
 
 disqusShortname = "mikanmimi"
@@ -41,7 +41,7 @@ disablePathToLower = true
 
 [outputs]
   home = ["HTML"]
-  page = ["JSON"]
+  page = ["JSON", "HTML"]
   section = ["JSON", "HTML"]
 
 

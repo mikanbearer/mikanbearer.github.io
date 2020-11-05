@@ -1,7 +1,6 @@
 {{ define "main" }}
 <div id="app">
   <v-app id="inspire">
-    <v-app id="inspire">
       {{ partial "header.html" . }}
       {{ partial "navigation" . }}
       <v-main>
@@ -9,13 +8,13 @@
           <v-row dense>
             <v-col cols=12>
               <div>
-                <v-card class="content">
-                  <v-card-title class="text-h6 grey--text text--lighten-4" style="background-color: #556265;">
+                <v-card>
+                  <v-card-title class="text-h6" style="background-color: #e4e4e4;">
                     <div>
                       {{ .Title }}
                     </div>
                   </v-card-title>
-                  <v-card-subtitle class="text-body-1 mt-2">
+                  <v-card-subtitle class="text-body-1 mt-0">
                     <div>
                       {{ .Date.Format "2006-01-02" }}
                       {{ if .Params.Categories }}
@@ -28,7 +27,7 @@
                       {{ if .Params.tags }}
                       {{ range .Params.tags }}
                         <v-chip
-                          color="accent"
+                          color="blue-grey"
                           label
                           text-color="white"
                           x-small
@@ -38,24 +37,75 @@
                         </v-chip>
                       {{ end }}
                     {{ end }}
+  
                     </div>
                   <v-divider></v-divider>
                   </v-card-subtitle>
+  
                   <v-card-text class="text-body-1">
                     {{ .Content }}
                   </v-card-text>
+  
+  
                 </v-card>
 
 
-                {{ if .Site.DisqusShortname }}
-                <v-card class="mt-5 content">
-                  <v-card-text>
-                  {{ template "_internal/disqus.html" . }}
-                  </v-card-text>
-                </v-card>
-                {{ end }}
 
 
+
+              
+              <div class="d-flex justify-space-between mt-5">
+                {{ if .PrevInSection }}
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      href="{{ .PrevInSection.Permalink }}"
+                      target="_blank"
+                      v-on="on"
+                      text
+                    >
+                      <v-icon>mdi-arrow-left</v-icon>
+                      Prev Post
+                    </v-btn>
+                  </template>
+                  <span>{{ .PrevInSection.Title }}</span>
+                </v-tooltip>
+              {{ else }}
+                <v-btn
+                 text
+                 disabled
+                >
+                <v-icon>mdi-arrow-left</v-icon>
+                  Prev Post
+                </v-btn>
+              {{ end }}
+              
+        
+              {{ if .NextInSection }}
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    href="{{ .NextInSection.Permalink }}"
+                    target="_blank"
+                    v-on="on"
+                    text
+                  >
+                    Next Post
+                    <v-icon>mdi-arrow-right</v-icon>
+                  </v-btn>
+                </template>
+                <span>{{ .NextInSection.Title }}</span>
+              </v-tooltip>
+              {{ else }}
+                <v-btn
+                  text
+                  disabled
+                >
+                Next Post
+                  <v-icon>mdi-arrow-right</v-icon>
+                </v-btn>
+              {{ end }}
+              </div>
 
 
 
@@ -64,87 +114,29 @@
                   {{ range first 1 (where (where .Site.Pages ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
                     {{ $.Scratch.Set "has_related" true }}
                   {{ end }}
+
                   {{ if $.Scratch.Get "has_related" }}
-                  <v-card class="mt-5 content">
+            
+                  <v-card class="mt-5">
                     <v-card-title>
                       See Also
                     </v-card-title>
-                    <v-card-text>
                     {{ $num_to_show := .Site.Params.related_content_limit | default 5 }}
                     {{ range first $num_to_show (where (where .Site.Pages ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
-                        <v-list-item>
-                          <v-list-item-content>
-                            <v-tooltip top>
-                              <template v-slot:activator="{ on }">
-                                <v-list-item-title>
-                                  <a v-on="on" href="{{ .Permalink }}">{{ .Title }}</a>
-                                </v-list-item-title>
-                              </template>
-                              <span>{{ .Summary }}</span>
-                            </v-tooltip>
-                          </v-list-item-content>
-                        </v-list-item>
-                      <v-divider></v-divider>
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title><a href="{{ .RelPermalink }}">{{ .Title }}</a></v-list-item-title>
+                        <v-list-item-subtitle>{{ .Summary }}</v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-divider></v-divider>
                     {{ end }}
-                    </v-card-text>
                   </v-card>
+
                   {{ end }}
                 {{ end }}
 
 
-
-
-                
-                <div class="d-flex justify-space-between mt-5">
-                  {{ if .PrevInSection }}
-                  <v-tooltip top>
-                    <template v-slot:activator="{ on }">
-                      <v-btn
-                        href="{{ .PrevInSection.Permalink }}"
-                        v-on="on"
-                        text
-                      >
-                        <v-icon>mdi-arrow-left</v-icon>
-                        Prev Post
-                      </v-btn>
-                    </template>
-                    <span>{{ .PrevInSection.Title }}</span>
-                  </v-tooltip>
-                {{ else }}
-                  <v-btn
-                   text
-                   disabled
-                  >
-                  <v-icon>mdi-arrow-left</v-icon>
-                    Prev Post
-                  </v-btn>
-                {{ end }}
-                
-          
-                {{ if .NextInSection }}
-                <v-tooltip top>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      href="{{ .NextInSection.Permalink }}"
-                      v-on="on"
-                      text
-                    >
-                      Next Post
-                      <v-icon>mdi-arrow-right</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>{{ .NextInSection.Title }}</span>
-                </v-tooltip>
-                {{ else }}
-                  <v-btn
-                    text
-                    disabled
-                  >
-                  Next Post
-                    <v-icon>mdi-arrow-right</v-icon>
-                  </v-btn>
-                {{ end }}
-                </div>
 
 
 
@@ -171,7 +163,7 @@
 {{ partial "footer_script" . }}
 
 <script>
-  /*
+  
   vm.panel = [0]
   vm.$watch(() => vm.panel, ()=>{
     var list = document.body.getElementsByClassName("highlight")
@@ -199,7 +191,7 @@
       }
     }
   })
-  */
+
 
 
 

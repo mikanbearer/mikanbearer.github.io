@@ -16,14 +16,14 @@
                   {{ range $key, $value := .Data.Terms.ByCount }}
                   <v-expansion-panel>
                     <v-expansion-panel-header>
-                      <div class="text-h6 grey--text text--lighten-5">
+                      <div class="text-h6 white--text">
                         <v-badge content="{{ $value.Count }}" color="warning">
                           {{ $value.Page.Title }}
                         </v-badge>
                       </div>
                     </v-expansion-panel-header>
-                    <v-expansion-panel-content>
-                      <v-simple-table class="mt-2">
+                    <v-expansion-panel-content style="background-color: #ffffff;">
+                      <v-simple-table light>
                         <template>
                           <tbody>
                             {{ range $value.Pages }}
@@ -33,7 +33,7 @@
                                 {{ if .Params.Tags }}
                                 {{ range .Params.Tags }}
                                 <v-chip
-                                color="accent"
+                                color="blue-grey"
                                 label
                                 text-color="white"
                                 x-small
