@@ -1,0 +1,34 @@
+
+
+
+
+    
+        
+    
+
+
+
+
+{
+  "result": {
+    "content": "\u003cp\u003e最近覺得影片當背景的網站挺漂亮的，想想要如法炮製的話總會有個簡單易用的plugin，\n這次找到的就是這個jquery.mb.YTPlayer\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"https://github.com/pupunzi/jquery.mb.YTPlayer\"\u003ehttps://github.com/pupunzi/jquery.mb.YTPlayer\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e使用方式很簡單，用CDN的話就用下列兩個\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\"\u003e\u003ccode class=\"language-html\" data-lang=\"html\"\u003e\u0026lt;\u003cspan style=\"color:#f92672\"\u003escript\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003esrc\u003c/span\u003e\u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js\u0026#34;\u003c/span\u003e\u0026gt;\u0026lt;/\u003cspan style=\"color:#f92672\"\u003escript\u003c/span\u003e\u0026gt;\n\u0026lt;\u003cspan style=\"color:#f92672\"\u003escript\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003esrc\u003c/span\u003e\u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.4/jquery.mb.YTPlayer.min.js\u0026#34;\u003c/span\u003e\u0026gt;\u0026lt;/\u003cspan style=\"color:#f92672\"\u003escript\u003c/span\u003e\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003cp\u003e\u003cbr\u003e\u003c/br\u003e\nhtml的部分使用一個名為data-property的attr設定\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\"\u003e\u003ccode class=\"language-html\" data-lang=\"html\"\u003e\u0026lt;\u003cspan style=\"color:#f92672\"\u003ediv\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003eclass\u003c/span\u003e\u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;mainvisual\u0026#34;\u003c/span\u003e\u0026gt;\n    \u0026lt;\u003cspan style=\"color:#f92672\"\u003ediv\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003eid\u003c/span\u003e\u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;mainvisualVideo\u0026#34;\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003eclass\u003c/span\u003e\u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;player\u0026#34;\u003c/span\u003e \u003cspan style=\"color:#a6e22e\"\u003edata-property\u003c/span\u003e\u003cspan style=\"color:#f92672\"\u003e=\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e\u0026#34;{\n\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e        videoURL:\u0026#39;https://youtu.be/qFuzZ3fdUO0\u0026#39;,\n\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e        containment:\u0026#39;body\u0026#39;,\n\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e        autoPlay:true,\n\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e        mute:true,\n\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e        startAt:0,\n\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e        opacity:1,\n\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e        showControls: false,\n\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e        showYTLogo: false\n\u003c/span\u003e\u003cspan style=\"color:#e6db74\"\u003e        }\u0026#34;\u003c/span\u003e\n    \u0026gt;\n    \u0026lt;/\u003cspan style=\"color:#f92672\"\u003ediv\u003c/span\u003e\u0026gt;\n\u0026lt;/\u003cspan style=\"color:#f92672\"\u003ediv\u003c/span\u003e\u0026gt;\n\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003cp\u003e\u003cbr\u003e\u003c/br\u003e\njs只要簡簡單單call TYPlayer\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\"\u003e\u003ccode class=\"language-js\" data-lang=\"js\"\u003e\u003cspan style=\"color:#a6e22e\"\u003ejQuery\u003c/span\u003e(\u003cspan style=\"color:#66d9ef\"\u003efunction\u003c/span\u003e() {\n    \u003cspan style=\"color:#a6e22e\"\u003ejQuery\u003c/span\u003e(\u003cspan style=\"color:#e6db74\"\u003e\u0026#39;#mainvisualVideo\u0026#39;\u003c/span\u003e).\u003cspan style=\"color:#a6e22e\"\u003eYTPlayer\u003c/span\u003e()\n})\n\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003cp\u003e\u003cbr\u003e\u003c/br\u003e\n就能呈現不錯的效果，如果在data-property設定opacity的話也不會那麼搶眼\u003c/p\u003e\n\u003ciframe height=\"265\" style=\"width: 100%;\" scrolling=\"no\" title=\"jquery.mb.YTPlayer test\" src=\"https://codepen.io/aergfaerfaerg/embed/MWeKOoX?height=265\u0026theme-id=light\u0026default-tab=html,result\" frameborder=\"no\" loading=\"lazy\" allowtransparency=\"true\" allowfullscreen=\"true\"\u003e\r\n  See the Pen \u003ca href='https://codepen.io/aergfaerfaerg/pen/MWeKOoX'\u003ejquery.mb.YTPlayer test\u003c/a\u003e by rgsergreg\r\n  (\u003ca href='https://codepen.io/aergfaerfaerg'\u003e@aergfaerfaerg\u003c/a\u003e) on \u003ca href='https://codepen.io'\u003eCodePen\u003c/a\u003e.\r\n\u003c/iframe\u003e",
+    "kind": "page",
+    "params": {
+      "categories": [
+        "WebDevelopment"
+      ],
+      "date": "2020-10-14T16:35:05+08:00",
+      "draft": false,
+      "iscjklanguage": true,
+      "lastmod": "2020-10-14T16:35:05+08:00",
+      "publishdate": "2020-10-14T16:35:05+08:00",
+      "tags": [
+        "jQuery"
+      ],
+      "title": "使用YouTube影片作為網頁背景"
+    },
+    "permalink": "https://mikanbearer.github.io/posts/202010141635/index.json",
+    "type": "posts",
+    "wordcount": 218
+  }
+}

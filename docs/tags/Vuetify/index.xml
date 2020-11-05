@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 07 Aug 2020 09:30:55 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Vuetify/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>新主題上線！</title>
-      <link>https://mikanbearer.github.io/posts/2020/08/202008070930/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202008070930/index.json</link>
       <pubDate>Fri, 07 Aug 2020 09:30:55 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/08/202008070930/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202008070930/index.json</guid>
       <description>&lt;p&gt;原本使用&lt;a href=&#34;https://github.com/halogenica/beautifulhugo&#34;&gt;Beautifulhugo&lt;/a&gt;(個人蠻喜歡的)，但發現會有一些小問題…&lt;/p&gt;
 &lt;p&gt;這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…&lt;/p&gt;</description>
     </item>

@@ -302,7 +302,7 @@
           ],
           "title": "使用docker-compose輕鬆部屬監控工具"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/10/202010191429/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202010191429/index.json",
         "summary": "\u003cp\u003e回味一下以前用過的工具們，唯一不同的就是在Docker host上安裝，因為速度很快很適合測試之用，用在正式環境的話稍微tuning一下也不是不能用\u003c/p\u003e\n\u003cp\u003e這次部屬的有Cacti、Nagios、LibreNMS，單獨部屬太空洞所以三個塞一篇\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1591
@@ -327,7 +327,7 @@
           ],
           "title": "從今天開始學NestJS"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/10/202010151457/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202010151457/index.json",
         "summary": "\u003cp\u003e好久不見的從今天開始系列…\u003c/p\u003e\n\u003cp\u003e這次的NestJS是個能用TypeScript撰寫的framework，有提供nest-cli來迅速建立project，適合用來做些小型的backend app\n，其十分Angular的風格也是其吸引人之處\u003c/p\u003e",
         "type": "posts",
         "wordcount": 2033
@@ -349,7 +349,7 @@
           ],
           "title": "使用YouTube影片作為網頁背景"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/10/202010141635/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202010141635/index.json",
         "summary": "\u003cp\u003e最近覺得影片當背景的網站挺漂亮的，想想要如法炮製的話總會有個簡單易用的plugin，\n這次找到的就是這個jquery.mb.YTPlayer\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"https://github.com/pupunzi/jquery.mb.YTPlayer\"\u003ehttps://github.com/pupunzi/jquery.mb.YTPlayer\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
         "wordcount": 218
@@ -372,7 +372,7 @@
           ],
           "title": "主題更新"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/10/202010081713/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202010081713/index.json",
         "summary": "\u003cp\u003e心一橫把整個BLOG做成Single Page了，但目前還只是雛形，記錄下幾個主要的變更點、想法及待解決的問題\u003c/p\u003e",
         "type": "posts",
         "wordcount": 829
@@ -394,7 +394,7 @@
           ],
           "title": "Vue Router在同一route傳遞新的query"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/10/202010061053/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202010061053/index.json",
         "summary": "\u003cp\u003e弄這個blog遇到的問題，想使用Vue Router來取代Hugo部分list功能的小筆記\u003c/p\u003e",
         "type": "posts",
         "wordcount": 655
@@ -416,7 +416,7 @@
           ],
           "title": "使用Vue Loading Overlay追加過場動畫"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009261450/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009261450/index.json",
         "summary": "\u003cp\u003e不久前才想用vuetify的v-overlay與v-progress-circular來做個loading的延遲畫面，就意外發現了這個好東西：\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"https://www.npmjs.com/package/vue-loading-overlay\"\u003evue-loading-overlay\u003c/a\u003e，馬上就來試一下\u003c/p\u003e",
         "type": "posts",
         "wordcount": 588
@@ -438,7 +438,7 @@
           ],
           "title": "Python收送log"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009251338/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009251338/index.json",
         "summary": "\u003cp\u003e工作測試用的放上來自己參考\u003c/p\u003e",
         "type": "posts",
         "wordcount": 168
@@ -460,7 +460,7 @@
           ],
           "title": "讓Hugo輸出JSON格式"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009221717/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009221717/index.json",
         "summary": "\u003cp\u003e計畫使用Hugo來製作Single Page，有JSON會方便很多，許多地方寫得不是很清楚所以筆記一下\u003c/p\u003e",
         "type": "posts",
         "wordcount": 602
@@ -484,7 +484,7 @@
           ],
           "title": "使用Angular嘗試製作SPA登入畫面"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009211136/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009211136/index.json",
         "summary": "\u003cp\u003e練習的時候到啦，這次一樣是用登入畫面，本篇寫作風格有點改變，嘗試放多一點圖(尤其gif)，內文不包含API的部分，大部分都是盲做，不完善的地方非常之多…\u003c/p\u003e\n\u003cp\u003e畢竟，熟能生巧嘛(;´Д`A ```\u003c/p\u003e",
         "type": "posts",
         "wordcount": 3054
@@ -508,7 +508,7 @@
           ],
           "title": "從今天開始學Angular"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009181018/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009181018/index.json",
         "summary": "\u003cp\u003e從今天開始系列最新作，沒方向的時候就是學framework的最好時機(？\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1840
@@ -531,7 +531,7 @@
           ],
           "title": "scikit-learn新手入門之決策樹篇"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009161132/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009161132/index.json",
         "summary": "\u003cp\u003e身為資料分析\u0026amp;機器學習的超級新手，個人還是覺得實際操作一遍比理論更好理解，\n這次練習的是之前曾草草帶過的機械學習工具scikit-learn，主題就決定是決策樹了\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1531
@@ -554,7 +554,7 @@
           ],
           "title": "【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009151049/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009151049/index.json",
         "summary": "\u003cp\u003e暫定是最後一個入門練習，這次使用Flask-WTF來做CSRF Protection，Flask-WTF是WTForms結合Flask用的module\u003c/p\u003e",
         "type": "posts",
         "wordcount": 944
@@ -577,7 +577,7 @@
           ],
           "title": "【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009141257/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009141257/index.json",
         "summary": "\u003cp\u003e這次實作目標是導入Flask-Login，讓咱們的app受驗證機制保護\u003c/p\u003e",
         "type": "posts",
         "wordcount": 675
@@ -600,7 +600,7 @@
           ],
           "title": "【Flask入門練習-CRUD篇2】製作簡單的CRUD"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009111635/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009111635/index.json",
         "summary": "\u003cp\u003e經過了前面的練習，咱們的小App已經有了ORM，既然有了ORM，不做成CRUD(Create、Read、Update、Delete)怎麼行？\u003c/p\u003e\n\u003cp\u003e所以繼續動手做\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1402
@@ -625,7 +625,7 @@
           ],
           "title": "安裝並嘗試使用Arista ZTPServer"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009101608/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009101608/index.json",
         "summary": "\u003cp\u003e繼之前在架設lab的過程中被許許多多的狀況「折磨」過後(參照\u003ca href=\"https://mikanbearer.github.io/posts/202007241554/\"\u003e這裡\u003c/a\u003e)，終於找到時間接續下去了，這次就來部屬\u003ca href=\"https://github.com/arista-eosplus/ztpserver\"\u003eArista ZTPServer\u003c/a\u003e，並稍微驗證一下client與server之間的動作，以確定正常能用\n，畢竟就算是最新的1.5.0版也很久沒更新了\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1880
@@ -650,7 +650,7 @@
           ],
           "title": "【Python資料分析練習-入門篇2】自然語言處理與機器學習"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009091346/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009091346/index.json",
         "summary": "\u003cp\u003e這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…\u003c/p\u003e",
         "type": "posts",
         "wordcount": 2384
@@ -673,7 +673,7 @@
           ],
           "title": "結巴分詞工具的簡單筆記"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009081138/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009081138/index.json",
         "summary": "\u003cp\u003e這次來使用大名鼎鼎的\u0026quot;結巴中文分詞\u0026quot;了，應該是目前最好的的斷詞工具，之後的實作會用上所以稍微筆記一下\u003c/p\u003e",
         "type": "posts",
         "wordcount": 2004
@@ -697,7 +697,7 @@
           ],
           "title": "【Python資料分析練習-入門篇1】使用Scrapy爬取PTT貼文"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009070954/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009070954/index.json",
         "summary": "\u003cp\u003e從爬蟲開始的實作，分析資料前總得先有資料吧(;\u0026lsquo;∀\u0026rsquo;)\u003c/p\u003e\n\u003cp\u003e作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…\u003c/p\u003e",
         "type": "posts",
         "wordcount": 2286
@@ -721,7 +721,7 @@
           ],
           "title": "使用Ansible部屬Docker Swarm"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009031456/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009031456/index.json",
         "summary": "\u003cp\u003e偶然看到這個\u003ca href=\"https://github.com/atosatto/ansible-dockerswarm\"\u003eAnsible Role: Docker\u003c/a\u003e就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1069
@@ -743,7 +743,7 @@
           ],
           "title": "從今天開始學Ansible"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/09/202009011649/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202009011649/index.json",
         "summary": "\u003cp\u003e雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就先練習一遍，熟悉點再來自己寫role\u003c/p\u003e\n\u003cp\u003e參考文件：\u003ca href=\"https://docs.ansible.com/\"\u003ehttps://docs.ansible.com/\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
         "wordcount": 2112
@@ -766,7 +766,7 @@
           ],
           "title": "從Scrapy開始玩爬蟲"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008281726/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008281726/index.json",
         "summary": "\u003cp\u003e為了之後的學習方向做準備，來練習一下Scrapy，Scrapy就是處理response的工具，並從中取得自己需要的資料，\u003c/p\u003e\n\u003cp\u003e這次就做個最低限度的練習\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1606
@@ -789,7 +789,7 @@
           ],
           "title": "【Flask入門練習-CRUD篇1】在Flask中導入ORM操作"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008271612/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008271612/index.json",
         "summary": "\u003cp\u003eFlask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個\u003ca href=\"https://flask-sqlalchemy.palletsprojects.com/en/2.x/\"\u003eFlask-SQLAlchemy\u003c/a\u003e可使用，大大縮短coding時間\u003c/p\u003e",
         "type": "posts",
         "wordcount": 726
@@ -815,7 +815,7 @@
           ],
           "title": "【Prometheus入門練習-自訂篇2】Prometheus + Vue.js + Echarts製作動態圖表"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008241004/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008241004/index.json",
         "summary": "\u003cp\u003e要是不想用自帶的UI，也不想用Grafana怎麼辦！！那當然就是自己動手做啦，自己動手做的好處就是能整合其他功能做成多合一的Web app，但這次就先練習如何取用Prometheus上的資料，製作成動態圖表\u003c/p\u003e",
         "type": "posts",
         "wordcount": 3762
@@ -838,7 +838,7 @@
           ],
           "title": "從今天開始學Flask"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008191354/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008191354/index.json",
         "summary": "\u003cp\u003e以往用的framework都是Django，但總不可能靠一招就打天下…所以便來轉戰Flask了，畢竟在某些情境下，使用這種輕量化的framework會更合適\u003c/p\u003e\n\u003cp\u003e和Django不同，Flask不像Django這麼複雜，預設也只有最低限度的功能，也不像Django自帶ORM，\n因此是個自由度相當高的framework，接下來就開始動手練習\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1992
@@ -861,7 +861,7 @@
           ],
           "title": "【Prometheus入門練習-基本操作篇3】使用Prometheus監控RabbitMQ"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008181609/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008181609/index.json",
         "summary": "\u003cp\u003e想特地找個一個有自帶plugin的軟體練習一下幫助記憶，剛剛好是常常使用RabbitMQ！這次就來測試看看，當作實務運用的練習\u003c/p\u003e",
         "type": "posts",
         "wordcount": 497
@@ -884,7 +884,7 @@
           ],
           "title": "【Prometheus入門練習-自訂篇1】使用Prometheus client library自訂metrics"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008171709/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008171709/index.json",
         "summary": "\u003cp\u003e作為往後可能需要自訂Exporter的預習，就試著拿\u003ca href=\"https://prometheus.io/docs/instrumenting/clientlibs/\"\u003ePrometheus client library\u003c/a\u003e來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1535
@@ -907,7 +907,7 @@
           ],
           "title": "使用Moment.js處理日期時間"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008151135/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008151135/index.json",
         "summary": "\u003cp\u003e一個處理時間的library，覺得蠻好用得所以筆記一下\u003c/p\u003e",
         "type": "posts",
         "wordcount": 565
@@ -929,7 +929,7 @@
           ],
           "title": "【Prometheus入門練習-基本操作篇2】使用Pushgateway進行監控"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008140913/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008140913/index.json",
         "summary": "\u003cp\u003ePrometheus在設計上是採用pull的模式，但在網路架構的規劃上，並不是所有的target能讓Prometheus去pull，這時候就是Pushgateway出馬的時候了\u003c/p\u003e",
         "type": "posts",
         "wordcount": 867
@@ -951,7 +951,7 @@
           ],
           "title": "【Prometheus入門練習-基本操作篇1】從零開始學Prometheus"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008131707/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008131707/index.json",
         "summary": "\u003cp\u003ePrometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ePrometheus：監控方，定期收集資料並存在資料庫\u003c/li\u003e\n\u003cli\u003eExporter：被監控方，回傳監控方需要的資料\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e為了往後學習方便，先來實作一遍這個方便利用的工具\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1624
@@ -976,7 +976,7 @@
           ],
           "title": "使用Django + Channels部屬WebSocket簡易聊天室"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008100108/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008100108/index.json",
         "summary": "\u003cp\u003e製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，\n剛好可作為Message Queue及Web Socket的練習。\u003c/p\u003e\n\u003cp\u003e本篇Message Queue使用RabbitMQ，Framework使用Django，並且由Channels來實現Web Socket\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1374
@@ -999,7 +999,7 @@
           ],
           "title": "動態更新Echarts"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008092021/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008092021/index.json",
         "summary": "\u003cp\u003e之前工作上需要一個前端的圖表庫，最後就相中了百度的Echarts，像是要做監控的話，前端的圖表要動態更新就變得很重要了\u003c/p\u003e",
         "type": "posts",
         "wordcount": 350
@@ -1023,7 +1023,7 @@
           ],
           "title": "新主題上線！"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008070930/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202008070930/index.json",
         "summary": "\u003cp\u003e原本使用\u003ca href=\"https://github.com/halogenica/beautifulhugo\"\u003eBeautifulhugo\u003c/a\u003e(個人蠻喜歡的)，但發現會有一些小問題…\u003c/p\u003e\n\u003cp\u003e這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…\u003c/p\u003e",
         "type": "posts",
         "wordcount": 674
@@ -1047,7 +1047,7 @@
           ],
           "title": "在Nginx或Apache上設定CORS"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007301419/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007301419/index.json",
         "summary": "\u003cp\u003eWeb Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用\u003ca href=\"https://mikanbearer.github.io/myblog/posts/202007291642/\"\u003e這篇\u003c/a\u003e來實作，本篇包含Nginx及Apache的設定範例\u003c/p\u003e",
         "type": "posts",
         "wordcount": 388
@@ -1071,7 +1071,7 @@
           ],
           "title": "使用docker-compose部屬Nginx + uWSGI + Django"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007291642/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007291642/index.json",
         "summary": "\u003cp\u003e雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…\u003c/p\u003e\n\u003cp\u003e這次使用以下兩篇舊文的範例來練習\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1061
@@ -1095,7 +1095,7 @@
           ],
           "title": "使用Vue.js + Vuetify製作SPA登入畫面"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007262314/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007262314/index.json",
         "summary": "\u003cp\u003e利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，\n往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…\u003c/p\u003e",
         "type": "posts",
         "wordcount": 2091
@@ -1117,7 +1117,7 @@
           ],
           "title": "在EVE-NG上部屬vEOS LAB"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007241554/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007241554/index.json",
         "summary": "\u003cp\u003e第一篇挫折問題紀錄，各種鬼打牆…\n原本想在EVE-NG上做個簡單的LAB，沒想到問題還真不少…\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1355
@@ -1141,7 +1141,7 @@
           ],
           "title": "使用Django + Celery進行異步處理"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007221111/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007221111/index.json",
         "summary": "\u003cp\u003e本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，\n目前只提供簡單的範例，不包含異步任務的情境應用\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1055
@@ -1164,7 +1164,7 @@
           ],
           "title": "用VBA在Excel中使用nslookup"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007211516/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007211516/index.json",
         "summary": "\u003cp\u003e工作中常常用到的功能，不筆記會忘記，\n主要是在Excel Macro調用Wshshell，把A欄的結果輸出到B欄\u003c/p\u003e",
         "type": "posts",
         "wordcount": 220
@@ -1187,7 +1187,7 @@
           ],
           "title": "【Django API實作-入門篇2】在Django REST framework上導入JWT驗證"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007201501/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007201501/index.json",
         "summary": "\u003cp\u003e承之前的範例，這次要用JSON Web Token驗證，並加上Cross-Origin Resource Sharing\u003c/p\u003e",
         "type": "posts",
         "wordcount": 402
@@ -1210,7 +1210,7 @@
           ],
           "title": "使用watch監控的一些寫法"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007201139/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007201139/index.json",
         "summary": "\u003cp\u003e想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法\u003c/p\u003e",
         "type": "posts",
         "wordcount": 129
@@ -1233,7 +1233,7 @@
           ],
           "title": "【Django API實作-入門篇1】使用Django REST framework超高速部屬RESTful API"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007161628/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007161628/index.json",
         "summary": "\u003cp\u003e這次作為複習，利用djangorestframework製作一個陽春的REST API\n何謂RESTful就不贅述了，直接開始實做\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1413
@@ -1256,7 +1256,7 @@
           ],
           "title": "使用Django超高速部屬CRUD"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007151013/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007151013/index.json",
         "summary": "\u003cp\u003e這次僅是做一個超級簡易，能做到Create、Read、Update、Delete的Web App，\u003cbr\u003e\n為了避免版面過長，此篇僅有陽春的Template View，並沒有做Filter及Pagenation…\u003c/p\u003e",
         "type": "posts",
         "wordcount": 2703
@@ -1278,7 +1278,7 @@
           ],
           "title": "使用VBScript定期送出按鍵"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007141604/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007141604/index.json",
         "summary": "\u003cp\u003e在客戶環境中操作，並需要客戶代為登入的情況下給自己用的小筆記，\n免得一不注意就被policy弄到進入省電模式/登出，到時候又要請客戶的人來幫忙key帳號密碼…\n在不變更任何設定的情況下，VBScript還是很好用的東西，\u003cbr\u003e\n尤其是這個安全無害的method，\u003cstrong\u003eSendKeys\u003c/strong\u003e\u003c/p\u003e",
         "type": "posts",
         "wordcount": 311
@@ -1300,7 +1300,7 @@
           ],
           "title": "紀念用的第一篇"
         },
-        "permalink": "https://mikanbearer.github.io/posts/2020/07/202007101327/index.json",
+        "permalink": "https://mikanbearer.github.io/posts/202007101327/index.json",
         "summary": "\u003cp\u003e最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣， \n就到\u003ca href=\"https://www.staticgen.com/\"\u003ehttps://www.staticgen.com/\u003c/a\u003e找個人氣度高的來用，之後就選上了這個\u003cstrong\u003eHugo\u003c/strong\u003e，\n雖然這個Beautiful Hugo的theme挺好看的，之後還是要改一下，首先還是先搞定code block…\u003c/p\u003e",
         "type": "posts",
         "wordcount": 653
