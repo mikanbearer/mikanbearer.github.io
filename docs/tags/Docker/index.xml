@@ -9,48 +9,48 @@
     <lastBuildDate>Mon, 26 Oct 2020 17:27:31 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用v-if來改變元素顯示排列</title>
-      <link>https://mikanbearer.github.io/posts/2020/10/202010261727/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202010261727/index.json</link>
       <pubDate>Mon, 26 Oct 2020 17:27:31 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/10/202010261727/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202010261727/index.json</guid>
       <description>&lt;p&gt;突發奇想的筆記，想改變element的順序，但又不想用jQuery的.insertBefore()或.insertAfter()等等該怎麼辦？
 如果是用vuetify，或許可以考慮一下這種作法&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Docker化Node.js的Web App</title>
-      <link>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202010211651/index.json</link>
       <pubDate>Wed, 21 Oct 2020 16:51:28 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202010211651/index.json</guid>
       <description>&lt;p&gt;慢慢補足實務上會用到的基礎知識，這次來看看如何把用Node.js製作的app用Docker執行，並加上web server，本次範例是Nginx + NestJS&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用docker-compose輕鬆部屬監控工具</title>
-      <link>https://mikanbearer.github.io/posts/2020/10/202010191429/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202010191429/index.json</link>
       <pubDate>Mon, 19 Oct 2020 14:29:51 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/10/202010191429/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202010191429/index.json</guid>
       <description>&lt;p&gt;回味一下以前用過的工具們，唯一不同的就是在Docker host上安裝，因為速度很快很適合測試之用，用在正式環境的話稍微tuning一下也不是不能用&lt;/p&gt;
 &lt;p&gt;這次部屬的有Cacti、Nagios、LibreNMS，單獨部屬太空洞所以三個塞一篇&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用Ansible部屬Docker Swarm</title>
-      <link>https://mikanbearer.github.io/posts/2020/09/202009031456/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202009031456/index.json</link>
       <pubDate>Thu, 03 Sep 2020 14:56:05 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/09/202009031456/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202009031456/index.json</guid>
       <description>&lt;p&gt;偶然看到這個&lt;a href=&#34;https://github.com/atosatto/ansible-dockerswarm&#34;&gt;Ansible Role: Docker&lt;/a&gt;就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用docker-compose部屬Nginx &#43; uWSGI &#43; Django</title>
-      <link>https://mikanbearer.github.io/posts/2020/07/202007291642/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202007291642/index.json</link>
       <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/07/202007291642/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202007291642/index.json</guid>
       <description>&lt;p&gt;雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…&lt;/p&gt;
 &lt;p&gt;這次使用以下兩篇舊文的範例來練習&lt;/p&gt;</description>
     </item>

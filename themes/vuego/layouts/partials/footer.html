@@ -194,7 +194,7 @@
   const Post = {
     template: '#post',
     delimiters: ['[[', ']]'],
-    props: ['dir'],
+    props: ['name'],
 
     data () {
       return {
@@ -204,7 +204,7 @@
     },
 
     mounted () {
-      var postUrl = '{{ .Site.BaseURL }}' + this.dir + '/index.json'
+      var postUrl = '{{ .Site.BaseURL }}posts/' + this.name + '/index.json'
       this.getPost(postUrl)
       setTimeout(this.resetDisqus, 1000, postUrl)
     },
@@ -212,12 +212,16 @@
     methods: {
       replaceImgSrc () {
         var contents = document.getElementsByClassName('post-content')
+        var url = this.post.permalink
+        if (url.includes('index.json')) {
+          url = url.replace('index.json', '')
+        }
 
         Array.prototype.forEach.call(contents, content => {
           var imgs = content.getElementsByTagName('img')
           Array.prototype.forEach.call(imgs, img => {
             if (img.attributes.src.value.indexOf('http') == -1) {
-              img.src = this.dir + '/' + img.attributes.src.value
+              img.src = url + img.attributes.src.value
             }
           })
         })        
@@ -456,7 +460,7 @@
 
   const routes = [
     { path: '/', name: 'main', component: Posts },
-    { path: '/:dir', name: 'post', component: Post, props: true },
+    { path: '/post/:name', name: 'post', component: Post, props: true },
     { path: '/works', name: 'works', component: Works },
     { path: '/about', name: 'about', component: About }
   ]

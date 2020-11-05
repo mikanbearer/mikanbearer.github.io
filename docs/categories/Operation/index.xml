@@ -9,39 +9,39 @@
     <lastBuildDate>Wed, 21 Oct 2020 16:51:28 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Operation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker化Node.js的Web App</title>
-      <link>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202010211651/index.json</link>
       <pubDate>Wed, 21 Oct 2020 16:51:28 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202010211651/index.json</guid>
       <description>&lt;p&gt;慢慢補足實務上會用到的基礎知識，這次來看看如何把用Node.js製作的app用Docker執行，並加上web server，本次範例是Nginx + NestJS&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用docker-compose輕鬆部屬監控工具</title>
-      <link>https://mikanbearer.github.io/posts/2020/10/202010191429/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202010191429/index.json</link>
       <pubDate>Mon, 19 Oct 2020 14:29:51 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/10/202010191429/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202010191429/index.json</guid>
       <description>&lt;p&gt;回味一下以前用過的工具們，唯一不同的就是在Docker host上安裝，因為速度很快很適合測試之用，用在正式環境的話稍微tuning一下也不是不能用&lt;/p&gt;
 &lt;p&gt;這次部屬的有Cacti、Nagios、LibreNMS，單獨部屬太空洞所以三個塞一篇&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>從今天開始學Ansible</title>
-      <link>https://mikanbearer.github.io/posts/2020/09/202009011649/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202009011649/index.json</link>
       <pubDate>Tue, 01 Sep 2020 16:49:15 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/09/202009011649/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202009011649/index.json</guid>
       <description>&lt;p&gt;雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就先練習一遍，熟悉點再來自己寫role&lt;/p&gt;
 &lt;p&gt;參考文件：&lt;a href=&#34;https://docs.ansible.com/&#34;&gt;https://docs.ansible.com/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>在Nginx或Apache上設定CORS</title>
-      <link>https://mikanbearer.github.io/posts/2020/07/202007301419/index.json</link>
+      <link>https://mikanbearer.github.io/posts/202007301419/index.json</link>
       <pubDate>Thu, 30 Jul 2020 14:19:49 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/07/202007301419/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/202007301419/index.json</guid>
       <description>&lt;p&gt;Web Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用&lt;a href=&#34;https://mikanbearer.github.io/myblog/posts/202007291642/&#34;&gt;這篇&lt;/a&gt;來實作，本篇包含Nginx及Apache的設定範例&lt;/p&gt;</description>
     </item>
     
