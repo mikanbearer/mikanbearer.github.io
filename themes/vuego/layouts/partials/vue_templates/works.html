@@ -42,8 +42,8 @@
                                             </v-card-subtitle>
                                             <v-card-actions>
                                                 <v-btn
-                                                    :href="work.demo_url" 
-                                                    :disabled="!work.demo_url" 
+                                                    :href="work.params.demo_url" 
+                                                    :disabled="!work.params.demo_url" 
                                                     target="_blank"
                                                     color="secondary"
                                                     small
@@ -51,8 +51,8 @@
                                                     Demo
                                                 </v-btn>
                                                 <v-btn
-                                                    :href="work.download_url"
-                                                    :disabled="!work.download_url" 
+                                                    :href="work.params.download_url"
+                                                    :disabled="!work.params.download_url" 
                                                     target="_blank"
                                                     color="primary"
                                                     small

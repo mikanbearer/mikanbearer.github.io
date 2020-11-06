@@ -27,7 +27,7 @@
         "kind": "page",
         "name": "work1",
         "params": {
-          "demo_url": "",
+          "demo_url": "https://mikanbearer.github.io/hugo-vue-mix/",
           "download_url": "https://github.com/mikanbearer/hugo-vue-mix",
           "draft": false,
           "images": [
