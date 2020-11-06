@@ -1,0 +1,5 @@
+<script>
+    vm.page = {{ .Paginator.PageNumber }}
+    vm.panel = [...Array({{ .Paginator.PageSize }}).keys()]
+    vm.$watch(() => vm.page, (newPage)=>{window.location.href = '{{ .Permalink }}page/' + newPage})
+</script>

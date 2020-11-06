@@ -2,6 +2,66 @@
 <html>
   {{- partial "head.html" . -}}
   <body>
-    {{- block "main" . }}{{- end }}
+    <div id="app">
+      <v-app id="inspire">
+        <v-fade-transition>
+        <v-sheet class="overflow-hidden">
+          {{ partial "header.html" . }}
+          {{ partial "navigation" . }}
+          <v-sheet max-height="100vh" class="overflow-y-auto" id="main">
+            <v-main>
+              <v-container fluid style="width: 1200px">
+                {{- block "main" . }}{{- end }}
+              </v-container>
+            </v-main>
+            {{ partial "footer" . }}
+          </v-sheet>
+        </v-sheet>
+        </v-fade-transition>
+      </v-app>  
+    </div>
+    
+  {{ partial "main_script" . }}
+
+  
+
+  {{ if or (eq .Kind "section") (eq .Kind "home") }}
+    {{ partial "pagenation" . }}
+  {{ else if (eq .Kind "page") }}
+  <script>
+      vm.panel = [0]
+  vm.$watch(() => vm.panel, ()=>{
+    var list = document.body.getElementsByClassName("highlight")
+    for(i=0; i <= list.length-1; i++){
+      var table = list[i].firstElementChild.firstElementChild
+      if (table.nodeName == 'TABLE') {
+        var code = table.firstElementChild.firstElementChild.childNodes[2].firstElementChild.firstElementChild
+        var codeName =  code ? code.className.split(":")[1] : null
+      if(codeName) {
+        var div = document.createElement('div')
+        div.textContent = codeName
+        div.classList.add('code-name')
+        table.parentNode.insertBefore(div, table)
+      }
+      }else {
+        var code = table
+        var codeName =  code ? code.className.split(":")[1] : null
+
+        if(codeName) {
+          var div = document.createElement('div')
+          div.textContent = codeName
+          div.classList.add('code-name')
+          code.parentNode.insertBefore(div, code)
+        }
+      }
+    }
+  })
+  </script>
+  
+  {{ end }}
+
+  {{ if (eq .Type "about") }}
+    {{ partial "charts" . }}
+  {{ end }}
   </body>
 </html>

@@ -1,0 +1,116 @@
+<script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.min.js></script>
+<script>
+    {{ $legend := slice }}
+    {{ range .Site.Taxonomies.tags.ByCount }}
+        {{ $legend = $legend | append .Name }}
+    {{ end }}
+    {{ $series := slice }}
+    {{ range .Site.Taxonomies.tags.ByCount }}
+        {{ $series = $series | append (dict "name" .Name "value" .Count) }}
+    {{ end }}
+    {{ $selected := dict }}
+    {{ range $i, $e := .Site.Taxonomies.tags.ByCount }}
+        {{ if (ge $i 10) }}
+            {{ $selected = $selected | merge (dict $e.Name false) }}
+        {{ else }}
+            {{ $selected = $selected | merge (dict $e.Name true) }}
+        {{ end }}
+    {{ end }}
+    {{ $tags_data := dict "legend" $legend "series" $series "selected" $selected }}
+    {{ $legend := slice }}
+    {{ range .Site.Taxonomies.categories.ByCount }}
+        {{ $legend = $legend | append .Name }}
+    {{ end }}
+    {{ $series := slice }}
+    {{ range .Site.Taxonomies.categories.ByCount }}
+        {{ $series = $series | append (dict "name" .Name "value" .Count) }}
+    {{ end }}
+    {{ $selected := dict }}
+    {{ range $i, $e := .Site.Taxonomies.categories.ByCount }}
+        {{ if (ge $i 10) }}
+            {{ $selected = $selected | merge (dict $e.Name false) }}
+        {{ else }}
+            {{ $selected = $selected | merge (dict $e.Name true) }}
+        {{ end }}
+    {{ end }}
+    {{ $categories_data := dict "legend" $legend "series" $series "selected" $selected }}
+    {{ $x := slice }}
+    {{ range (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006-01" }}
+        {{ $x = $x | append .Key }}
+    {{ end }}
+    {{ $series := slice }}
+    {{ range (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006-01" }}
+        {{ $series = $series | append (len .Pages) }}
+    {{ end }}
+    {{ $monthly_count := dict "x" $x "series" $series }}
+    {{ $charts := dict "monthly_count" $monthly_count "categories_data" $categories_data "tags_data" $tags_data }}
+
+
+
+    const charts = {{ $charts }}
+
+    const setPie = (title, series_name, data, element_id) => {
+        var option = {
+          title: {
+            left: 'auto',
+            //text: title,
+            textStyle: {
+              color: '#e0e0e0',
+              fontSize: 16,
+              fontFamily: 'Noto Sans TC'
+            }
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: '{b} : {c} ({d}%)'
+          },
+          legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 0,
+            top: 10,
+            bottom: 10,
+            data: data.legend,
+            selected: data.selected,
+            inactiveColor: '#686868',
+            pageIconColor: '#aaa',
+            pageIconInactiveColor: '#2f4554',
+            textStyle: {
+              //color: '#c2c4c6'
+            },
+            pageTextStyle: {
+              //color: '#c2c4c6'
+            }
+          },
+          series: [
+            {
+              name: series_name,
+              type: 'pie',
+              radius: '55%',
+              center: ['40%', '50%'],
+              data: data.series,
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        }
+        var chart = echarts.init(document.getElementById(element_id))
+        chart.setOption(option)
+
+      }
+    
+
+
+
+setTimeout(() => {
+    setPie('Top Categories', 'category', charts.categories_data, 'chart1')
+}, 500)
+setTimeout(() => {
+    setPie('Top Tags', 'tag', charts.tags_data, 'chart2')
+}, 700)
+</script>

@@ -1,6 +1,6 @@
-
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3"></script>
 
 <script>
 {{ $posts := slice }}
@@ -22,6 +22,10 @@
   const posts = {{ $posts }}
   const tags = {{ $tags }}
   const categories = {{ $categories }}
+
+  
+  Vue.use(VueLoading);
+  Vue.component('loading', VueLoading)
 
 
   var vm = new Vue({
@@ -59,6 +63,14 @@
       },
     },
 
+    created () {
+      let loader = Vue.$loading.show()
+      setTimeout(loader.hide, 500)
+    },
+    
+
+  
+
     methods: {
       remove (item) {
         this.seltags.splice(this.seltags.indexOf(item), 1)
@@ -67,11 +79,8 @@
     }
   })
 
-  vm.$vuetify.theme.themes.light.primary = '#007C8A'
-  vm.$vuetify.theme.themes.light.secondary = '#44617B'
-  vm.$vuetify.theme.themes.light.accent = '#009BAC'
-  vm.$vuetify.theme.themes.light.error = '#D7003A'
-  vm.$vuetify.theme.themes.light.warning = '#F08300'
+  vm.$vuetify.theme.themes.light.primary = '#01579B'
+
 
     vm.$watch(() => vm.seltags, (tags)=>{
     var filteredposts = []
