@@ -87,99 +87,6 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
-<script type="text/x-template" id="posts">
-
-    <div v-show="displayPosts.length" class="post-list">
-
-        <v-row v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
-            <v-col cols="4">
-                <div v-for="(post, index) in displayPosts" :key="index">
-                    <div v-if="index % 3 === 0">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
-                    </div>
-                </div>
-            </v-col>
-            <v-col cols="4">
-                <div v-for="(post, index) in displayPosts" :key="index">
-                    <div v-if="index % 3 === 1">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
-                    </div>
-                </div>
-            </v-col>
-            <v-col cols="4">
-                <div v-for="(post, index) in displayPosts" :key="index">
-                    <div v-if="index % 3 === 2">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
-                    </div>
-                </div>
-            </v-col>
-        </v-row>
-
-        <v-row v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
-            <v-col cols="6">
-                <div v-for="(post, index) in displayPosts" :key="index">
-                    <div v-if="index % 2 === 0">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
-                    </div>
-                </div>
-            </v-col>
-            <v-col cols="6">
-                <div v-for="(post, index) in displayPosts" :key="index">
-                    <div v-if="index % 2 === 1">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
-                    </div>
-                </div>
-            </v-col>
-        </v-row>
-
-        <v-row v-if="$vuetify.breakpoint.xs">
-            <v-col cols="12">
-                <div v-for="(post, index) in displayPosts" :key="index">
-                    <div>
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
-                    </div>
-                </div>
-            </v-col>
-        </v-row>
-
-
-        <v-row no-gutters justidy="center">
-            <v-col>
-                <v-slide-x-transition>
-                    <v-pagination v-show="showPostList.length === pageSize" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
-                </v-slide-x-transition>
-            </v-col>
-        </v-row>
-    
-
-        <v-snackbar
-            v-model="resultSnackbar"
-            :timeout=2000
-        >
-            Found [[ filteredPosts.length ]] Posts.
-            <template v-slot:action="{ attrs }">
-                <v-btn
-                    color="primary"
-                    icon
-                    v-bind="attrs"
-                    @click="resultSnackbar = false"
-                >
-                    <v-icon>
-                        mdi-close
-                    </v-icon>
-                </v-btn>
-            </template>
-        </v-snackbar>
-    </div>
-
-</script>
-<script type="text/x-template" id="post">
-    <v-row v-if="post.content" >
-        <v-col>
-            <post-card :post="post" :isLoaded="isLoaded"></post-card>
-        </v-col>
-    </v-row>
-</script>
 <script type="text/x-template" id="post-card">
     <v-slide-x-transition>
         <div v-show="isLoaded">
@@ -296,7 +203,7 @@
                                         v-bind="attrs"
                                         v-on="on"
                                     >
-                                        <v-btn :to="{name: 'post', params: {name: post.name}}" color="primary" small text>
+                                        <v-btn :to="{name: 'post', params: {path: post.path}}" color="primary" small text>
                                             Continue Reading
                                             <v-icon right small>
                                                 mdi-chevron-right
@@ -314,6 +221,107 @@
 
         </div>
     </v-slide-x-transition>
+</script>
+<script type="text/x-template" id="disqus-card">
+    <v-card v-show="commentBlock" color="#333a40">
+        <v-card-text>
+          <div id="disqus_thread"></div>
+          <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </v-card-text>
+      </v-card>
+</script>
+<script type="text/x-template" id="posts">
+
+    <div v-show="displayPosts.length" class="post-list">
+
+        <v-row v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl">
+            <v-col cols="4">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 3 === 0">
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+            <v-col cols="4">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 3 === 1">
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+            <v-col cols="4">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 3 === 2">
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+        </v-row>
+
+        <v-row v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md">
+            <v-col cols="6">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 2 === 0">
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+            <v-col cols="6">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div v-if="index % 2 === 1">
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+        </v-row>
+
+        <v-row v-if="$vuetify.breakpoint.xs">
+            <v-col cols="12">
+                <div v-for="(post, index) in displayPosts" :key="index">
+                    <div>
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
+                    </div>
+                </div>
+            </v-col>
+        </v-row>
+
+
+        <v-row no-gutters justidy="center">
+            <v-col>
+                <v-slide-x-transition>
+                    <v-pagination v-show="showPostList.length === pageSize" v-model="page" :length=pageLength @input="pageChange" class="mt-4"></v-pagination>
+                </v-slide-x-transition>
+            </v-col>
+        </v-row>
+    
+
+        <v-snackbar
+            v-model="resultSnackbar"
+            :timeout=2000
+        >
+            Found [[ filteredPosts.length ]] Posts.
+            <template v-slot:action="{ attrs }">
+                <v-btn
+                    color="primary"
+                    icon
+                    v-bind="attrs"
+                    @click="resultSnackbar = false"
+                >
+                    <v-icon>
+                        mdi-close
+                    </v-icon>
+                </v-btn>
+            </template>
+        </v-snackbar>
+    </div>
+
+</script>
+<script type="text/x-template" id="post">
+    <v-row v-if="post.content" >
+        <v-col>
+            <post-card :post="post" :is-loaded="isLoaded"></post-card>
+        </v-col>
+    </v-row>
 </script>
 <script type="text/x-template" id="works">
     <div v-if="works">
@@ -499,6 +507,68 @@
 
 
 <script>
+  Vue.component('post-card', {
+    props: ['post', 'isLoaded'],
+    template: '#post-card',
+    delimiters: ['[[', ']]']
+  })
+
+  Vue.component('disqus-card', {
+    props: ['commentBlock'],
+    template: '#disqus-card',
+    delimiters: ['[[', ']]'],
+    computed: {
+      postPath () {
+        return this.$route.params.path
+      }
+    },
+
+    watch: {
+      postPath (newPath, oldPath) {
+        if (newPath) {
+          this.resetDISQUS('https:\/\/mikanbearer.github.io\/' + newPath)
+        }
+      }
+    },
+
+    mounted () {
+      this.initDISQUS('https:\/\/mikanbearer.github.io\/' + this.postPath)
+    },
+
+    methods: {
+      initDISQUS (disqusPageUrl) {
+        (() => {
+          window.disqus_config = function () {
+            this.page.url = disqusPageUrl
+          }
+          
+          if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.'
+            return
+        }
+        var d = document, s = d.createElement('script')
+        s.async = true
+
+        var disqus_shortname = 'mikanmimi'
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js'
+        s.setAttribute('data-timestamp', +new Date())
+        d.body.appendChild(s)
+        })()
+      },
+
+      resetDISQUS (disqusPageUrl) {
+        if (window.DISQUS) {
+          window.DISQUS.reset({
+            reload: true,
+            config: function () {
+              this.page.url = disqusPageUrl
+            }
+          })
+        }
+      },
+
+    }
+  })
 
   const About = {
     template: '#about',
@@ -680,7 +750,7 @@
   const Post = {
     template: '#post',
     delimiters: ['[[', ']]'],
-    props: ['name'],
+    props: ['path'],
 
     data () {
       return {
@@ -690,9 +760,9 @@
     },
 
     mounted () {
-      var postUrl = 'https:\/\/mikanbearer.github.io\/posts/' + this.name + '/index.json'
+      var postUrl = 'https:\/\/mikanbearer.github.io\/' + this.path + '/index.json'
       this.getPost(postUrl)
-      setTimeout(this.resetDisqus, 1000, postUrl)
+      
     },
 
     methods: {
@@ -775,19 +845,7 @@
         })
       },
 
-      resetDisqus (url) {
-        if (url.includes('index.json')) {
-          url = url.replace('index.json', '')
-        }
-        if (window.DISQUS) {
-          window.DISQUS.reset({
-            reload: true,
-            config: function () {
-              this.page.url = url
-            }
-          })
-        }
-      },
+
     }
   }
   
@@ -815,7 +873,7 @@
     },
 
     computed: {
-      getQuery () {
+      routeQuery () {
         return this.$route.query
       }
     },
@@ -825,7 +883,7 @@
     },
 
     watch: {
-      getQuery (to, from) {
+      routeQuery () {
         this.searchPosts()
       },
     },
@@ -839,7 +897,7 @@
       },
 
       getSearchConditions () {
-        var query = this.getQuery
+        var query = this.routeQuery
         const convertToArray = (value) => {
           if (Array.isArray(value)) {
             return value
@@ -946,7 +1004,7 @@
 
   const routes = [
     { path: '/', name: 'main', component: Posts },
-    { path: '/post/:name', name: 'post', component: Post, props: true },
+    { path: '/:path', name: 'post', component: Post, props: true },
     { path: '/works', name: 'works', component: Works },
     { path: '/about', name: 'about', component: About }
   ]
@@ -978,7 +1036,7 @@
     },
 
     computed: {
-      getQuery () {
+      routeQuery () {
         return this.$route.query
       },
 
@@ -992,7 +1050,7 @@
     },
 
     watch: {
-      getQuery (to, from) {
+      routeQuery () {
         if (this.$route.path == '/') {
           this.setSearchConditionsToData()
         }
@@ -1014,7 +1072,6 @@
       this.getSearchSelections('https:\/\/mikanbearer.github.io\/selections/index.json')
       this.showComment()
       this.setSearchConditionsToData()
-      this.addingDISQUS()
     },
 
     updated () {
@@ -1030,7 +1087,7 @@
       },
 
       getSearchConditions () {
-        var query = this.getQuery
+        var query = this.routeQuery
         const convertToArray = (value) => {
           if (Array.isArray(value)) {
             return value
@@ -1097,22 +1154,6 @@
         }
       },
 
-      addingDISQUS () {
-        (() => {
-          if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.'
-            return
-        }
-        var d = document, s = d.createElement('script')
-        s.async = true
-
-        var disqus_shortname = 'mikanmimi'
-        s.src = '//' + disqus_shortname + '.disqus.com/embed.js'
-        s.setAttribute('data-timestamp', +new Date())
-        d.body.appendChild(s)
-        })()
-      },
-
       showComment () {
         if (this.$route.name === 'post') {
           setTimeout(() => {this.commentBlock = true}, 3000)
@@ -1129,15 +1170,6 @@
 
     }
   })
-
-  Vue.component('post-card', {
-    props: ['post', 'isLoaded'],
-    template: '#post-card',
-    delimiters: ['[[', ']]']
-  })
-
-
-
 
 
 

@@ -6,21 +6,21 @@
             <v-col cols="4">
                 <div v-for="(post, index) in displayPosts" :key="index">
                     <div v-if="index % 3 === 0">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
                     </div>
                 </div>
             </v-col>
             <v-col cols="4">
                 <div v-for="(post, index) in displayPosts" :key="index">
                     <div v-if="index % 3 === 1">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
                     </div>
                 </div>
             </v-col>
             <v-col cols="4">
                 <div v-for="(post, index) in displayPosts" :key="index">
                     <div v-if="index % 3 === 2">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
                     </div>
                 </div>
             </v-col>
@@ -30,14 +30,14 @@
             <v-col cols="6">
                 <div v-for="(post, index) in displayPosts" :key="index">
                     <div v-if="index % 2 === 0">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
                     </div>
                 </div>
             </v-col>
             <v-col cols="6">
                 <div v-for="(post, index) in displayPosts" :key="index">
                     <div v-if="index % 2 === 1">
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
                     </div>
                 </div>
             </v-col>
@@ -47,7 +47,7 @@
             <v-col cols="12">
                 <div v-for="(post, index) in displayPosts" :key="index">
                     <div>
-                        <post-card :post="post" :isLoaded="showPostList.includes(index)"></post-card>
+                        <post-card :post="post" :is-loaded="showPostList.includes(index)"></post-card>
                     </div>
                 </div>
             </v-col>

@@ -9,56 +9,56 @@
     <lastBuildDate>Tue, 03 Nov 2020 13:57:03 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/WebDevelopment/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>解決Pelican使用rst撰寫貼文時code block option不生效的問題</title>
-      <link>https://mikanbearer.github.io/posts/202011031357/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/11/202011031357/index.json</link>
       <pubDate>Tue, 03 Nov 2020 13:57:03 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202011031357/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/11/202011031357/index.json</guid>
       <description>&lt;p&gt;Pelican在使用reStructuredText撰寫貼文的時候，會遇到option不生效的問題&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>嘗試使用Pelican撰寫blog</title>
-      <link>https://mikanbearer.github.io/posts/202011021724/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/11/202011021724/index.json</link>
       <pubDate>Mon, 02 Nov 2020 17:24:12 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202011021724/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/11/202011021724/index.json</guid>
       <description>&lt;p&gt;覺得物色別的Static site generator時看到以Python撰寫的Pelican，萬一遇到BUG也比那些用編譯語言寫的generator要好處理得多(如同前篇Hugo的悲劇)&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hugo使用錯誤template輸出的迴避方式</title>
-      <link>https://mikanbearer.github.io/posts/202010281326/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/10/202010281326/index.json</link>
       <pubDate>Wed, 28 Oct 2020 13:26:11 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202010281326/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/10/202010281326/index.json</guid>
       <description>&lt;p&gt;月初將BLOG部分作成SPA時發現的問題&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用v-if來改變元素顯示排列</title>
-      <link>https://mikanbearer.github.io/posts/202010261727/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/10/202010261727/index.json</link>
       <pubDate>Mon, 26 Oct 2020 17:27:31 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202010261727/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/10/202010261727/index.json</guid>
       <description>&lt;p&gt;突發奇想的筆記，想改變element的順序，但又不想用jQuery的.insertBefore()或.insertAfter()等等該怎麼辦？
 如果是用vuetify，或許可以考慮一下這種作法&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Docker化Node.js的Web App</title>
-      <link>https://mikanbearer.github.io/posts/202010211651/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</link>
       <pubDate>Wed, 21 Oct 2020 16:51:28 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202010211651/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</guid>
       <description>&lt;p&gt;慢慢補足實務上會用到的基礎知識，這次來看看如何把用Node.js製作的app用Docker執行，並加上web server，本次範例是Nginx + NestJS&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>從今天開始學NestJS</title>
-      <link>https://mikanbearer.github.io/posts/202010151457/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/10/202010151457/index.json</link>
       <pubDate>Thu, 15 Oct 2020 14:57:25 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202010151457/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/10/202010151457/index.json</guid>
       <description>&lt;p&gt;好久不見的從今天開始系列…&lt;/p&gt;
 &lt;p&gt;這次的NestJS是個能用TypeScript撰寫的framework，有提供nest-cli來迅速建立project，適合用來做些小型的backend app
 ，其十分Angular的風格也是其吸引人之處&lt;/p&gt;</description>
@@ -66,10 +66,10 @@
     
     <item>
       <title>使用YouTube影片作為網頁背景</title>
-      <link>https://mikanbearer.github.io/posts/202010141635/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/10/202010141635/index.json</link>
       <pubDate>Wed, 14 Oct 2020 16:35:05 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202010141635/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/10/202010141635/index.json</guid>
       <description>&lt;p&gt;最近覺得影片當背景的網站挺漂亮的，想想要如法炮製的話總會有個簡單易用的plugin，
 這次找到的就是這個jquery.mb.YTPlayer&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/pupunzi/jquery.mb.YTPlayer&#34;&gt;https://github.com/pupunzi/jquery.mb.YTPlayer&lt;/a&gt;&lt;/p&gt;</description>
@@ -77,103 +77,103 @@
     
     <item>
       <title>Vue Router在同一route傳遞新的query</title>
-      <link>https://mikanbearer.github.io/posts/202010061053/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/10/202010061053/index.json</link>
       <pubDate>Tue, 06 Oct 2020 10:53:36 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202010061053/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/10/202010061053/index.json</guid>
       <description>&lt;p&gt;弄這個blog遇到的問題，想使用Vue Router來取代Hugo部分list功能的小筆記&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用Vue Loading Overlay追加過場動畫</title>
-      <link>https://mikanbearer.github.io/posts/202009261450/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009261450/index.json</link>
       <pubDate>Sat, 26 Sep 2020 14:50:43 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202009261450/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009261450/index.json</guid>
       <description>&lt;p&gt;不久前才想用vuetify的v-overlay與v-progress-circular來做個loading的延遲畫面，就意外發現了這個好東西：&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/vue-loading-overlay&#34;&gt;vue-loading-overlay&lt;/a&gt;，馬上就來試一下&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>讓Hugo輸出JSON格式</title>
-      <link>https://mikanbearer.github.io/posts/202009221717/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009221717/index.json</link>
       <pubDate>Tue, 22 Sep 2020 17:17:48 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202009221717/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009221717/index.json</guid>
       <description>&lt;p&gt;計畫使用Hugo來製作Single Page，有JSON會方便很多，許多地方寫得不是很清楚所以筆記一下&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用Angular嘗試製作SPA登入畫面</title>
-      <link>https://mikanbearer.github.io/posts/202009211136/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009211136/index.json</link>
       <pubDate>Mon, 21 Sep 2020 11:36:54 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202009211136/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009211136/index.json</guid>
       <description>&lt;p&gt;練習的時候到啦，這次一樣是用登入畫面，本篇寫作風格有點改變，嘗試放多一點圖(尤其gif)，內文不包含API的部分，大部分都是盲做，不完善的地方非常之多…&lt;/p&gt;
 &lt;p&gt;畢竟，熟能生巧嘛(;´Д`A ```&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>從今天開始學Angular</title>
-      <link>https://mikanbearer.github.io/posts/202009181018/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009181018/index.json</link>
       <pubDate>Fri, 18 Sep 2020 10:18:52 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202009181018/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009181018/index.json</guid>
       <description>&lt;p&gt;從今天開始系列最新作，沒方向的時候就是學framework的最好時機(？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection</title>
-      <link>https://mikanbearer.github.io/posts/202009151049/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009151049/index.json</link>
       <pubDate>Tue, 15 Sep 2020 10:49:11 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202009151049/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009151049/index.json</guid>
       <description>&lt;p&gt;暫定是最後一個入門練習，這次使用Flask-WTF來做CSRF Protection，Flask-WTF是WTForms結合Flask用的module&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面</title>
-      <link>https://mikanbearer.github.io/posts/202009141257/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009141257/index.json</link>
       <pubDate>Mon, 14 Sep 2020 12:57:20 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202009141257/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009141257/index.json</guid>
       <description>&lt;p&gt;這次實作目標是導入Flask-Login，讓咱們的app受驗證機制保護&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>【Flask入門練習-CRUD篇2】製作簡單的CRUD</title>
-      <link>https://mikanbearer.github.io/posts/202009111635/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/09/202009111635/index.json</link>
       <pubDate>Fri, 11 Sep 2020 16:35:19 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202009111635/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/09/202009111635/index.json</guid>
       <description>&lt;p&gt;經過了前面的練習，咱們的小App已經有了ORM，既然有了ORM，不做成CRUD(Create、Read、Update、Delete)怎麼行？&lt;/p&gt;
 &lt;p&gt;所以繼續動手做&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>【Flask入門練習-CRUD篇1】在Flask中導入ORM操作</title>
-      <link>https://mikanbearer.github.io/posts/202008271612/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008271612/index.json</link>
       <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202008271612/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008271612/index.json</guid>
       <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>【Prometheus入門練習-自訂篇2】Prometheus &#43; Vue.js &#43; Echarts製作動態圖表</title>
-      <link>https://mikanbearer.github.io/posts/202008241004/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008241004/index.json</link>
       <pubDate>Mon, 24 Aug 2020 10:04:45 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202008241004/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008241004/index.json</guid>
       <description>&lt;p&gt;要是不想用自帶的UI，也不想用Grafana怎麼辦！！那當然就是自己動手做啦，自己動手做的好處就是能整合其他功能做成多合一的Web app，但這次就先練習如何取用Prometheus上的資料，製作成動態圖表&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>從今天開始學Flask</title>
-      <link>https://mikanbearer.github.io/posts/202008191354/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008191354/index.json</link>
       <pubDate>Wed, 19 Aug 2020 13:54:41 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202008191354/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008191354/index.json</guid>
       <description>&lt;p&gt;以往用的framework都是Django，但總不可能靠一招就打天下…所以便來轉戰Flask了，畢竟在某些情境下，使用這種輕量化的framework會更合適&lt;/p&gt;
 &lt;p&gt;和Django不同，Flask不像Django這麼複雜，預設也只有最低限度的功能，也不像Django自帶ORM，
 因此是個自由度相當高的framework，接下來就開始動手練習&lt;/p&gt;</description>
@@ -181,19 +181,19 @@
     
     <item>
       <title>使用Moment.js處理日期時間</title>
-      <link>https://mikanbearer.github.io/posts/202008151135/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008151135/index.json</link>
       <pubDate>Sat, 15 Aug 2020 11:35:45 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202008151135/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008151135/index.json</guid>
       <description>&lt;p&gt;一個處理時間的library，覺得蠻好用得所以筆記一下&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用Django &#43; Channels部屬WebSocket簡易聊天室</title>
-      <link>https://mikanbearer.github.io/posts/202008100108/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008100108/index.json</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202008100108/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008100108/index.json</guid>
       <description>&lt;p&gt;製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，
 剛好可作為Message Queue及Web Socket的練習。&lt;/p&gt;
 &lt;p&gt;本篇Message Queue使用RabbitMQ，Framework使用Django，並且由Channels來實現Web Socket&lt;/p&gt;</description>
@@ -201,86 +201,86 @@
     
     <item>
       <title>動態更新Echarts</title>
-      <link>https://mikanbearer.github.io/posts/202008092021/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/08/202008092021/index.json</link>
       <pubDate>Sun, 09 Aug 2020 20:21:46 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202008092021/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/08/202008092021/index.json</guid>
       <description>&lt;p&gt;之前工作上需要一個前端的圖表庫，最後就相中了百度的Echarts，像是要做監控的話，前端的圖表要動態更新就變得很重要了&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>在Nginx或Apache上設定CORS</title>
-      <link>https://mikanbearer.github.io/posts/202007301419/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007301419/index.json</link>
       <pubDate>Thu, 30 Jul 2020 14:19:49 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202007301419/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007301419/index.json</guid>
       <description>&lt;p&gt;Web Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用&lt;a href=&#34;https://mikanbearer.github.io/myblog/posts/202007291642/&#34;&gt;這篇&lt;/a&gt;來實作，本篇包含Nginx及Apache的設定範例&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用docker-compose部屬Nginx &#43; uWSGI &#43; Django</title>
-      <link>https://mikanbearer.github.io/posts/202007291642/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007291642/index.json</link>
       <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202007291642/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007291642/index.json</guid>
       <description>&lt;p&gt;雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…&lt;/p&gt;
 &lt;p&gt;這次使用以下兩篇舊文的範例來練習&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用Vue.js &#43; Vuetify製作SPA登入畫面</title>
-      <link>https://mikanbearer.github.io/posts/202007262314/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007262314/index.json</link>
       <pubDate>Sun, 26 Jul 2020 23:14:14 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202007262314/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007262314/index.json</guid>
       <description>&lt;p&gt;利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，
 往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用Django &#43; Celery進行異步處理</title>
-      <link>https://mikanbearer.github.io/posts/202007221111/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007221111/index.json</link>
       <pubDate>Wed, 22 Jul 2020 11:11:37 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202007221111/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007221111/index.json</guid>
       <description>&lt;p&gt;本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，
 目前只提供簡單的範例，不包含異步任務的情境應用&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>【Django API實作-入門篇2】在Django REST framework上導入JWT驗證</title>
-      <link>https://mikanbearer.github.io/posts/202007201501/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007201501/index.json</link>
       <pubDate>Mon, 20 Jul 2020 15:01:14 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202007201501/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007201501/index.json</guid>
       <description>&lt;p&gt;承之前的範例，這次要用JSON Web Token驗證，並加上Cross-Origin Resource Sharing&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用watch監控的一些寫法</title>
-      <link>https://mikanbearer.github.io/posts/202007201139/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007201139/index.json</link>
       <pubDate>Mon, 20 Jul 2020 11:39:17 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202007201139/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007201139/index.json</guid>
       <description>&lt;p&gt;想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>【Django API實作-入門篇1】使用Django REST framework超高速部屬RESTful API</title>
-      <link>https://mikanbearer.github.io/posts/202007161628/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007161628/index.json</link>
       <pubDate>Thu, 16 Jul 2020 16:28:26 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202007161628/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007161628/index.json</guid>
       <description>&lt;p&gt;這次作為複習，利用djangorestframework製作一個陽春的REST API
 何謂RESTful就不贅述了，直接開始實做&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用Django超高速部屬CRUD</title>
-      <link>https://mikanbearer.github.io/posts/202007151013/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/07/202007151013/index.json</link>
       <pubDate>Wed, 15 Jul 2020 10:14:15 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202007151013/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/07/202007151013/index.json</guid>
       <description>&lt;p&gt;這次僅是做一個超級簡易，能做到Create、Read、Update、Delete的Web App，&lt;br&gt;
 為了避免版面過長，此篇僅有陽春的Template View，並沒有做Filter及Pagenation…&lt;/p&gt;</description>
     </item>

@@ -4,15 +4,78 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+{{ partial "vue_templates/post_card.html" . }}
+{{ partial "vue_templates/disqus_card.html" . }}
 {{ partial "vue_templates/posts.html" . }}
 {{ partial "vue_templates/post.html" . }}
-{{ partial "vue_templates/post_card.html" . }}
 {{ partial "vue_templates/works.html" . }}
 {{ partial "vue_templates/about.html" . }}
 
 
 
 <script>
+  Vue.component('post-card', {
+    props: ['post', 'isLoaded'],
+    template: '#post-card',
+    delimiters: ['[[', ']]']
+  })
+
+  Vue.component('disqus-card', {
+    props: ['commentBlock'],
+    template: '#disqus-card',
+    delimiters: ['[[', ']]'],
+    computed: {
+      postPath () {
+        return this.$route.params.path
+      }
+    },
+
+    watch: {
+      postPath (newPath, oldPath) {
+        if (newPath) {
+          this.resetDISQUS('{{ .Site.BaseURL }}' + newPath)
+        }
+      }
+    },
+
+    mounted () {
+      this.initDISQUS('{{ .Site.BaseURL }}' + this.postPath)
+    },
+
+    methods: {
+      initDISQUS (disqusPageUrl) {
+        (() => {
+          window.disqus_config = function () {
+            this.page.url = disqusPageUrl
+          }
+          
+          if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.'
+            return
+        }
+        var d = document, s = d.createElement('script')
+        s.async = true
+
+        var disqus_shortname = '{{ .Site.DisqusShortname }}'
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js'
+        s.setAttribute('data-timestamp', +new Date())
+        d.body.appendChild(s)
+        })()
+      },
+
+      resetDISQUS (disqusPageUrl) {
+        if (window.DISQUS) {
+          window.DISQUS.reset({
+            reload: true,
+            config: function () {
+              this.page.url = disqusPageUrl
+            }
+          })
+        }
+      },
+
+    }
+  })
 
   const About = {
     template: '#about',
@@ -194,7 +257,7 @@
   const Post = {
     template: '#post',
     delimiters: ['[[', ']]'],
-    props: ['name'],
+    props: ['path'],
 
     data () {
       return {
@@ -204,9 +267,9 @@
     },
 
     mounted () {
-      var postUrl = '{{ .Site.BaseURL }}posts/' + this.name + '/index.json'
+      var postUrl = '{{ .Site.BaseURL }}' + this.path + '/index.json'
       this.getPost(postUrl)
-      setTimeout(this.resetDisqus, 1000, postUrl)
+      //setTimeout(this.resetDisqus, 1000, postUrl)
     },
 
     methods: {
@@ -289,19 +352,7 @@
         })
       },
 
-      resetDisqus (url) {
-        if (url.includes('index.json')) {
-          url = url.replace('index.json', '')
-        }
-        if (window.DISQUS) {
-          window.DISQUS.reset({
-            reload: true,
-            config: function () {
-              this.page.url = url
-            }
-          })
-        }
-      },
+
     }
   }
   
@@ -329,7 +380,7 @@
     },
 
     computed: {
-      getQuery () {
+      routeQuery () {
         return this.$route.query
       }
     },
@@ -339,7 +390,7 @@
     },
 
     watch: {
-      getQuery (to, from) {
+      routeQuery () {
         this.searchPosts()
       },
     },
@@ -353,7 +404,7 @@
       },
 
       getSearchConditions () {
-        var query = this.getQuery
+        var query = this.routeQuery
         const convertToArray = (value) => {
           if (Array.isArray(value)) {
             return value
@@ -460,7 +511,7 @@
 
   const routes = [
     { path: '/', name: 'main', component: Posts },
-    { path: '/post/:name', name: 'post', component: Post, props: true },
+    { path: '/:path', name: 'post', component: Post, props: true },
     { path: '/works', name: 'works', component: Works },
     { path: '/about', name: 'about', component: About }
   ]
@@ -492,7 +543,7 @@
     },
 
     computed: {
-      getQuery () {
+      routeQuery () {
         return this.$route.query
       },
 
@@ -506,7 +557,7 @@
     },
 
     watch: {
-      getQuery (to, from) {
+      routeQuery () {
         if (this.$route.path == '/') {
           this.setSearchConditionsToData()
         }
@@ -528,7 +579,6 @@
       this.getSearchSelections('{{ .Site.BaseURL }}selections/index.json')
       this.showComment()
       this.setSearchConditionsToData()
-      this.addingDISQUS()
     },
 
     updated () {
@@ -544,7 +594,7 @@
       },
 
       getSearchConditions () {
-        var query = this.getQuery
+        var query = this.routeQuery
         const convertToArray = (value) => {
           if (Array.isArray(value)) {
             return value
@@ -611,22 +661,6 @@
         }
       },
 
-      addingDISQUS () {
-        (() => {
-          if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.'
-            return
-        }
-        var d = document, s = d.createElement('script')
-        s.async = true
-
-        var disqus_shortname = '{{ .Site.DisqusShortname }}'
-        s.src = '//' + disqus_shortname + '.disqus.com/embed.js'
-        s.setAttribute('data-timestamp', +new Date())
-        d.body.appendChild(s)
-        })()
-      },
-
       showComment () {
         if (this.$route.name === 'post') {
           setTimeout(() => {this.commentBlock = true}, 3000)
@@ -643,15 +677,6 @@
 
     }
   })
-
-  Vue.component('post-card', {
-    props: ['post', 'isLoaded'],
-    template: '#post-card',
-    delimiters: ['[[', ']]']
-  })
-
-
-
 
 
 
