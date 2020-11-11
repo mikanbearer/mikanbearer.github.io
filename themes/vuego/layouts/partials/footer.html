@@ -391,7 +391,7 @@
 
     watch: {
       routeQuery () {
-        this.searchPosts()
+        this.postsInit()
       },
     },
 
@@ -471,10 +471,10 @@
         const posts = JSON.parse(JSON.stringify(this.postList))
 
         const checkArray = (target, item) => {
-          if (item) {
+          if (item && target) {
             return item.every(v => target.includes(v))
           }
-          return true
+          return false
         }
 
         var checkArrayResult = []
