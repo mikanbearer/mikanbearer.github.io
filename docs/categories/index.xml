@@ -6,13 +6,13 @@
     <description>Recent content in Categories on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Nov 2020 13:57:03 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Nov 2020 14:50:41 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>WebDevelopment</title>
-      <link>https://mikanbearer.github.io/categories/WebDevelopment/</link>
-      <pubDate>Tue, 03 Nov 2020 13:57:03 +0800</pubDate>
+      <title>Web Development</title>
+      <link>https://mikanbearer.github.io/categories/Web-Development/</link>
+      <pubDate>Tue, 03 Nov 2020 14:50:41 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/categories/WebDevelopment/</guid>
+      <guid>https://mikanbearer.github.io/categories/Web-Development/</guid>
       <description></description>
     </item>
     
@@ -35,11 +35,11 @@
     </item>
     
     <item>
-      <title>MachineLearning</title>
-      <link>https://mikanbearer.github.io/categories/MachineLearning/</link>
+      <title>Machine Learning</title>
+      <link>https://mikanbearer.github.io/categories/Machine-Learning/</link>
       <pubDate>Wed, 16 Sep 2020 11:32:49 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/categories/MachineLearning/</guid>
+      <guid>https://mikanbearer.github.io/categories/Machine-Learning/</guid>
       <description></description>
     </item>
     
@@ -62,20 +62,20 @@
     </item>
     
     <item>
-      <title>DataScience</title>
-      <link>https://mikanbearer.github.io/categories/DataScience/</link>
+      <title>Data Science</title>
+      <link>https://mikanbearer.github.io/categories/Data-Science/</link>
       <pubDate>Tue, 08 Sep 2020 11:38:55 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/categories/DataScience/</guid>
+      <guid>https://mikanbearer.github.io/categories/Data-Science/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>WebCrawler</title>
-      <link>https://mikanbearer.github.io/categories/WebCrawler/</link>
+      <title>Web Crawler</title>
+      <link>https://mikanbearer.github.io/categories/Web-Crawler/</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/categories/WebCrawler/</guid>
+      <guid>https://mikanbearer.github.io/categories/Web-Crawler/</guid>
       <description></description>
     </item>
     

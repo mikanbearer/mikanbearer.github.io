@@ -85,6 +85,8 @@
         
             
         
+            
+        
         
         
             
@@ -167,7 +169,13 @@
         
             
         
+            
         
+        
+        
+            
+                
+            
         
             
                 
@@ -458,33 +466,33 @@
     "charts": {
       "categories_data": {
         "legend": [
-          "WebDevelopment",
+          "Web-Development",
           "未分類",
           "Monitoring",
           "Operation",
           "Arista",
-          "MachineLearning",
+          "Machine-Learning",
           "Provisioning",
-          "WebCrawler",
-          "DataScience",
+          "Web-Crawler",
+          "Data-Science",
           "Opration"
         ],
         "selected": {
           "Arista": true,
-          "DataScience": true,
-          "MachineLearning": true,
+          "Data-Science": true,
+          "Machine-Learning": true,
           "Monitoring": true,
           "Operation": true,
           "Opration": true,
           "Provisioning": true,
-          "WebCrawler": true,
-          "WebDevelopment": true,
+          "Web-Crawler": true,
+          "Web-Development": true,
           "未分類": true
         },
         "series": [
           {
-            "name": "WebDevelopment",
-            "value": 29
+            "name": "Web-Development",
+            "value": 30
           },
           {
             "name": "未分類",
@@ -503,7 +511,7 @@
             "value": 2
           },
           {
-            "name": "MachineLearning",
+            "name": "Machine-Learning",
             "value": 2
           },
           {
@@ -511,11 +519,11 @@
             "value": 2
           },
           {
-            "name": "WebCrawler",
+            "name": "Web-Crawler",
             "value": 2
           },
           {
-            "name": "DataScience",
+            "name": "Data-Science",
             "value": 1
           },
           {
@@ -526,7 +534,7 @@
       },
       "monthly_count": {
         "series": [
-          2,
+          3,
           8,
           15,
           12,
@@ -544,12 +552,12 @@
         "legend": [
           "Python",
           "Vue.js",
+          "JavaScript",
           "Node.js",
           "Django",
           "Docker",
           "Flask",
           "Hugo",
-          "JavaScript",
           "Prometheus",
           "NestJS",
           "TypeScript",
@@ -575,6 +583,7 @@
           "Nagios",
           "pandas",
           "seaborn",
+          "Signature-Pad",
           "TypeORM",
           "uWSGI",
           "VBA",
@@ -611,6 +620,7 @@
           "Python": true,
           "RabbitMQ": false,
           "Scrapy": false,
+          "Signature-Pad": false,
           "TypeORM": false,
           "TypeScript": false,
           "VBA": false,
@@ -635,6 +645,10 @@
             "value": 7
           },
           {
+            "name": "JavaScript",
+            "value": 6
+          },
+          {
             "name": "Node.js",
             "value": 6
           },
@@ -652,10 +666,6 @@
           },
           {
             "name": "Hugo",
-            "value": 5
-          },
-          {
-            "name": "JavaScript",
             "value": 5
           },
           {
@@ -756,6 +766,10 @@
           },
           {
             "name": "seaborn",
+            "value": 1
+          },
+          {
+            "name": "Signature-Pad",
             "value": 1
           },
           {

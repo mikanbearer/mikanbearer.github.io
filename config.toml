@@ -42,7 +42,7 @@ disablePathToLower = true
 [outputs]
   home = ["HTML"]
   page = ["JSON"]
-  section = ["JSON"]
+  section = ["JSON", "HTML"]
 
 
 

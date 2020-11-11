@@ -5,207 +5,207 @@
     
         
         
+        
+        
+            
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
             
-        
+            
             
         
+            
+            
+            
         
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
+            
+            
+            
         
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
+            
+            
+            
         
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
-        
-                
+            
+            
+            
         
         
 
@@ -220,14 +220,14 @@
   "result": {
     "categories": [
       "Arista",
-      "DataScience",
-      "MachineLearning",
+      "Data Science",
+      "Machine Learning",
       "Monitoring",
       "Operation",
       "Opration",
       "Provisioning",
-      "WebCrawler",
-      "WebDevelopment",
+      "Web Crawler",
+      "Web Development",
       "未分類"
     ],
     "tags": [
@@ -262,6 +262,7 @@
       "scikit-learn",
       "Scrapy",
       "seaborn",
+      "Signature Pad",
       "TypeORM",
       "TypeScript",
       "uWSGI",
@@ -273,6 +274,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "簡單好用的簽名工具Signature Pad",
       "解決Pelican使用rst撰寫貼文時code block option不生效的問題",
       "嘗試使用Pelican撰寫blog",
       "Hugo使用錯誤template輸出的迴避方式",

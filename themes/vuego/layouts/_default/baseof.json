@@ -13,18 +13,14 @@
 
     {{ else if (eq .Type "selections") }}
         {{ $titles := slice }}
+        {{ $categories := slice }}
+        {{ $tags := slice }}
         {{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
             {{ $titles = $titles | append .Title }}
+            {{ $categories = $categories | union .Params.Categories }}
+            {{ $tags = $tags | union .Params.Tags }}
         {{ end }}
-        {{ $categories := slice }}
-        {{ range .Site.Taxonomies.categories.Alphabetical }}
-            {{ $categories = $categories | append .Name }}    
-        {{ end }}
-        {{ $tags := slice }}
-        {{ range .Site.Taxonomies.tags.Alphabetical }}
-            {{ $tags = $tags | append .Name }}    
-        {{ end }}
-        {{ $result = dict "titles" $titles "categories" $categories "tags" $tags }}
+        {{ $result = dict "titles" $titles "categories" (sort $categories) "tags" (sort $tags) }}
 
 
     {{ else if (eq .Type "works") }}

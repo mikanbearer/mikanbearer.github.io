@@ -202,6 +202,7 @@
             label="Categories"
             height="42"
             menu-props="light"
+            :delimiters="[',']"
           >  
           </v-combobox>
 
@@ -216,6 +217,7 @@
             prepend-inner-icon="mdi-tag-multiple"
             label="Tags"
             menu-props="light"
+            :delimiters="[',']"
           >
             <template v-slot:selection="{ attrs, item, select, selected }">
               <v-chip
@@ -1055,7 +1057,7 @@
 
     watch: {
       routeQuery () {
-        this.searchPosts()
+        this.postsInit()
       },
     },
 
@@ -1135,10 +1137,10 @@
         const posts = JSON.parse(JSON.stringify(this.postList))
 
         const checkArray = (target, item) => {
-          if (item) {
+          if (item && target) {
             return item.every(v => target.includes(v))
           }
-          return true
+          return false
         }
 
         var checkArrayResult = []

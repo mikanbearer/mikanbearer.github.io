@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Signature Pad on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/Signature-Pad/</link>
+    <description>Recent content in Signature Pad on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Nov 2020 14:50:41 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Signature-Pad/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>簡單好用的簽名工具Signature Pad</title>
+      <link>https://mikanbearer.github.io/posts/2020/11/202011031450/index.json</link>
+      <pubDate>Tue, 03 Nov 2020 14:50:41 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/11/202011031450/index.json</guid>
+      <description>&lt;p&gt;找個簽名插件找到的好東西，是個HTML5 canvas based的library，不需要jQuery且操作單純，更有cdn能使用，在開發上彈性滿分&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/szimek/signature_pad&#34;&gt;https://github.com/szimek/signature_pad&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
