@@ -119,6 +119,7 @@
             label="Categories"
             height="42"
             menu-props="light"
+            :delimiters="[',']"
           >  
           </v-combobox>
 
@@ -133,6 +134,7 @@
             prepend-inner-icon="mdi-tag-multiple"
             label="Tags"
             menu-props="light"
+            :delimiters="[',']"
           >
             <template v-slot:selection="{ attrs, item, select, selected }">
               <v-chip
