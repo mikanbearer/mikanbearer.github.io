@@ -87,6 +87,8 @@
         
             
         
+            
+        
         
         
             
@@ -171,7 +173,13 @@
         
             
         
+            
         
+        
+        
+            
+                
+            
         
             
                 
@@ -469,21 +477,21 @@
           "Web-Development",
           "未分類",
           "Monitoring",
+          "Deployment",
           "Operation",
-          "Arista",
           "Machine-Learning",
-          "Provisioning",
           "Web-Crawler",
+          "Arista",
           "Data-Science",
-          "Opration"
+          "Provisioning"
         ],
         "selected": {
           "Arista": true,
           "Data-Science": true,
+          "Deployment": true,
           "Machine-Learning": true,
           "Monitoring": true,
           "Operation": true,
-          "Opration": true,
           "Provisioning": true,
           "Web-Crawler": true,
           "Web-Development": true,
@@ -492,30 +500,26 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 30
+            "value": 29
           },
           {
             "name": "未分類",
-            "value": 6
+            "value": 7
           },
           {
             "name": "Monitoring",
             "value": 5
           },
           {
-            "name": "Operation",
+            "name": "Deployment",
             "value": 4
           },
           {
-            "name": "Arista",
-            "value": 2
+            "name": "Operation",
+            "value": 3
           },
           {
             "name": "Machine-Learning",
-            "value": 2
-          },
-          {
-            "name": "Provisioning",
             "value": 2
           },
           {
@@ -523,18 +527,22 @@
             "value": 2
           },
           {
+            "name": "Arista",
+            "value": 1
+          },
+          {
             "name": "Data-Science",
             "value": 1
           },
           {
-            "name": "Opration",
+            "name": "Provisioning",
             "value": 1
           }
         ]
       },
       "monthly_count": {
         "series": [
-          3,
+          4,
           8,
           15,
           12,
@@ -573,6 +581,7 @@
           "Apache",
           "Cacti",
           "Celery",
+          "Ceph",
           "Channels",
           "Excel",
           "Jieba",
@@ -598,6 +607,7 @@
           "Apache": false,
           "Cacti": false,
           "Celery": false,
+          "Ceph": false,
           "Channels": false,
           "Django": true,
           "Docker": true,
@@ -726,6 +736,10 @@
           },
           {
             "name": "Celery",
+            "value": 1
+          },
+          {
+            "name": "Ceph",
             "value": 1
           },
           {

@@ -4,16 +4,41 @@
   
   <url>
     <loc>https://mikanbearer.github.io/categories/</loc>
-    <lastmod>2020-11-03T14:50:41+08:00</lastmod>
+    <lastmod>2020-11-10T16:52:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/tags/JavaScript/</loc>
-    <lastmod>2020-11-03T14:50:41+08:00</lastmod>
+    <loc>https://mikanbearer.github.io/tags/Ceph/</loc>
+    <lastmod>2020-11-10T16:52:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/categories/Deployment/</loc>
+    <lastmod>2020-11-10T16:52:54+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://mikanbearer.github.io/posts/</loc>
+    <lastmod>2020-11-10T16:52:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/</loc>
+    <lastmod>2020-11-10T16:52:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/posts/202011101652/index.json</loc>
+    <lastmod>2020-11-10T16:52:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/</loc>
+    <lastmod>2020-11-10T16:52:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/JavaScript/</loc>
     <lastmod>2020-11-03T14:50:41+08:00</lastmod>
   </url>
   
@@ -23,17 +48,7 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/tags/</loc>
-    <lastmod>2020-11-03T14:50:41+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mikanbearer.github.io/categories/Web-Development/</loc>
-    <lastmod>2020-11-03T14:50:41+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/</loc>
     <lastmod>2020-11-03T14:50:41+08:00</lastmod>
   </url>
   
@@ -314,11 +329,6 @@
   
   <url>
     <loc>https://mikanbearer.github.io/tags/Ansible/</loc>
-    <lastmod>2020-09-03T14:56:05+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/categories/Opration/</loc>
     <lastmod>2020-09-03T14:56:05+08:00</lastmod>
   </url>
   

@@ -155,6 +155,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -169,6 +172,29 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202011101652",
+        "params": {
+          "categories": [
+            "Deployment"
+          ],
+          "date": "2020-11-10T16:52:54+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-11-10T16:52:54+08:00",
+          "publishdate": "2020-11-10T16:52:54+08:00",
+          "tags": [
+            "Ceph"
+          ],
+          "title": "使用cephadm部屬Ceph Cluster"
+        },
+        "path": "posts/202011101652",
+        "permalink": "https://mikanbearer.github.io/posts/202011101652/index.json",
+        "summary": "\u003cp\u003ecephadm是官方推薦的安裝方式之一(另一個是rook)，先來試做看看順不順手，目標是建立一個可掛載使用的Cluster\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 2504
+      },
       {
         "kind": "page",
         "name": "202011031450",
@@ -319,7 +345,7 @@
         "name": "202010191429",
         "params": {
           "categories": [
-            "Operation"
+            "Deployment"
           ],
           "date": "2020-10-19T14:29:51+08:00",
           "draft": false,
@@ -701,7 +727,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009091346/index.json",
         "summary": "\u003cp\u003e這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2384
+        "wordcount": 2439
       },
       {
         "kind": "page",
@@ -757,8 +783,7 @@
         "name": "202009031456",
         "params": {
           "categories": [
-            "Provisioning",
-            "Opration"
+            "Deployment"
           ],
           "date": "2020-09-03T14:56:05+08:00",
           "draft": false,
@@ -1035,7 +1060,7 @@
             "Python",
             "RabbitMQ"
           ],
-          "title": "使用Django + Channels部屬WebSocket簡易聊天室"
+          "title": "使用Django + Channels製作WebSocket簡易聊天室"
         },
         "path": "posts/2020/08/202008100108",
         "permalink": "https://mikanbearer.github.io/posts/2020/08/202008100108/index.json",
@@ -1122,7 +1147,7 @@
         "name": "202007291642",
         "params": {
           "categories": [
-            "Web Development"
+            "Deployment"
           ],
           "date": "2020-07-29T16:42:11+08:00",
           "draft": false,
@@ -1172,7 +1197,7 @@
         "name": "202007241554",
         "params": {
           "categories": [
-            "Arista"
+            "未分類"
           ],
           "date": "2020-07-24T15:54:30+08:00",
           "draft": false,
@@ -1303,7 +1328,7 @@
             "Python",
             "Django"
           ],
-          "title": "【Django API實作-入門篇1】使用Django REST framework超高速部屬RESTful API"
+          "title": "【Django API實作-入門篇1】使用Django REST framework超高速製作RESTful API"
         },
         "path": "posts/2020/07/202007161628",
         "permalink": "https://mikanbearer.github.io/posts/2020/07/202007161628/index.json",

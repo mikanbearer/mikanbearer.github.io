@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ceph on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/Ceph/</link>
+    <description>Recent content in Ceph on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Nov 2020 16:52:54 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Ceph/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用cephadm部屬Ceph Cluster</title>
+      <link>https://mikanbearer.github.io/posts/202011101652/index.json</link>
+      <pubDate>Tue, 10 Nov 2020 16:52:54 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202011101652/index.json</guid>
+      <description>&lt;p&gt;cephadm是官方推薦的安裝方式之一(另一個是rook)，先來試做看看順不順手，目標是建立一個可掛載使用的Cluster&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

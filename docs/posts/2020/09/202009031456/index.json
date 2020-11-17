@@ -15,8 +15,7 @@
     "kind": "page",
     "params": {
       "categories": [
-        "Provisioning",
-        "Opration"
+        "Deployment"
       ],
       "date": "2020-09-03T14:56:05+08:00",
       "draft": false,

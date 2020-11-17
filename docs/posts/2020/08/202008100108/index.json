@@ -28,7 +28,7 @@
         "Python",
         "RabbitMQ"
       ],
-      "title": "使用Django + Channels部屬WebSocket簡易聊天室"
+      "title": "使用Django + Channels製作WebSocket簡易聊天室"
     },
     "permalink": "https://mikanbearer.github.io/posts/2020/08/202008100108/index.json",
     "type": "posts",

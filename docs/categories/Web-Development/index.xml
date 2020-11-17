@@ -199,7 +199,7 @@
     </item>
     
     <item>
-      <title>使用Django &#43; Channels部屬WebSocket簡易聊天室</title>
+      <title>使用Django &#43; Channels製作WebSocket簡易聊天室</title>
       <link>https://mikanbearer.github.io/posts/2020/08/202008100108/index.json</link>
       <pubDate>Mon, 10 Aug 2020 01:08:04 +0800</pubDate>
       
@@ -225,16 +225,6 @@
       
       <guid>https://mikanbearer.github.io/posts/2020/07/202007301419/index.json</guid>
       <description>&lt;p&gt;Web Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用&lt;a href=&#34;https://mikanbearer.github.io/myblog/posts/202007291642/&#34;&gt;這篇&lt;/a&gt;來實作，本篇包含Nginx及Apache的設定範例&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用docker-compose部屬Nginx &#43; uWSGI &#43; Django</title>
-      <link>https://mikanbearer.github.io/posts/2020/07/202007291642/index.json</link>
-      <pubDate>Wed, 29 Jul 2020 16:42:11 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/posts/2020/07/202007291642/index.json</guid>
-      <description>&lt;p&gt;雖然docker-compose真的很方便，為了一鍵部屬些東西，還是爬一下文，避免處處碰壁…&lt;/p&gt;
-&lt;p&gt;這次使用以下兩篇舊文的範例來練習&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -276,7 +266,7 @@
     </item>
     
     <item>
-      <title>【Django API實作-入門篇1】使用Django REST framework超高速部屬RESTful API</title>
+      <title>【Django API實作-入門篇1】使用Django REST framework超高速製作RESTful API</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007161628/index.json</link>
       <pubDate>Thu, 16 Jul 2020 16:28:26 +0800</pubDate>
       

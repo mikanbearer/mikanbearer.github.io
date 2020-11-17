@@ -207,6 +207,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -221,10 +225,10 @@
     "categories": [
       "Arista",
       "Data Science",
+      "Deployment",
       "Machine Learning",
       "Monitoring",
       "Operation",
-      "Opration",
       "Provisioning",
       "Web Crawler",
       "Web Development",
@@ -236,6 +240,7 @@
       "Apache",
       "Cacti",
       "Celery",
+      "Ceph",
       "Channels",
       "Django",
       "Docker",
@@ -274,6 +279,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "使用cephadm部屬Ceph Cluster",
       "簡單好用的簽名工具Signature Pad",
       "解決Pelican使用rst撰寫貼文時code block option不生效的問題",
       "嘗試使用Pelican撰寫blog",
@@ -309,7 +315,7 @@
       "使用Moment.js處理日期時間",
       "【Prometheus入門練習-基本操作篇2】使用Pushgateway進行監控",
       "【Prometheus入門練習-基本操作篇1】從零開始學Prometheus",
-      "使用Django + Channels部屬WebSocket簡易聊天室",
+      "使用Django + Channels製作WebSocket簡易聊天室",
       "動態更新Echarts",
       "新主題上線！",
       "在Nginx或Apache上設定CORS",
@@ -320,7 +326,7 @@
       "用VBA在Excel中使用nslookup",
       "【Django API實作-入門篇2】在Django REST framework上導入JWT驗證",
       "使用watch監控的一些寫法",
-      "【Django API實作-入門篇1】使用Django REST framework超高速部屬RESTful API",
+      "【Django API實作-入門篇1】使用Django REST framework超高速製作RESTful API",
       "使用Django超高速部屬CRUD",
       "使用VBScript定期送出按鍵",
       "紀念用的第一篇"
