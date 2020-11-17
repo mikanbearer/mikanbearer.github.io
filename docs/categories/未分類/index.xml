@@ -17,57 +17,6 @@
     </item>
     
     <item>
-      <title>Python收送log</title>
-      <link>https://mikanbearer.github.io/posts/2020/09/202009251338/index.json</link>
-      <pubDate>Fri, 25 Sep 2020 13:38:11 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/posts/2020/09/202009251338/index.json</guid>
-      <description>&lt;p&gt;工作測試用的放上來自己參考&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>新主題上線！</title>
-      <link>https://mikanbearer.github.io/posts/2020/08/202008070930/index.json</link>
-      <pubDate>Fri, 07 Aug 2020 09:30:55 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/posts/2020/08/202008070930/index.json</guid>
-      <description>&lt;p&gt;原本使用&lt;a href=&#34;https://github.com/halogenica/beautifulhugo&#34;&gt;Beautifulhugo&lt;/a&gt;(個人蠻喜歡的)，但發現會有一些小問題…&lt;/p&gt;
-&lt;p&gt;這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>在EVE-NG上部屬vEOS LAB</title>
-      <link>https://mikanbearer.github.io/posts/2020/07/202007241554/index.json</link>
-      <pubDate>Fri, 24 Jul 2020 15:54:30 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/posts/2020/07/202007241554/index.json</guid>
-      <description>&lt;p&gt;第一篇挫折問題紀錄，各種鬼打牆…
-原本想在EVE-NG上做個簡單的LAB，沒想到問題還真不少…&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>用VBA在Excel中使用nslookup</title>
-      <link>https://mikanbearer.github.io/posts/2020/07/202007211516/index.json</link>
-      <pubDate>Tue, 21 Jul 2020 15:16:46 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/posts/2020/07/202007211516/index.json</guid>
-      <description>&lt;p&gt;工作中常常用到的功能，不筆記會忘記，
-主要是在Excel Macro調用Wshshell，把A欄的結果輸出到B欄&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用VBScript定期送出按鍵</title>
-      <link>https://mikanbearer.github.io/posts/2020/07/202007141604/index.json</link>
-      <pubDate>Tue, 14 Jul 2020 16:04:42 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/posts/2020/07/202007141604/index.json</guid>
-      <description>&lt;p&gt;在客戶環境中操作，並需要客戶代為登入的情況下給自己用的小筆記，
-免得一不注意就被policy弄到進入省電模式/登出，到時候又要請客戶的人來幫忙key帳號密碼…
-在不變更任何設定的情況下，VBScript還是很好用的東西，&lt;br&gt;
-尤其是這個安全無害的method，&lt;strong&gt;SendKeys&lt;/strong&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>紀念用的第一篇</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007101327/index.json</link>
       <pubDate>Fri, 10 Jul 2020 13:27:20 +0800</pubDate>

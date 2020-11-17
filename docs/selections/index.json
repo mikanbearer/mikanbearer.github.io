@@ -207,10 +207,6 @@
             
             
         
-            
-            
-            
-        
         
 
 
@@ -226,10 +222,12 @@
       "Arista",
       "Data Science",
       "Deployment",
+      "Lab",
       "Machine Learning",
       "Monitoring",
       "Operation",
       "Provisioning",
+      "Tricks",
       "Web Crawler",
       "Web Development",
       "未分類"
@@ -275,7 +273,6 @@
       "VBScript",
       "vEOS",
       "Vue.js",
-      "Vuetify",
       "ZTPServer"
     ],
     "titles": [
@@ -317,7 +314,6 @@
       "【Prometheus入門練習-基本操作篇1】從零開始學Prometheus",
       "使用Django + Channels製作WebSocket簡易聊天室",
       "動態更新Echarts",
-      "新主題上線！",
       "在Nginx或Apache上設定CORS",
       "使用docker-compose部屬Nginx + uWSGI + Django",
       "使用Vue.js + Vuetify製作SPA登入畫面",

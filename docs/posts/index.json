@@ -155,9 +155,6 @@
             
             
         
-            
-            
-        
         
 
 
@@ -302,9 +299,7 @@
           "lastmod": "2020-10-26T17:27:31+08:00",
           "publishdate": "2020-10-26T17:27:31+08:00",
           "tags": [
-            "Docker",
-            "NestJS",
-            "Node.js"
+            "Vue.js"
           ],
           "title": "使用v-if來改變元素顯示排列"
         },
@@ -329,7 +324,6 @@
           "publishdate": "2020-10-21T16:51:28+08:00",
           "tags": [
             "Docker",
-            "NestJS",
             "Node.js"
           ],
           "title": "Docker化Node.js的Web App"
@@ -490,7 +484,7 @@
         "name": "202009251338",
         "params": {
           "categories": [
-            "未分類"
+            "Tricks"
           ],
           "date": "2020-09-25T13:38:11+08:00",
           "draft": false,
@@ -1094,31 +1088,6 @@
       },
       {
         "kind": "page",
-        "name": "202008070930",
-        "params": {
-          "categories": [
-            "未分類"
-          ],
-          "date": "2020-08-07T09:30:55+08:00",
-          "draft": false,
-          "iscjklanguage": true,
-          "lastmod": "2020-08-07T09:30:55+08:00",
-          "publishdate": "2020-08-07T09:30:55+08:00",
-          "tags": [
-            "Hugo",
-            "Vuetify",
-            "Vue.js"
-          ],
-          "title": "新主題上線！"
-        },
-        "path": "posts/2020/08/202008070930",
-        "permalink": "https://mikanbearer.github.io/posts/2020/08/202008070930/index.json",
-        "summary": "\u003cp\u003e原本使用\u003ca href=\"https://github.com/halogenica/beautifulhugo\"\u003eBeautifulhugo\u003c/a\u003e(個人蠻喜歡的)，但發現會有一些小問題…\u003c/p\u003e\n\u003cp\u003e這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…\u003c/p\u003e",
-        "type": "posts",
-        "wordcount": 674
-      },
-      {
-        "kind": "page",
         "name": "202007301419",
         "params": {
           "categories": [
@@ -1197,7 +1166,7 @@
         "name": "202007241554",
         "params": {
           "categories": [
-            "未分類"
+            "Lab"
           ],
           "date": "2020-07-24T15:54:30+08:00",
           "draft": false,
@@ -1245,7 +1214,7 @@
         "name": "202007211516",
         "params": {
           "categories": [
-            "未分類"
+            "Tricks"
           ],
           "date": "2020-07-21T15:16:46+08:00",
           "draft": false,
@@ -1365,7 +1334,7 @@
         "name": "202007141604",
         "params": {
           "categories": [
-            "未分類"
+            "Tricks"
           ],
           "date": "2020-07-14T16:04:42+08:00",
           "draft": false,

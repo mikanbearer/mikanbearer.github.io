@@ -6,7 +6,17 @@
     <description>Recent content in Vue.js on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 08 Oct 2020 17:13:00 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Vue.js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Oct 2020 17:27:31 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Vue.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用v-if來改變元素顯示排列</title>
+      <link>https://mikanbearer.github.io/posts/2020/10/202010261727/index.json</link>
+      <pubDate>Mon, 26 Oct 2020 17:27:31 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/10/202010261727/index.json</guid>
+      <description>&lt;p&gt;突發奇想的筆記，想改變element的順序，但又不想用jQuery的.insertBefore()或.insertAfter()等等該怎麼辦？
+如果是用vuetify，或許可以考慮一下這種作法&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>主題更新</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010081713/index.json</link>
@@ -42,16 +52,6 @@
       
       <guid>https://mikanbearer.github.io/posts/2020/08/202008241004/index.json</guid>
       <description>&lt;p&gt;要是不想用自帶的UI，也不想用Grafana怎麼辦！！那當然就是自己動手做啦，自己動手做的好處就是能整合其他功能做成多合一的Web app，但這次就先練習如何取用Prometheus上的資料，製作成動態圖表&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>新主題上線！</title>
-      <link>https://mikanbearer.github.io/posts/2020/08/202008070930/index.json</link>
-      <pubDate>Fri, 07 Aug 2020 09:30:55 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/posts/2020/08/202008070930/index.json</guid>
-      <description>&lt;p&gt;原本使用&lt;a href=&#34;https://github.com/halogenica/beautifulhugo&#34;&gt;Beautifulhugo&lt;/a&gt;(個人蠻喜歡的)，但發現會有一些小問題…&lt;/p&gt;
-&lt;p&gt;這個主題是使用bootstrap3製作，但也會因此有一些特殊字元問題…&lt;/p&gt;</description>
     </item>
     
     <item>

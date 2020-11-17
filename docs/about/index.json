@@ -87,11 +87,7 @@
         
             
         
-            
         
-        
-        
-            
         
             
         
@@ -176,10 +172,6 @@
             
         
         
-        
-            
-                
-            
         
             
                 
@@ -369,6 +361,10 @@
         
             
         
+            
+        
+            
+        
         
         
             
@@ -391,7 +387,19 @@
         
             
         
+            
         
+            
+        
+        
+        
+            
+                
+            
+        
+            
+                
+            
         
             
                 
@@ -475,24 +483,28 @@
       "categories_data": {
         "legend": [
           "Web-Development",
-          "未分類",
           "Monitoring",
           "Deployment",
           "Operation",
+          "Tricks",
           "Machine-Learning",
           "Web-Crawler",
+          "未分類",
           "Arista",
           "Data-Science",
+          "Lab",
           "Provisioning"
         ],
         "selected": {
           "Arista": true,
           "Data-Science": true,
           "Deployment": true,
+          "Lab": false,
           "Machine-Learning": true,
           "Monitoring": true,
           "Operation": true,
-          "Provisioning": true,
+          "Provisioning": false,
+          "Tricks": true,
           "Web-Crawler": true,
           "Web-Development": true,
           "未分類": true
@@ -501,10 +513,6 @@
           {
             "name": "Web-Development",
             "value": 29
-          },
-          {
-            "name": "未分類",
-            "value": 7
           },
           {
             "name": "Monitoring",
@@ -519,6 +527,10 @@
             "value": 3
           },
           {
+            "name": "Tricks",
+            "value": 3
+          },
+          {
             "name": "Machine-Learning",
             "value": 2
           },
@@ -527,11 +539,19 @@
             "value": 2
           },
           {
+            "name": "未分類",
+            "value": 2
+          },
+          {
             "name": "Arista",
             "value": 1
           },
           {
             "name": "Data-Science",
+            "value": 1
+          },
+          {
+            "name": "Lab",
             "value": 1
           },
           {
@@ -545,7 +565,7 @@
           4,
           8,
           15,
-          12,
+          11,
           12
         ],
         "x": [
@@ -561,13 +581,12 @@
           "Python",
           "Vue.js",
           "JavaScript",
-          "Node.js",
           "Django",
-          "Docker",
           "Flask",
-          "Hugo",
+          "Node.js",
           "Prometheus",
-          "NestJS",
+          "Docker",
+          "Hugo",
           "TypeScript",
           "Angular",
           "Ansible",
@@ -590,6 +609,7 @@
           "Matplotlib",
           "Moment.js",
           "Nagios",
+          "NestJS",
           "pandas",
           "seaborn",
           "Signature-Pad",
@@ -598,7 +618,6 @@
           "VBA",
           "VBScript",
           "vEOS",
-          "Vuetify",
           "ZTPServer"
         ],
         "selected": {
@@ -622,7 +641,7 @@
           "Matplotlib": false,
           "Moment.js": false,
           "Nagios": false,
-          "NestJS": true,
+          "NestJS": false,
           "Nginx": false,
           "Node.js": true,
           "Pelican": false,
@@ -632,11 +651,10 @@
           "Scrapy": false,
           "Signature-Pad": false,
           "TypeORM": false,
-          "TypeScript": false,
+          "TypeScript": true,
           "VBA": false,
           "VBScript": false,
           "Vue.js": true,
-          "Vuetify": false,
           "ZTPServer": false,
           "jQuery": false,
           "pandas": false,
@@ -659,15 +677,7 @@
             "value": 6
           },
           {
-            "name": "Node.js",
-            "value": 6
-          },
-          {
             "name": "Django",
-            "value": 5
-          },
-          {
-            "name": "Docker",
             "value": 5
           },
           {
@@ -675,7 +685,7 @@
             "value": 5
           },
           {
-            "name": "Hugo",
+            "name": "Node.js",
             "value": 5
           },
           {
@@ -683,8 +693,12 @@
             "value": 5
           },
           {
-            "name": "NestJS",
-            "value": 3
+            "name": "Docker",
+            "value": 4
+          },
+          {
+            "name": "Hugo",
+            "value": 4
           },
           {
             "name": "TypeScript",
@@ -775,6 +789,10 @@
             "value": 1
           },
           {
+            "name": "NestJS",
+            "value": 1
+          },
+          {
             "name": "pandas",
             "value": 1
           },
@@ -804,10 +822,6 @@
           },
           {
             "name": "vEOS",
-            "value": 1
-          },
-          {
-            "name": "Vuetify",
             "value": 1
           },
           {
