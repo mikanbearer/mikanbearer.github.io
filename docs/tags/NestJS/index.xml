@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 18 Nov 2020 15:00:06 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/NestJS/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用NestJS製作簡易的JWT認證</title>
-      <link>https://mikanbearer.github.io/posts/202011181500/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/11/202011181500/index.json</link>
       <pubDate>Wed, 18 Nov 2020 15:00:06 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202011181500/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/11/202011181500/index.json</guid>
       <description>&lt;p&gt;回過頭來練習的NestJS，稱職的API怎麼可以沒有認證機制？這次就來做一個簡易的JWT認證&lt;/p&gt;</description>
     </item>
     

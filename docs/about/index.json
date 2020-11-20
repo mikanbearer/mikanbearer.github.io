@@ -91,6 +91,8 @@
         
             
         
+            
+        
         
         
             
@@ -179,7 +181,13 @@
         
             
         
+            
         
+        
+        
+            
+                
+            
         
             
                 
@@ -515,8 +523,8 @@
       "categories_data": {
         "legend": [
           "Web-Development",
-          "Monitoring",
           "Deployment",
+          "Monitoring",
           "Operation",
           "Tricks",
           "Cisco",
@@ -551,12 +559,12 @@
             "value": 30
           },
           {
-            "name": "Monitoring",
+            "name": "Deployment",
             "value": 5
           },
           {
-            "name": "Deployment",
-            "value": 4
+            "name": "Monitoring",
+            "value": 5
           },
           {
             "name": "Operation",
@@ -606,7 +614,7 @@
       },
       "monthly_count": {
         "series": [
-          7,
+          8,
           8,
           15,
           11,
@@ -659,6 +667,7 @@
           "Passport",
           "seaborn",
           "Signature-Pad",
+          "TigerVNC",
           "TypeORM",
           "uWSGI",
           "VBA",
@@ -698,6 +707,7 @@
           "RabbitMQ": false,
           "Scrapy": false,
           "Signature-Pad": false,
+          "TigerVNC": false,
           "TypeORM": false,
           "TypeScript": true,
           "VBA": false,
@@ -858,6 +868,10 @@
           },
           {
             "name": "Signature-Pad",
+            "value": 1
+          },
+          {
+            "name": "TigerVNC",
             "value": 1
           },
           {

@@ -9,11 +9,20 @@
     <lastBuildDate>Tue, 10 Nov 2020 16:52:54 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Deployment/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用cephadm部屬Ceph Cluster</title>
-      <link>https://mikanbearer.github.io/posts/202011101652/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/11/202011101652/index.json</link>
       <pubDate>Tue, 10 Nov 2020 16:52:54 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202011101652/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/11/202011101652/index.json</guid>
       <description>&lt;p&gt;cephadm是官方推薦的安裝方式之一(另一個是rook)，先來試做看看順不順手，目標是建立一個可掛載使用的Cluster&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker化Node.js的Web App</title>
+      <link>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</link>
+      <pubDate>Wed, 21 Oct 2020 16:51:28 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</guid>
+      <description>&lt;p&gt;慢慢補足實務上會用到的基礎知識，這次來看看如何把用Node.js製作的app用Docker執行，並加上web server，本次範例是Nginx + NestJS&lt;/p&gt;</description>
     </item>
     
     <item>

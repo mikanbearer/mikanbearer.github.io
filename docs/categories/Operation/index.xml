@@ -6,14 +6,14 @@
     <description>Recent content in Operation on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2020 16:51:28 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Operation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Nov 2020 14:50:47 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Operation/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Docker化Node.js的Web App</title>
-      <link>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</link>
-      <pubDate>Wed, 21 Oct 2020 16:51:28 +0800</pubDate>
+      <title>使用VNC遠端連線至CentOS</title>
+      <link>https://mikanbearer.github.io/posts/2020/11/202011201450/index.json</link>
+      <pubDate>Fri, 20 Nov 2020 14:50:47 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</guid>
-      <description>&lt;p&gt;慢慢補足實務上會用到的基礎知識，這次來看看如何把用Node.js製作的app用Docker執行，並加上web server，本次範例是Nginx + NestJS&lt;/p&gt;</description>
+      <guid>https://mikanbearer.github.io/posts/2020/11/202011201450/index.json</guid>
+      <description>&lt;p&gt;這次嘗試使用VNC來使用遠端桌面，感覺未來會用到所以先筆記一下&lt;/p&gt;</description>
     </item>
     
     <item>

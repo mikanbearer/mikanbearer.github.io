@@ -219,6 +219,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -282,6 +286,7 @@
       "Scrapy",
       "seaborn",
       "Signature Pad",
+      "TigerVNC",
       "TypeORM",
       "TypeScript",
       "uWSGI",
@@ -292,6 +297,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "使用VNC遠端連線至CentOS",
       "使用NestJS製作簡易的JWT認證",
       "在Cisco IOS上啟用免密碼SSH登入",
       "在EVE上建立Cisco IOS Lab",

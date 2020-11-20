@@ -164,6 +164,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -178,6 +181,29 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202011201450",
+        "params": {
+          "categories": [
+            "Operation"
+          ],
+          "date": "2020-11-20T14:50:47+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-11-20T14:50:47+08:00",
+          "publishdate": "2020-11-20T14:50:47+08:00",
+          "tags": [
+            "TigerVNC"
+          ],
+          "title": "使用VNC遠端連線至CentOS"
+        },
+        "path": "posts/2020/11/202011201450",
+        "permalink": "https://mikanbearer.github.io/posts/2020/11/202011201450/index.json",
+        "summary": "\u003cp\u003e這次嘗試使用VNC來使用遠端桌面，感覺未來會用到所以先筆記一下\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 526
+      },
       {
         "kind": "page",
         "name": "202011181500",
@@ -197,8 +223,8 @@
           ],
           "title": "使用NestJS製作簡易的JWT認證"
         },
-        "path": "posts/202011181500",
-        "permalink": "https://mikanbearer.github.io/posts/202011181500/index.json",
+        "path": "posts/2020/11/202011181500",
+        "permalink": "https://mikanbearer.github.io/posts/2020/11/202011181500/index.json",
         "summary": "\u003cp\u003e回過頭來練習的NestJS，稱職的API怎麼可以沒有認證機制？這次就來做一個簡易的JWT認證\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1676
@@ -220,8 +246,8 @@
           ],
           "title": "在Cisco IOS上啟用免密碼SSH登入"
         },
-        "path": "posts/202011171536",
-        "permalink": "https://mikanbearer.github.io/posts/202011171536/index.json",
+        "path": "posts/2020/11/202011171536",
+        "permalink": "https://mikanbearer.github.io/posts/2020/11/202011171536/index.json",
         "summary": "\u003cp\u003e覺得將來可能會用到所以筆記下來\u003c/p\u003e",
         "type": "posts",
         "wordcount": 303
@@ -244,8 +270,8 @@
           ],
           "title": "在EVE上建立Cisco IOS Lab"
         },
-        "path": "posts/202011161608",
-        "permalink": "https://mikanbearer.github.io/posts/202011161608/index.json",
+        "path": "posts/2020/11/202011161608",
+        "permalink": "https://mikanbearer.github.io/posts/2020/11/202011161608/index.json",
         "summary": "\u003cp\u003e在EVE上使用Cisco IOL建立IOS Lab的步驟\u003c/p\u003e",
         "type": "posts",
         "wordcount": 553
@@ -267,8 +293,8 @@
           ],
           "title": "使用cephadm部屬Ceph Cluster"
         },
-        "path": "posts/202011101652",
-        "permalink": "https://mikanbearer.github.io/posts/202011101652/index.json",
+        "path": "posts/2020/11/202011101652",
+        "permalink": "https://mikanbearer.github.io/posts/2020/11/202011101652/index.json",
         "summary": "\u003cp\u003ecephadm是官方推薦的安裝方式之一(另一個是rook)，先來試做看看順不順手，目標是建立一個可掛載使用的Cluster\u003c/p\u003e",
         "type": "posts",
         "wordcount": 2504
@@ -396,7 +422,7 @@
         "params": {
           "categories": [
             "Web Development",
-            "Operation"
+            "Deployment"
           ],
           "date": "2020-10-21T16:51:28+08:00",
           "draft": false,
