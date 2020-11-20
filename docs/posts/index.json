@@ -1387,7 +1387,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/07/202007201139/index.json",
         "summary": "\u003cp\u003e想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 129
+        "wordcount": 140
       },
       {
         "kind": "page",
