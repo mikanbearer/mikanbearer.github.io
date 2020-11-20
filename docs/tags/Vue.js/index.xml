@@ -42,7 +42,7 @@
       
       <guid>https://mikanbearer.github.io/posts/2020/09/202009261450/index.json</guid>
       <description>&lt;p&gt;不久前才想用vuetify的v-overlay與v-progress-circular來做個loading的延遲畫面，就意外發現了這個好東西：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/vue-loading-overlay&#34;&gt;vue-loading-overlay&lt;/a&gt;，馬上就來試一下&lt;/p&gt;</description>
+&lt;p&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://www.npmjs.com/package/vue-loading-overlay&#34;&gt;vue-loading-overlay&lt;/a&gt;，馬上就來試一下&lt;/p&gt;</description>
     </item>
     
     <item>

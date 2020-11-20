@@ -23,7 +23,7 @@
       
       <guid>https://mikanbearer.github.io/posts/2020/09/202009011649/index.json</guid>
       <description>&lt;p&gt;雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就先練習一遍，熟悉點再來自己寫role&lt;/p&gt;
-&lt;p&gt;參考文件：&lt;a href=&#34;https://docs.ansible.com/&#34;&gt;https://docs.ansible.com/&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://docs.ansible.com/&#34;&gt;參考文件&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Thu, 30 Jul 2020 14:19:49 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/07/202007301419/index.json</guid>
-      <description>&lt;p&gt;Web Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用&lt;a href=&#34;https://mikanbearer.github.io/myblog/posts/202007291642/&#34;&gt;這篇&lt;/a&gt;來實作，本篇包含Nginx及Apache的設定範例&lt;/p&gt;</description>
+      <description>&lt;p&gt;Web Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用&lt;a target=&#34;_blank&#34; href=&#34;#/posts/posts%2F2020%2F07%2F202007291642/&#34;&gt;這個&lt;/a&gt;來實作，本篇包含Nginx及Apache的設定範例&lt;/p&gt;</description>
     </item>
     
   </channel>

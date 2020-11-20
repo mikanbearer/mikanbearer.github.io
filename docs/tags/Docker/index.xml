@@ -32,7 +32,7 @@
       <pubDate>Thu, 03 Sep 2020 14:56:05 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/09/202009031456/index.json</guid>
-      <description>&lt;p&gt;偶然看到這個&lt;a href=&#34;https://github.com/atosatto/ansible-dockerswarm&#34;&gt;Ansible Role: Docker&lt;/a&gt;就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍&lt;/p&gt;</description>
+      <description>&lt;p&gt;偶然看到這個&lt;a target=&#34;_blank&#34; href=&#34;https://github.com/atosatto/ansible-dockerswarm&#34;&gt;Ansible Role: Docker&lt;/a&gt;就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍&lt;/p&gt;</description>
     </item>
     
     <item>

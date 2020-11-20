@@ -6,22 +6,40 @@
     <description>Recent content in Categories on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Nov 2020 16:52:54 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Nov 2020 15:00:06 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Development</title>
+      <link>https://mikanbearer.github.io/categories/Web-Development/</link>
+      <pubDate>Wed, 18 Nov 2020 15:00:06 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/categories/Web-Development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cisco</title>
+      <link>https://mikanbearer.github.io/categories/Cisco/</link>
+      <pubDate>Tue, 17 Nov 2020 15:36:33 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/categories/Cisco/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Simulation</title>
+      <link>https://mikanbearer.github.io/categories/Simulation/</link>
+      <pubDate>Mon, 16 Nov 2020 16:08:45 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/categories/Simulation/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Deployment</title>
       <link>https://mikanbearer.github.io/categories/Deployment/</link>
       <pubDate>Tue, 10 Nov 2020 16:52:54 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/categories/Deployment/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Web Development</title>
-      <link>https://mikanbearer.github.io/categories/Web-Development/</link>
-      <pubDate>Tue, 03 Nov 2020 14:50:41 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/categories/Web-Development/</guid>
       <description></description>
     </item>
     
@@ -107,11 +125,11 @@
     </item>
     
     <item>
-      <title>Lab</title>
-      <link>https://mikanbearer.github.io/categories/Lab/</link>
+      <title>Atista</title>
+      <link>https://mikanbearer.github.io/categories/Atista/</link>
       <pubDate>Fri, 24 Jul 2020 15:54:30 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/categories/Lab/</guid>
+      <guid>https://mikanbearer.github.io/categories/Atista/</guid>
       <description></description>
     </item>
     

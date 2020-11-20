@@ -155,6 +155,15 @@
             
             
         
+            
+            
+        
+            
+            
+        
+            
+            
+        
         
 
 
@@ -169,6 +178,78 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202011181500",
+        "params": {
+          "categories": [
+            "Web Development"
+          ],
+          "date": "2020-11-18T15:00:06+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-11-18T15:00:06+08:00",
+          "publishdate": "2020-11-18T15:00:06+08:00",
+          "tags": [
+            "NestJS",
+            "Passport",
+            "TypeScript"
+          ],
+          "title": "使用NestJS製作簡易的JWT認證"
+        },
+        "path": "posts/202011181500",
+        "permalink": "https://mikanbearer.github.io/posts/202011181500/index.json",
+        "summary": "\u003cp\u003e回過頭來練習的NestJS，稱職的API怎麼可以沒有認證機制？這次就來做一個簡易的JWT認證\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 1676
+      },
+      {
+        "kind": "page",
+        "name": "202011171536",
+        "params": {
+          "categories": [
+            "Cisco"
+          ],
+          "date": "2020-11-17T15:36:33+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-11-17T15:36:33+08:00",
+          "publishdate": "2020-11-17T15:36:33+08:00",
+          "tags": [
+            "IOS"
+          ],
+          "title": "在Cisco IOS上啟用免密碼SSH登入"
+        },
+        "path": "posts/202011171536",
+        "permalink": "https://mikanbearer.github.io/posts/202011171536/index.json",
+        "summary": "\u003cp\u003e覺得將來可能會用到所以筆記下來\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 303
+      },
+      {
+        "kind": "page",
+        "name": "202011161608",
+        "params": {
+          "categories": [
+            "Cisco",
+            "Simulation"
+          ],
+          "date": "2020-11-16T16:08:45+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-11-16T16:08:45+08:00",
+          "publishdate": "2020-11-16T16:08:45+08:00",
+          "tags": [
+            "EVE-NG"
+          ],
+          "title": "在EVE上建立Cisco IOS Lab"
+        },
+        "path": "posts/202011161608",
+        "permalink": "https://mikanbearer.github.io/posts/202011161608/index.json",
+        "summary": "\u003cp\u003e在EVE上使用Cisco IOL建立IOS Lab的步驟\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 553
+      },
       {
         "kind": "page",
         "name": "202011101652",
@@ -212,9 +293,9 @@
         },
         "path": "posts/2020/11/202011031450",
         "permalink": "https://mikanbearer.github.io/posts/2020/11/202011031450/index.json",
-        "summary": "\u003cp\u003e找個簽名插件找到的好東西，是個HTML5 canvas based的library，不需要jQuery且操作單純，更有cdn能使用，在開發上彈性滿分\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"https://github.com/szimek/signature_pad\"\u003ehttps://github.com/szimek/signature_pad\u003c/a\u003e\u003c/p\u003e",
+        "summary": "\u003cp\u003e找個簽名插件找到的好東西，是個HTML5 canvas based的library，不需要jQuery且操作單純，更有cdn能使用，在開發上彈性滿分\u003c/p\u003e\n\u003cp\u003e\u003ca target=\"_blank\" href=\"https://github.com/szimek/signature_pad\"\u003eSingnature Pad\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 300
+        "wordcount": 301
       },
       {
         "kind": "page",
@@ -238,7 +319,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/11/202011031357/index.json",
         "summary": "\u003cp\u003ePelican在使用reStructuredText撰寫貼文的時候，會遇到option不生效的問題\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 816
+        "wordcount": 747
       },
       {
         "kind": "page",
@@ -284,7 +365,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/10/202010281326/index.json",
         "summary": "\u003cp\u003e月初將BLOG部分作成SPA時發現的問題\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 466
+        "wordcount": 395
       },
       {
         "kind": "page",
@@ -307,7 +388,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/10/202010261727/index.json",
         "summary": "\u003cp\u003e突發奇想的筆記，想改變element的順序，但又不想用jQuery的.insertBefore()或.insertAfter()等等該怎麼辦？\n如果是用vuetify，或許可以考慮一下這種作法\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 615
+        "wordcount": 591
       },
       {
         "kind": "page",
@@ -358,7 +439,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/10/202010191429/index.json",
         "summary": "\u003cp\u003e回味一下以前用過的工具們，唯一不同的就是在Docker host上安裝，因為速度很快很適合測試之用，用在正式環境的話稍微tuning一下也不是不能用\u003c/p\u003e\n\u003cp\u003e這次部屬的有Cacti、Nagios、LibreNMS，單獨部屬太空洞所以三個塞一篇\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1591
+        "wordcount": 1476
       },
       {
         "kind": "page",
@@ -405,9 +486,9 @@
         },
         "path": "posts/2020/10/202010141635",
         "permalink": "https://mikanbearer.github.io/posts/2020/10/202010141635/index.json",
-        "summary": "\u003cp\u003e最近覺得影片當背景的網站挺漂亮的，想想要如法炮製的話總會有個簡單易用的plugin，\n這次找到的就是這個jquery.mb.YTPlayer\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"https://github.com/pupunzi/jquery.mb.YTPlayer\"\u003ehttps://github.com/pupunzi/jquery.mb.YTPlayer\u003c/a\u003e\u003c/p\u003e",
+        "summary": "\u003cp\u003e最近覺得影片當背景的網站挺漂亮的，想想要如法炮製的話總會有個簡單易用的plugin，\n這次找到的就是這個jquery.mb.YTPlayer\u003c/p\u003e\n\u003cp\u003e\u003ca target=\"_blank\" href=\"https://github.com/pupunzi/jquery.mb.YTPlayer\"\u003e傳送門\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 218
+        "wordcount": 220
       },
       {
         "kind": "page",
@@ -454,7 +535,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/10/202010061053/index.json",
         "summary": "\u003cp\u003e弄這個blog遇到的問題，想使用Vue Router來取代Hugo部分list功能的小筆記\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 655
+        "wordcount": 574
       },
       {
         "kind": "page",
@@ -475,9 +556,9 @@
         },
         "path": "posts/2020/09/202009261450",
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009261450/index.json",
-        "summary": "\u003cp\u003e不久前才想用vuetify的v-overlay與v-progress-circular來做個loading的延遲畫面，就意外發現了這個好東西：\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"https://www.npmjs.com/package/vue-loading-overlay\"\u003evue-loading-overlay\u003c/a\u003e，馬上就來試一下\u003c/p\u003e",
+        "summary": "\u003cp\u003e不久前才想用vuetify的v-overlay與v-progress-circular來做個loading的延遲畫面，就意外發現了這個好東西：\u003c/p\u003e\n\u003cp\u003e\u003ca target=\"_blank\" href=\"https://www.npmjs.com/package/vue-loading-overlay\"\u003evue-loading-overlay\u003c/a\u003e，馬上就來試一下\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 588
+        "wordcount": 542
       },
       {
         "kind": "page",
@@ -500,7 +581,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009251338/index.json",
         "summary": "\u003cp\u003e工作測試用的放上來自己參考\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 168
+        "wordcount": 118
       },
       {
         "kind": "page",
@@ -548,7 +629,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009211136/index.json",
         "summary": "\u003cp\u003e練習的時候到啦，這次一樣是用登入畫面，本篇寫作風格有點改變，嘗試放多一點圖(尤其gif)，內文不包含API的部分，大部分都是盲做，不完善的地方非常之多…\u003c/p\u003e\n\u003cp\u003e畢竟，熟能生巧嘛(;´Д`A ```\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 3054
+        "wordcount": 3007
       },
       {
         "kind": "page",
@@ -573,7 +654,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009181018/index.json",
         "summary": "\u003cp\u003e從今天開始系列最新作，沒方向的時候就是學framework的最好時機(？\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1840
+        "wordcount": 1838
       },
       {
         "kind": "page",
@@ -597,7 +678,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009161132/index.json",
         "summary": "\u003cp\u003e身為資料分析\u0026amp;機器學習的超級新手，個人還是覺得實際操作一遍比理論更好理解，\n這次練習的是之前曾草草帶過的機械學習工具scikit-learn，主題就決定是決策樹了\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1531
+        "wordcount": 1469
       },
       {
         "kind": "page",
@@ -676,8 +757,8 @@
         "name": "202009101608",
         "params": {
           "categories": [
-            "Provisioning",
-            "Arista"
+            "Arista",
+            "Provisioning"
           ],
           "date": "2020-09-10T16:08:09+08:00",
           "draft": false,
@@ -693,9 +774,9 @@
         },
         "path": "posts/2020/09/202009101608",
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009101608/index.json",
-        "summary": "\u003cp\u003e繼之前在架設lab的過程中被許許多多的狀況「折磨」過後(參照\u003ca href=\"https://mikanbearer.github.io/posts/202007241554/\"\u003e這裡\u003c/a\u003e)，終於找到時間接續下去了，這次就來部屬\u003ca href=\"https://github.com/arista-eosplus/ztpserver\"\u003eArista ZTPServer\u003c/a\u003e，並稍微驗證一下client與server之間的動作，以確定正常能用\n，畢竟就算是最新的1.5.0版也很久沒更新了\u003c/p\u003e",
+        "summary": "\u003cp\u003e繼之前在架設lab的過程中被許許多多的狀況「折磨」過後，終於找到時間接續下去了，這次就來部屬\u003ca target=\"_blank\" href=\"https://github.com/arista-eosplus/ztpserver\"\u003eArista ZTP Server\u003c/a\u003e，並稍微驗證一下client與server之間的動作，以確定正常能用\n，畢竟就算是最新的1.5.0版也很久沒更新了\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1880
+        "wordcount": 1872
       },
       {
         "kind": "page",
@@ -721,7 +802,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009091346/index.json",
         "summary": "\u003cp\u003e這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2439
+        "wordcount": 2392
       },
       {
         "kind": "page",
@@ -770,7 +851,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009070954/index.json",
         "summary": "\u003cp\u003e從爬蟲開始的實作，分析資料前總得先有資料吧(;\u0026lsquo;∀\u0026rsquo;)\u003c/p\u003e\n\u003cp\u003e作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2286
+        "wordcount": 2246
       },
       {
         "kind": "page",
@@ -792,7 +873,7 @@
         },
         "path": "posts/2020/09/202009031456",
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009031456/index.json",
-        "summary": "\u003cp\u003e偶然看到這個\u003ca href=\"https://github.com/atosatto/ansible-dockerswarm\"\u003eAnsible Role: Docker\u003c/a\u003e就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍\u003c/p\u003e",
+        "summary": "\u003cp\u003e偶然看到這個\u003ca target=\"_blank\" href=\"https://github.com/atosatto/ansible-dockerswarm\"\u003eAnsible Role: Docker\u003c/a\u003e就想嘗試一下，用得順的話就能輕鬆部屬swarm cluster了，所以試著操作一遍\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1069
       },
@@ -815,9 +896,9 @@
         },
         "path": "posts/2020/09/202009011649",
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009011649/index.json",
-        "summary": "\u003cp\u003e雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就先練習一遍，熟悉點再來自己寫role\u003c/p\u003e\n\u003cp\u003e參考文件：\u003ca href=\"https://docs.ansible.com/\"\u003ehttps://docs.ansible.com/\u003c/a\u003e\u003c/p\u003e",
+        "summary": "\u003cp\u003e雖然久仰Ansible大名，但總是停留在紙上談兵的階段，這次就先練習一遍，熟悉點再來自己寫role\u003c/p\u003e\n\u003cp\u003e\u003ca target=\"_blank\" href=\"https://docs.ansible.com/\"\u003e參考文件\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2112
+        "wordcount": 2086
       },
       {
         "kind": "page",
@@ -863,7 +944,7 @@
         },
         "path": "posts/2020/08/202008271612",
         "permalink": "https://mikanbearer.github.io/posts/2020/08/202008271612/index.json",
-        "summary": "\u003cp\u003eFlask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個\u003ca href=\"https://flask-sqlalchemy.palletsprojects.com/en/2.x/\"\u003eFlask-SQLAlchemy\u003c/a\u003e可使用，大大縮短coding時間\u003c/p\u003e",
+        "summary": "\u003cp\u003eFlask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個\u003ca target=\"_blank\" href=\"https://flask-sqlalchemy.palletsprojects.com/en/2.x/\"\u003eFlask-SQLAlchemy\u003c/a\u003e可使用，大大縮短coding時間\u003c/p\u003e",
         "type": "posts",
         "wordcount": 726
       },
@@ -892,7 +973,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/08/202008241004/index.json",
         "summary": "\u003cp\u003e要是不想用自帶的UI，也不想用Grafana怎麼辦！！那當然就是自己動手做啦，自己動手做的好處就是能整合其他功能做成多合一的Web app，但這次就先練習如何取用Prometheus上的資料，製作成動態圖表\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 3762
+        "wordcount": 3723
       },
       {
         "kind": "page",
@@ -940,7 +1021,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/08/202008181609/index.json",
         "summary": "\u003cp\u003e想特地找個一個有自帶plugin的軟體練習一下幫助記憶，剛剛好是常常使用RabbitMQ！這次就來測試看看，當作實務運用的練習\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 497
+        "wordcount": 459
       },
       {
         "kind": "page",
@@ -962,9 +1043,9 @@
         },
         "path": "posts/2020/08/202008171709",
         "permalink": "https://mikanbearer.github.io/posts/2020/08/202008171709/index.json",
-        "summary": "\u003cp\u003e作為往後可能需要自訂Exporter的預習，就試著拿\u003ca href=\"https://prometheus.io/docs/instrumenting/clientlibs/\"\u003ePrometheus client library\u003c/a\u003e來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter\u003c/p\u003e",
+        "summary": "\u003cp\u003e作為往後可能需要自訂Exporter的預習，就試著拿\u003ca target=\"_blank\" href=\"https://prometheus.io/docs/instrumenting/clientlibs/\"\u003eClient library\u003c/a\u003e來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1535
+        "wordcount": 1530
       },
       {
         "kind": "page",
@@ -1060,7 +1141,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/08/202008100108/index.json",
         "summary": "\u003cp\u003e製作一個網頁聊天室，首先要讓服務端和用戶端實現異步通訊，而服務端要包含一個訊息貯列，讓所有符合條件的用戶端都能收到相應的訊息，\n剛好可作為Message Queue及Web Socket的練習。\u003c/p\u003e\n\u003cp\u003e本篇Message Queue使用RabbitMQ，Framework使用Django，並且由Channels來實現Web Socket\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1374
+        "wordcount": 1376
       },
       {
         "kind": "page",
@@ -1107,7 +1188,7 @@
         },
         "path": "posts/2020/07/202007301419",
         "permalink": "https://mikanbearer.github.io/posts/2020/07/202007301419/index.json",
-        "summary": "\u003cp\u003eWeb Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用\u003ca href=\"https://mikanbearer.github.io/myblog/posts/202007291642/\"\u003e這篇\u003c/a\u003e來實作，本篇包含Nginx及Apache的設定範例\u003c/p\u003e",
+        "summary": "\u003cp\u003eWeb Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用\u003ca target=\"_blank\" href=\"#/posts/posts%2F2020%2F07%2F202007291642/\"\u003e這個\u003c/a\u003e來實作，本篇包含Nginx及Apache的設定範例\u003c/p\u003e",
         "type": "posts",
         "wordcount": 388
       },
@@ -1159,14 +1240,15 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/07/202007262314/index.json",
         "summary": "\u003cp\u003e利用Vuetify這個最近蠻流行的UI Kit來做一個SPA的練習，當然首選就是登入畫面了，這次順帶附加上nested route，\n往後可作為隨時能取用的範例，code依然很醜，不合理及多餘的部分之後再慢慢修正…\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2091
+        "wordcount": 1986
       },
       {
         "kind": "page",
         "name": "202007241554",
         "params": {
           "categories": [
-            "Lab"
+            "Atista",
+            "Simulation"
           ],
           "date": "2020-07-24T15:54:30+08:00",
           "draft": false,
@@ -1207,7 +1289,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/07/202007221111/index.json",
         "summary": "\u003cp\u003e本篇旨在project中增加異步執行的功能，增進使用者體驗，避免東西沒跑完response等了老半天等不到的窘境，\n目前只提供簡單的範例，不包含異步任務的情境應用\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1055
+        "wordcount": 1057
       },
       {
         "kind": "page",
@@ -1303,7 +1385,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/07/202007161628/index.json",
         "summary": "\u003cp\u003e這次作為複習，利用djangorestframework製作一個陽春的REST API\n何謂RESTful就不贅述了，直接開始實做\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1413
+        "wordcount": 1415
       },
       {
         "kind": "page",
@@ -1327,7 +1409,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/07/202007151013/index.json",
         "summary": "\u003cp\u003e這次僅是做一個超級簡易，能做到Create、Read、Update、Delete的Web App，\u003cbr\u003e\n為了避免版面過長，此篇僅有陽春的Template View，並沒有做Filter及Pagenation…\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2703
+        "wordcount": 2705
       },
       {
         "kind": "page",
@@ -1371,9 +1453,9 @@
         },
         "path": "posts/2020/07/202007101327",
         "permalink": "https://mikanbearer.github.io/posts/2020/07/202007101327/index.json",
-        "summary": "\u003cp\u003e最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣， \n就到\u003ca href=\"https://www.staticgen.com/\"\u003ehttps://www.staticgen.com/\u003c/a\u003e找個人氣度高的來用，之後就選上了這個\u003cstrong\u003eHugo\u003c/strong\u003e，\n雖然這個Beautiful Hugo的theme挺好看的，之後還是要改一下，首先還是先搞定code block…\u003c/p\u003e",
+        "summary": "\u003cp\u003e最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣， \n就到\u003ca target=\"_blank\" href=\"https://www.staticgen.com/\"\u003e這裡\u003c/a\u003e找個人氣度高的來用，之後就選上了這個\u003cstrong\u003eHugo\u003c/strong\u003e，\n雖然這個Beautiful Hugo的theme挺好看的，之後還是要改一下，首先還是先搞定code block…\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 653
+        "wordcount": 629
       }
     ],
     "params": {

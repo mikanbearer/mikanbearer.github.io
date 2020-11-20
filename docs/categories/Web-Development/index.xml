@@ -6,7 +6,16 @@
     <description>Recent content in Web Development on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Nov 2020 14:50:41 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Web-Development/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Nov 2020 15:00:06 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Web-Development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用NestJS製作簡易的JWT認證</title>
+      <link>https://mikanbearer.github.io/posts/202011181500/index.json</link>
+      <pubDate>Wed, 18 Nov 2020 15:00:06 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202011181500/index.json</guid>
+      <description>&lt;p&gt;回過頭來練習的NestJS，稱職的API怎麼可以沒有認證機制？這次就來做一個簡易的JWT認證&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>簡單好用的簽名工具Signature Pad</title>
       <link>https://mikanbearer.github.io/posts/2020/11/202011031450/index.json</link>
@@ -14,7 +23,7 @@
       
       <guid>https://mikanbearer.github.io/posts/2020/11/202011031450/index.json</guid>
       <description>&lt;p&gt;找個簽名插件找到的好東西，是個HTML5 canvas based的library，不需要jQuery且操作單純，更有cdn能使用，在開發上彈性滿分&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/szimek/signature_pad&#34;&gt;https://github.com/szimek/signature_pad&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://github.com/szimek/signature_pad&#34;&gt;Singnature Pad&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -82,7 +91,7 @@
       <guid>https://mikanbearer.github.io/posts/2020/10/202010141635/index.json</guid>
       <description>&lt;p&gt;最近覺得影片當背景的網站挺漂亮的，想想要如法炮製的話總會有個簡單易用的plugin，
 這次找到的就是這個jquery.mb.YTPlayer&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/pupunzi/jquery.mb.YTPlayer&#34;&gt;https://github.com/pupunzi/jquery.mb.YTPlayer&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://github.com/pupunzi/jquery.mb.YTPlayer&#34;&gt;傳送門&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -101,7 +110,7 @@
       
       <guid>https://mikanbearer.github.io/posts/2020/09/202009261450/index.json</guid>
       <description>&lt;p&gt;不久前才想用vuetify的v-overlay與v-progress-circular來做個loading的延遲畫面，就意外發現了這個好東西：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/vue-loading-overlay&#34;&gt;vue-loading-overlay&lt;/a&gt;，馬上就來試一下&lt;/p&gt;</description>
+&lt;p&gt;&lt;a target=&#34;_blank&#34; href=&#34;https://www.npmjs.com/package/vue-loading-overlay&#34;&gt;vue-loading-overlay&lt;/a&gt;，馬上就來試一下&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -166,7 +175,7 @@
       <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/08/202008271612/index.json</guid>
-      <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
+      <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a target=&#34;_blank&#34; href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -224,7 +233,7 @@
       <pubDate>Thu, 30 Jul 2020 14:19:49 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/07/202007301419/index.json</guid>
-      <description>&lt;p&gt;Web Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用&lt;a href=&#34;https://mikanbearer.github.io/myblog/posts/202007291642/&#34;&gt;這篇&lt;/a&gt;來實作，本篇包含Nginx及Apache的設定範例&lt;/p&gt;</description>
+      <description>&lt;p&gt;Web Server沒定義相關的Header的話，就沒辦法Preflight Request，所以必須額外設定，使用&lt;a target=&#34;_blank&#34; href=&#34;#/posts/posts%2F2020%2F07%2F202007291642/&#34;&gt;這個&lt;/a&gt;來實作，本篇包含Nginx及Apache的設定範例&lt;/p&gt;</description>
     </item>
     
     <item>

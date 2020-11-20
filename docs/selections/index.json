@@ -207,6 +207,18 @@
             
             
         
+            
+            
+            
+        
+            
+            
+            
+        
+            
+            
+            
+        
         
 
 
@@ -220,13 +232,15 @@
   "result": {
     "categories": [
       "Arista",
+      "Atista",
+      "Cisco",
       "Data Science",
       "Deployment",
-      "Lab",
       "Machine Learning",
       "Monitoring",
       "Operation",
       "Provisioning",
+      "Simulation",
       "Tricks",
       "Web Crawler",
       "Web Development",
@@ -247,6 +261,7 @@
       "Excel",
       "Flask",
       "Hugo",
+      "IOS",
       "JavaScript",
       "Jieba",
       "jQuery",
@@ -258,6 +273,7 @@
       "Nginx",
       "Node.js",
       "pandas",
+      "Passport",
       "Pelican",
       "Prometheus",
       "Python",
@@ -276,6 +292,9 @@
       "ZTPServer"
     ],
     "titles": [
+      "使用NestJS製作簡易的JWT認證",
+      "在Cisco IOS上啟用免密碼SSH登入",
+      "在EVE上建立Cisco IOS Lab",
       "使用cephadm部屬Ceph Cluster",
       "簡單好用的簽名工具Signature Pad",
       "解決Pelican使用rst撰寫貼文時code block option不生效的問題",

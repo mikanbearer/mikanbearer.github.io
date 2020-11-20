@@ -87,6 +87,10 @@
         
             
         
+            
+        
+            
+        
         
         
             
@@ -171,7 +175,19 @@
         
             
         
+            
         
+            
+        
+        
+        
+            
+                
+            
+        
+            
+                
+            
         
             
                 
@@ -365,6 +381,10 @@
         
             
         
+            
+        
+            
+        
         
         
             
@@ -391,7 +411,19 @@
         
             
         
+            
         
+            
+        
+        
+        
+            
+                
+            
+        
+            
+                
+            
         
             
                 
@@ -487,23 +519,27 @@
           "Deployment",
           "Operation",
           "Tricks",
+          "Cisco",
           "Machine-Learning",
+          "Simulation",
           "Web-Crawler",
           "未分類",
           "Arista",
+          "Atista",
           "Data-Science",
-          "Lab",
           "Provisioning"
         ],
         "selected": {
-          "Arista": true,
-          "Data-Science": true,
+          "Arista": false,
+          "Atista": false,
+          "Cisco": true,
+          "Data-Science": false,
           "Deployment": true,
-          "Lab": false,
           "Machine-Learning": true,
           "Monitoring": true,
           "Operation": true,
           "Provisioning": false,
+          "Simulation": true,
           "Tricks": true,
           "Web-Crawler": true,
           "Web-Development": true,
@@ -512,7 +548,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 29
+            "value": 30
           },
           {
             "name": "Monitoring",
@@ -531,7 +567,15 @@
             "value": 3
           },
           {
+            "name": "Cisco",
+            "value": 2
+          },
+          {
             "name": "Machine-Learning",
+            "value": 2
+          },
+          {
+            "name": "Simulation",
             "value": 2
           },
           {
@@ -547,11 +591,11 @@
             "value": 1
           },
           {
-            "name": "Data-Science",
+            "name": "Atista",
             "value": 1
           },
           {
-            "name": "Lab",
+            "name": "Data-Science",
             "value": 1
           },
           {
@@ -562,7 +606,7 @@
       },
       "monthly_count": {
         "series": [
-          4,
+          7,
           8,
           15,
           11,
@@ -588,10 +632,11 @@
           "Docker",
           "Hugo",
           "TypeScript",
+          "EVE-NG",
           "Angular",
           "Ansible",
           "Echarts",
-          "EVE-NG",
+          "NestJS",
           "Nginx",
           "Pelican",
           "RabbitMQ",
@@ -603,14 +648,15 @@
           "Ceph",
           "Channels",
           "Excel",
+          "IOS",
           "Jieba",
           "jQuery",
           "LibreNMS",
           "Matplotlib",
           "Moment.js",
           "Nagios",
-          "NestJS",
           "pandas",
+          "Passport",
           "seaborn",
           "Signature-Pad",
           "TypeORM",
@@ -635,6 +681,7 @@
           "Excel": false,
           "Flask": true,
           "Hugo": true,
+          "IOS": false,
           "JavaScript": true,
           "Jieba": false,
           "LibreNMS": false,
@@ -644,6 +691,7 @@
           "NestJS": false,
           "Nginx": false,
           "Node.js": true,
+          "Passport": false,
           "Pelican": false,
           "Prometheus": true,
           "Python": true,
@@ -702,6 +750,10 @@
           },
           {
             "name": "TypeScript",
+            "value": 4
+          },
+          {
+            "name": "EVE-NG",
             "value": 3
           },
           {
@@ -717,7 +769,7 @@
             "value": 2
           },
           {
-            "name": "EVE-NG",
+            "name": "NestJS",
             "value": 2
           },
           {
@@ -765,6 +817,10 @@
             "value": 1
           },
           {
+            "name": "IOS",
+            "value": 1
+          },
+          {
             "name": "Jieba",
             "value": 1
           },
@@ -789,11 +845,11 @@
             "value": 1
           },
           {
-            "name": "NestJS",
+            "name": "pandas",
             "value": 1
           },
           {
-            "name": "pandas",
+            "name": "Passport",
             "value": 1
           },
           {

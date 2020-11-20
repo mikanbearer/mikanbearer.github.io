@@ -41,7 +41,7 @@
       
       <guid>https://mikanbearer.github.io/posts/2020/07/202007101327/index.json</guid>
       <description>&lt;p&gt;最近想把學習過程中碰到的小問題做些筆記，剛好又對static site generator有些興趣， 
-就到&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;https://www.staticgen.com/&lt;/a&gt;找個人氣度高的來用，之後就選上了這個&lt;strong&gt;Hugo&lt;/strong&gt;，
+就到&lt;a target=&#34;_blank&#34; href=&#34;https://www.staticgen.com/&#34;&gt;這裡&lt;/a&gt;找個人氣度高的來用，之後就選上了這個&lt;strong&gt;Hugo&lt;/strong&gt;，
 雖然這個Beautiful Hugo的theme挺好看的，之後還是要改一下，首先還是先搞定code block…&lt;/p&gt;</description>
     </item>
     

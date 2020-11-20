@@ -41,7 +41,7 @@
       <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/08/202008271612/index.json</guid>
-      <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
+      <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a target=&#34;_blank&#34; href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
     </item>
     
     <item>

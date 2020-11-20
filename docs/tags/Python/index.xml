@@ -107,7 +107,7 @@
       <pubDate>Thu, 27 Aug 2020 16:12:20 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/08/202008271612/index.json</guid>
-      <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
+      <description>&lt;p&gt;Flask本身沒自帶ORM對製作CRUD而言是略為麻煩，這裡就使用SQLAlchemy來操作資料庫，剛好有個&lt;a target=&#34;_blank&#34; href=&#34;https://flask-sqlalchemy.palletsprojects.com/en/2.x/&#34;&gt;Flask-SQLAlchemy&lt;/a&gt;可使用，大大縮短coding時間&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -127,7 +127,7 @@
       <pubDate>Mon, 17 Aug 2020 17:09:27 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/08/202008171709/index.json</guid>
-      <description>&lt;p&gt;作為往後可能需要自訂Exporter的預習，就試著拿&lt;a href=&#34;https://prometheus.io/docs/instrumenting/clientlibs/&#34;&gt;Prometheus client library&lt;/a&gt;來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter&lt;/p&gt;</description>
+      <description>&lt;p&gt;作為往後可能需要自訂Exporter的預習，就試著拿&lt;a target=&#34;_blank&#34; href=&#34;https://prometheus.io/docs/instrumenting/clientlibs/&#34;&gt;Client library&lt;/a&gt;來玩玩…這次使用官方提供的Python版本，藉由這次練習來更加熟練操作Exporter&lt;/p&gt;</description>
     </item>
     
     <item>
