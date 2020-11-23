@@ -86,7 +86,6 @@
     <v-app id="inspire">
       <v-app-bar
         app
-        
         fade-img-on-scroll
         hide-on-scroll
         v-model="appBar"
@@ -159,7 +158,7 @@
         cols="12"
       >
         <div>
-          [[ new Date().getFullYear() ]] — 
+          2020 — 
           
           Zhang San
           
@@ -172,83 +171,7 @@
 
 
     <v-dialog v-model="searchModal" max-width="600">
-      <v-card color="grey darken-3">
-        <v-card-title>
-          Search Posts
-        </v-card-title>
-        <v-card-text>
-
-          <v-combobox 
-            :search-input.sync="searchConditions.keyword"
-            :items="getItems(searchConditions.keyword, searchSelections.titles)"
-            clearable
-            hide-selected
-            hide-details
-            prepend-inner-icon="mdi-text"
-            label="Title"
-            height="42"
-            menu-props="light"
-          >  
-          </v-combobox>
-
-          <v-combobox 
-            v-model="searchConditions.selectedCategories"
-            :items="searchSelections.categories"
-            clearable
-            multiple
-            hide-selected
-            hide-details
-            prepend-inner-icon="mdi-folder-multiple"
-            label="Categories"
-            height="42"
-            menu-props="light"
-            :delimiters="[',']"
-          >  
-          </v-combobox>
-
-          <v-combobox 
-            v-model="searchConditions.selectedTags"
-            :items="searchSelections.tags"
-            chips
-            clearable
-            multiple
-            hide-selected
-            hide-details
-            prepend-inner-icon="mdi-tag-multiple"
-            label="Tags"
-            menu-props="light"
-            :delimiters="[',']"
-          >
-            <template v-slot:selection="{ attrs, item, select, selected }">
-              <v-chip
-                color="accent"
-                v-bind="attrs"
-                :input-value="selected"
-                close
-                @click:close="removeItem('selectedTags', item)"
-              >
-               [[ item ]]
-              </v-chip>
-            </template>              
-          </v-combobox>
-
-        </v-card-text>
-    
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            :disabled="notInSearch"
-            color="error"
-            @click="$router.history.push('/')"
-            small
-          >
-            Clear
-          </v-btn>
-          <v-btn color="primary" @click="toFilteredPosts" small>
-            Search
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+      <search-card></search-card>
     </v-dialog>
 
   </v-app>
@@ -260,6 +183,85 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+<script type="text/x-template" id="search-card">
+    <v-card color="grey darken-3">
+        <v-card-title>
+            Search Posts
+        </v-card-title>
+        <v-card-text>
+
+            <v-combobox 
+                :search-input.sync="searchConditions.keyword"
+                :items="getItems(searchConditions.keyword, searchSelections.titles)"
+                clearable
+                hide-selected
+                hide-details
+                prepend-inner-icon="mdi-text"
+                label="Title"
+                height="42"
+                menu-props="light"
+            >  
+            </v-combobox>
+
+            <v-combobox 
+                v-model="searchConditions.selectedCategories"
+                :items="searchSelections.categories"
+                clearable
+                multiple
+                hide-selected
+                hide-details
+                prepend-inner-icon="mdi-folder-multiple"
+                label="Categories"
+                height="42"
+                menu-props="light"
+                :delimiters="[',']"
+            >  
+            </v-combobox>
+
+            <v-combobox 
+                v-model="searchConditions.selectedTags"
+                :items="searchSelections.tags"
+                chips
+                clearable
+                multiple
+                hide-selected
+                hide-details
+                prepend-inner-icon="mdi-tag-multiple"
+                label="Tags"
+                menu-props="light"
+                :delimiters="[',']"
+            >
+                <template v-slot:selection="{ attrs, item, select, selected }">
+                    <v-chip
+                        color="accent"
+                        v-bind="attrs"
+                        :input-value="selected"
+                        close
+                        @click:close="removeItem('selectedTags', item)"
+                    >
+                        [[ item ]]
+                    </v-chip>
+                </template>              
+            </v-combobox>
+
+        </v-card-text>
+    
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+                :disabled="notInSearch"
+                color="error"
+                @click="$router.history.push('/')"
+                small
+            >
+                Clear
+            </v-btn>
+            <v-btn color="primary" @click="toFilteredPosts" small>
+                Search
+            </v-btn>
+        </v-card-actions>
+    </v-card>
+</script>
 <script type="text/x-template" id="post-card">
     <v-slide-x-transition>
         <div v-show="isLoaded">
@@ -680,6 +682,119 @@
 
 
 <script>
+  Vue.component('search-card', {
+    data() {
+      return {
+        searchSelections: {},
+        searchConditions: {},
+      }
+    },
+    template: '#search-card',
+    delimiters: ['[[', ']]'],
+    computed: {
+      routeQuery () {
+        return this.$route.query
+      },
+
+      notInSearch () {
+        const queryKeys = Object.keys(this.$route.query)
+        if (queryKeys.length === 0) {
+          return true
+        }
+        return !queryKeys.every(v => ['keyword', 'category', 'tag'].includes(v))
+      }
+    },
+
+    mounted () {
+      this.getSearchSelections('https:\/\/mikanbearer.github.io\/selections/index.json')
+      this.setSearchConditionsToData()
+    },
+
+    watch: {
+      routeQuery () {
+        if (this.$route.path == '/') {
+          this.setSearchConditionsToData()
+        }
+      }
+    },
+
+    methods: {
+      getSearchSelections (url) {
+        axios.get(url).then(response => {
+          this.searchSelections = response.data.result
+        })
+      },
+
+      getSearchConditions () {
+        var query = this.routeQuery
+        const convertToArray = (value) => {
+          if (Array.isArray(value)) {
+            return value
+          } else if (typeof value === 'string') {
+            return value.split(',')
+          } else {
+            return []
+          }
+        }
+
+        var searchConditions = {}
+
+        searchConditions.selectedCategories = convertToArray(query.category)
+        searchConditions.selectedTags = convertToArray(query.tag)
+        if (typeof query.keyword === 'string') {
+          searchConditions.keyword = query.keyword
+        } else {
+          searchConditions.keyword = ''
+        }
+        return searchConditions
+      },
+
+      setSearchConditionsToData () {
+        this.searchConditions = this.getSearchConditions()
+      },
+
+      toFilteredPosts () {
+        var query = {}
+
+        if (this.searchConditions.keyword) {
+          query.keyword = this.searchConditions.keyword
+        }
+        if (this.searchConditions.selectedCategories.length) {
+          query.category = this.searchConditions.selectedCategories
+        }
+        if (this.searchConditions.selectedTags.length) {
+          query.tag = this.searchConditions.selectedTags
+        }
+        if (this.$route.path == '/') {
+          this.$router.history.push({
+            query: query
+          })
+        }
+        else {
+          this.$router.push({
+            path: '/',
+            query: query
+          })
+        }
+      },
+
+      getItems (key, items) {
+        if (key) {
+          return items
+        }else{
+          return []
+        }
+      },
+
+      removeItem (target, item) {
+        const index = this.searchConditions[target].indexOf(item)
+        if (index >= 0) {
+          this.searchConditions[target].splice(index, 1)
+        }
+      },
+    }
+  })
+
   Vue.component('post-card', {
     props: ['post', 'isLoaded'],
     template: '#post-card',
@@ -1201,32 +1316,18 @@
     el: '#app',
     vuetify: new Vuetify(),
     data: {
-      searchSelections: {},
-      searchConditions: {},
       searchModal: false,
       commentBlock: false,
       appBar: true
     },
 
     computed: {
-      routeQuery () {
-        return this.$route.query
-      },
-
       notInSearch () {
         const queryKeys = Object.keys(this.$route.query)
         if (queryKeys.length === 0) {
           return true
         }
         return !queryKeys.every(v => ['keyword', 'category', 'tag'].includes(v))
-      }
-    },
-
-    watch: {
-      routeQuery () {
-        if (this.$route.path == '/') {
-          this.setSearchConditionsToData()
-        }
       }
     },
 
@@ -1242,9 +1343,7 @@
     },
 
     mounted () {
-      this.getSearchSelections('https:\/\/mikanbearer.github.io\/selections/index.json')
       this.showComment()
-      this.setSearchConditionsToData()
     },
 
     updated () {
@@ -1253,80 +1352,6 @@
     },
 
     methods: {
-      getSearchSelections (url) {
-        axios.get(url).then(response => {
-          this.searchSelections = response.data.result
-        })
-      },
-
-      getSearchConditions () {
-        var query = this.routeQuery
-        const convertToArray = (value) => {
-          if (Array.isArray(value)) {
-            return value
-          } else if (typeof value === 'string') {
-            return value.split(',')
-          } else {
-            return []
-          }
-        }
-
-        var searchConditions = {}
-
-        searchConditions.selectedCategories = convertToArray(query.category)
-        searchConditions.selectedTags = convertToArray(query.tag)
-        if (typeof query.keyword === 'string') {
-          searchConditions.keyword = query.keyword
-        } else {
-          searchConditions.keyword = ''
-        }
-        return searchConditions
-      },
-
-      setSearchConditionsToData () {
-        this.searchConditions = this.getSearchConditions()
-      },
-
-      toFilteredPosts () {
-        var query = {}
-
-        if (this.searchConditions.keyword) {
-          query.keyword = this.searchConditions.keyword
-        }
-        if (this.searchConditions.selectedCategories.length) {
-          query.category = this.searchConditions.selectedCategories
-        }
-        if (this.searchConditions.selectedTags.length) {
-          query.tag = this.searchConditions.selectedTags
-        }
-        if (this.$route.path == '/') {
-          this.$router.history.push({
-            query: query
-          })
-        }
-        else {
-          this.$router.push({
-            path: '/',
-            query: query
-          })
-        }
-      },
-
-      getItems (key, items) {
-        if (key) {
-          return items
-        }else{
-          return []
-        }
-      },
-
-      removeItem (target, item) {
-        const index = this.searchConditions[target].indexOf(item)
-        if (index >= 0) {
-          this.searchConditions[target].splice(index, 1)
-        }
-      },
-
       showComment () {
         if (this.$route.name === 'post') {
           setTimeout(() => {this.commentBlock = true}, 3000)
