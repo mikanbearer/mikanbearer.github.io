@@ -34,9 +34,16 @@
                                 <router-link 
                                     class="post-title" 
                                     v-html="post.params.title" 
-                                    :to="{path: 'post', query: {url: post.permalink}}"
+                                    :to="{name: 'post', params: {path: post.path}}"
+                                    v-if="post.summary"
                                 >
                                 </router-link>
+                                <span 
+                                    class="post-title"
+                                    v-else
+                                >
+                                    [[ post.params.title ]]
+                                </span>
                             </v-list-item-title>
                         
                             <v-list-item-subtitle>
