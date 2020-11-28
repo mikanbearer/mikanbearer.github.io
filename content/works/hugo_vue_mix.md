@@ -1,6 +1,6 @@
 ---
 title: "hugo-vue-mix"
-images: [works/work1/1.png, works/work1/2.png, works/work1/3.png]
+images: [works/hugo_vue_mix/1.png, works/hugo_vue_mix/2.png, works/hugo_vue_mix/3.png]
 download_url: "https://github.com/mikanbearer/hugo-vue-mix"
 demo_url: "https://mikanbearer.github.io/hugo-vue-mix/"
 powered_by: [Vue.js, Vuetify]

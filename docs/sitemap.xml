@@ -592,7 +592,11 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/works/work1/index.json</loc>
+    <loc>https://mikanbearer.github.io/works/cdp_topo/index.json</loc>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/works/hugo_vue_mix/index.json</loc>
   </url>
   
 </urlset>
