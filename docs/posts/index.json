@@ -196,13 +196,13 @@
           "tags": [
             "TigerVNC"
           ],
-          "title": "使用VNC遠端連線至CentOS"
+          "title": "使用noVNC遠端連線至CentOS"
         },
         "path": "posts/2020/11/202011201450",
         "permalink": "https://mikanbearer.github.io/posts/2020/11/202011201450/index.json",
         "summary": "\u003cp\u003e這次嘗試使用VNC來使用遠端桌面，感覺未來會用到所以先筆記一下\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 526
+        "wordcount": 1250
       },
       {
         "kind": "page",
