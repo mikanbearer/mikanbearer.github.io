@@ -167,6 +167,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -183,6 +186,32 @@
     "pages": [
       {
         "kind": "page",
+        "name": "202011220316",
+        "params": {
+          "categories": [
+            "Web Development"
+          ],
+          "date": "2020-11-22T03:16:02+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-11-22T03:16:02+08:00",
+          "publishdate": "2020-11-22T03:16:02+08:00",
+          "tags": [
+            "Django",
+            "Python",
+            "noVNC",
+            "Docker"
+          ],
+          "title": "Django整合noVNC的小練習"
+        },
+        "path": "posts/202011220316",
+        "permalink": "https://mikanbearer.github.io/posts/202011220316/index.json",
+        "summary": "\u003cp\u003e延續前一篇的練習，這次使用Django來配合noVNC與Websockify\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 1849
+      },
+      {
+        "kind": "page",
         "name": "202011201450",
         "params": {
           "categories": [
@@ -194,7 +223,8 @@
           "lastmod": "2020-11-20T14:50:47+08:00",
           "publishdate": "2020-11-20T14:50:47+08:00",
           "tags": [
-            "TigerVNC"
+            "TigerVNC",
+            "noVNC"
           ],
           "title": "使用noVNC遠端連線至CentOS"
         },

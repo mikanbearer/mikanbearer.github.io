@@ -93,6 +93,8 @@
         
             
         
+            
+        
         
         
             
@@ -183,7 +185,13 @@
         
             
         
+            
         
+        
+        
+            
+                
+            
         
             
                 
@@ -546,7 +554,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 30
+            "value": 31
           },
           {
             "name": "Deployment",
@@ -600,7 +608,7 @@
       },
       "monthly_count": {
         "series": [
-          8,
+          9,
           8,
           15,
           11,
@@ -618,12 +626,12 @@
         "legend": [
           "Python",
           "Vue.js",
-          "JavaScript",
           "Django",
+          "JavaScript",
+          "Docker",
           "Flask",
           "Node.js",
           "Prometheus",
-          "Docker",
           "Hugo",
           "TypeScript",
           "EVE-NG",
@@ -632,6 +640,7 @@
           "Echarts",
           "NestJS",
           "Nginx",
+          "noVNC",
           "Pelican",
           "RabbitMQ",
           "scikit-learn",
@@ -701,6 +710,7 @@
           "Vue.js": true,
           "ZTPServer": false,
           "jQuery": false,
+          "noVNC": false,
           "pandas": false,
           "scikit-learn": false,
           "seaborn": false,
@@ -710,18 +720,22 @@
         "series": [
           {
             "name": "Python",
-            "value": 18
+            "value": 19
           },
           {
             "name": "Vue.js",
             "value": 7
           },
           {
+            "name": "Django",
+            "value": 6
+          },
+          {
             "name": "JavaScript",
             "value": 6
           },
           {
-            "name": "Django",
+            "name": "Docker",
             "value": 5
           },
           {
@@ -735,10 +749,6 @@
           {
             "name": "Prometheus",
             "value": 5
-          },
-          {
-            "name": "Docker",
-            "value": 4
           },
           {
             "name": "Hugo",
@@ -770,6 +780,10 @@
           },
           {
             "name": "Nginx",
+            "value": 2
+          },
+          {
+            "name": "noVNC",
             "value": 2
           },
           {

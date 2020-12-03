@@ -223,6 +223,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -275,6 +279,7 @@
       "NestJS",
       "Nginx",
       "Node.js",
+      "noVNC",
       "pandas",
       "Passport",
       "Pelican",
@@ -296,6 +301,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "Django整合noVNC的小練習",
       "使用noVNC遠端連線至CentOS",
       "使用NestJS製作簡易的JWT認證",
       "在Cisco IOS上啟用免密碼SSH登入",

@@ -4,21 +4,56 @@
   
   <url>
     <loc>https://mikanbearer.github.io/categories/</loc>
-    <lastmod>2020-11-20T14:50:47+08:00</lastmod>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/categories/Operation/</loc>
-    <lastmod>2020-11-20T14:50:47+08:00</lastmod>
+    <loc>https://mikanbearer.github.io/tags/Django/</loc>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/posts/202011220316/index.json</loc>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/Docker/</loc>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/noVNC/</loc>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://mikanbearer.github.io/posts/</loc>
-    <lastmod>2020-11-20T14:50:47+08:00</lastmod>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/Python/</loc>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://mikanbearer.github.io/tags/</loc>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/categories/Web-Development/</loc>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/</loc>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/categories/Operation/</loc>
     <lastmod>2020-11-20T14:50:47+08:00</lastmod>
   </url>
   
@@ -29,11 +64,6 @@
   
   <url>
     <loc>https://mikanbearer.github.io/posts/2020/11/202011201450/index.json</loc>
-    <lastmod>2020-11-20T14:50:47+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/</loc>
     <lastmod>2020-11-20T14:50:47+08:00</lastmod>
   </url>
   
@@ -49,11 +79,6 @@
   
   <url>
     <loc>https://mikanbearer.github.io/tags/TypeScript/</loc>
-    <lastmod>2020-11-18T15:00:06+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/categories/Web-Development/</loc>
     <lastmod>2020-11-18T15:00:06+08:00</lastmod>
   </url>
   
@@ -128,11 +153,6 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/tags/Python/</loc>
-    <lastmod>2020-11-03T13:57:03+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mikanbearer.github.io/posts/2020/11/202011031357/index.json</loc>
     <lastmod>2020-11-03T13:57:03+08:00</lastmod>
   </url>
@@ -160,11 +180,6 @@
   <url>
     <loc>https://mikanbearer.github.io/posts/2020/10/202010261727/index.json</loc>
     <lastmod>2020-10-26T17:27:31+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/tags/Docker/</loc>
-    <lastmod>2020-10-21T16:51:28+08:00</lastmod>
   </url>
   
   <url>
@@ -464,11 +479,6 @@
   
   <url>
     <loc>https://mikanbearer.github.io/tags/Channels/</loc>
-    <lastmod>2020-08-10T01:08:04+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/tags/Django/</loc>
     <lastmod>2020-08-10T01:08:04+08:00</lastmod>
   </url>
   
