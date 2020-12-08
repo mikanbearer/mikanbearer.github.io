@@ -6,7 +6,16 @@
     <description>Recent content in Web Development on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Nov 2020 03:16:02 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Web-Development/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Dec 2020 15:47:59 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Web-Development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Svelte初體驗</title>
+      <link>https://mikanbearer.github.io/posts/202012031547/index.json</link>
+      <pubDate>Thu, 03 Dec 2020 15:47:59 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202012031547/index.json</guid>
+      <description>&lt;p&gt;這次來嘗試這個近期很有話題性的framework，相當簡潔易用且以不使用Virtual DOM聞名，前陣子Reuters的美國總統大選專頁就是以Svelte製作的&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Django整合noVNC的小練習</title>
       <link>https://mikanbearer.github.io/posts/202011220316/index.json</link>

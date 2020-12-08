@@ -95,7 +95,11 @@
         
             
         
+            
         
+        
+        
+            
         
             
         
@@ -316,6 +320,122 @@
             
                 
             
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+        
+
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
         
             
                 
@@ -385,117 +505,9 @@
         
             
         
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
         
         
             
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-        
-
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        
         
             
         
@@ -554,7 +566,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 31
+            "value": 32
           },
           {
             "name": "Deployment",
@@ -608,6 +620,7 @@
       },
       "monthly_count": {
         "series": [
+          1,
           9,
           8,
           15,
@@ -615,6 +628,7 @@
           12
         ],
         "x": [
+          "2020-12",
           "2020-11",
           "2020-10",
           "2020-09",
@@ -625,9 +639,9 @@
       "tags_data": {
         "legend": [
           "Python",
+          "JavaScript",
           "Vue.js",
           "Django",
-          "JavaScript",
           "Docker",
           "Flask",
           "Node.js",
@@ -662,6 +676,7 @@
           "Passport",
           "seaborn",
           "Signature-Pad",
+          "Svelte",
           "TigerVNC",
           "TypeORM",
           "uWSGI",
@@ -702,6 +717,7 @@
           "RabbitMQ": false,
           "Scrapy": false,
           "Signature-Pad": false,
+          "Svelte": false,
           "TigerVNC": false,
           "TypeORM": false,
           "TypeScript": true,
@@ -723,15 +739,15 @@
             "value": 19
           },
           {
+            "name": "JavaScript",
+            "value": 7
+          },
+          {
             "name": "Vue.js",
             "value": 7
           },
           {
             "name": "Django",
-            "value": 6
-          },
-          {
-            "name": "JavaScript",
             "value": 6
           },
           {
@@ -868,6 +884,10 @@
           },
           {
             "name": "Signature-Pad",
+            "value": 1
+          },
+          {
+            "name": "Svelte",
             "value": 1
           },
           {

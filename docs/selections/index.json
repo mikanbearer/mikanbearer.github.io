@@ -227,6 +227,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -290,6 +294,7 @@
       "Scrapy",
       "seaborn",
       "Signature Pad",
+      "Svelte",
       "TigerVNC",
       "TypeORM",
       "TypeScript",
@@ -301,6 +306,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "Svelte初體驗",
       "Django整合noVNC的小練習",
       "使用noVNC遠端連線至CentOS",
       "使用NestJS製作簡易的JWT認證",
