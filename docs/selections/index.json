@@ -231,6 +231,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -306,6 +310,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "兩種Svelte的Router練習",
       "Svelte初體驗",
       "Django整合noVNC的小練習",
       "使用noVNC遠端連線至CentOS",

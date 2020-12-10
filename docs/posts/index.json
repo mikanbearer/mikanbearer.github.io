@@ -173,6 +173,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -187,6 +190,30 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202012071723",
+        "params": {
+          "categories": [
+            "Web Development"
+          ],
+          "date": "2020-12-07T17:23:59+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-12-07T17:23:59+08:00",
+          "publishdate": "2020-12-07T17:23:59+08:00",
+          "tags": [
+            "Svelte",
+            "JavaScript"
+          ],
+          "title": "兩種Svelte的Router練習"
+        },
+        "path": "posts/202012071723",
+        "permalink": "https://mikanbearer.github.io/posts/202012071723/index.json",
+        "summary": "\u003cp\u003e基於製作SPA的需求，總是會需要個routing的，但選擇之多讓人眼花撩亂…\u003c/p\u003e\n\u003cp\u003e這次嘗試使用的是\u003ca href=\"https://github.com/EmilTholin/svelte-routing\" target=\"_blank\"\u003eSvelte Routing\u003c/a\u003e與\n\u003ca href=\"https://github.com/pynnl/svelte-hash-router\" target=\"_blank\"\u003esvelte-hash-router\u003c/a\u003e\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 869
+      },
       {
         "kind": "page",
         "name": "202012031547",
@@ -207,9 +234,9 @@
         },
         "path": "posts/202012031547",
         "permalink": "https://mikanbearer.github.io/posts/202012031547/index.json",
-        "summary": "\u003cp\u003e這次來嘗試這個近期很有話題性的framework，相當簡潔易用且以不使用Virtual DOM聞名，前陣子Reuters的美國總統大選專頁就是以Svelte製作的\u003c/p\u003e",
+        "summary": "\u003cp\u003e這次來嘗試這個近期很有話題性的framework，相當簡潔易用且以不使用Virtual DOM聞名\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 911
+        "wordcount": 879
       },
       {
         "kind": "page",
@@ -291,7 +318,8 @@
         "name": "202011171536",
         "params": {
           "categories": [
-            "Cisco"
+            "Cisco",
+            "Operation"
           ],
           "date": "2020-11-17T15:36:33+08:00",
           "draft": false,

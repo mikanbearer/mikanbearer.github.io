@@ -12,6 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     
     <style>
+      .keyword-input label {
+        margin-top: -4px;
+      }
+
       .site-title {
         font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
       }
@@ -103,16 +107,16 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            @click.stop="searchModal = !searchModal"
+            @click.stop="filterModal = !filterModal"
             v-bind="attrs"
             v-on="on"
             icon
           >
-            <v-icon v-if="notInSearch">mdi-magnify</v-icon>
-            <v-icon v-else color="error lighten-1">mdi-magnify</v-icon>
+            <v-icon v-if="notInFilter">mdi-filter-outline</v-icon>
+            <v-icon v-else color="error lighten-1">mdi-filter</v-icon>
           </v-btn>
         </template>
-        <span>Click here to search</span>
+        <span>Filter posts by title, category and tag</span>
       </v-tooltip>
   
       <template v-slot:img="{ props }">
@@ -170,8 +174,8 @@
     </v-footer>
 
 
-    <v-dialog v-model="searchModal" max-width="600">
-      <search-card></search-card>
+    <v-dialog v-model="filterModal" max-width="600">
+      <filter-card></filter-card>
     </v-dialog>
 
   </v-app>
@@ -183,29 +187,31 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
-<script type="text/x-template" id="search-card">
+<script type="text/x-template" id="filter-card">
     <v-card color="grey darken-3">
         <v-card-title>
-            Search Posts
+            Filter Posts
         </v-card-title>
         <v-card-text>
 
             <v-combobox 
-                :search-input.sync="searchConditions.keyword"
-                :items="getItems(searchConditions.keyword, searchSelections.titles)"
+                :search-input.sync="filterConditions.keyword"
+                :items="getItems(filterConditions.keyword, filterSelections.titles)"
                 clearable
                 hide-selected
                 hide-details
-                prepend-inner-icon="mdi-text"
+                prepend-inner-icon="mdi-magnify"
                 label="Title"
                 height="42"
                 menu-props="light"
+                class="keyword-input"
             >  
             </v-combobox>
 
             <v-combobox 
-                v-model="searchConditions.selectedCategories"
-                :items="searchSelections.categories"
+                v-model="filterConditions.selectedCategories"
+                :items="filterSelections.categories"
+                chips
                 clearable
                 multiple
                 hide-selected
@@ -219,8 +225,8 @@
             </v-combobox>
 
             <v-combobox 
-                v-model="searchConditions.selectedTags"
-                :items="searchSelections.tags"
+                v-model="filterConditions.selectedTags"
+                :items="filterSelections.tags"
                 chips
                 clearable
                 multiple
@@ -249,7 +255,7 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-                :disabled="notInSearch"
+                :disabled="notInFilter"
                 color="error"
                 @click="$router.history.push('/')"
                 small
@@ -257,7 +263,7 @@
                 Clear
             </v-btn>
             <v-btn color="primary" @click="toFilteredPosts" small>
-                Search
+                Filter
             </v-btn>
         </v-card-actions>
     </v-card>
@@ -689,21 +695,21 @@
 
 
 <script>
-  Vue.component('search-card', {
+  Vue.component('filter-card', {
     data() {
       return {
-        searchSelections: {},
-        searchConditions: {},
+        filterSelections: {},
+        filterConditions: {},
       }
     },
-    template: '#search-card',
+    template: '#filter-card',
     delimiters: ['[[', ']]'],
     computed: {
       routeQuery () {
         return this.$route.query
       },
 
-      notInSearch () {
+      notInFilter () {
         const queryKeys = Object.keys(this.$route.query)
         if (queryKeys.length === 0) {
           return true
@@ -713,26 +719,26 @@
     },
 
     mounted () {
-      this.getSearchSelections('https:\/\/mikanbearer.github.io\/selections/index.json')
-      this.setSearchConditionsToData()
+      this.getFilterSelections('https:\/\/mikanbearer.github.io\/selections/index.json')
+      this.setFilterConditionsToData()
     },
 
     watch: {
       routeQuery () {
         if (this.$route.path == '/') {
-          this.setSearchConditionsToData()
+          this.setFilterConditionsToData()
         }
       }
     },
 
     methods: {
-      getSearchSelections (url) {
+      getFilterSelections (url) {
         axios.get(url).then(response => {
-          this.searchSelections = response.data.result
+          this.filterSelections = response.data.result
         })
       },
 
-      getSearchConditions () {
+      getFilterConditions () {
         var query = this.routeQuery
         const convertToArray = (value) => {
           if (Array.isArray(value)) {
@@ -744,33 +750,33 @@
           }
         }
 
-        var searchConditions = {}
+        var filterConditions = {}
 
-        searchConditions.selectedCategories = convertToArray(query.category)
-        searchConditions.selectedTags = convertToArray(query.tag)
+        filterConditions.selectedCategories = convertToArray(query.category)
+        filterConditions.selectedTags = convertToArray(query.tag)
         if (typeof query.keyword === 'string') {
-          searchConditions.keyword = query.keyword
+          filterConditions.keyword = query.keyword
         } else {
-          searchConditions.keyword = ''
+          filterConditions.keyword = null
         }
-        return searchConditions
+        return filterConditions
       },
 
-      setSearchConditionsToData () {
-        this.searchConditions = this.getSearchConditions()
+      setFilterConditionsToData () {
+        this.filterConditions = this.getFilterConditions()
       },
 
       toFilteredPosts () {
         var query = {}
 
-        if (this.searchConditions.keyword) {
-          query.keyword = this.searchConditions.keyword
+        if (this.filterConditions.keyword) {
+          query.keyword = this.filterConditions.keyword
         }
-        if (this.searchConditions.selectedCategories.length) {
-          query.category = this.searchConditions.selectedCategories
+        if (this.filterConditions.selectedCategories.length) {
+          query.category = this.filterConditions.selectedCategories
         }
-        if (this.searchConditions.selectedTags.length) {
-          query.tag = this.searchConditions.selectedTags
+        if (this.filterConditions.selectedTags.length) {
+          query.tag = this.filterConditions.selectedTags
         }
         if (this.$route.path == '/') {
           this.$router.history.push({
@@ -794,9 +800,9 @@
       },
 
       removeItem (target, item) {
-        const index = this.searchConditions[target].indexOf(item)
+        const index = this.filterConditions[target].indexOf(item)
         if (index >= 0) {
-          this.searchConditions[target].splice(index, 1)
+          this.filterConditions[target].splice(index, 1)
         }
       },
     }
@@ -1157,10 +1163,10 @@
         filteredPosts: [],
         displayPosts: [],
         resultSnackbar: false,
-        searchConditions: {
+        filterConditions: {
           selectedCategories: [],
           selectedTags: [],
-          keyword: ''
+          keyword: null
         },
         showPostList: [],
         showFooter: false
@@ -1191,7 +1197,7 @@
         })
       },
 
-      getSearchConditions () {
+      getFilterConditions () {
         var query = this.routeQuery
         const convertToArray = (value) => {
           if (Array.isArray(value)) {
@@ -1203,21 +1209,21 @@
           }
         }
 
-        var searchConditions = {}
+        var filterConditions = {}
 
-        searchConditions.selectedCategories = convertToArray(query.category)
-        searchConditions.selectedTags = convertToArray(query.tag)
+        filterConditions.selectedCategories = convertToArray(query.category)
+        filterConditions.selectedTags = convertToArray(query.tag)
         if (typeof query.keyword === 'string') {
-          searchConditions.keyword = query.keyword
+          filterConditions.keyword = query.keyword
         } else {
-          searchConditions.keyword = ''
+          filterConditions.keyword = null
         }
-        return searchConditions
+        return filterConditions
       },
 
       postsInit () {
         if (Object.keys(this.$route.query).length) {
-          this.searchPosts()
+          this.filterPosts()
         }
         else {
           this.filteredPosts = this.postList
@@ -1250,12 +1256,12 @@
         
       },
 
-      searchPosts () {
-        var searchConditions = this.getSearchConditions()
-        this.searchConditions = searchConditions
-        var keyword = searchConditions.keyword
-        var selectedTags = searchConditions.selectedTags
-        var selectedCategories = searchConditions.selectedCategories
+      filterPosts () {
+        var filterConditions = this.getFilterConditions()
+        this.filterConditions = filterConditions
+        var keyword = filterConditions.keyword
+        var selectedTags = filterConditions.selectedTags
+        var selectedCategories = filterConditions.selectedCategories
         const posts = JSON.parse(JSON.stringify(this.postList))
 
         const checkArray = (target, item) => {
@@ -1323,13 +1329,13 @@
     el: '#app',
     vuetify: new Vuetify(),
     data: {
-      searchModal: false,
+      filterModal: false,
       commentBlock: false,
       appBar: true
     },
 
     computed: {
-      notInSearch () {
+      notInFilter () {
         const queryKeys = Object.keys(this.$route.query)
         if (queryKeys.length === 0) {
           return true

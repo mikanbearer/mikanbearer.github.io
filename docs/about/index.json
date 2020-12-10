@@ -566,7 +566,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 32
+            "value": 33
           },
           {
             "name": "Deployment",
@@ -578,7 +578,7 @@
           },
           {
             "name": "Operation",
-            "value": 3
+            "value": 4
           },
           {
             "name": "Tricks",
@@ -620,7 +620,7 @@
       },
       "monthly_count": {
         "series": [
-          1,
+          2,
           9,
           8,
           15,
@@ -659,6 +659,7 @@
           "RabbitMQ",
           "scikit-learn",
           "Scrapy",
+          "Svelte",
           "Apache",
           "Cacti",
           "Celery",
@@ -676,7 +677,6 @@
           "Passport",
           "seaborn",
           "Signature-Pad",
-          "Svelte",
           "TigerVNC",
           "TypeORM",
           "uWSGI",
@@ -740,7 +740,7 @@
           },
           {
             "name": "JavaScript",
-            "value": 7
+            "value": 8
           },
           {
             "name": "Vue.js",
@@ -819,6 +819,10 @@
             "value": 2
           },
           {
+            "name": "Svelte",
+            "value": 2
+          },
+          {
             "name": "Apache",
             "value": 1
           },
@@ -884,10 +888,6 @@
           },
           {
             "name": "Signature-Pad",
-            "value": 1
-          },
-          {
-            "name": "Svelte",
             "value": 1
           },
           {

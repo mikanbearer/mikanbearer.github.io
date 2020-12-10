@@ -20,16 +20,16 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            @click.stop="searchModal = !searchModal"
+            @click.stop="filterModal = !filterModal"
             v-bind="attrs"
             v-on="on"
             icon
           >
-            <v-icon v-if="notInSearch">mdi-magnify</v-icon>
-            <v-icon v-else color="error lighten-1">mdi-magnify</v-icon>
+            <v-icon v-if="notInFilter">mdi-filter-outline</v-icon>
+            <v-icon v-else color="error lighten-1">mdi-filter</v-icon>
           </v-btn>
         </template>
-        <span>Click here to search</span>
+        <span>Filter posts by title, category and tag</span>
       </v-tooltip>
   
       <template v-slot:img="{ props }">
@@ -87,8 +87,8 @@
     </v-footer>
 
 
-    <v-dialog v-model="searchModal" max-width="600">
-      <search-card></search-card>
+    <v-dialog v-model="filterModal" max-width="600">
+      <filter-card></filter-card>
     </v-dialog>
 
   </v-app>

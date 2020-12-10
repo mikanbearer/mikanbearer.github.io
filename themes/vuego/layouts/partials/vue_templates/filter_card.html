@@ -1,26 +1,28 @@
-<script type="text/x-template" id="search-card">
+<script type="text/x-template" id="filter-card">
     <v-card color="grey darken-3">
         <v-card-title>
-            Search Posts
+            Filter Posts
         </v-card-title>
         <v-card-text>
 
             <v-combobox 
-                :search-input.sync="searchConditions.keyword"
-                :items="getItems(searchConditions.keyword, searchSelections.titles)"
+                :search-input.sync="filterConditions.keyword"
+                :items="getItems(filterConditions.keyword, filterSelections.titles)"
                 clearable
                 hide-selected
                 hide-details
-                prepend-inner-icon="mdi-text"
+                prepend-inner-icon="mdi-magnify"
                 label="Title"
                 height="42"
                 menu-props="light"
+                class="keyword-input"
             >  
             </v-combobox>
 
             <v-combobox 
-                v-model="searchConditions.selectedCategories"
-                :items="searchSelections.categories"
+                v-model="filterConditions.selectedCategories"
+                :items="filterSelections.categories"
+                chips
                 clearable
                 multiple
                 hide-selected
@@ -34,8 +36,8 @@
             </v-combobox>
 
             <v-combobox 
-                v-model="searchConditions.selectedTags"
-                :items="searchSelections.tags"
+                v-model="filterConditions.selectedTags"
+                :items="filterSelections.tags"
                 chips
                 clearable
                 multiple
@@ -64,7 +66,7 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-                :disabled="notInSearch"
+                :disabled="notInFilter"
                 color="error"
                 @click="$router.history.push('/')"
                 small
@@ -72,7 +74,7 @@
                 Clear
             </v-btn>
             <v-btn color="primary" @click="toFilteredPosts" small>
-                Search
+                Filter
             </v-btn>
         </v-card-actions>
     </v-card>
