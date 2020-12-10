@@ -77,7 +77,7 @@
         if (typeof query.keyword === 'string') {
           searchConditions.keyword = query.keyword
         } else {
-          searchConditions.keyword = ''
+          searchConditions.keyword = null
         }
         return searchConditions
       },
@@ -486,7 +486,7 @@
         searchConditions: {
           selectedCategories: [],
           selectedTags: [],
-          keyword: ''
+          keyword: null
         },
         showPostList: [],
         showFooter: false
@@ -536,7 +536,7 @@
         if (typeof query.keyword === 'string') {
           searchConditions.keyword = query.keyword
         } else {
-          searchConditions.keyword = ''
+          searchConditions.keyword = null
         }
         return searchConditions
       },
