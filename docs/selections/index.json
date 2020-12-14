@@ -235,6 +235,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -310,6 +314,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "scikit-learn新手入門之k-近鄰演算法",
       "兩種Svelte的Router練習",
       "Svelte初體驗",
       "Django整合noVNC的小練習",

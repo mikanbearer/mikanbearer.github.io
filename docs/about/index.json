@@ -538,10 +538,10 @@
           "Deployment",
           "Monitoring",
           "Operation",
+          "Machine-Learning",
           "Tricks",
           "Arista",
           "Cisco",
-          "Machine-Learning",
           "Simulation",
           "Web-Crawler",
           "未分類",
@@ -581,6 +581,10 @@
             "value": 4
           },
           {
+            "name": "Machine-Learning",
+            "value": 3
+          },
+          {
             "name": "Tricks",
             "value": 3
           },
@@ -590,10 +594,6 @@
           },
           {
             "name": "Cisco",
-            "value": 2
-          },
-          {
-            "name": "Machine-Learning",
             "value": 2
           },
           {
@@ -620,7 +620,7 @@
       },
       "monthly_count": {
         "series": [
-          2,
+          3,
           9,
           8,
           15,
@@ -649,6 +649,7 @@
           "Hugo",
           "TypeScript",
           "EVE-NG",
+          "scikit-learn",
           "Angular",
           "Ansible",
           "Echarts",
@@ -657,7 +658,6 @@
           "noVNC",
           "Pelican",
           "RabbitMQ",
-          "scikit-learn",
           "Scrapy",
           "Svelte",
           "Apache",
@@ -736,7 +736,7 @@
         "series": [
           {
             "name": "Python",
-            "value": 19
+            "value": 20
           },
           {
             "name": "JavaScript",
@@ -779,6 +779,10 @@
             "value": 3
           },
           {
+            "name": "scikit-learn",
+            "value": 3
+          },
+          {
             "name": "Angular",
             "value": 2
           },
@@ -808,10 +812,6 @@
           },
           {
             "name": "RabbitMQ",
-            "value": 2
-          },
-          {
-            "name": "scikit-learn",
             "value": 2
           },
           {

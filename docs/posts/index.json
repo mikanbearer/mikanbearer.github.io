@@ -176,6 +176,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -190,6 +193,30 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202012101535",
+        "params": {
+          "categories": [
+            "Machine Learning"
+          ],
+          "date": "2020-12-10T15:35:42+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-12-10T15:35:42+08:00",
+          "publishdate": "2020-12-10T15:35:42+08:00",
+          "tags": [
+            "Python",
+            "scikit-learn"
+          ],
+          "title": "scikit-learn新手入門之k-近鄰演算法"
+        },
+        "path": "posts/202012101535",
+        "permalink": "https://mikanbearer.github.io/posts/202012101535/index.json",
+        "summary": "\u003cp\u003e久違的機器學習，身為資料分析\u0026amp;機器學習的超級新手(略)\u003c/p\u003e\n\u003cp\u003e這次練習的一樣是scikit-learn，主題就決定是k-近鄰演算法\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 735
+      },
       {
         "kind": "page",
         "name": "202012071723",
@@ -212,7 +239,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202012071723/index.json",
         "summary": "\u003cp\u003e基於製作SPA的需求，總是會需要個routing的，但選擇之多讓人眼花撩亂…\u003c/p\u003e\n\u003cp\u003e這次嘗試使用的是\u003ca href=\"https://github.com/EmilTholin/svelte-routing\" target=\"_blank\"\u003eSvelte Routing\u003c/a\u003e與\n\u003ca href=\"https://github.com/pynnl/svelte-hash-router\" target=\"_blank\"\u003esvelte-hash-router\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 869
+        "wordcount": 886
       },
       {
         "kind": "page",
