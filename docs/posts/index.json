@@ -215,7 +215,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202012101535/index.json",
         "summary": "\u003cp\u003e久違的機器學習，身為資料分析\u0026amp;機器學習的超級新手(略)\u003c/p\u003e\n\u003cp\u003e這次練習的一樣是scikit-learn，主題就決定是k-近鄰演算法\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 735
+        "wordcount": 763
       },
       {
         "kind": "page",
@@ -816,7 +816,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009161132/index.json",
         "summary": "\u003cp\u003e身為資料分析\u0026amp;機器學習的超級新手，個人還是覺得實際操作一遍比理論更好理解，\n這次練習的是之前曾草草帶過的機械學習工具scikit-learn，主題就決定是決策樹了\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1469
+        "wordcount": 1475
       },
       {
         "kind": "page",
