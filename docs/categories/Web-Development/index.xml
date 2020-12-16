@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 07 Dec 2020 17:23:59 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Web-Development/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>兩種Svelte的Router練習</title>
-      <link>https://mikanbearer.github.io/posts/202012071723/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/12/202012071723/index.json</link>
       <pubDate>Mon, 07 Dec 2020 17:23:59 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202012071723/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/12/202012071723/index.json</guid>
       <description>&lt;p&gt;基於製作SPA的需求，總是會需要個routing的，但選擇之多讓人眼花撩亂…&lt;/p&gt;
 &lt;p&gt;這次嘗試使用的是&lt;a href=&#34;https://github.com/EmilTholin/svelte-routing&#34; target=&#34;_blank&#34;&gt;Svelte Routing&lt;/a&gt;與
 &lt;a href=&#34;https://github.com/pynnl/svelte-hash-router&#34; target=&#34;_blank&#34;&gt;svelte-hash-router&lt;/a&gt;&lt;/p&gt;</description>
@@ -20,19 +20,19 @@
     
     <item>
       <title>Svelte初體驗</title>
-      <link>https://mikanbearer.github.io/posts/202012031547/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/12/202012031547/index.json</link>
       <pubDate>Thu, 03 Dec 2020 15:47:59 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202012031547/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/12/202012031547/index.json</guid>
       <description>&lt;p&gt;這次來嘗試這個近期很有話題性的framework，相當簡潔易用且以不使用Virtual DOM聞名&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Django整合noVNC的小練習</title>
-      <link>https://mikanbearer.github.io/posts/202011220316/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/11/202011220316/index.json</link>
       <pubDate>Sun, 22 Nov 2020 03:16:02 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202011220316/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/11/202011220316/index.json</guid>
       <description>&lt;p&gt;延續前一篇的練習，這次使用Django來配合noVNC與Websockify&lt;/p&gt;</description>
     </item>
     

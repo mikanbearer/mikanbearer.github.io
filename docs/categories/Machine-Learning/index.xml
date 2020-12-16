@@ -8,17 +8,17 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 10 Dec 2020 15:35:42 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Machine-Learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>scikit-learn新手入門之k-近鄰演算法</title>
-      <link>https://mikanbearer.github.io/posts/202012101535/index.json</link>
+      <title>【scikit-learn練習】使用k-NN進行分類預測</title>
+      <link>https://mikanbearer.github.io/posts/2020/12/202012101535/index.json</link>
       <pubDate>Thu, 10 Dec 2020 15:35:42 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202012101535/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/12/202012101535/index.json</guid>
       <description>&lt;p&gt;久違的機器學習，身為資料分析&amp;amp;機器學習的超級新手(略)&lt;/p&gt;
-&lt;p&gt;這次練習的一樣是scikit-learn，主題就決定是k-近鄰演算法&lt;/p&gt;</description>
+&lt;p&gt;這次練習的一樣是scikit-learn，主題就決定是k-NN，也就是k-近鄰演算法&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>scikit-learn新手入門之決策樹篇</title>
+      <title>【scikit-learn練習】使用決策樹進行分類預測</title>
       <link>https://mikanbearer.github.io/posts/2020/09/202009161132/index.json</link>
       <pubDate>Wed, 16 Sep 2020 11:32:49 +0800</pubDate>
       

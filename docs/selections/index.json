@@ -239,6 +239,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -285,6 +289,7 @@
       "Jieba",
       "jQuery",
       "LibreNMS",
+      "Lua",
       "Matplotlib",
       "Moment.js",
       "Nagios",
@@ -292,6 +297,7 @@
       "Nginx",
       "Node.js",
       "noVNC",
+      "OpenResty",
       "pandas",
       "Passport",
       "Pelican",
@@ -314,7 +320,8 @@
       "ZTPServer"
     ],
     "titles": [
-      "scikit-learn新手入門之k-近鄰演算法",
+      "OpenResty初體驗",
+      "【scikit-learn練習】使用k-NN進行分類預測",
       "兩種Svelte的Router練習",
       "Svelte初體驗",
       "Django整合noVNC的小練習",
@@ -339,7 +346,7 @@
       "讓Hugo輸出JSON格式",
       "使用Angular嘗試製作SPA登入畫面",
       "從今天開始學Angular",
-      "scikit-learn新手入門之決策樹篇",
+      "【scikit-learn練習】使用決策樹進行分類預測",
       "【Flask入門練習-CRUD篇4】使用Flask-WTF導入CSRF Protection",
       "【Flask入門練習-CRUD篇3】使用Flask-Login實作登入畫面",
       "【Flask入門練習-CRUD篇2】製作簡單的CRUD",

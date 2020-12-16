@@ -179,6 +179,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -195,6 +198,31 @@
     "pages": [
       {
         "kind": "page",
+        "name": "202012161128",
+        "params": {
+          "categories": [
+            "Operation"
+          ],
+          "date": "2020-12-16T11:28:38+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-12-16T11:28:38+08:00",
+          "publishdate": "2020-12-16T11:28:38+08:00",
+          "tags": [
+            "Nginx",
+            "Lua",
+            "OpenResty"
+          ],
+          "title": "OpenResty初體驗"
+        },
+        "path": "posts/202012161128",
+        "permalink": "https://mikanbearer.github.io/posts/202012161128/index.json",
+        "summary": "\u003cp\u003e這次練習的OpenResty是基於Nginx與Lua的Web Platform，不太熟悉所以先摸摸看再說\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 608
+      },
+      {
+        "kind": "page",
         "name": "202012101535",
         "params": {
           "categories": [
@@ -209,13 +237,13 @@
             "Python",
             "scikit-learn"
           ],
-          "title": "scikit-learn新手入門之k-近鄰演算法"
+          "title": "【scikit-learn練習】使用k-NN進行分類預測"
         },
-        "path": "posts/202012101535",
-        "permalink": "https://mikanbearer.github.io/posts/202012101535/index.json",
-        "summary": "\u003cp\u003e久違的機器學習，身為資料分析\u0026amp;機器學習的超級新手(略)\u003c/p\u003e\n\u003cp\u003e這次練習的一樣是scikit-learn，主題就決定是k-近鄰演算法\u003c/p\u003e",
+        "path": "posts/2020/12/202012101535",
+        "permalink": "https://mikanbearer.github.io/posts/2020/12/202012101535/index.json",
+        "summary": "\u003cp\u003e久違的機器學習，身為資料分析\u0026amp;機器學習的超級新手(略)\u003c/p\u003e\n\u003cp\u003e這次練習的一樣是scikit-learn，主題就決定是k-NN，也就是k-近鄰演算法\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 763
+        "wordcount": 772
       },
       {
         "kind": "page",
@@ -235,8 +263,8 @@
           ],
           "title": "兩種Svelte的Router練習"
         },
-        "path": "posts/202012071723",
-        "permalink": "https://mikanbearer.github.io/posts/202012071723/index.json",
+        "path": "posts/2020/12/202012071723",
+        "permalink": "https://mikanbearer.github.io/posts/2020/12/202012071723/index.json",
         "summary": "\u003cp\u003e基於製作SPA的需求，總是會需要個routing的，但選擇之多讓人眼花撩亂…\u003c/p\u003e\n\u003cp\u003e這次嘗試使用的是\u003ca href=\"https://github.com/EmilTholin/svelte-routing\" target=\"_blank\"\u003eSvelte Routing\u003c/a\u003e與\n\u003ca href=\"https://github.com/pynnl/svelte-hash-router\" target=\"_blank\"\u003esvelte-hash-router\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
         "wordcount": 886
@@ -259,8 +287,8 @@
           ],
           "title": "Svelte初體驗"
         },
-        "path": "posts/202012031547",
-        "permalink": "https://mikanbearer.github.io/posts/202012031547/index.json",
+        "path": "posts/2020/12/202012031547",
+        "permalink": "https://mikanbearer.github.io/posts/2020/12/202012031547/index.json",
         "summary": "\u003cp\u003e這次來嘗試這個近期很有話題性的framework，相當簡潔易用且以不使用Virtual DOM聞名\u003c/p\u003e",
         "type": "posts",
         "wordcount": 879
@@ -285,8 +313,8 @@
           ],
           "title": "Django整合noVNC的小練習"
         },
-        "path": "posts/202011220316",
-        "permalink": "https://mikanbearer.github.io/posts/202011220316/index.json",
+        "path": "posts/2020/11/202011220316",
+        "permalink": "https://mikanbearer.github.io/posts/2020/11/202011220316/index.json",
         "summary": "\u003cp\u003e延續前一篇的練習，這次使用Django來配合noVNC與Websockify\u003c/p\u003e",
         "type": "posts",
         "wordcount": 1849
@@ -810,13 +838,13 @@
             "Python",
             "scikit-learn"
           ],
-          "title": "scikit-learn新手入門之決策樹篇"
+          "title": "【scikit-learn練習】使用決策樹進行分類預測"
         },
         "path": "posts/2020/09/202009161132",
         "permalink": "https://mikanbearer.github.io/posts/2020/09/202009161132/index.json",
         "summary": "\u003cp\u003e身為資料分析\u0026amp;機器學習的超級新手，個人還是覺得實際操作一遍比理論更好理解，\n這次練習的是之前曾草草帶過的機械學習工具scikit-learn，主題就決定是決策樹了\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1475
+        "wordcount": 1488
       },
       {
         "kind": "page",

@@ -97,6 +97,10 @@
         
             
         
+            
+        
+            
+        
         
         
             
@@ -191,7 +195,19 @@
         
             
         
+            
         
+            
+        
+        
+        
+            
+                
+            
+        
+            
+                
+            
         
             
                 
@@ -578,7 +594,7 @@
           },
           {
             "name": "Operation",
-            "value": 4
+            "value": 5
           },
           {
             "name": "Machine-Learning",
@@ -620,7 +636,7 @@
       },
       "monthly_count": {
         "series": [
-          3,
+          4,
           9,
           8,
           15,
@@ -649,12 +665,12 @@
           "Hugo",
           "TypeScript",
           "EVE-NG",
+          "Nginx",
           "scikit-learn",
           "Angular",
           "Ansible",
           "Echarts",
           "NestJS",
-          "Nginx",
           "noVNC",
           "Pelican",
           "RabbitMQ",
@@ -670,9 +686,11 @@
           "Jieba",
           "jQuery",
           "LibreNMS",
+          "Lua",
           "Matplotlib",
           "Moment.js",
           "Nagios",
+          "OpenResty",
           "pandas",
           "Passport",
           "seaborn",
@@ -704,12 +722,14 @@
           "JavaScript": true,
           "Jieba": false,
           "LibreNMS": false,
+          "Lua": false,
           "Matplotlib": false,
           "Moment.js": false,
           "Nagios": false,
           "NestJS": false,
           "Nginx": false,
           "Node.js": true,
+          "OpenResty": false,
           "Passport": false,
           "Pelican": false,
           "Prometheus": true,
@@ -779,6 +799,10 @@
             "value": 3
           },
           {
+            "name": "Nginx",
+            "value": 3
+          },
+          {
             "name": "scikit-learn",
             "value": 3
           },
@@ -796,10 +820,6 @@
           },
           {
             "name": "NestJS",
-            "value": 2
-          },
-          {
-            "name": "Nginx",
             "value": 2
           },
           {
@@ -863,6 +883,10 @@
             "value": 1
           },
           {
+            "name": "Lua",
+            "value": 1
+          },
+          {
             "name": "Matplotlib",
             "value": 1
           },
@@ -872,6 +896,10 @@
           },
           {
             "name": "Nagios",
+            "value": 1
+          },
+          {
+            "name": "OpenResty",
             "value": 1
           },
           {
