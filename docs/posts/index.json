@@ -182,6 +182,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -196,6 +199,30 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202012211136",
+        "params": {
+          "categories": [
+            "Web Development"
+          ],
+          "date": "2020-12-21T11:36:22+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-12-21T11:36:22+08:00",
+          "publishdate": "2020-12-21T11:36:22+08:00",
+          "tags": [
+            "Django",
+            "Python"
+          ],
+          "title": "在Forms中調用request"
+        },
+        "path": "posts/202012211136",
+        "permalink": "https://mikanbearer.github.io/posts/202012211136/index.json",
+        "summary": "\u003cp\u003e\u003ca href=\"https://stackoverflow.com/questions/8841502/how-to-use-the-request-in-a-modelform-in-django\" target=\"_blank\"\u003e這裡\u003c/a\u003e看到的，覺得是不錯的方法，怕忘記所以筆記一下\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 315
+      },
       {
         "kind": "page",
         "name": "202012161128",

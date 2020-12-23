@@ -6,7 +6,16 @@
     <description>Recent content in Python on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Dec 2020 15:35:42 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Dec 2020 11:36:22 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Forms中調用request</title>
+      <link>https://mikanbearer.github.io/posts/202012211136/index.json</link>
+      <pubDate>Mon, 21 Dec 2020 11:36:22 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202012211136/index.json</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/8841502/how-to-use-the-request-in-a-modelform-in-django&#34; target=&#34;_blank&#34;&gt;這裡&lt;/a&gt;看到的，覺得是不錯的方法，怕忘記所以筆記一下&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>【scikit-learn練習】使用k-NN進行分類預測</title>
       <link>https://mikanbearer.github.io/posts/2020/12/202012101535/index.json</link>

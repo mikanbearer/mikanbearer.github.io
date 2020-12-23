@@ -582,7 +582,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 33
+            "value": 34
           },
           {
             "name": "Deployment",
@@ -636,7 +636,7 @@
       },
       "monthly_count": {
         "series": [
-          4,
+          5,
           9,
           8,
           15,
@@ -656,8 +656,8 @@
         "legend": [
           "Python",
           "JavaScript",
-          "Vue.js",
           "Django",
+          "Vue.js",
           "Docker",
           "Flask",
           "Node.js",
@@ -756,19 +756,19 @@
         "series": [
           {
             "name": "Python",
-            "value": 20
+            "value": 21
           },
           {
             "name": "JavaScript",
             "value": 8
           },
           {
-            "name": "Vue.js",
+            "name": "Django",
             "value": 7
           },
           {
-            "name": "Django",
-            "value": 6
+            "name": "Vue.js",
+            "value": 7
           },
           {
             "name": "Docker",
@@ -949,7 +949,7 @@
         ]
       }
     },
-    "content": "\u003cp\u003e垃圾堆中的一小袋垃圾，努力讓自己變得可用\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eSkills：\u003c/strong\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eServer-side Web Framework\u003c/strong\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eDjango\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eFlask\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eNestJS\u003c/strong\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eClient-side Web Framework\u003c/strong\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eVue.js\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eAngular\u003c/strong\u003e\n\u0026hellip;etc\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n",
+    "content": "\u003cp\u003e一坨無力的渣渣\u003c/p\u003e\n",
     "kind": "section",
     "params": {
       "draft": false,
@@ -957,6 +957,6 @@
     },
     "permalink": "https://mikanbearer.github.io/about/index.json",
     "type": "about",
-    "wordcount": 14
+    "wordcount": 1
   }
 }
