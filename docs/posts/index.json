@@ -185,6 +185,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -247,6 +250,30 @@
         "summary": "\u003cp\u003e這次練習的OpenResty是基於Nginx與Lua的Web Platform，不太熟悉所以先摸摸看再說\u003c/p\u003e",
         "type": "posts",
         "wordcount": 608
+      },
+      {
+        "kind": "page",
+        "name": "202012151044",
+        "params": {
+          "categories": [
+            "Machine Learning"
+          ],
+          "date": "2020-12-15T10:44:10+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2020-12-15T10:44:10+08:00",
+          "publishdate": "2020-12-15T10:44:10+08:00",
+          "tags": [
+            "Python",
+            "scikit-learn"
+          ],
+          "title": "【scikit-learn練習】線性回歸"
+        },
+        "path": "posts/202012151044",
+        "permalink": "https://mikanbearer.github.io/posts/202012151044/index.json",
+        "summary": "\u003cp\u003e一樣多來些練習，這次是線性回歸(Linear Regression)\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 776
       },
       {
         "kind": "page",

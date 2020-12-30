@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>【scikit-learn練習】線性回歸</title>
+      <link>https://mikanbearer.github.io/posts/202012151044/index.json</link>
+      <pubDate>Tue, 15 Dec 2020 10:44:10 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202012151044/index.json</guid>
+      <description>&lt;p&gt;一樣多來些練習，這次是線性回歸(Linear Regression)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>【scikit-learn練習】使用k-NN進行分類預測</title>
       <link>https://mikanbearer.github.io/posts/2020/12/202012101535/index.json</link>
       <pubDate>Thu, 10 Dec 2020 15:35:42 +0800</pubDate>

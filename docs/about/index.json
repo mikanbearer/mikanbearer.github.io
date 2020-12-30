@@ -598,7 +598,7 @@
           },
           {
             "name": "Machine-Learning",
-            "value": 3
+            "value": 4
           },
           {
             "name": "Tricks",
@@ -636,7 +636,7 @@
       },
       "monthly_count": {
         "series": [
-          5,
+          6,
           9,
           8,
           15,
@@ -663,10 +663,10 @@
           "Node.js",
           "Prometheus",
           "Hugo",
+          "scikit-learn",
           "TypeScript",
           "EVE-NG",
           "Nginx",
-          "scikit-learn",
           "Angular",
           "Ansible",
           "Echarts",
@@ -740,7 +740,7 @@
           "Svelte": false,
           "TigerVNC": false,
           "TypeORM": false,
-          "TypeScript": true,
+          "TypeScript": false,
           "VBA": false,
           "VBScript": false,
           "Vue.js": true,
@@ -748,7 +748,7 @@
           "jQuery": false,
           "noVNC": false,
           "pandas": false,
-          "scikit-learn": false,
+          "scikit-learn": true,
           "seaborn": false,
           "uWSGI": false,
           "vEOS": false
@@ -756,7 +756,7 @@
         "series": [
           {
             "name": "Python",
-            "value": 21
+            "value": 22
           },
           {
             "name": "JavaScript",
@@ -791,6 +791,10 @@
             "value": 4
           },
           {
+            "name": "scikit-learn",
+            "value": 4
+          },
+          {
             "name": "TypeScript",
             "value": 4
           },
@@ -800,10 +804,6 @@
           },
           {
             "name": "Nginx",
-            "value": 3
-          },
-          {
-            "name": "scikit-learn",
             "value": 3
           },
           {

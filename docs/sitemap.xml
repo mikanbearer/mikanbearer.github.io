@@ -74,7 +74,22 @@
   </url>
   
   <url>
+    <loc>https://mikanbearer.github.io/categories/Machine-Learning/</loc>
+    <lastmod>2020-12-15T10:44:10+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mikanbearer.github.io/works/remote_manager/index.json</loc>
+    <lastmod>2020-12-15T10:44:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/scikit-learn/</loc>
+    <lastmod>2020-12-15T10:44:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/posts/202012151044/index.json</loc>
     <lastmod>2020-12-15T10:44:10+08:00</lastmod>
   </url>
   
@@ -86,16 +101,6 @@
   <url>
     <loc>https://mikanbearer.github.io/works/hugo-vue-mix/index.json</loc>
     <lastmod>2020-12-15T10:42:10+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/categories/Machine-Learning/</loc>
-    <lastmod>2020-12-10T15:35:42+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/tags/scikit-learn/</loc>
-    <lastmod>2020-12-10T15:35:42+08:00</lastmod>
   </url>
   
   <url>

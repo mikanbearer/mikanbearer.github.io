@@ -247,6 +247,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -326,6 +330,7 @@
     "titles": [
       "在Forms中調用request",
       "OpenResty初體驗",
+      "【scikit-learn練習】線性回歸",
       "【scikit-learn練習】使用k-NN進行分類預測",
       "兩種Svelte的Router練習",
       "Svelte初體驗",
