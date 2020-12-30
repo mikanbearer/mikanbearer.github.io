@@ -217,8 +217,8 @@
           ],
           "title": "在Forms中調用request"
         },
-        "path": "posts/202012211136",
-        "permalink": "https://mikanbearer.github.io/posts/202012211136/index.json",
+        "path": "posts/2020/12/202012211136",
+        "permalink": "https://mikanbearer.github.io/posts/2020/12/202012211136/index.json",
         "summary": "\u003cp\u003e\u003ca href=\"https://stackoverflow.com/questions/8841502/how-to-use-the-request-in-a-modelform-in-django\" target=\"_blank\"\u003e這裡\u003c/a\u003e看到的，覺得是不錯的方法，怕忘記所以筆記一下\u003c/p\u003e",
         "type": "posts",
         "wordcount": 315
@@ -242,8 +242,8 @@
           ],
           "title": "OpenResty初體驗"
         },
-        "path": "posts/202012161128",
-        "permalink": "https://mikanbearer.github.io/posts/202012161128/index.json",
+        "path": "posts/2020/12/202012161128",
+        "permalink": "https://mikanbearer.github.io/posts/2020/12/202012161128/index.json",
         "summary": "\u003cp\u003e這次練習的OpenResty是基於Nginx與Lua的Web Platform，不太熟悉所以先摸摸看再說\u003c/p\u003e",
         "type": "posts",
         "wordcount": 608
@@ -270,7 +270,7 @@
         "permalink": "https://mikanbearer.github.io/posts/2020/12/202012101535/index.json",
         "summary": "\u003cp\u003e久違的機器學習，身為資料分析\u0026amp;機器學習的超級新手(略)\u003c/p\u003e\n\u003cp\u003e這次練習的一樣是scikit-learn，主題就決定是k-NN，也就是k-近鄰演算法\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 772
+        "wordcount": 776
       },
       {
         "kind": "page",
@@ -338,13 +338,13 @@
             "noVNC",
             "Docker"
           ],
-          "title": "Django整合noVNC的小練習"
+          "title": "整合noVNC至Django template的小練習"
         },
         "path": "posts/2020/11/202011220316",
         "permalink": "https://mikanbearer.github.io/posts/2020/11/202011220316/index.json",
-        "summary": "\u003cp\u003e延續前一篇的練習，這次使用Django來配合noVNC與Websockify\u003c/p\u003e",
+        "summary": "\u003cp\u003e延續前一篇的練習，這次使用Django來配合noVNC與Websockify，亂玩一通來幫助記憶\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1849
+        "wordcount": 1846
       },
       {
         "kind": "page",

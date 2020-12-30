@@ -33,7 +33,7 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/posts/202012211136/index.json</loc>
+    <loc>https://mikanbearer.github.io/posts/2020/12/202012211136/index.json</loc>
     <lastmod>2020-12-21T11:36:22+08:00</lastmod>
   </url>
   
@@ -58,7 +58,7 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/posts/202012161128/index.json</loc>
+    <loc>https://mikanbearer.github.io/posts/2020/12/202012161128/index.json</loc>
     <lastmod>2020-12-16T11:28:38+08:00</lastmod>
   </url>
   
@@ -124,17 +124,17 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/posts/2020/11/202011220316/index.json</loc>
-    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mikanbearer.github.io/tags/Docker/</loc>
     <lastmod>2020-11-22T03:16:02+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://mikanbearer.github.io/tags/noVNC/</loc>
+    <lastmod>2020-11-22T03:16:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/posts/2020/11/202011220316/index.json</loc>
     <lastmod>2020-11-22T03:16:02+08:00</lastmod>
   </url>
   

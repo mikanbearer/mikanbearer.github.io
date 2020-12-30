@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 21 Dec 2020 11:36:22 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在Forms中調用request</title>
-      <link>https://mikanbearer.github.io/posts/202012211136/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2020/12/202012211136/index.json</link>
       <pubDate>Mon, 21 Dec 2020 11:36:22 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202012211136/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2020/12/202012211136/index.json</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/8841502/how-to-use-the-request-in-a-modelform-in-django&#34; target=&#34;_blank&#34;&gt;這裡&lt;/a&gt;看到的，覺得是不錯的方法，怕忘記所以筆記一下&lt;/p&gt;</description>
     </item>
     
@@ -27,12 +27,12 @@
     </item>
     
     <item>
-      <title>Django整合noVNC的小練習</title>
+      <title>整合noVNC至Django template的小練習</title>
       <link>https://mikanbearer.github.io/posts/2020/11/202011220316/index.json</link>
       <pubDate>Sun, 22 Nov 2020 03:16:02 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/11/202011220316/index.json</guid>
-      <description>&lt;p&gt;延續前一篇的練習，這次使用Django來配合noVNC與Websockify&lt;/p&gt;</description>
+      <description>&lt;p&gt;延續前一篇的練習，這次使用Django來配合noVNC與Websockify，亂玩一通來幫助記憶&lt;/p&gt;</description>
     </item>
     
     <item>
