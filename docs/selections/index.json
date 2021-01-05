@@ -251,6 +251,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -271,6 +275,7 @@
       "Monitoring",
       "Operation",
       "Provisioning",
+      "RPA",
       "Simulation",
       "Tricks",
       "Web Crawler",
@@ -303,6 +308,7 @@
       "Nagios",
       "NestJS",
       "Nginx",
+      "Node-RED",
       "Node.js",
       "noVNC",
       "OpenResty",
@@ -323,12 +329,14 @@
       "uWSGI",
       "VBA",
       "VBScript",
+      "vCenter",
       "vEOS",
       "Vue.js",
       "ZTPServer"
     ],
     "titles": [
-      "在Forms中調用request",
+      "使用Node-RED操作vCenter API",
+      "在Django Forms調用request",
       "OpenResty初體驗",
       "【scikit-learn練習】線性回歸",
       "【scikit-learn練習】使用k-NN進行分類預測",

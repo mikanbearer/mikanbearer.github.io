@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node-RED on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/Node-RED/</link>
+    <description>Recent content in Node-RED on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Jan 2021 15:06:04 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Node-RED/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Node-RED操作vCenter API</title>
+      <link>https://mikanbearer.github.io/posts/202101041506/index.json</link>
+      <pubDate>Mon, 04 Jan 2021 15:06:04 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202101041506/index.json</guid>
+      <description>&lt;p&gt;這次玩的&lt;a href=&#34;https://nodered.org/&#34; target=&#34;_blank&#34;&gt;Node-RED&lt;/a&gt;是一款執行於Node.js環境的Flow-based development tool，也就是一短low-code的工具，能使用流程圖的方式操作並達到各式各樣的效果。&lt;/p&gt;
+&lt;p&gt;這次嘗試是配合其他REST API，主要練習的部分則是使用Node-RED來調整http request&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

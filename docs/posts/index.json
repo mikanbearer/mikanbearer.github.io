@@ -188,6 +188,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -204,6 +207,30 @@
     "pages": [
       {
         "kind": "page",
+        "name": "202101041506",
+        "params": {
+          "categories": [
+            "RPA"
+          ],
+          "date": "2021-01-04T15:06:04+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-01-04T15:06:04+08:00",
+          "publishdate": "2021-01-04T15:06:04+08:00",
+          "tags": [
+            "Node-RED",
+            "vCenter"
+          ],
+          "title": "使用Node-RED操作vCenter API"
+        },
+        "path": "posts/202101041506",
+        "permalink": "https://mikanbearer.github.io/posts/202101041506/index.json",
+        "summary": "\u003cp\u003e這次玩的\u003ca href=\"https://nodered.org/\" target=\"_blank\"\u003eNode-RED\u003c/a\u003e是一款執行於Node.js環境的Flow-based development tool，也就是一短low-code的工具，能使用流程圖的方式操作並達到各式各樣的效果。\u003c/p\u003e\n\u003cp\u003e這次嘗試是配合其他REST API，主要練習的部分則是使用Node-RED來調整http request\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 1424
+      },
+      {
+        "kind": "page",
         "name": "202012211136",
         "params": {
           "categories": [
@@ -218,7 +245,7 @@
             "Django",
             "Python"
           ],
-          "title": "在Forms中調用request"
+          "title": "在Django Forms調用request"
         },
         "path": "posts/2020/12/202012211136",
         "permalink": "https://mikanbearer.github.io/posts/2020/12/202012211136/index.json",
@@ -269,8 +296,8 @@
           ],
           "title": "【scikit-learn練習】線性回歸"
         },
-        "path": "posts/202012151044",
-        "permalink": "https://mikanbearer.github.io/posts/202012151044/index.json",
+        "path": "posts/2020/12/202012151044",
+        "permalink": "https://mikanbearer.github.io/posts/2020/12/202012151044/index.json",
         "summary": "\u003cp\u003e一樣多來些練習，這次是線性回歸(Linear Regression)\u003c/p\u003e",
         "type": "posts",
         "wordcount": 776

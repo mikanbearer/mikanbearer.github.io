@@ -101,7 +101,15 @@
         
             
         
+            
         
+            
+        
+        
+        
+            
+        
+            
         
             
         
@@ -336,6 +344,134 @@
             
                 
             
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+        
+
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        
         
             
                 
@@ -411,117 +547,9 @@
         
             
         
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
         
         
             
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-        
-
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        
         
             
         
@@ -562,7 +590,8 @@
           "Web-Crawler",
           "未分類",
           "Data-Science",
-          "Provisioning"
+          "Provisioning",
+          "RPA"
         ],
         "selected": {
           "Arista": true,
@@ -573,6 +602,7 @@
           "Monitoring": true,
           "Operation": true,
           "Provisioning": false,
+          "RPA": false,
           "Simulation": true,
           "Tricks": true,
           "Web-Crawler": true,
@@ -631,11 +661,16 @@
           {
             "name": "Provisioning",
             "value": 1
+          },
+          {
+            "name": "RPA",
+            "value": 1
           }
         ]
       },
       "monthly_count": {
         "series": [
+          1,
           6,
           9,
           8,
@@ -644,6 +679,7 @@
           12
         ],
         "x": [
+          "2021-01",
           "2020-12",
           "2020-11",
           "2020-10",
@@ -690,6 +726,7 @@
           "Matplotlib",
           "Moment.js",
           "Nagios",
+          "Node-RED",
           "OpenResty",
           "pandas",
           "Passport",
@@ -700,6 +737,7 @@
           "uWSGI",
           "VBA",
           "VBScript",
+          "vCenter",
           "vEOS",
           "ZTPServer"
         ],
@@ -728,6 +766,7 @@
           "Nagios": false,
           "NestJS": false,
           "Nginx": false,
+          "Node-RED": false,
           "Node.js": true,
           "OpenResty": false,
           "Passport": false,
@@ -751,6 +790,7 @@
           "scikit-learn": true,
           "seaborn": false,
           "uWSGI": false,
+          "vCenter": false,
           "vEOS": false
         },
         "series": [
@@ -899,6 +939,10 @@
             "value": 1
           },
           {
+            "name": "Node-RED",
+            "value": 1
+          },
+          {
             "name": "OpenResty",
             "value": 1
           },
@@ -936,6 +980,10 @@
           },
           {
             "name": "VBScript",
+            "value": 1
+          },
+          {
+            "name": "vCenter",
             "value": 1
           },
           {
