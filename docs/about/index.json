@@ -105,6 +105,8 @@
         
             
         
+            
+        
         
         
             
@@ -207,7 +209,13 @@
         
             
         
+            
         
+        
+        
+            
+                
+            
         
             
                 
@@ -586,12 +594,12 @@
           "Tricks",
           "Arista",
           "Cisco",
+          "RPA",
           "Simulation",
           "Web-Crawler",
           "未分類",
           "Data-Science",
-          "Provisioning",
-          "RPA"
+          "Provisioning"
         ],
         "selected": {
           "Arista": true,
@@ -602,10 +610,10 @@
           "Monitoring": true,
           "Operation": true,
           "Provisioning": false,
-          "RPA": false,
+          "RPA": true,
           "Simulation": true,
           "Tricks": true,
-          "Web-Crawler": true,
+          "Web-Crawler": false,
           "Web-Development": true,
           "未分類": false
         },
@@ -643,6 +651,10 @@
             "value": 2
           },
           {
+            "name": "RPA",
+            "value": 2
+          },
+          {
             "name": "Simulation",
             "value": 2
           },
@@ -661,16 +673,12 @@
           {
             "name": "Provisioning",
             "value": 1
-          },
-          {
-            "name": "RPA",
-            "value": 1
           }
         ]
       },
       "monthly_count": {
         "series": [
-          1,
+          2,
           6,
           9,
           8,
@@ -707,6 +715,7 @@
           "Ansible",
           "Echarts",
           "NestJS",
+          "Node-RED",
           "noVNC",
           "Pelican",
           "RabbitMQ",
@@ -722,11 +731,11 @@
           "Jieba",
           "jQuery",
           "LibreNMS",
+          "LINE",
           "Lua",
           "Matplotlib",
           "Moment.js",
           "Nagios",
-          "Node-RED",
           "OpenResty",
           "pandas",
           "Passport",
@@ -759,6 +768,7 @@
           "IOS": false,
           "JavaScript": true,
           "Jieba": false,
+          "LINE": false,
           "LibreNMS": false,
           "Lua": false,
           "Matplotlib": false,
@@ -863,6 +873,10 @@
             "value": 2
           },
           {
+            "name": "Node-RED",
+            "value": 2
+          },
+          {
             "name": "noVNC",
             "value": 2
           },
@@ -923,6 +937,10 @@
             "value": 1
           },
           {
+            "name": "LINE",
+            "value": 1
+          },
+          {
             "name": "Lua",
             "value": 1
           },
@@ -936,10 +954,6 @@
           },
           {
             "name": "Nagios",
-            "value": 1
-          },
-          {
-            "name": "Node-RED",
             "value": 1
           },
           {

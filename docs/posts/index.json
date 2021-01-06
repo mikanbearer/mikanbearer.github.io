@@ -191,6 +191,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -205,6 +208,30 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202101051417",
+        "params": {
+          "categories": [
+            "RPA"
+          ],
+          "date": "2021-01-05T14:17:14+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-01-05T14:17:14+08:00",
+          "publishdate": "2021-01-05T14:17:14+08:00",
+          "tags": [
+            "Node-RED",
+            "LINE"
+          ],
+          "title": "使用Node-RED從網路抓資料並由LINE發送"
+        },
+        "path": "posts/202101051417",
+        "permalink": "https://mikanbearer.github.io/posts/202101051417/index.json",
+        "summary": "\u003cp\u003e這次練習從網路上抓資料來處理，並使用LINE Messaging API來發推送訊息，畢竟這方式不但比mail簡單得多，也更即時更實用\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 1353
+      },
       {
         "kind": "page",
         "name": "202101041506",
@@ -227,7 +254,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202101041506/index.json",
         "summary": "\u003cp\u003e這次玩的\u003ca href=\"https://nodered.org/\" target=\"_blank\"\u003eNode-RED\u003c/a\u003e是一款執行於Node.js環境的Flow-based development tool，也就是一短low-code的工具，能使用流程圖的方式操作並達到各式各樣的效果。\u003c/p\u003e\n\u003cp\u003e這次嘗試是配合其他REST API，主要練習的部分則是使用Node-RED來調整http request\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1424
+        "wordcount": 1421
       },
       {
         "kind": "page",

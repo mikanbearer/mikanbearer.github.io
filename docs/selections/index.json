@@ -255,6 +255,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -302,6 +306,7 @@
       "Jieba",
       "jQuery",
       "LibreNMS",
+      "LINE",
       "Lua",
       "Matplotlib",
       "Moment.js",
@@ -335,6 +340,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "使用Node-RED從網路抓資料並由LINE發送",
       "使用Node-RED操作vCenter API",
       "在Django Forms調用request",
       "OpenResty初體驗",

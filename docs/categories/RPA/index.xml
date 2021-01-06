@@ -6,7 +6,16 @@
     <description>Recent content in RPA on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Jan 2021 15:06:04 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/RPA/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 14:17:14 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/RPA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Node-RED從網路抓資料並由LINE發送</title>
+      <link>https://mikanbearer.github.io/posts/202101051417/index.json</link>
+      <pubDate>Tue, 05 Jan 2021 14:17:14 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202101051417/index.json</guid>
+      <description>&lt;p&gt;這次練習從網路上抓資料來處理，並使用LINE Messaging API來發推送訊息，畢竟這方式不但比mail簡單得多，也更即時更實用&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>使用Node-RED操作vCenter API</title>
       <link>https://mikanbearer.github.io/posts/202101041506/index.json</link>
