@@ -34,38 +34,42 @@
 
     {{ else if (eq .Type "about") }}
         {{ $legend := slice }}
-        {{ range .Site.Taxonomies.tags.ByCount }}
-            {{ $legend = $legend | append .Name }}
-        {{ end }}
         {{ $series := slice }}
-        {{ range .Site.Taxonomies.tags.ByCount }}
-            {{ $series = $series | append (dict "name" .Name "value" .Count) }}
-        {{ end }}
         {{ $selected := dict }}
+        {{ $count := 0 }}
         {{ range $i, $e := .Site.Taxonomies.tags.ByCount }}
-            {{ if (ge $i 10) }}
-                {{ $selected = $selected | merge (dict $e.Name false) }}
-            {{ else }}
+            {{ if (lt $i 10) }}
+                {{ $legend = $legend | append $e.Name }}
+                {{ $series = $series | append (dict "name" .Name "value" .Count) }}
                 {{ $selected = $selected | merge (dict $e.Name true) }}
+            {{ else }}
+                {{ $count = add $count $e.Count }}
             {{ end }}
+        {{ end }}
+        {{ if (ne $count 0) }}
+            {{ $legend = $legend | append "Others" }}
+            {{ $series = $series | append (dict "name" "Others" "value" $count) }}
+            {{ $selected = $selected | merge (dict "Others" true) }}
         {{ end }}
         {{ $tags_data := dict "legend" $legend "series" $series "selected" $selected }}
 
         {{ $legend := slice }}
-        {{ range .Site.Taxonomies.categories.ByCount }}
-            {{ $legend = $legend | append .Name }}
-        {{ end }}
         {{ $series := slice }}
-        {{ range .Site.Taxonomies.categories.ByCount }}
-            {{ $series = $series | append (dict "name" .Name "value" .Count) }}
-        {{ end }}
         {{ $selected := dict }}
+        {{ $count := 0 }}
         {{ range $i, $e := .Site.Taxonomies.categories.ByCount }}
-            {{ if (ge $i 10) }}
-                {{ $selected = $selected | merge (dict $e.Name false) }}
-            {{ else }}
+            {{ if (lt $i 10) }}
+                {{ $legend = $legend | append $e.Name }}
+                {{ $series = $series | append (dict "name" .Name "value" .Count) }}
                 {{ $selected = $selected | merge (dict $e.Name true) }}
+            {{ else }}
+                {{ $count = add $count $e.Count }}
             {{ end }}
+        {{ end }}
+        {{ if (ne $count 0) }}
+            {{ $legend = $legend | append "Others" }}
+            {{ $series = $series | append (dict "name" "Others" "value" $count) }}
+            {{ $selected = $selected | merge (dict "Others" true) }}
         {{ end }}
         {{ $categories_data := dict "legend" $legend "series" $series "selected" $selected }}
 

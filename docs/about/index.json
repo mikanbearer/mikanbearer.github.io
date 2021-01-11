@@ -5,215 +5,66 @@
     
         
         
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
         
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
         
-            
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
-        
-        
         
             
+                
+                
                 
             
         
@@ -381,107 +232,75 @@
                 
             
         
-            
-                
-            
         
             
-                
             
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
             
         
         
 
         
         
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
         
         
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
             
-        
+                
+                
+                
             
         
-        
+            
+                
+                
+                
+            
         
             
+                
+                
+                
+            
+        
+            
+                
+                
                 
             
         
@@ -501,40 +320,9 @@
                 
             
         
-            
-                
-            
         
             
-                
             
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
             
         
         
@@ -596,26 +384,20 @@
           "Cisco",
           "RPA",
           "Simulation",
-          "Web-Crawler",
-          "未分類",
-          "Data-Science",
-          "Provisioning"
+          "Others"
         ],
         "selected": {
           "Arista": true,
           "Cisco": true,
-          "Data-Science": false,
           "Deployment": true,
           "Machine-Learning": true,
           "Monitoring": true,
           "Operation": true,
-          "Provisioning": false,
+          "Others": true,
           "RPA": true,
           "Simulation": true,
           "Tricks": true,
-          "Web-Crawler": false,
-          "Web-Development": true,
-          "未分類": false
+          "Web-Development": true
         },
         "series": [
           {
@@ -659,20 +441,8 @@
             "value": 2
           },
           {
-            "name": "Web-Crawler",
-            "value": 2
-          },
-          {
-            "name": "未分類",
-            "value": 2
-          },
-          {
-            "name": "Data-Science",
-            "value": 1
-          },
-          {
-            "name": "Provisioning",
-            "value": 1
+            "name": "Others",
+            "value": 6
           }
         ]
       },
@@ -708,100 +478,20 @@
           "Prometheus",
           "Hugo",
           "scikit-learn",
-          "TypeScript",
-          "EVE-NG",
-          "Nginx",
-          "Angular",
-          "Ansible",
-          "Echarts",
-          "NestJS",
-          "Node-RED",
-          "noVNC",
-          "Pelican",
-          "RabbitMQ",
-          "Scrapy",
-          "Svelte",
-          "Apache",
-          "Cacti",
-          "Celery",
-          "Ceph",
-          "Channels",
-          "Excel",
-          "IOS",
-          "Jieba",
-          "jQuery",
-          "LibreNMS",
-          "LINE",
-          "Lua",
-          "Matplotlib",
-          "Moment.js",
-          "Nagios",
-          "OpenResty",
-          "pandas",
-          "Passport",
-          "seaborn",
-          "Signature-Pad",
-          "TigerVNC",
-          "TypeORM",
-          "uWSGI",
-          "VBA",
-          "VBScript",
-          "vCenter",
-          "vEOS",
-          "ZTPServer"
+          "Others"
         ],
         "selected": {
-          "Angular": false,
-          "Ansible": false,
-          "Apache": false,
-          "Cacti": false,
-          "Celery": false,
-          "Ceph": false,
-          "Channels": false,
           "Django": true,
           "Docker": true,
-          "EVE-NG": false,
-          "Echarts": false,
-          "Excel": false,
           "Flask": true,
           "Hugo": true,
-          "IOS": false,
           "JavaScript": true,
-          "Jieba": false,
-          "LINE": false,
-          "LibreNMS": false,
-          "Lua": false,
-          "Matplotlib": false,
-          "Moment.js": false,
-          "Nagios": false,
-          "NestJS": false,
-          "Nginx": false,
-          "Node-RED": false,
           "Node.js": true,
-          "OpenResty": false,
-          "Passport": false,
-          "Pelican": false,
+          "Others": true,
           "Prometheus": true,
           "Python": true,
-          "RabbitMQ": false,
-          "Scrapy": false,
-          "Signature-Pad": false,
-          "Svelte": false,
-          "TigerVNC": false,
-          "TypeORM": false,
-          "TypeScript": false,
-          "VBA": false,
-          "VBScript": false,
           "Vue.js": true,
-          "ZTPServer": false,
-          "jQuery": false,
-          "noVNC": false,
-          "pandas": false,
-          "scikit-learn": true,
-          "seaborn": false,
-          "uWSGI": false,
-          "vCenter": false,
-          "vEOS": false
+          "scikit-learn": true
         },
         "series": [
           {
@@ -845,168 +535,8 @@
             "value": 4
           },
           {
-            "name": "TypeScript",
-            "value": 4
-          },
-          {
-            "name": "EVE-NG",
-            "value": 3
-          },
-          {
-            "name": "Nginx",
-            "value": 3
-          },
-          {
-            "name": "Angular",
-            "value": 2
-          },
-          {
-            "name": "Ansible",
-            "value": 2
-          },
-          {
-            "name": "Echarts",
-            "value": 2
-          },
-          {
-            "name": "NestJS",
-            "value": 2
-          },
-          {
-            "name": "Node-RED",
-            "value": 2
-          },
-          {
-            "name": "noVNC",
-            "value": 2
-          },
-          {
-            "name": "Pelican",
-            "value": 2
-          },
-          {
-            "name": "RabbitMQ",
-            "value": 2
-          },
-          {
-            "name": "Scrapy",
-            "value": 2
-          },
-          {
-            "name": "Svelte",
-            "value": 2
-          },
-          {
-            "name": "Apache",
-            "value": 1
-          },
-          {
-            "name": "Cacti",
-            "value": 1
-          },
-          {
-            "name": "Celery",
-            "value": 1
-          },
-          {
-            "name": "Ceph",
-            "value": 1
-          },
-          {
-            "name": "Channels",
-            "value": 1
-          },
-          {
-            "name": "Excel",
-            "value": 1
-          },
-          {
-            "name": "IOS",
-            "value": 1
-          },
-          {
-            "name": "Jieba",
-            "value": 1
-          },
-          {
-            "name": "jQuery",
-            "value": 1
-          },
-          {
-            "name": "LibreNMS",
-            "value": 1
-          },
-          {
-            "name": "LINE",
-            "value": 1
-          },
-          {
-            "name": "Lua",
-            "value": 1
-          },
-          {
-            "name": "Matplotlib",
-            "value": 1
-          },
-          {
-            "name": "Moment.js",
-            "value": 1
-          },
-          {
-            "name": "Nagios",
-            "value": 1
-          },
-          {
-            "name": "OpenResty",
-            "value": 1
-          },
-          {
-            "name": "pandas",
-            "value": 1
-          },
-          {
-            "name": "Passport",
-            "value": 1
-          },
-          {
-            "name": "seaborn",
-            "value": 1
-          },
-          {
-            "name": "Signature-Pad",
-            "value": 1
-          },
-          {
-            "name": "TigerVNC",
-            "value": 1
-          },
-          {
-            "name": "TypeORM",
-            "value": 1
-          },
-          {
-            "name": "uWSGI",
-            "value": 1
-          },
-          {
-            "name": "VBA",
-            "value": 1
-          },
-          {
-            "name": "VBScript",
-            "value": 1
-          },
-          {
-            "name": "vCenter",
-            "value": 1
-          },
-          {
-            "name": "vEOS",
-            "value": 1
-          },
-          {
-            "name": "ZTPServer",
-            "value": 1
+            "name": "Others",
+            "value": 58
           }
         ]
       }
