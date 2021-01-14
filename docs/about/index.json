@@ -402,7 +402,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 34
+            "value": 35
           },
           {
             "name": "Deployment",
@@ -448,7 +448,7 @@
       },
       "monthly_count": {
         "series": [
-          2,
+          3,
           6,
           9,
           8,
@@ -472,9 +472,9 @@
           "JavaScript",
           "Django",
           "Vue.js",
+          "Node.js",
           "Docker",
           "Flask",
-          "Node.js",
           "Prometheus",
           "Hugo",
           "scikit-learn",
@@ -511,15 +511,15 @@
             "value": 7
           },
           {
+            "name": "Node.js",
+            "value": 6
+          },
+          {
             "name": "Docker",
             "value": 5
           },
           {
             "name": "Flask",
-            "value": 5
-          },
-          {
-            "name": "Node.js",
             "value": 5
           },
           {
@@ -536,7 +536,7 @@
           },
           {
             "name": "Others",
-            "value": 58
+            "value": 59
           }
         ]
       }

@@ -6,7 +6,16 @@
     <description>Recent content in Svelte on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Dec 2020 17:23:59 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Svelte/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jan 2021 15:22:15 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Svelte/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>試玩一個有趣的Svelte Grid</title>
+      <link>https://mikanbearer.github.io/posts/202101111522/index.json</link>
+      <pubDate>Mon, 11 Jan 2021 15:22:15 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202101111522/index.json</guid>
+      <description>&lt;p&gt;意外看到這個&lt;a href=&#34;https://svelte-grid.now.sh/&#34; target=&#34;_blank&#34;&gt;svelte-grid&lt;/a&gt;，來玩一下順便回味Svelte&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>兩種Svelte的Router練習</title>
       <link>https://mikanbearer.github.io/posts/2020/12/202012071723/index.json</link>
