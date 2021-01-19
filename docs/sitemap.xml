@@ -4,6 +4,51 @@
   
   <url>
     <loc>https://mikanbearer.github.io/categories/</loc>
+    <lastmod>2021-01-14T14:38:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/categories/Data-Science/</loc>
+    <lastmod>2021-01-14T14:38:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/posts/</loc>
+    <lastmod>2021-01-14T14:38:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/Python/</loc>
+    <lastmod>2021-01-14T14:38:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/Spotify/</loc>
+    <lastmod>2021-01-14T14:38:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/Spotipy/</loc>
+    <lastmod>2021-01-14T14:38:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/</loc>
+    <lastmod>2021-01-14T14:38:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/posts/202101141438/index.json</loc>
+    <lastmod>2021-01-14T14:38:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/</loc>
+    <lastmod>2021-01-14T14:38:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikanbearer.github.io/tags/JavaScript/</loc>
     <lastmod>2021-01-11T15:22:15+08:00</lastmod>
   </url>
   
@@ -13,27 +58,12 @@
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/posts/</loc>
-    <lastmod>2021-01-11T15:22:15+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mikanbearer.github.io/tags/Svelte/</loc>
     <lastmod>2021-01-11T15:22:15+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://mikanbearer.github.io/tags/</loc>
-    <lastmod>2021-01-11T15:22:15+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mikanbearer.github.io/categories/Web-Development/</loc>
-    <lastmod>2021-01-11T15:22:15+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/</loc>
     <lastmod>2021-01-11T15:22:15+08:00</lastmod>
   </url>
   
@@ -74,11 +104,6 @@
   
   <url>
     <loc>https://mikanbearer.github.io/tags/Django/</loc>
-    <lastmod>2020-12-21T11:36:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/tags/Python/</loc>
     <lastmod>2020-12-21T11:36:22+08:00</lastmod>
   </url>
   
@@ -151,11 +176,6 @@
   <url>
     <loc>https://mikanbearer.github.io/posts/2020/12/202012101535/index.json</loc>
     <lastmod>2020-12-10T15:35:42+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/tags/JavaScript/</loc>
-    <lastmod>2020-12-07T17:23:59+08:00</lastmod>
   </url>
   
   <url>
@@ -461,11 +481,6 @@
   <url>
     <loc>https://mikanbearer.github.io/posts/2020/09/202009091346/index.json</loc>
     <lastmod>2020-09-09T13:46:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikanbearer.github.io/categories/Data-Science/</loc>
-    <lastmod>2020-09-08T11:38:55+08:00</lastmod>
   </url>
   
   <url>

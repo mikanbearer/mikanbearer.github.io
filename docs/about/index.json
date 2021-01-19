@@ -232,6 +232,14 @@
                 
             
         
+            
+                
+            
+        
+            
+                
+            
+        
         
             
             
@@ -382,20 +390,20 @@
           "Tricks",
           "Arista",
           "Cisco",
+          "Data-Science",
           "RPA",
-          "Simulation",
           "Others"
         ],
         "selected": {
           "Arista": true,
           "Cisco": true,
+          "Data-Science": true,
           "Deployment": true,
           "Machine-Learning": true,
           "Monitoring": true,
           "Operation": true,
           "Others": true,
           "RPA": true,
-          "Simulation": true,
           "Tricks": true,
           "Web-Development": true
         },
@@ -433,22 +441,22 @@
             "value": 2
           },
           {
+            "name": "Data-Science",
+            "value": 2
+          },
+          {
             "name": "RPA",
             "value": 2
           },
           {
-            "name": "Simulation",
-            "value": 2
-          },
-          {
             "name": "Others",
-            "value": 6
+            "value": 7
           }
         ]
       },
       "monthly_count": {
         "series": [
-          3,
+          4,
           6,
           9,
           8,
@@ -496,11 +504,11 @@
         "series": [
           {
             "name": "Python",
-            "value": 22
+            "value": 23
           },
           {
             "name": "JavaScript",
-            "value": 8
+            "value": 9
           },
           {
             "name": "Django",
@@ -536,7 +544,7 @@
           },
           {
             "name": "Others",
-            "value": 59
+            "value": 61
           }
         ]
       }

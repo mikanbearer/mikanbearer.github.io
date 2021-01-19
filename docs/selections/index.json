@@ -263,6 +263,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -331,6 +335,8 @@
       "Scrapy",
       "seaborn",
       "Signature Pad",
+      "Spotify",
+      "Spotipy",
       "Svelte",
       "TigerVNC",
       "TypeORM",
@@ -344,6 +350,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "使用Spotipy取得Spotify資料",
       "試玩一個有趣的Svelte Grid",
       "使用Node-RED從網路抓資料並由LINE發送",
       "使用Node-RED操作vCenter API",

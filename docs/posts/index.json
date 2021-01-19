@@ -197,6 +197,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -213,6 +216,31 @@
     "pages": [
       {
         "kind": "page",
+        "name": "202101141438",
+        "params": {
+          "categories": [
+            "Data Science"
+          ],
+          "date": "2021-01-14T14:38:55+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-01-14T14:38:55+08:00",
+          "publishdate": "2021-01-14T14:38:55+08:00",
+          "tags": [
+            "Spotify",
+            "Spotipy",
+            "Python"
+          ],
+          "title": "使用Spotipy取得Spotify資料"
+        },
+        "path": "posts/202101141438",
+        "permalink": "https://mikanbearer.github.io/posts/202101141438/index.json",
+        "summary": "\u003cp\u003e這次來嘗試抓抓Spotify的資料\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 779
+      },
+      {
+        "kind": "page",
         "name": "202101111522",
         "params": {
           "categories": [
@@ -224,6 +252,7 @@
           "lastmod": "2021-01-11T15:22:15+08:00",
           "publishdate": "2021-01-11T15:22:15+08:00",
           "tags": [
+            "JavaScript",
             "Node.js",
             "Svelte"
           ],

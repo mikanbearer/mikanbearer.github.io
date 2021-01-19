@@ -1,86 +1,88 @@
 <head>
-    <title>{{ .Site.Title }}</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <meta name="keywords" content="{{ .Site.Params.keywords }}">
+  <meta name="author" content="{{ .Site.Author.name }}">
+  <title>{{ .Site.Title }}</title>
 
-    <!--<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <link href="{{ "css/code-block.css" | absURL }}" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <link href="{{ "css/code-block.css" | absURL }}" rel="stylesheet">
     
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     
-    <style>
-      .keyword-input label {
-        margin-top: -4px;
-      }
+  <style>
+    .keyword-input label {
+      margin-top: -4px;
+    }
 
-      .site-title {
-        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
-      }
+    .site-title {
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+    }
  
-      .post-title {
-        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
-        font-weight: 500;
-        white-space: normal;
-        overflow-wrap: break-word;
-      }
+    .post-title {
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+      font-weight: 500;
+      white-space: normal;
+      overflow-wrap: break-word;
+    }
 
-      .post-subtitle {
-        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
-        font-weight: 400;
-        text-transform: none;
-      }
+    .post-subtitle {
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+      font-weight: 400;
+      text-transform: none;
+    }
 
-      .post-content {
-        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
-        font-weight: 300;
-      }
+    .post-content {
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+      font-weight: 300;
+    }
 
-      .post-card .post-title {
-        color: #eeeeee;
-      }
+    .post-card .post-title {
+      color: #eeeeee;
+    }
 
-      .overline .post-subtitle {
-        letter-spacing: .1em !important;
-      }
+    .overline .post-subtitle {
+      letter-spacing: .1em !important;
+    }
 
-      body {
-        width: 100%;
-        height: 100%;
-        background-attachment: fixed;
-        top: 0;
-        left: 0;
-        background-size: cover;
-        background-color: #272727;
-      }
+    body {
+      width: 100%;
+      height: 100%;
+      background-attachment: fixed;
+      top: 0;
+      left: 0;
+      background-size: cover;
+      background-color: #272727;
+    }
 
-      a {
-        text-decoration:none;
-      }
+    a {
+      text-decoration:none;
+    }
   
-      #inspire {
-        background: none;
-      }
+    #inspire {
+      background: none;
+    }
 
-      a.v-chip--active.accent {
-        -webkit-filter: brightness(1.1);
-      }
+    a.v-chip--active.accent {
+      -webkit-filter: brightness(1.1);
+    }
 
-      span.v-chip__content {
-        font-family: Roboto,sans-serif !important;
-        font-weight: 500;
-      }
+    span.v-chip__content {
+      font-family: Roboto,sans-serif !important;
+      font-weight: 500;
+    }
 
-      a.v-chip--active.accent span {
-        color: #ffffff;
-      }
+    a.v-chip--active.accent span {
+      color: #ffffff;
+    }
 
-      img {
-        max-width: 100%;
-      }
+    img {
+      max-width: 100%;
+    }
 
-    
-    </style>
-  
-  </head>
+  </style>
+</head>
   

@@ -22,10 +22,11 @@ disablePathToLower = true
 
 
 [Params]
+  keywords = "tech-note"
+  description = "只是筆記"
   #homeTitle = "BLOG" # Set a different text for the header on the home page
   subtitle = "要是能寫得下去就好了"
   mainSections = ["post","posts"]
-  logo = "img/avatar-icon.png" # Expecting square dimensions
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
   commit = false
