@@ -410,7 +410,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 35
+            "value": 36
           },
           {
             "name": "Deployment",
@@ -456,7 +456,7 @@
       },
       "monthly_count": {
         "series": [
-          4,
+          5,
           6,
           9,
           8,
@@ -479,8 +479,8 @@
           "Python",
           "JavaScript",
           "Django",
-          "Vue.js",
           "Node.js",
+          "Vue.js",
           "Docker",
           "Flask",
           "Prometheus",
@@ -508,19 +508,19 @@
           },
           {
             "name": "JavaScript",
-            "value": 9
+            "value": 10
           },
           {
             "name": "Django",
             "value": 7
           },
           {
-            "name": "Vue.js",
+            "name": "Node.js",
             "value": 7
           },
           {
-            "name": "Node.js",
-            "value": 6
+            "name": "Vue.js",
+            "value": 7
           },
           {
             "name": "Docker",
@@ -544,7 +544,7 @@
           },
           {
             "name": "Others",
-            "value": 61
+            "value": 62
           }
         ]
       }

@@ -200,6 +200,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -214,6 +217,31 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202101181316",
+        "params": {
+          "categories": [
+            "Web Development"
+          ],
+          "date": "2021-01-18T13:16:45+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-01-18T13:16:45+08:00",
+          "publishdate": "2021-01-18T13:16:45+08:00",
+          "tags": [
+            "JavaScript",
+            "Node.js",
+            "Svelte"
+          ],
+          "title": "【Svelte練習4】導入Material UI"
+        },
+        "path": "posts/202101181316",
+        "permalink": "https://mikanbearer.github.io/posts/202101181316/index.json",
+        "summary": "\u003cp\u003e也是時候找個UI Library了，不然手刻真有點辛苦…\u003c/p\u003e\n\u003cp\u003e這次練習的就是採用Material Design的\u003ca href=\"https://sveltematerialui.com/\" target=\"_blank\"\u003eSvelte Material UI\u003c/a\u003e\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 524
+      },
       {
         "kind": "page",
         "name": "202101141438",
@@ -256,13 +284,13 @@
             "Node.js",
             "Svelte"
           ],
-          "title": "試玩一個有趣的Svelte Grid"
+          "title": "【Svelte練習3】一個有趣的Grid"
         },
         "path": "posts/202101111522",
         "permalink": "https://mikanbearer.github.io/posts/202101111522/index.json",
         "summary": "\u003cp\u003e意外看到這個\u003ca href=\"https://svelte-grid.now.sh/\" target=\"_blank\"\u003esvelte-grid\u003c/a\u003e，來玩一下順便回味Svelte\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 891
+        "wordcount": 1138
       },
       {
         "kind": "page",
@@ -425,7 +453,7 @@
             "Svelte",
             "JavaScript"
           ],
-          "title": "兩種Svelte的Router練習"
+          "title": "【Svelte練習2】兩種Router練習"
         },
         "path": "posts/2020/12/202012071723",
         "permalink": "https://mikanbearer.github.io/posts/2020/12/202012071723/index.json",
@@ -449,7 +477,7 @@
             "Svelte",
             "JavaScript"
           ],
-          "title": "Svelte初體驗"
+          "title": "【Svelte練習1】Svelte初體驗"
         },
         "path": "posts/2020/12/202012031547",
         "permalink": "https://mikanbearer.github.io/posts/2020/12/202012031547/index.json",

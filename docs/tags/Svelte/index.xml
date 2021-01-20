@@ -6,9 +6,19 @@
     <description>Recent content in Svelte on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Jan 2021 15:22:15 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Svelte/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jan 2021 13:16:45 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Svelte/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>試玩一個有趣的Svelte Grid</title>
+      <title>【Svelte練習4】導入Material UI</title>
+      <link>https://mikanbearer.github.io/posts/202101181316/index.json</link>
+      <pubDate>Mon, 18 Jan 2021 13:16:45 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202101181316/index.json</guid>
+      <description>&lt;p&gt;也是時候找個UI Library了，不然手刻真有點辛苦…&lt;/p&gt;
+&lt;p&gt;這次練習的就是採用Material Design的&lt;a href=&#34;https://sveltematerialui.com/&#34; target=&#34;_blank&#34;&gt;Svelte Material UI&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Svelte練習3】一個有趣的Grid</title>
       <link>https://mikanbearer.github.io/posts/202101111522/index.json</link>
       <pubDate>Mon, 11 Jan 2021 15:22:15 +0800</pubDate>
       
@@ -17,7 +27,7 @@
     </item>
     
     <item>
-      <title>兩種Svelte的Router練習</title>
+      <title>【Svelte練習2】兩種Router練習</title>
       <link>https://mikanbearer.github.io/posts/2020/12/202012071723/index.json</link>
       <pubDate>Mon, 07 Dec 2020 17:23:59 +0800</pubDate>
       
@@ -28,7 +38,7 @@
     </item>
     
     <item>
-      <title>Svelte初體驗</title>
+      <title>【Svelte練習1】Svelte初體驗</title>
       <link>https://mikanbearer.github.io/posts/2020/12/202012031547/index.json</link>
       <pubDate>Thu, 03 Dec 2020 15:47:59 +0800</pubDate>
       
