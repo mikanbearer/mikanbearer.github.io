@@ -556,15 +556,7 @@
                                                 <div class="post-content" v-html="work.content">
                                                 </div>
                                             </v-card-text>
-                                            <v-card-subtitle class="post-subtitle grey--text">
-                                                Powered by
-                                                <span
-                                                    v-for="tag in work.params.powered_by"
-                                                    class="mr-1"
-                                                >
-                                                    #[[ tag ]]
-                                                </span>
-                                            </v-card-subtitle>
+                                            
                                             <v-card-actions>
                                                 <v-btn
                                                     :href="work.params.demo_url" 
