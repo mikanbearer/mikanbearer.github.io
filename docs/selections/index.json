@@ -271,6 +271,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -354,6 +358,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "【Svelte練習5】加上一個pagination",
       "【Svelte練習4】導入Material UI",
       "使用Spotipy取得Spotify資料",
       "【Svelte練習3】一個有趣的Grid",

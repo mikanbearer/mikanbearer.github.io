@@ -203,6 +203,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -217,6 +220,31 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202101211350",
+        "params": {
+          "categories": [
+            "Web Development"
+          ],
+          "date": "2021-01-21T13:50:05+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-01-21T13:50:05+08:00",
+          "publishdate": "2021-01-21T13:50:05+08:00",
+          "tags": [
+            "JavaScript",
+            "Node.js",
+            "Svelte"
+          ],
+          "title": "【Svelte練習5】加上一個pagination"
+        },
+        "path": "posts/202101211350",
+        "permalink": "https://mikanbearer.github.io/posts/202101211350/index.json",
+        "summary": "\u003cp\u003e當有個item list很長的話勢必要來做pagination，這次輪到這個好用的component：\u003ca href=\"https://github.com/TahaSh/svelte-paginate\" target=\"_blank\"\u003esvelte-paginate\u003c/a\u003e，有現成的可用豈有不用的道理？\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 1209
+      },
       {
         "kind": "page",
         "name": "202101181316",
@@ -240,7 +268,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202101181316/index.json",
         "summary": "\u003cp\u003e也是時候找個UI Library了，不然手刻真有點辛苦…\u003c/p\u003e\n\u003cp\u003e這次練習的就是採用Material Design的\u003ca href=\"https://sveltematerialui.com/\" target=\"_blank\"\u003eSvelte Material UI\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 524
+        "wordcount": 1089
       },
       {
         "kind": "page",
