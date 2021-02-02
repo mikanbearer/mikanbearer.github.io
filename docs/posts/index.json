@@ -243,7 +243,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202101211350/index.json",
         "summary": "\u003cp\u003e當有個item list很長的話勢必要來做pagination，這次輪到這個好用的component：\u003ca href=\"https://github.com/TahaSh/svelte-paginate\" target=\"_blank\"\u003esvelte-paginate\u003c/a\u003e，有現成的可用豈有不用的道理？\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1209
+        "wordcount": 1185
       },
       {
         "kind": "page",

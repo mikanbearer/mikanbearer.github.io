@@ -743,7 +743,7 @@
       },
 
       getFilterConditions () {
-        var query = this.routeQuery
+        let query = this.routeQuery
         const convertToArray = (value) => {
           if (Array.isArray(value)) {
             return value
@@ -754,7 +754,7 @@
           }
         }
 
-        var filterConditions = {}
+        let filterConditions = {}
 
         filterConditions.selectedCategories = convertToArray(query.category)
         filterConditions.selectedTags = convertToArray(query.tag)
@@ -771,7 +771,7 @@
       },
 
       toFilteredPosts () {
-        var query = {}
+        let query = {}
 
         if (this.filterConditions.keyword) {
           query.keyword = this.filterConditions.keyword
@@ -851,10 +851,10 @@
             document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.'
             return
         }
-        var d = document, s = d.createElement('script')
+        let d = document, s = d.createElement('script')
         s.async = true
 
-        var disqus_shortname = 'mikanmimi'
+        let disqus_shortname = 'mikanmimi'
         s.src = '//' + disqus_shortname + '.disqus.com/embed.js'
         s.setAttribute('data-timestamp', +new Date())
         d.body.appendChild(s)
@@ -936,7 +936,7 @@
       axios.get('https:\/\/mikanbearer.github.io\/about/index.json').then(response => {
           setTimeout(() => {
             this.content = response.data.result.content
-            var charts = response.data.result.charts
+            let charts = response.data.result.charts
             
             setTimeout(() => {
               this.setPie('Top Categories', 'category', charts.categories_data, 'chart_categories')
@@ -973,12 +973,12 @@
               color: '#c2c4c6'
           }
         }
-        var chart = echarts.init(document.getElementById(element_id))
+        let chart = echarts.init(document.getElementById(element_id))
         chart.setOption(option)
       },
 
       setPie (title, series_name, data, element_id) {
-        var option = {
+        let option = {
           title: {
             left: 'auto',
             
@@ -1027,7 +1027,7 @@
             }
           ]
         }
-        var chart = echarts.init(document.getElementById(element_id))
+        let chart = echarts.init(document.getElementById(element_id))
         chart.setOption(option)
 
       }
@@ -1065,21 +1065,21 @@
     },
 
     mounted () {
-      var postUrl = 'https:\/\/mikanbearer.github.io\/' + this.path + '/index.json'
+      let postUrl = 'https:\/\/mikanbearer.github.io\/' + this.path + '/index.json'
       this.getPost(postUrl)
       
     },
 
     methods: {
       replaceImgSrc () {
-        var contents = document.getElementsByClassName('post-content')
-        var url = this.post.permalink
+        let contents = document.getElementsByClassName('post-content')
+        let url = this.post.permalink
         if (url.includes('index.json')) {
           url = url.replace('index.json', '')
         }
 
         Array.prototype.forEach.call(contents, content => {
-          var imgs = content.getElementsByTagName('img')
+          let imgs = content.getElementsByTagName('img')
           Array.prototype.forEach.call(imgs, img => {
             if (img.attributes.src.value.indexOf('http') == -1) {
               img.src = url + img.attributes.src.value
@@ -1089,15 +1089,15 @@
       },
 
       addCodeBlockTitle () {
-        var code_list = document.body.getElementsByTagName('code')
+        let code_list = document.body.getElementsByTagName('code')
         for (i=0; i <= code_list.length-1; i++) {
-          var codeParent = code_list[i].closest('pre')
+          let codeParent = code_list[i].closest('pre')
           if (codeParent) {
             if (!codeParent.closest('div.highlight')) {
               if (/^language-:+/.test(code_list[i].className)) {
-                var div = document.createElement('div')
+                let div = document.createElement('div')
                 div.classList.add('highlight')
-                var pre = codeParent.cloneNode(true)
+                let pre = codeParent.cloneNode(true)
                 div.appendChild(pre)
                 codeParent.replaceWith(div)
               }
@@ -1105,26 +1105,26 @@
           }
         }
 
-        var list = document.body.getElementsByClassName('highlight')
+        let list = document.body.getElementsByClassName('highlight')
 
         for(i=0; i <= list.length-1; i++){
-          var table = list[i].firstElementChild.firstElementChild
+          let table = list[i].firstElementChild.firstElementChild
           if (table.nodeName == 'TABLE') {
-            var code = table.firstElementChild.firstElementChild.childNodes[2].firstElementChild.firstElementChild
-            var codeName =  code ? code.className.split(':')[1] : null
+            let code = table.firstElementChild.firstElementChild.childNodes[2].firstElementChild.firstElementChild
+            let codeName =  code ? code.className.split(':')[1] : null
             if(codeName) {
-              var div = document.createElement('div')
+              let div = document.createElement('div')
               div.textContent = codeName
               div.classList.add('code-name')
               table.parentNode.insertBefore(div, table)
             }
           } else {
-            var code = table
-            var codeName =  code ? code.className.split(':')[1] : null
+            let code = table
+            let codeName =  code ? code.className.split(':')[1] : null
           
             if(codeName) {
-              var div = document.createElement('div')
-              var br = document.createElement('br')
+              let div = document.createElement('div')
+              let br = document.createElement('br')
               div.textContent = codeName
               div.classList.add('code-name')
               code.parentNode.insertBefore(div, code)
@@ -1202,7 +1202,7 @@
       },
 
       getFilterConditions () {
-        var query = this.routeQuery
+        let query = this.routeQuery
         const convertToArray = (value) => {
           if (Array.isArray(value)) {
             return value
@@ -1213,7 +1213,7 @@
           }
         }
 
-        var filterConditions = {}
+        let filterConditions = {}
 
         filterConditions.selectedCategories = convertToArray(query.category)
         filterConditions.selectedTags = convertToArray(query.tag)
@@ -1261,11 +1261,11 @@
       },
 
       filterPosts () {
-        var filterConditions = this.getFilterConditions()
+        let filterConditions = this.getFilterConditions()
         this.filterConditions = filterConditions
-        var keyword = filterConditions.keyword
-        var selectedTags = filterConditions.selectedTags
-        var selectedCategories = filterConditions.selectedCategories
+        let keyword = filterConditions.keyword
+        let selectedTags = filterConditions.selectedTags
+        let selectedCategories = filterConditions.selectedCategories
         const posts = JSON.parse(JSON.stringify(this.postList))
 
         const checkArray = (target, item) => {
@@ -1275,7 +1275,7 @@
           return false
         }
 
-        var checkArrayResult = []
+        let checkArrayResult = []
 
         for (const post of posts) {
           if (checkArray(post.params.tags, selectedTags) && checkArray(post.params.categories, selectedCategories)) {
@@ -1283,13 +1283,13 @@
           }
         }
 
-        var checkKeywordResult = []
+        let checkKeywordResult = []
 
         if (keyword) {
-          var lower_keyword = keyword.toLowerCase()
+          let lower_keyword = keyword.toLowerCase()
           for (const post of checkArrayResult) {
-            var lower_title = post.params.title.toLowerCase()
-            var keywordIndex = lower_title.indexOf(lower_keyword)
+            let lower_title = post.params.title.toLowerCase()
+            let keywordIndex = lower_title.indexOf(lower_keyword)
 
             if (keywordIndex !== -1) {
               hl_keyword = '<span style="background-color:#00a381">' + post.params.title.substring(keywordIndex, keywordIndex + keyword.length) + '</span>'
@@ -1327,7 +1327,7 @@
 
   
 
-  var vm = new Vue({
+  let vm = new Vue({
     router,
     delimiters: ['[[', ']]'],
     el: '#app',
