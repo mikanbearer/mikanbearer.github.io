@@ -275,6 +275,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -303,6 +307,7 @@
       "未分類"
     ],
     "tags": [
+      "7-Zip",
       "Angular",
       "Ansible",
       "Apache",
@@ -358,6 +363,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "使用command line操作7-Zip壓縮檔案",
       "【Svelte練習5】加上一個pagination",
       "【Svelte練習4】導入Material UI",
       "使用Spotipy取得Spotify資料",
