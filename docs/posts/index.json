@@ -236,7 +236,8 @@
           "lastmod": "2021-02-02T09:36:56+08:00",
           "publishdate": "2021-02-02T09:36:56+08:00",
           "tags": [
-            "7-Zip"
+            "7-Zip",
+            "PowerShell"
           ],
           "title": "使用command line操作7-Zip壓縮檔案"
         },
@@ -244,7 +245,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202102020936/index.json",
         "summary": "\u003cp\u003e使用command line操作7-Zip壓縮檔案，工作上可能會用到所以紀錄一下\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 963
+        "wordcount": 1145
       },
       {
         "kind": "page",
