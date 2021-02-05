@@ -98,17 +98,12 @@
         if (this.filterConditions.selectedTags.length) {
           query.tag = this.filterConditions.selectedTags
         }
-        if (this.$route.path == '/') {
-          this.$router.history.push({
-            query: query
-          })
-        }
-        else {
-          this.$router.push({
-            path: '/',
-            query: query
-          })
-        }
+        
+        this.$router.history.push({
+          path: '/',
+          query: query
+        })
+
       },
 
       getItems (key, items) {
