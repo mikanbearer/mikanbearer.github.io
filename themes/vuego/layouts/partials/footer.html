@@ -89,6 +89,10 @@
       toFilteredPosts () {
         let query = {}
 
+        this.$route.query.keyword = null
+        this.$route.query.category = null
+        this.$route.query.tag = null
+
         if (this.filterConditions.keyword) {
           query.keyword = this.filterConditions.keyword
         }
