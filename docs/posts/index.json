@@ -245,7 +245,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202102020936/index.json",
         "summary": "\u003cp\u003e使用command line操作7-Zip壓縮檔案，工作上可能會用到所以紀錄一下\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1145
+        "wordcount": 1146
       },
       {
         "kind": "page",
@@ -363,7 +363,7 @@
             "Node-RED",
             "LINE"
           ],
-          "title": "使用Node-RED從網路抓資料並由LINE發送"
+          "title": "使用LINE發送Node-RED爬蟲資料"
         },
         "path": "posts/202101051417",
         "permalink": "https://mikanbearer.github.io/posts/202101051417/index.json",

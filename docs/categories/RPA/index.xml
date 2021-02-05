@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 05 Jan 2021 14:17:14 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/RPA/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>使用Node-RED從網路抓資料並由LINE發送</title>
+      <title>使用LINE發送Node-RED爬蟲資料</title>
       <link>https://mikanbearer.github.io/posts/202101051417/index.json</link>
       <pubDate>Tue, 05 Jan 2021 14:17:14 +0800</pubDate>
       

@@ -26,7 +26,7 @@
         "Node-RED",
         "LINE"
       ],
-      "title": "使用Node-RED從網路抓資料並由LINE發送"
+      "title": "使用LINE發送Node-RED爬蟲資料"
     },
     "permalink": "https://mikanbearer.github.io/posts/202101051417/index.json",
     "type": "posts",
