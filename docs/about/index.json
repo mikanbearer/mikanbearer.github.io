@@ -248,6 +248,18 @@
                 
             
         
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
         
             
             
@@ -395,11 +407,11 @@
       "categories_data": {
         "legend": [
           "Web-Development",
+          "Tricks",
           "Deployment",
           "Monitoring",
           "Operation",
           "Machine-Learning",
-          "Tricks",
           "Arista",
           "Cisco",
           "Data-Science",
@@ -425,6 +437,10 @@
             "value": 37
           },
           {
+            "name": "Tricks",
+            "value": 6
+          },
+          {
             "name": "Deployment",
             "value": 5
           },
@@ -438,10 +454,6 @@
           },
           {
             "name": "Machine-Learning",
-            "value": 4
-          },
-          {
-            "name": "Tricks",
             "value": 4
           },
           {
@@ -468,7 +480,7 @@
       },
       "monthly_count": {
         "series": [
-          1,
+          3,
           6,
           6,
           9,
@@ -558,7 +570,7 @@
           },
           {
             "name": "Others",
-            "value": 64
+            "value": 70
           }
         ]
       }

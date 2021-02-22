@@ -209,6 +209,12 @@
             
             
         
+            
+            
+        
+            
+            
+        
         
 
 
@@ -225,6 +231,54 @@
     "pages": [
       {
         "kind": "page",
+        "name": "202102201502",
+        "params": {
+          "categories": [
+            "Tricks"
+          ],
+          "date": "2021-02-20T15:02:08+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-02-20T15:02:08+08:00",
+          "publishdate": "2021-02-20T15:02:08+08:00",
+          "tags": [
+            "PowerShell",
+            "Windows"
+          ],
+          "title": "透過PowerShell傳送JSON格式的UDP Message"
+        },
+        "path": "posts/202102201502",
+        "permalink": "https://mikanbearer.github.io/posts/202102201502/index.json",
+        "summary": "\u003cp\u003e看到大佬這篇\u003ca href=\"https://poshsecurity.com/blog/2014/7/1/sending-syslog-messages-from-powershell.html\" target=\"_blank\"\u003eBLOG\u003c/a\u003e，就突發奇想動手做看看，以後或許能從client取些便利的資料做報告之類的\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 1022
+      },
+      {
+        "kind": "page",
+        "name": "202102080913",
+        "params": {
+          "categories": [
+            "Tricks"
+          ],
+          "date": "2021-02-08T09:13:28+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-02-08T09:13:28+08:00",
+          "publishdate": "2021-02-08T09:13:28+08:00",
+          "tags": [
+            "Java",
+            "IntelliJ IDEA"
+          ],
+          "title": "在IntelliJ IDEA用Java來snmpwalk"
+        },
+        "path": "posts/202102080913",
+        "permalink": "https://mikanbearer.github.io/posts/202102080913/index.json",
+        "summary": "\u003cp\u003e零經驗被逼著寫完全不會用的java…\u003c/p\u003e\n\u003cp\u003e從\u003ca href=\"https://akrad.hatenablog.com/entry/2018/04/14/091844\" target=\"_blank\"\u003e這裡\u003c/a\u003e看到使用snmpwalk的範例，基於工作會用到趕快拿來嘗試\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 1081
+      },
+      {
+        "kind": "page",
         "name": "202102020936",
         "params": {
           "categories": [
@@ -237,15 +291,16 @@
           "publishdate": "2021-02-02T09:36:56+08:00",
           "tags": [
             "7-Zip",
-            "PowerShell"
+            "PowerShell",
+            "Windows"
           ],
           "title": "使用command line操作7-Zip壓縮檔案"
         },
         "path": "posts/202102020936",
         "permalink": "https://mikanbearer.github.io/posts/202102020936/index.json",
-        "summary": "\u003cp\u003e使用command line操作7-Zip壓縮檔案，工作上可能會用到所以紀錄一下\u003c/p\u003e",
+        "summary": "\u003cp\u003e使用command line操作7-Zip壓縮檔案，工作上可能會用到所以紀錄一下，雖說是command line但這次用的不是Command Prompt，\n而是PowerShell，個人覺得好入門許多\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1146
+        "wordcount": 1202
       },
       {
         "kind": "page",
@@ -295,7 +350,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202101181316/index.json",
         "summary": "\u003cp\u003e也是時候找個UI Library了，不然手刻真有點辛苦…\u003c/p\u003e\n\u003cp\u003e這次練習的就是採用Material Design的\u003ca href=\"https://sveltematerialui.com/\" target=\"_blank\"\u003eSvelte Material UI\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1089
+        "wordcount": 1084
       },
       {
         "kind": "page",
@@ -345,7 +400,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202101111522/index.json",
         "summary": "\u003cp\u003e意外看到這個\u003ca href=\"https://svelte-grid.now.sh/\" target=\"_blank\"\u003esvelte-grid\u003c/a\u003e，來玩一下順便回味Svelte\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1138
+        "wordcount": 1127
       },
       {
         "kind": "page",
@@ -1837,7 +1892,8 @@
           "lastmod": "2020-07-14T16:04:42+08:00",
           "publishdate": "2020-07-14T16:04:42+08:00",
           "tags": [
-            "VBScript"
+            "VBScript",
+            "Windows"
           ],
           "title": "使用VBScript定期送出按鍵"
         },

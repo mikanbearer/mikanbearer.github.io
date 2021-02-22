@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/Java/</link>
+    <description>Recent content in Java on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Feb 2021 09:13:28 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在IntelliJ IDEA用Java來snmpwalk</title>
+      <link>https://mikanbearer.github.io/posts/202102080913/index.json</link>
+      <pubDate>Mon, 08 Feb 2021 09:13:28 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202102080913/index.json</guid>
+      <description>&lt;p&gt;零經驗被逼著寫完全不會用的java…&lt;/p&gt;
+&lt;p&gt;從&lt;a href=&#34;https://akrad.hatenablog.com/entry/2018/04/14/091844&#34; target=&#34;_blank&#34;&gt;這裡&lt;/a&gt;看到使用snmpwalk的範例，基於工作會用到趕快拿來嘗試&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

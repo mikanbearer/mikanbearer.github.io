@@ -279,6 +279,14 @@
             
             
         
+            
+            
+            
+        
+            
+            
+            
+        
         
 
 
@@ -322,7 +330,9 @@
       "Excel",
       "Flask",
       "Hugo",
+      "IntelliJ IDEA",
       "IOS",
+      "Java",
       "JavaScript",
       "Jieba",
       "jQuery",
@@ -361,9 +371,12 @@
       "vCenter",
       "vEOS",
       "Vue.js",
+      "Windows",
       "ZTPServer"
     ],
     "titles": [
+      "透過PowerShell傳送JSON格式的UDP Message",
+      "在IntelliJ IDEA用Java來snmpwalk",
       "使用command line操作7-Zip壓縮檔案",
       "【Svelte練習5】加上一個pagination",
       "【Svelte練習4】導入Material UI",
