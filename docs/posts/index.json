@@ -269,13 +269,13 @@
             "Java",
             "IntelliJ IDEA"
           ],
-          "title": "在IntelliJ IDEA用Java來snmpwalk"
+          "title": "初次使用IntelliJ IDEA"
         },
         "path": "posts/202102080913",
         "permalink": "https://mikanbearer.github.io/posts/202102080913/index.json",
-        "summary": "\u003cp\u003e零經驗被逼著寫完全不會用的java…\u003c/p\u003e\n\u003cp\u003e從\u003ca href=\"https://akrad.hatenablog.com/entry/2018/04/14/091844\" target=\"_blank\"\u003e這裡\u003c/a\u003e看到使用snmpwalk的範例，基於工作會用到趕快拿來嘗試\u003c/p\u003e",
+        "summary": "\u003cp\u003e零經驗被逼著寫完全不會用的java…不知道怎麼用就從手動加個lib開始吧\u003c/p\u003e\n\u003cp\u003e從\u003ca href=\"https://akrad.hatenablog.com/entry/2018/04/14/091844\" target=\"_blank\"\u003e這裡\u003c/a\u003e看到使用snmpwalk的範例，基於工作會用到趕快拿來嘗試\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1081
+        "wordcount": 1099
       },
       {
         "kind": "page",
