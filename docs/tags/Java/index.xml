@@ -6,7 +6,16 @@
     <description>Recent content in Java on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Feb 2021 09:13:28 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Mar 2021 15:25:49 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用snmp4j取得設備資料</title>
+      <link>https://mikanbearer.github.io/posts/202103031525/index.json</link>
+      <pubDate>Wed, 03 Mar 2021 15:25:49 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202103031525/index.json</guid>
+      <description>&lt;p&gt;跟之前一樣使用snmp4j，不過是工作上可能會用到的solution，主要為lib的使用，以防萬一筆記一下&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>初次使用IntelliJ IDEA</title>
       <link>https://mikanbearer.github.io/posts/202102080913/index.json</link>

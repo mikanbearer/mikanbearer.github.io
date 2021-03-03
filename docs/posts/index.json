@@ -215,6 +215,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -229,6 +232,29 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202103031525",
+        "params": {
+          "categories": [
+            "Tricks"
+          ],
+          "date": "2021-03-03T15:25:49+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-03-03T15:25:49+08:00",
+          "publishdate": "2021-03-03T15:25:49+08:00",
+          "tags": [
+            "Java"
+          ],
+          "title": "使用snmp4j取得設備資料"
+        },
+        "path": "posts/202103031525",
+        "permalink": "https://mikanbearer.github.io/posts/202103031525/index.json",
+        "summary": "\u003cp\u003e跟之前一樣使用snmp4j，不過是工作上可能會用到的solution，主要為lib的使用，以防萬一筆記一下\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 1196
+      },
       {
         "kind": "page",
         "name": "202102201502",

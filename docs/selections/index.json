@@ -287,6 +287,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -375,6 +379,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "使用snmp4j取得設備資料",
       "透過PowerShell傳送JSON格式的UDP Message",
       "初次使用IntelliJ IDEA",
       "使用command line操作7-Zip壓縮檔案",
