@@ -291,6 +291,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -323,6 +327,7 @@
       "Angular",
       "Ansible",
       "Apache",
+      "Bash",
       "Cacti",
       "Celery",
       "Ceph",
@@ -342,6 +347,7 @@
       "jQuery",
       "LibreNMS",
       "LINE",
+      "Linux",
       "Lua",
       "Matplotlib",
       "Moment.js",
@@ -379,6 +385,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "透過Bash傳送JSON格式的UDP Message",
       "使用snmp4j取得設備資料",
       "透過PowerShell傳送JSON格式的UDP Message",
       "初次使用IntelliJ IDEA",

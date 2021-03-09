@@ -260,6 +260,14 @@
                 
             
         
+            
+                
+            
+        
+            
+                
+            
+        
         
             
             
@@ -442,7 +450,7 @@
           },
           {
             "name": "Tricks",
-            "value": 7
+            "value": 8
           },
           {
             "name": "Deployment",
@@ -484,7 +492,7 @@
       },
       "monthly_count": {
         "series": [
-          1,
+          2,
           3,
           6,
           6,
@@ -576,7 +584,7 @@
           },
           {
             "name": "Others",
-            "value": 71
+            "value": 73
           }
         ]
       }
