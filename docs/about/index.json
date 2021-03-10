@@ -268,6 +268,10 @@
                 
             
         
+            
+                
+            
+        
         
             
             
@@ -446,7 +450,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 37
+            "value": 38
           },
           {
             "name": "Tricks",
@@ -492,7 +496,7 @@
       },
       "monthly_count": {
         "series": [
-          2,
+          3,
           3,
           6,
           6,
@@ -548,7 +552,7 @@
           },
           {
             "name": "JavaScript",
-            "value": 11
+            "value": 12
           },
           {
             "name": "Node.js",
@@ -584,7 +588,7 @@
           },
           {
             "name": "Others",
-            "value": 73
+            "value": 75
           }
         ]
       }

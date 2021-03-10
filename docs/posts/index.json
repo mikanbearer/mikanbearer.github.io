@@ -221,6 +221,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -235,6 +238,31 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202103090912",
+        "params": {
+          "categories": [
+            "Web Development"
+          ],
+          "date": "2021-03-09T09:12:19+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-03-09T09:12:19+08:00",
+          "publishdate": "2021-03-09T09:12:19+08:00",
+          "tags": [
+            "Java",
+            "Spring",
+            "JavaScript"
+          ],
+          "title": "於Spring輸出可供JS使用之Query result"
+        },
+        "path": "posts/202103090912",
+        "permalink": "https://mikanbearer.github.io/posts/202103090912/index.json",
+        "summary": "\u003cp\u003e工作上用到的零瑣筆記又一發，主要是在controller將query處理好，讓template產生JS code\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 674
+      },
       {
         "kind": "page",
         "name": "202103051435",

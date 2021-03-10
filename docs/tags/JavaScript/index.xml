@@ -6,7 +6,16 @@
     <description>Recent content in JavaScript on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Jan 2021 13:50:05 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/JavaScript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Mar 2021 09:12:19 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/JavaScript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>於Spring輸出可供JS使用之Query result</title>
+      <link>https://mikanbearer.github.io/posts/202103090912/index.json</link>
+      <pubDate>Tue, 09 Mar 2021 09:12:19 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202103090912/index.json</guid>
+      <description>&lt;p&gt;工作上用到的零瑣筆記又一發，主要是在controller將query處理好，讓template產生JS code&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>【Svelte練習5】加上一個pagination</title>
       <link>https://mikanbearer.github.io/posts/202101211350/index.json</link>

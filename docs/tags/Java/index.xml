@@ -6,7 +6,16 @@
     <description>Recent content in Java on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Mar 2021 15:25:49 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Mar 2021 09:12:19 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>於Spring輸出可供JS使用之Query result</title>
+      <link>https://mikanbearer.github.io/posts/202103090912/index.json</link>
+      <pubDate>Tue, 09 Mar 2021 09:12:19 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202103090912/index.json</guid>
+      <description>&lt;p&gt;工作上用到的零瑣筆記又一發，主要是在controller將query處理好，讓template產生JS code&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>使用snmp4j取得設備資料</title>
       <link>https://mikanbearer.github.io/posts/202103031525/index.json</link>

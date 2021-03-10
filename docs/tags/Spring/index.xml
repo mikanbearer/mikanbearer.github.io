@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring on 垃圾堆</title>
+    <link>https://mikanbearer.github.io/tags/Spring/</link>
+    <description>Recent content in Spring on 垃圾堆</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Mar 2021 09:12:19 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>於Spring輸出可供JS使用之Query result</title>
+      <link>https://mikanbearer.github.io/posts/202103090912/index.json</link>
+      <pubDate>Tue, 09 Mar 2021 09:12:19 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202103090912/index.json</guid>
+      <description>&lt;p&gt;工作上用到的零瑣筆記又一發，主要是在controller將query處理好，讓template產生JS code&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

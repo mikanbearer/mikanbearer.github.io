@@ -295,6 +295,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -371,6 +375,7 @@
       "Signature Pad",
       "Spotify",
       "Spotipy",
+      "Spring",
       "Svelte",
       "TigerVNC",
       "TypeORM",
@@ -385,6 +390,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "於Spring輸出可供JS使用之Query result",
       "透過Bash傳送JSON格式的UDP Message",
       "使用snmp4j取得設備資料",
       "透過PowerShell傳送JSON格式的UDP Message",
