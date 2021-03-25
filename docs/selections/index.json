@@ -299,6 +299,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -324,6 +328,7 @@
       "Tricks",
       "Web Crawler",
       "Web Development",
+      "Web Devlopment",
       "未分類"
     ],
     "tags": [
@@ -392,6 +397,7 @@
     "titles": [
       "於Spring輸出可供JS使用之Query result",
       "透過Bash傳送JSON格式的UDP Message",
+      "【Spring練習1】練習建立簡單的Spring Boot RESTful",
       "使用snmp4j取得設備資料",
       "透過PowerShell傳送JSON格式的UDP Message",
       "初次使用IntelliJ IDEA",

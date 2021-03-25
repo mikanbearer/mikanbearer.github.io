@@ -360,6 +360,10 @@
                 
             
         
+            
+                
+            
+        
         
             
             
@@ -490,13 +494,13 @@
           },
           {
             "name": "Others",
-            "value": 7
+            "value": 8
           }
         ]
       },
       "monthly_count": {
         "series": [
-          3,
+          4,
           3,
           6,
           6,
@@ -588,7 +592,7 @@
           },
           {
             "name": "Others",
-            "value": 75
+            "value": 78
           }
         ]
       }

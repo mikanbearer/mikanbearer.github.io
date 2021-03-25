@@ -224,6 +224,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -286,6 +289,31 @@
         "summary": "\u003cp\u003e在\u003ca href=\"#/posts/posts%2F202102201502\" target=\"_blank\"\u003e前篇\u003c/a\u003e練習過PowerShell後，試著做個Bash版本，本篇偏重於一些小眉角\u003c/p\u003e",
         "type": "posts",
         "wordcount": 585
+      },
+      {
+        "kind": "page",
+        "name": "202103040927",
+        "params": {
+          "categories": [
+            "Web Devlopment"
+          ],
+          "date": "2021-03-04T09:27:24+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-03-04T09:27:24+08:00",
+          "publishdate": "2021-03-04T09:27:24+08:00",
+          "tags": [
+            "Java",
+            "Spring",
+            "PowerShell"
+          ],
+          "title": "【Spring練習1】練習建立簡單的Spring Boot RESTful"
+        },
+        "path": "posts/202103040927",
+        "permalink": "https://mikanbearer.github.io/posts/202103040927/index.json",
+        "summary": "\u003cp\u003e最近剛好接手維護一個使用Spring撰寫的MVC Project，一時興起就來接觸一下Java的MVC了，雖然Java對個人來說仍是陌生的語言…\u003c/p\u003e\n\u003cp\u003e這次練習不直接使用Spring，而是使用Spring Boot來構成Project，這次就以一個基礎的RESTful為目標，順便加碼練習使用Windows上的PowerShell來測試REST，主要是\u003ccode\u003eInvoke-WebRequest\u003c/code\u003e及\u003ccode\u003eInvoke-RestMethod\u003c/code\u003e\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 2503
       },
       {
         "kind": "page",
