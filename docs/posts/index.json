@@ -227,6 +227,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -241,6 +244,31 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202103231008",
+        "params": {
+          "categories": [
+            "Security"
+          ],
+          "date": "2021-03-23T10:08:55+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-03-23T10:08:55+08:00",
+          "publishdate": "2021-03-23T10:08:55+08:00",
+          "tags": [
+            "Apache",
+            "Postfix",
+            "OpenSSL"
+          ],
+          "title": "常見的Vulnerability測試與修正(陸續更新)"
+        },
+        "path": "posts/202103231008",
+        "permalink": "https://mikanbearer.github.io/posts/202103231008/index.json",
+        "summary": "\u003cp\u003e常常被Nessus之類掃到弱點，希望以後上系統也能多上點心…\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 1418
+      },
       {
         "kind": "page",
         "name": "202103090912",
@@ -307,13 +335,13 @@
             "Spring",
             "PowerShell"
           ],
-          "title": "【Spring練習1】練習建立簡單的Spring Boot RESTful"
+          "title": "建立簡單的Spring Boot RESTful並使用PowerShell測試"
         },
         "path": "posts/202103040927",
         "permalink": "https://mikanbearer.github.io/posts/202103040927/index.json",
-        "summary": "\u003cp\u003e最近剛好接手維護一個使用Spring撰寫的MVC Project，一時興起就來接觸一下Java的MVC了，雖然Java對個人來說仍是陌生的語言…\u003c/p\u003e\n\u003cp\u003e這次練習不直接使用Spring，而是使用Spring Boot來構成Project，這次就以一個基礎的RESTful為目標，順便加碼練習使用Windows上的PowerShell來測試REST，主要是\u003ccode\u003eInvoke-WebRequest\u003c/code\u003e及\u003ccode\u003eInvoke-RestMethod\u003c/code\u003e\u003c/p\u003e",
+        "summary": "\u003cp\u003e最近剛好接手維護一個使用Spring撰寫的MVC Project，一時興起就來接觸一下Java的MVC了，雖然Java對個人來說仍是陌生的語言…\u003c/p\u003e\n\u003cp\u003e這次練習不直接使用Spring，而是使用Spring Boot來構成Project，這次就以一個基礎的RESTful為目標，DB則用H2(In-Memory Database)，順便加碼練習使用Windows上的PowerShell來測試REST\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2503
+        "wordcount": 2590
       },
       {
         "kind": "page",

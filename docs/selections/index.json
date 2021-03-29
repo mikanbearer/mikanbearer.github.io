@@ -303,6 +303,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -324,6 +328,7 @@
       "Operation",
       "Provisioning",
       "RPA",
+      "Security",
       "Simulation",
       "Tricks",
       "Web Crawler",
@@ -367,9 +372,11 @@
       "Node.js",
       "noVNC",
       "OpenResty",
+      "OpenSSL",
       "pandas",
       "Passport",
       "Pelican",
+      "Postfix",
       "PowerShell",
       "Prometheus",
       "Python",
@@ -395,9 +402,10 @@
       "ZTPServer"
     ],
     "titles": [
+      "常見的Vulnerability測試與修正(陸續更新)",
       "於Spring輸出可供JS使用之Query result",
       "透過Bash傳送JSON格式的UDP Message",
-      "【Spring練習1】練習建立簡單的Spring Boot RESTful",
+      "建立簡單的Spring Boot RESTful並使用PowerShell測試",
       "使用snmp4j取得設備資料",
       "透過PowerShell傳送JSON格式的UDP Message",
       "初次使用IntelliJ IDEA",

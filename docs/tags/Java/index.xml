@@ -17,13 +17,13 @@
     </item>
     
     <item>
-      <title>【Spring練習1】練習建立簡單的Spring Boot RESTful</title>
+      <title>建立簡單的Spring Boot RESTful並使用PowerShell測試</title>
       <link>https://mikanbearer.github.io/posts/202103040927/index.json</link>
       <pubDate>Thu, 04 Mar 2021 09:27:24 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/202103040927/index.json</guid>
       <description>&lt;p&gt;最近剛好接手維護一個使用Spring撰寫的MVC Project，一時興起就來接觸一下Java的MVC了，雖然Java對個人來說仍是陌生的語言…&lt;/p&gt;
-&lt;p&gt;這次練習不直接使用Spring，而是使用Spring Boot來構成Project，這次就以一個基礎的RESTful為目標，順便加碼練習使用Windows上的PowerShell來測試REST，主要是&lt;code&gt;Invoke-WebRequest&lt;/code&gt;及&lt;code&gt;Invoke-RestMethod&lt;/code&gt;&lt;/p&gt;</description>
+&lt;p&gt;這次練習不直接使用Spring，而是使用Spring Boot來構成Project，這次就以一個基礎的RESTful為目標，DB則用H2(In-Memory Database)，順便加碼練習使用Windows上的PowerShell來測試REST&lt;/p&gt;</description>
     </item>
     
     <item>
