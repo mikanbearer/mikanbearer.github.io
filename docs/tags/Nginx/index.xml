@@ -6,7 +6,16 @@
     <description>Recent content in Nginx on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Dec 2020 11:28:38 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Nginx/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Mar 2021 10:08:55 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常見的Vulnerability測試與修正(陸續更新)</title>
+      <link>https://mikanbearer.github.io/posts/202103231008/index.json</link>
+      <pubDate>Tue, 23 Mar 2021 10:08:55 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202103231008/index.json</guid>
+      <description>&lt;p&gt;常常被Nessus之類掃到弱點，希望以後上系統也能多上點心…&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>OpenResty初體驗</title>
       <link>https://mikanbearer.github.io/posts/2020/12/202012161128/index.json</link>

@@ -230,6 +230,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -246,6 +249,30 @@
     "pages": [
       {
         "kind": "page",
+        "name": "202104010856",
+        "params": {
+          "categories": [
+            "Security"
+          ],
+          "date": "2021-04-01T08:56:36+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-04-01T08:56:36+08:00",
+          "publishdate": "2021-04-01T08:56:36+08:00",
+          "tags": [
+            "Zeek",
+            "Logstash"
+          ],
+          "title": "整合Zeek與ELK分析流量"
+        },
+        "path": "posts/202104010856",
+        "permalink": "https://mikanbearer.github.io/posts/202104010856/index.json",
+        "summary": "\u003cp\u003e應該會是個長篇，先記錄一下\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 2295
+      },
+      {
+        "kind": "page",
         "name": "202103231008",
         "params": {
           "categories": [
@@ -259,7 +286,7 @@
           "tags": [
             "Apache",
             "Postfix",
-            "OpenSSL"
+            "Nginx"
           ],
           "title": "常見的Vulnerability測試與修正(陸續更新)"
         },
@@ -267,7 +294,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202103231008/index.json",
         "summary": "\u003cp\u003e常常被Nessus之類掃到弱點，希望以後上系統也能多上點心…\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1418
+        "wordcount": 1648
       },
       {
         "kind": "page",

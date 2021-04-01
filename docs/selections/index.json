@@ -307,6 +307,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -362,6 +366,7 @@
       "LibreNMS",
       "LINE",
       "Linux",
+      "Logstash",
       "Lua",
       "Matplotlib",
       "Moment.js",
@@ -372,7 +377,6 @@
       "Node.js",
       "noVNC",
       "OpenResty",
-      "OpenSSL",
       "pandas",
       "Passport",
       "Pelican",
@@ -399,9 +403,11 @@
       "vEOS",
       "Vue.js",
       "Windows",
+      "Zeek",
       "ZTPServer"
     ],
     "titles": [
+      "整合Zeek與ELK分析流量",
       "常見的Vulnerability測試與修正(陸續更新)",
       "於Spring輸出可供JS使用之Query result",
       "透過Bash傳送JSON格式的UDP Message",
