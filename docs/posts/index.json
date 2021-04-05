@@ -263,13 +263,13 @@
             "Zeek",
             "Logstash"
           ],
-          "title": "整合Zeek與ELK分析流量"
+          "title": "使用Zeek + ELK Stack進行流量分析(未完)"
         },
         "path": "posts/202104010856",
         "permalink": "https://mikanbearer.github.io/posts/202104010856/index.json",
-        "summary": "\u003cp\u003e應該會是個長篇，先記錄一下\u003c/p\u003e",
+        "summary": "\u003cp\u003e雖說是ELK Stack，本篇也僅著重Logstash，這架構應該能衍生出很多練習，總之先記錄一下\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2295
+        "wordcount": 2427
       },
       {
         "kind": "page",

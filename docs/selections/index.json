@@ -407,7 +407,7 @@
       "ZTPServer"
     ],
     "titles": [
-      "整合Zeek與ELK分析流量",
+      "使用Zeek + ELK Stack進行流量分析(未完)",
       "常見的Vulnerability測試與修正(陸續更新)",
       "於Spring輸出可供JS使用之Query result",
       "透過Bash傳送JSON格式的UDP Message",
