@@ -284,6 +284,14 @@
                 
             
         
+            
+                
+            
+        
+            
+                
+            
+        
         
             
             
@@ -452,10 +460,10 @@
           "Monitoring",
           "Operation",
           "Machine-Learning",
+          "Security",
           "Arista",
           "Cisco",
           "Data-Science",
-          "RPA",
           "Others"
         ],
         "selected": {
@@ -467,7 +475,7 @@
           "Monitoring": true,
           "Operation": true,
           "Others": true,
-          "RPA": true,
+          "Security": true,
           "Tricks": true,
           "Web-Development": true
         },
@@ -497,6 +505,10 @@
             "value": 4
           },
           {
+            "name": "Security",
+            "value": 3
+          },
+          {
             "name": "Arista",
             "value": 2
           },
@@ -509,10 +521,6 @@
             "value": 2
           },
           {
-            "name": "RPA",
-            "value": 2
-          },
-          {
             "name": "Others",
             "value": 10
           }
@@ -520,7 +528,7 @@
       },
       "monthly_count": {
         "series": [
-          1,
+          2,
           5,
           3,
           6,
@@ -614,7 +622,7 @@
           },
           {
             "name": "Others",
-            "value": 83
+            "value": 87
           }
         ]
       }

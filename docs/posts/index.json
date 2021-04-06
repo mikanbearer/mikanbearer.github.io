@@ -233,6 +233,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -249,6 +252,31 @@
     "pages": [
       {
         "kind": "page",
+        "name": "202104060015",
+        "params": {
+          "categories": [
+            "Security"
+          ],
+          "date": "2021-04-06T00:15:25+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-04-06T00:15:25+08:00",
+          "publishdate": "2021-04-06T00:15:25+08:00",
+          "tags": [
+            "Zeek",
+            "Filebeat",
+            "Elasticsearch"
+          ],
+          "title": "使用Filebeat輸出Zeek log至Elasticsearch"
+        },
+        "path": "posts/202104060015",
+        "permalink": "https://mikanbearer.github.io/posts/202104060015/index.json",
+        "summary": "\u003cp\u003e\u003ca href=\"#/posts/posts%2F202104010856\" target=\"_blank\"\u003e前一篇\u003c/a\u003e的補充，利用filebeat module來更簡單地達成目標，這次不透過logstash，直接使用filebeat輸出到elasticsearch\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 659
+      },
+      {
+        "kind": "page",
         "name": "202104010856",
         "params": {
           "categories": [
@@ -261,15 +289,16 @@
           "publishdate": "2021-04-01T08:56:36+08:00",
           "tags": [
             "Zeek",
+            "Filebeat",
             "Logstash"
           ],
-          "title": "使用Zeek + ELK Stack進行流量分析(未完)"
+          "title": "將Zeek logs傳送至ELK Stack"
         },
         "path": "posts/202104010856",
         "permalink": "https://mikanbearer.github.io/posts/202104010856/index.json",
         "summary": "\u003cp\u003e雖說是ELK Stack，本篇也僅著重Logstash，這架構應該能衍生出很多練習，總之先記錄一下\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2427
+        "wordcount": 2812
       },
       {
         "kind": "page",
