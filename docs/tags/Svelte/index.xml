@@ -6,7 +6,16 @@
     <description>Recent content in Svelte on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Jan 2021 13:50:05 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Svelte/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Apr 2021 10:44:10 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Svelte/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>snmp report</title>
+      <link>https://mikanbearer.github.io/works/snmp-report/index.json</link>
+      <pubDate>Sat, 17 Apr 2021 10:44:10 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/works/snmp-report/index.json</guid>
+      <description>使用Spring Boot + Svelte製作的前後端分離小工具，分析SNMP取得的資料，依照設備類型繪製成圓餅圖，目前支援偵測Cisco Router/Switch、Fortinet Firewall、Linux、Windows</description>
+    </item>
+    
     <item>
       <title>【Svelte練習5】加上一個pagination</title>
       <link>https://mikanbearer.github.io/posts/202101211350/index.json</link>

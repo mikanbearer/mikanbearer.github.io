@@ -292,6 +292,18 @@
                 
             
         
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
         
             
             
@@ -556,13 +568,13 @@
         "legend": [
           "Python",
           "JavaScript",
-          "Node.js",
           "Django",
+          "Node.js",
           "Vue.js",
+          "Svelte",
           "Docker",
           "Flask",
           "Prometheus",
-          "Svelte",
           "Hugo",
           "Others"
         ],
@@ -589,16 +601,20 @@
             "value": 12
           },
           {
+            "name": "Django",
+            "value": 8
+          },
+          {
             "name": "Node.js",
             "value": 8
           },
           {
-            "name": "Django",
-            "value": 7
+            "name": "Vue.js",
+            "value": 8
           },
           {
-            "name": "Vue.js",
-            "value": 7
+            "name": "Svelte",
+            "value": 6
           },
           {
             "name": "Docker",
@@ -613,21 +629,17 @@
             "value": 5
           },
           {
-            "name": "Svelte",
-            "value": 5
-          },
-          {
             "name": "Hugo",
             "value": 4
           },
           {
             "name": "Others",
-            "value": 87
+            "value": 90
           }
         ]
       }
     },
-    "content": "\u003cp\u003e一坨無力的渣渣\u003c/p\u003e\n",
+    "content": "\u003cp\u003e放置一些零碎的筆記與小點子的地方\u003c/p\u003e\n",
     "kind": "section",
     "params": {
       "draft": false,

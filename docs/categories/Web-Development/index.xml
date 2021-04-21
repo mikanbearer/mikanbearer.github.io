@@ -107,7 +107,7 @@
       <pubDate>Tue, 03 Nov 2020 13:57:03 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/11/202011031357/index.json</guid>
-      <description>&lt;p&gt;Pelican在使用reStructuredText撰寫貼文的時候，會遇到option不生效的問題&lt;/p&gt;</description>
+      <description>&lt;p&gt;Pelican 4.5.1版在使用reStructuredText撰寫貼文的時候，會遇到option不生效的問題&lt;/p&gt;</description>
     </item>
     
     <item>

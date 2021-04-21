@@ -14,6 +14,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -28,6 +31,32 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "content": "\u003cp\u003e使用Spring Boot + Svelte製作的前後端分離小工具，分析SNMP取得的資料，依照設備類型繪製成圓餅圖，目前支援偵測Cisco Router/Switch、Fortinet Firewall、Linux、Windows\u003c/p\u003e\n",
+        "kind": "page",
+        "name": "snmp-report",
+        "params": {
+          "date": "2021-04-17T10:44:10+08:00",
+          "demo_url": "",
+          "download_url": "https://github.com/mikanbearer/remote_manager",
+          "draft": false,
+          "images": [
+            "works/snmp-report/2.png",
+            "works/snmp-report/1.png"
+          ],
+          "iscjklanguage": false,
+          "lastmod": "2021-04-17T10:44:10+08:00",
+          "publishdate": "2021-04-17T10:44:10+08:00",
+          "tags": [
+            "Svelte",
+            "Spring Boot"
+          ],
+          "title": "snmp report"
+        },
+        "permalink": "https://mikanbearer.github.io/works/snmp-report/index.json",
+        "type": "works",
+        "wordcount": 6
+      },
       {
         "content": "\u003cp\u003e小架構的VNC Web UI，使用noVNC→proxy(websockify)→VNC Server操作遠端桌面，並包含錄影與回放功能，使用Django進行簡易分群控管\u003c/p\u003e\n",
         "kind": "page",
@@ -45,10 +74,10 @@
           ],
           "iscjklanguage": false,
           "lastmod": "2020-12-15T10:44:10+08:00",
-          "powered_by": [
+          "publishdate": "2020-12-15T10:44:10+08:00",
+          "tags": [
             "Django"
           ],
-          "publishdate": "2020-12-15T10:44:10+08:00",
           "title": "remote manager"
         },
         "permalink": "https://mikanbearer.github.io/works/remote_manager/index.json",
@@ -60,7 +89,7 @@
         "kind": "page",
         "name": "cdp_topo",
         "params": {
-          "date": "2020-12-15T10:43:10+08:00",
+          "date": "2020-10-20T16:43:10+08:00",
           "demo_url": "https://mikanbearer.github.io/cdp_topo/",
           "download_url": "https://github.com/mikanbearer/cdp_topo",
           "draft": false,
@@ -68,11 +97,11 @@
             "works/cdp_topo/1.png"
           ],
           "iscjklanguage": false,
-          "lastmod": "2020-12-15T10:43:10+08:00",
-          "powered_by": [
+          "lastmod": "2020-10-20T16:43:10+08:00",
+          "publishdate": "2020-10-20T16:43:10+08:00",
+          "tags": [
             "d3.js"
           ],
-          "publishdate": "2020-12-15T10:43:10+08:00",
           "title": "cdp topo"
         },
         "permalink": "https://mikanbearer.github.io/works/cdp_topo/index.json",
@@ -84,7 +113,7 @@
         "kind": "page",
         "name": "hugo-vue-mix",
         "params": {
-          "date": "2020-12-15T10:42:10+08:00",
+          "date": "2020-08-15T13:12:10+08:00",
           "demo_url": "https://mikanbearer.github.io/hugo-vue-mix/",
           "download_url": "https://github.com/mikanbearer/hugo-vue-mix",
           "draft": false,
@@ -94,12 +123,12 @@
             "works/hugo-vue-mix/3.png"
           ],
           "iscjklanguage": false,
-          "lastmod": "2020-12-15T10:42:10+08:00",
-          "powered_by": [
+          "lastmod": "2020-08-15T13:12:10+08:00",
+          "publishdate": "2020-08-15T13:12:10+08:00",
+          "tags": [
             "Vue.js",
             "Vuetify"
           ],
-          "publishdate": "2020-12-15T10:42:10+08:00",
           "title": "hugo-vue-mix"
         },
         "permalink": "https://mikanbearer.github.io/works/hugo-vue-mix/index.json",

@@ -273,7 +273,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202104060015/index.json",
         "summary": "\u003cp\u003e\u003ca href=\"#/posts/posts%2F202104010856\" target=\"_blank\"\u003e前一篇\u003c/a\u003e的補充，利用filebeat module來更簡單地達成目標，這次不透過logstash，直接使用filebeat輸出到elasticsearch\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 659
+        "wordcount": 705
       },
       {
         "kind": "page",
@@ -298,7 +298,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202104010856/index.json",
         "summary": "\u003cp\u003e雖說是ELK Stack，本篇也僅著重Logstash，這架構應該能衍生出很多練習，總之先記錄一下\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2812
+        "wordcount": 2832
       },
       {
         "kind": "page",
@@ -518,7 +518,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202101211350/index.json",
         "summary": "\u003cp\u003e當有個item list很長的話勢必要來做pagination，這次輪到這個好用的component：\u003ca href=\"https://github.com/TahaSh/svelte-paginate\" target=\"_blank\"\u003esvelte-paginate\u003c/a\u003e，有現成的可用豈有不用的道理？\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1185
+        "wordcount": 1257
       },
       {
         "kind": "page",
@@ -543,7 +543,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202101181316/index.json",
         "summary": "\u003cp\u003e也是時候找個UI Library了，不然手刻真有點辛苦…\u003c/p\u003e\n\u003cp\u003e這次練習的就是採用Material Design的\u003ca href=\"https://sveltematerialui.com/\" target=\"_blank\"\u003eSvelte Material UI\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1084
+        "wordcount": 1154
       },
       {
         "kind": "page",
@@ -593,7 +593,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202101111522/index.json",
         "summary": "\u003cp\u003e意外看到這個\u003ca href=\"https://svelte-grid.now.sh/\" target=\"_blank\"\u003esvelte-grid\u003c/a\u003e，來玩一下順便回味Svelte\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1127
+        "wordcount": 1193
       },
       {
         "kind": "page",
@@ -978,7 +978,7 @@
         },
         "path": "posts/2020/11/202011031357",
         "permalink": "https://mikanbearer.github.io/posts/2020/11/202011031357/index.json",
-        "summary": "\u003cp\u003ePelican在使用reStructuredText撰寫貼文的時候，會遇到option不生效的問題\u003c/p\u003e",
+        "summary": "\u003cp\u003ePelican 4.5.1版在使用reStructuredText撰寫貼文的時候，會遇到option不生效的問題\u003c/p\u003e",
         "type": "posts",
         "wordcount": 747
       },
