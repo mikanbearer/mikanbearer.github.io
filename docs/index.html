@@ -540,7 +540,7 @@
                                     <v-col xs="12" sm="6" md="6" lg="4" xl="4">
                                         <v-card height="100%" flat color="transparent">
                                             <v-card-text>
-                                                <v-carousel hide-delimiters height="100%">
+                                                <v-carousel hide-delimiters height="240">
                                                     <v-carousel-item
                                                         v-for="(item, i) in work.params.images"
                                                         :key="i"
@@ -564,12 +564,12 @@
                                                 <span v-for="tag in work.params.tags" class="warning--text text--lighten-3"> #[[ tag ]]</span>
                                             </v-card-subtitle>
                                         
-                                            <v-card-text class="text-body-2 grey--text text--lighten-2">
+                                            <v-card-text class="text-body-2 grey--text text--lighten-2" style="margin-bottom: 1rem">
                                                 <div class="post-content" v-html="work.content">
                                                 </div>
                                             </v-card-text>
 
-                                            <v-card-actions style="padding: 0px 16px 0px 16px;">
+                                            <v-card-actions style="padding: 0px 16px 0px 16px; position: absolute; bottom: 1rem;">
                                                 <v-btn
                                                     :href="work.params.demo_url" 
                                                     :disabled="!work.params.demo_url" 
