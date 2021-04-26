@@ -13,7 +13,7 @@
       <pubDate>Tue, 20 Oct 2020 16:43:10 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/works/cdp_topo/index.json</guid>
-      <description>Pyhon的小script，有繼續長大的可能，能利用terminal output產出d3.js的network topology，目前僅支援cisco cdp</description>
+      <description>Pyhon的小script，有繼續長大的可能，能利用terminal output log產出d3.js的network topology，目前僅支援cisco cdp</description>
     </item>
     
   </channel>

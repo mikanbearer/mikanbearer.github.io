@@ -38,7 +38,7 @@
         "params": {
           "date": "2021-04-17T10:44:10+08:00",
           "demo_url": "",
-          "download_url": "https://github.com/mikanbearer/remote_manager",
+          "download_url": "https://github.com/mikanbearer/snmp_report",
           "draft": false,
           "images": [
             "works/snmp-report/2.png",
@@ -85,7 +85,7 @@
         "wordcount": 4
       },
       {
-        "content": "\u003cp\u003ePyhon的小script，有繼續長大的可能，能利用terminal output產出d3.js的network topology，目前僅支援cisco cdp\u003c/p\u003e\n",
+        "content": "\u003cp\u003ePyhon的小script，有繼續長大的可能，能利用terminal output log產出d3.js的network topology，目前僅支援cisco cdp\u003c/p\u003e\n",
         "kind": "page",
         "name": "cdp_topo",
         "params": {
@@ -106,10 +106,10 @@
         },
         "permalink": "https://mikanbearer.github.io/works/cdp_topo/index.json",
         "type": "works",
-        "wordcount": 4
+        "wordcount": 5
       },
       {
-        "content": "\u003cp\u003e靜態網站產生器Hugo的一個自製主題，同時也為本BLOG之前主題，因當前主題之static SPA無法進行SEO而保留，使用Vue.js完成搜尋功能，並使用Vuetify導入Material Design，持續增加功能中\u003c/p\u003e\n",
+        "content": "\u003cp\u003e靜態網站產生器Hugo的一個自製主題，同時也為本BLOG之前主題，使用Vue.js完成搜尋功能，並使用Vuetify導入Material Design，持續增加功能中\u003c/p\u003e\n",
         "kind": "page",
         "name": "hugo-vue-mix",
         "params": {
@@ -133,7 +133,7 @@
         },
         "permalink": "https://mikanbearer.github.io/works/hugo-vue-mix/index.json",
         "type": "works",
-        "wordcount": 3
+        "wordcount": 2
       }
     ],
     "params": {},

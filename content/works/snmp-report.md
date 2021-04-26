@@ -1,7 +1,7 @@
 ---
 title: "snmp report"
 images: [works/snmp-report/2.png, works/snmp-report/1.png]
-download_url: "https://github.com/mikanbearer/remote_manager"
+download_url: "https://github.com/mikanbearer/snmp_report"
 demo_url: ""
 tags: [Svelte, Spring Boot]
 date: 2021-04-17T10:44:10+08:00
