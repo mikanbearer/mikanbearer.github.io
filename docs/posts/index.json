@@ -236,6 +236,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -250,6 +253,30 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202105250915",
+        "params": {
+          "categories": [
+            "Tricks"
+          ],
+          "date": "2021-05-25T09:15:45+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-05-25T09:15:45+08:00",
+          "publishdate": "2021-05-25T09:15:45+08:00",
+          "tags": [
+            "Powershell",
+            "Windows"
+          ],
+          "title": "透過WinRM遠端操作Windows"
+        },
+        "path": "posts/202105250915",
+        "permalink": "https://mikanbearer.github.io/posts/202105250915/index.json",
+        "summary": "\u003cp\u003e網路上撿來的，感覺會常用\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 684
+      },
       {
         "kind": "page",
         "name": "202104060015",

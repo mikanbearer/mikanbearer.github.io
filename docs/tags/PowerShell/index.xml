@@ -6,7 +6,16 @@
     <description>Recent content in PowerShell on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Mar 2021 09:27:24 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/PowerShell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 May 2021 09:15:45 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/PowerShell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>透過WinRM遠端操作Windows</title>
+      <link>https://mikanbearer.github.io/posts/202105250915/index.json</link>
+      <pubDate>Tue, 25 May 2021 09:15:45 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202105250915/index.json</guid>
+      <description>&lt;p&gt;網路上撿來的，感覺會常用&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>建立簡單的Spring Boot RESTful並使用PowerShell測試</title>
       <link>https://mikanbearer.github.io/posts/202103040927/index.json</link>

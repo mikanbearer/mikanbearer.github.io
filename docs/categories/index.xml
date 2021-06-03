@@ -6,7 +6,16 @@
     <description>Recent content in Categories on 垃圾堆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Apr 2021 00:15:25 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 May 2021 09:15:45 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tricks</title>
+      <link>https://mikanbearer.github.io/categories/Tricks/</link>
+      <pubDate>Tue, 25 May 2021 09:15:45 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/categories/Tricks/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Security</title>
       <link>https://mikanbearer.github.io/categories/Security/</link>
@@ -22,15 +31,6 @@
       <pubDate>Tue, 09 Mar 2021 09:12:19 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/categories/Web-Development/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tricks</title>
-      <link>https://mikanbearer.github.io/categories/Tricks/</link>
-      <pubDate>Fri, 05 Mar 2021 14:35:01 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/categories/Tricks/</guid>
       <description></description>
     </item>
     
