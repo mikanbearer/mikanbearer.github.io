@@ -4,6 +4,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 {{ partial "vue_templates/filter_card.html" . }}
 {{ partial "vue_templates/post_card.html" . }}
 {{ partial "vue_templates/disqus_card.html" . }}
@@ -260,7 +261,14 @@
               this.setPie('Top Tags', 'tag', charts.tags_data, 'chart_tags')
             }, 700)
             setTimeout(() => {
-              this.setArea('', charts.monthly_count.x, charts.monthly_count.series, 'monthly')
+              let x = []
+              let y = []
+              for (let i = 0; i < 12; i++) {
+                let month = moment().subtract(i, 'M').format('YYYY-MM')
+                x.push(month)
+                y.push(charts.monthly_count[month] || 0)
+              }
+              this.setArea('', x, y, 'monthly')
             }, 1000)
           }, 500)
       })

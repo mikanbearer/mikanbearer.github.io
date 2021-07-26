@@ -73,15 +73,12 @@
         {{ end }}
         {{ $categories_data := dict "legend" $legend "series" $series "selected" $selected }}
 
-        {{ $x := slice }}
+        {{ $monthly_count := slice }}
         {{ range (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006-01" }}
-            {{ $x = $x | append .Key }}
+            {{ $monthly_count = merge $monthly_count (dict .Key (len .Pages)) }}
         {{ end }}
-        {{ $series := slice }}
-        {{ range (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006-01" }}
-            {{ $series = $series | append (len .Pages) }}
-        {{ end }}
-        {{ $monthly_count := dict "x" $x "series" $series }}
+
+
         {{ $charts := dict "monthly_count" $monthly_count "categories_data" $categories_data "tags_data" $tags_data }}
         {{ $result = dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "charts" $charts }}
 
