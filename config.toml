@@ -5,9 +5,9 @@ languageCode = "en-us"
 
 DefaultContentLanguage = "en"
 #DefaultContentLanguage = "ja"
-title = "垃圾堆"
-#theme = "hugo-vue-mix"
-theme = "vuego"
+title = "Unnamed Diary"
+#theme = "test"
+theme = "test"
 metaDataFormat = "yaml"
 
 disqusShortname = "mikanmimi"

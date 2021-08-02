@@ -1070,13 +1070,13 @@
           "tags": [
             "Vue.js"
           ],
-          "title": "使用v-if來改變元素顯示排列"
+          "title": "使用v-if來假裝改變元素顯示排列"
         },
         "path": "posts/2020/10/202010261727",
         "permalink": "https://mikanbearer.github.io/posts/2020/10/202010261727/index.json",
-        "summary": "\u003cp\u003e突發奇想的筆記，想改變element的順序，但又不想用jQuery的.insertBefore()或.insertAfter()等等該怎麼辦？\n如果是用vuetify，或許可以考慮一下這種作法\u003c/p\u003e",
+        "summary": "\u003cp\u003e突發奇想的筆記，保留一個思路，在採用Virtual DOM的framework下利用template的邏輯來假裝改變了元素的排列顯示以增加效果\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 591
+        "wordcount": 566
       },
       {
         "kind": "page",

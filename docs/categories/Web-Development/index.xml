@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Web Development on 垃圾堆</title>
+    <title>Web Development on Unnamed Diary</title>
     <link>https://mikanbearer.github.io/categories/Web-Development/</link>
-    <description>Recent content in Web Development on 垃圾堆</description>
+    <description>Recent content in Web Development on Unnamed Diary</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 09 Mar 2021 09:12:19 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/Web-Development/index.xml" rel="self" type="application/rss+xml" />
@@ -139,13 +139,12 @@
     </item>
     
     <item>
-      <title>使用v-if來改變元素顯示排列</title>
+      <title>使用v-if來假裝改變元素顯示排列</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010261727/index.json</link>
       <pubDate>Mon, 26 Oct 2020 17:27:31 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/posts/2020/10/202010261727/index.json</guid>
-      <description>&lt;p&gt;突發奇想的筆記，想改變element的順序，但又不想用jQuery的.insertBefore()或.insertAfter()等等該怎麼辦？
-如果是用vuetify，或許可以考慮一下這種作法&lt;/p&gt;</description>
+      <description>&lt;p&gt;突發奇想的筆記，保留一個思路，在採用Virtual DOM的framework下利用template的邏輯來假裝改變了元素的排列顯示以增加效果&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -1,0 +1,91 @@
+<script type="text/x-template" id="filter-card">
+    <v-card color="grey darken-3">
+        <v-card-title>
+            Filter Posts
+        </v-card-title>
+        <v-card-text>
+
+            <v-combobox 
+                :search-input.sync="filterConditions.keyword"
+                :items="getItems(filterConditions.keyword, filterSelections.titles)"
+                clearable
+                hide-selected
+                hide-details
+                prepend-inner-icon="mdi-magnify"
+                label="Title"
+                height="42"
+                menu-props="light"
+                class="keyword-input"
+            >  
+            </v-combobox>
+
+            <v-combobox 
+                v-model="filterConditions.selectedCategories"
+                :items="filterSelections.categories"
+                chips
+                clearable
+                multiple
+                hide-selected
+                hide-details
+                prepend-inner-icon="mdi-folder-multiple"
+                label="Categories"
+                height="42"
+                menu-props="light"
+                :delimiters="[',']"
+            >  
+                <template v-slot:selection="{ attrs, item, select, selected }">
+                    <v-chip
+                        v-bind="attrs"
+                        :input-value="selected"
+                        close
+                        @click:close="removeItem('selectedCategories', item)"
+                    >
+                        [[ item ]]
+                    </v-chip>
+                </template>       
+            </v-combobox>
+
+            <v-combobox 
+                v-model="filterConditions.selectedTags"
+                :items="filterSelections.tags"
+                chips
+                clearable
+                multiple
+                hide-selected
+                hide-details
+                prepend-inner-icon="mdi-tag-multiple"
+                label="Tags"
+                menu-props="light"
+                :delimiters="[',']"
+            >
+                <template v-slot:selection="{ attrs, item, select, selected }">
+                    <v-chip
+                        color="accent"
+                        v-bind="attrs"
+                        :input-value="selected"
+                        close
+                        @click:close="removeItem('selectedTags', item)"
+                    >
+                        [[ item ]]
+                    </v-chip>
+                </template>              
+            </v-combobox>
+
+        </v-card-text>
+    
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+                :disabled="notInFilter"
+                color="error"
+                @click="$router.history.push('/')"
+                small
+            >
+                Clear
+            </v-btn>
+            <v-btn color="primary" @click="toFilteredPosts" small>
+                Filter
+            </v-btn>
+        </v-card-actions>
+    </v-card>
+</script>

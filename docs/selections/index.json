@@ -450,7 +450,7 @@
       "解決Pelican使用rst撰寫貼文時code block option不生效的問題",
       "嘗試使用Pelican撰寫blog",
       "Hugo使用錯誤template輸出的迴避方式",
-      "使用v-if來改變元素顯示排列",
+      "使用v-if來假裝改變元素顯示排列",
       "Docker化Node.js的Web App",
       "使用docker-compose輕鬆部屬監控工具",
       "從今天開始學NestJS",

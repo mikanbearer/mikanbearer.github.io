@@ -1,0 +1,97 @@
+{{ $result := dict }}
+
+{{ if (eq .Kind "section") }}
+
+    {{ if (in site.Params.mainSections .Type) }}
+        {{ $pages := slice }}
+        {{ range .Pages }}
+            {{ $page :=  dict "name" .File.BaseFileName "path" (replace (add .File.Dir .File.BaseFileName) "\\" "/") "kind" .Kind "type" .Type "wordcount" .WordCount "summary" .Summary "permalink" .Permalink "params" .Params }}
+            {{ $pages = $pages | append $page }}
+        {{ end }}
+        {{ $result = dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "pages" $pages }}
+
+
+    {{ else if (eq .Type "selections") }}
+        {{ $titles := slice }}
+        {{ $categories := slice }}
+        {{ $tags := slice }}
+        {{ range where site.RegularPages "Type" "in" site.Params.mainSections }}
+            {{ $titles = $titles | append .Title }}
+            {{ $categories = $categories | union .Params.Categories }}
+            {{ $tags = $tags | union .Params.Tags }}
+        {{ end }}
+        {{ $result = dict "titles" $titles "categories" (sort $categories) "tags" (sort $tags) }}
+
+
+    {{ else if (eq .Type "works") }}
+        {{ $pages := slice }}
+        {{ range .Pages }}
+            {{ $page :=  dict "name" .File.BaseFileName "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params }}
+            {{ $pages = $pages | append $page }}
+        {{ end }}
+        {{ $result = dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "pages" $pages }}
+
+
+    {{ else if (eq .Type "about") }}
+        {{ $legend := slice }}
+        {{ $series := slice }}
+        {{ $selected := dict }}
+        {{ $count := 0 }}
+        {{ range $i, $e := .Site.Taxonomies.tags.ByCount }}
+            {{ if (lt $i 10) }}
+                {{ $legend = $legend | append $e.Name }}
+                {{ $series = $series | append (dict "name" .Name "value" .Count) }}
+                {{ $selected = $selected | merge (dict $e.Name true) }}
+            {{ else }}
+                {{ $count = add $count $e.Count }}
+            {{ end }}
+        {{ end }}
+        {{ if (ne $count 0) }}
+            {{ $legend = $legend | append "Others" }}
+            {{ $series = $series | append (dict "name" "Others" "value" $count) }}
+            {{ $selected = $selected | merge (dict "Others" true) }}
+        {{ end }}
+        {{ $tags_data := dict "legend" $legend "series" $series "selected" $selected }}
+
+        {{ $legend := slice }}
+        {{ $series := slice }}
+        {{ $selected := dict }}
+        {{ $count := 0 }}
+        {{ range $i, $e := .Site.Taxonomies.categories.ByCount }}
+            {{ if (lt $i 10) }}
+                {{ $legend = $legend | append $e.Name }}
+                {{ $series = $series | append (dict "name" .Name "value" .Count) }}
+                {{ $selected = $selected | merge (dict $e.Name true) }}
+            {{ else }}
+                {{ $count = add $count $e.Count }}
+            {{ end }}
+        {{ end }}
+        {{ if (ne $count 0) }}
+            {{ $legend = $legend | append "Others" }}
+            {{ $series = $series | append (dict "name" "Others" "value" $count) }}
+            {{ $selected = $selected | merge (dict "Others" true) }}
+        {{ end }}
+        {{ $categories_data := dict "legend" $legend "series" $series "selected" $selected }}
+
+        {{ $monthly_count := slice }}
+        {{ range (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006-01" }}
+            {{ $monthly_count = merge $monthly_count (dict .Key (len .Pages)) }}
+        {{ end }}
+
+
+        {{ $charts := dict "monthly_count" $monthly_count "categories_data" $categories_data "tags_data" $tags_data }}
+        {{ $result = dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params "charts" $charts }}
+
+    {{ end }}
+
+
+{{ else if (eq .Kind "page") }}
+
+    {{ if (in site.Params.mainSections .Type) }}
+        {{ $result = dict "kind" .Kind "type" .Type "wordcount" .WordCount "content" .Content "permalink" .Permalink "params" .Params }}
+    {{ end }}
+
+{{ end }}
+
+
+{{ dict "result" $result | jsonify (dict "indent" "  ") }}

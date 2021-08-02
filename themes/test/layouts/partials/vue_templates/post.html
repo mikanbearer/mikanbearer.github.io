@@ -1,0 +1,7 @@
+<script type="text/x-template" id="post">
+    <v-row v-if="post.content" >
+        <v-col>
+            <post-card :post="post" :is-loaded="isLoaded"></post-card>
+        </v-col>
+    </v-row>
+</script>
