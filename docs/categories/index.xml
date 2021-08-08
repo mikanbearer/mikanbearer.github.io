@@ -6,7 +6,16 @@
     <description>Recent content in Categories on Unnamed Diary</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 May 2021 09:15:45 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Aug 2021 00:29:16 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Development</title>
+      <link>https://mikanbearer.github.io/categories/Web-Development/</link>
+      <pubDate>Mon, 09 Aug 2021 00:29:16 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/categories/Web-Development/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Tricks</title>
       <link>https://mikanbearer.github.io/categories/Tricks/</link>
@@ -22,15 +31,6 @@
       <pubDate>Tue, 06 Apr 2021 00:15:25 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/categories/Security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Web Development</title>
-      <link>https://mikanbearer.github.io/categories/Web-Development/</link>
-      <pubDate>Tue, 09 Mar 2021 09:12:19 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/categories/Web-Development/</guid>
       <description></description>
     </item>
     
@@ -71,15 +71,6 @@
     </item>
     
     <item>
-      <title>Cisco</title>
-      <link>https://mikanbearer.github.io/categories/Cisco/</link>
-      <pubDate>Tue, 17 Nov 2020 15:36:33 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/categories/Cisco/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Simulation</title>
       <link>https://mikanbearer.github.io/categories/Simulation/</link>
       <pubDate>Mon, 16 Nov 2020 16:08:45 +0800</pubDate>
@@ -103,15 +94,6 @@
       <pubDate>Thu, 08 Oct 2020 17:13:00 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/categories/%E6%9C%AA%E5%88%86%E9%A1%9E/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Arista</title>
-      <link>https://mikanbearer.github.io/categories/Arista/</link>
-      <pubDate>Thu, 10 Sep 2020 16:08:09 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/categories/Arista/</guid>
       <description></description>
     </item>
     

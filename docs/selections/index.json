@@ -319,6 +319,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -331,8 +335,6 @@
 {
   "result": {
     "categories": [
-      "Arista",
-      "Cisco",
       "Data Science",
       "Deployment",
       "Machine Learning",
@@ -417,6 +419,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "部落格主題再再更新",
       "透過WinRM遠端操作Windows",
       "使用Filebeat輸出Zeek log至Elasticsearch",
       "將Zeek logs傳送至ELK Stack",
@@ -486,7 +489,7 @@
       "在Nginx或Apache上設定CORS",
       "使用docker-compose部屬Nginx + uWSGI + Django",
       "使用Vue.js + Vuetify製作SPA登入畫面",
-      "在EVE-NG上部屬vEOS LAB",
+      "在EVE-NG上部屬Arista vEOS LAB",
       "使用Django + Celery進行異步處理",
       "用VBA在Excel中使用nslookup",
       "【Django API實作-入門篇2】在Django REST framework上導入JWT驗證",

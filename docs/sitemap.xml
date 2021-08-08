@@ -3,21 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mikanbearer.github.io/categories/</loc>
-    <lastmod>2021-05-25T09:15:45+08:00</lastmod>
+    <lastmod>2021-08-09T00:29:16+08:00</lastmod>
+  </url><url>
+    <loc>https://mikanbearer.github.io/tags/Hugo/</loc>
+    <lastmod>2021-08-09T00:29:16+08:00</lastmod>
+  </url><url>
+    <loc>https://mikanbearer.github.io/tags/JavaScript/</loc>
+    <lastmod>2021-08-09T00:29:16+08:00</lastmod>
   </url><url>
     <loc>https://mikanbearer.github.io/posts/</loc>
-    <lastmod>2021-05-25T09:15:45+08:00</lastmod>
+    <lastmod>2021-08-09T00:29:16+08:00</lastmod>
+  </url><url>
+    <loc>https://mikanbearer.github.io/tags/Svelte/</loc>
+    <lastmod>2021-08-09T00:29:16+08:00</lastmod>
+  </url><url>
+    <loc>https://mikanbearer.github.io/tags/</loc>
+    <lastmod>2021-08-09T00:29:16+08:00</lastmod>
+  </url><url>
+    <loc>https://mikanbearer.github.io/</loc>
+    <lastmod>2021-08-09T00:29:16+08:00</lastmod>
+  </url><url>
+    <loc>https://mikanbearer.github.io/categories/Web-Development/</loc>
+    <lastmod>2021-08-09T00:29:16+08:00</lastmod>
+  </url><url>
+    <loc>https://mikanbearer.github.io/posts/202108090029/index.json</loc>
+    <lastmod>2021-08-09T00:29:16+08:00</lastmod>
   </url><url>
     <loc>https://mikanbearer.github.io/tags/PowerShell/</loc>
     <lastmod>2021-05-25T09:15:45+08:00</lastmod>
   </url><url>
-    <loc>https://mikanbearer.github.io/tags/</loc>
-    <lastmod>2021-05-25T09:15:45+08:00</lastmod>
-  </url><url>
     <loc>https://mikanbearer.github.io/categories/Tricks/</loc>
-    <lastmod>2021-05-25T09:15:45+08:00</lastmod>
-  </url><url>
-    <loc>https://mikanbearer.github.io/</loc>
     <lastmod>2021-05-25T09:15:45+08:00</lastmod>
   </url><url>
     <loc>https://mikanbearer.github.io/tags/Windows/</loc>
@@ -25,19 +40,6 @@
   </url><url>
     <loc>https://mikanbearer.github.io/posts/202105250915/index.json</loc>
     <lastmod>2021-05-25T09:15:45+08:00</lastmod>
-  </url><url>
-    <loc>https://mikanbearer.github.io/works/</loc>
-    <lastmod>2021-04-17T10:44:10+08:00</lastmod>
-    <priority>0</priority>
-  </url><url>
-    <loc>https://mikanbearer.github.io/works/snmp-report/index.json</loc>
-    <lastmod>2021-04-17T10:44:10+08:00</lastmod>
-  </url><url>
-    <loc>https://mikanbearer.github.io/tags/Spring-Boot/</loc>
-    <lastmod>2021-04-17T10:44:10+08:00</lastmod>
-  </url><url>
-    <loc>https://mikanbearer.github.io/tags/Svelte/</loc>
-    <lastmod>2021-04-17T10:44:10+08:00</lastmod>
   </url><url>
     <loc>https://mikanbearer.github.io/tags/Elasticsearch/</loc>
     <lastmod>2021-04-06T00:15:25+08:00</lastmod>
@@ -75,13 +77,7 @@
     <loc>https://mikanbearer.github.io/tags/Java/</loc>
     <lastmod>2021-03-09T09:12:19+08:00</lastmod>
   </url><url>
-    <loc>https://mikanbearer.github.io/tags/JavaScript/</loc>
-    <lastmod>2021-03-09T09:12:19+08:00</lastmod>
-  </url><url>
     <loc>https://mikanbearer.github.io/tags/Spring/</loc>
-    <lastmod>2021-03-09T09:12:19+08:00</lastmod>
-  </url><url>
-    <loc>https://mikanbearer.github.io/categories/Web-Development/</loc>
     <lastmod>2021-03-09T09:12:19+08:00</lastmod>
   </url><url>
     <loc>https://mikanbearer.github.io/posts/202103090912/index.json</loc>
@@ -180,6 +176,10 @@
     <loc>https://mikanbearer.github.io/categories/Operation/</loc>
     <lastmod>2020-12-16T11:28:38+08:00</lastmod>
   </url><url>
+    <loc>https://mikanbearer.github.io/works/</loc>
+    <lastmod>2020-12-15T10:44:10+08:00</lastmod>
+    <priority>0</priority>
+  </url><url>
     <loc>https://mikanbearer.github.io/categories/Machine-Learning/</loc>
     <lastmod>2020-12-15T10:44:10+08:00</lastmod>
   </url><url>
@@ -228,9 +228,6 @@
     <loc>https://mikanbearer.github.io/posts/2020/11/202011181500/index.json</loc>
     <lastmod>2020-11-18T15:00:06+08:00</lastmod>
   </url><url>
-    <loc>https://mikanbearer.github.io/categories/Cisco/</loc>
-    <lastmod>2020-11-17T15:36:33+08:00</lastmod>
-  </url><url>
     <loc>https://mikanbearer.github.io/tags/IOS/</loc>
     <lastmod>2020-11-17T15:36:33+08:00</lastmod>
   </url><url>
@@ -270,9 +267,6 @@
     <loc>https://mikanbearer.github.io/posts/2020/11/202011021724/index.json</loc>
     <lastmod>2020-11-02T17:24:12+08:00</lastmod>
   </url><url>
-    <loc>https://mikanbearer.github.io/tags/Hugo/</loc>
-    <lastmod>2020-10-28T13:26:11+08:00</lastmod>
-  </url><url>
     <loc>https://mikanbearer.github.io/posts/2020/10/202010281326/index.json</loc>
     <lastmod>2020-10-28T13:26:11+08:00</lastmod>
   </url><url>
@@ -284,12 +278,6 @@
   </url><url>
     <loc>https://mikanbearer.github.io/posts/2020/10/202010211651/index.json</loc>
     <lastmod>2020-10-21T16:51:28+08:00</lastmod>
-  </url><url>
-    <loc>https://mikanbearer.github.io/works/cdp_topo/index.json</loc>
-    <lastmod>2020-10-20T16:43:10+08:00</lastmod>
-  </url><url>
-    <loc>https://mikanbearer.github.io/tags/d3.js/</loc>
-    <lastmod>2020-10-20T16:43:10+08:00</lastmod>
   </url><url>
     <loc>https://mikanbearer.github.io/tags/Cacti/</loc>
     <lastmod>2020-10-19T14:29:51+08:00</lastmod>
@@ -356,9 +344,6 @@
   </url><url>
     <loc>https://mikanbearer.github.io/posts/2020/09/202009111635/index.json</loc>
     <lastmod>2020-09-11T16:35:19+08:00</lastmod>
-  </url><url>
-    <loc>https://mikanbearer.github.io/categories/Arista/</loc>
-    <lastmod>2020-09-10T16:08:09+08:00</lastmod>
   </url><url>
     <loc>https://mikanbearer.github.io/categories/Provisioning/</loc>
     <lastmod>2020-09-10T16:08:09+08:00</lastmod>

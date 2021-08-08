@@ -6,7 +6,16 @@
     <description>Recent content in JavaScript on Unnamed Diary</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Mar 2021 09:12:19 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/JavaScript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Aug 2021 00:29:16 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/JavaScript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>部落格主題再再更新</title>
+      <link>https://mikanbearer.github.io/posts/202108090029/index.json</link>
+      <pubDate>Mon, 09 Aug 2021 00:29:16 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202108090029/index.json</guid>
+      <description>&lt;p&gt;紀錄一下，算是新的里程碑&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>於Spring輸出可供JS使用之Query result</title>
       <link>https://mikanbearer.github.io/posts/202103090912/index.json</link>

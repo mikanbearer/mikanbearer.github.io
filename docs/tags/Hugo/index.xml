@@ -6,7 +6,16 @@
     <description>Recent content in Hugo on Unnamed Diary</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Oct 2020 13:26:11 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Aug 2021 00:29:16 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>部落格主題再再更新</title>
+      <link>https://mikanbearer.github.io/posts/202108090029/index.json</link>
+      <pubDate>Mon, 09 Aug 2021 00:29:16 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202108090029/index.json</guid>
+      <description>&lt;p&gt;紀錄一下，算是新的里程碑&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Hugo使用錯誤template輸出的迴避方式</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010281326/index.json</link>

@@ -58,18 +58,6 @@
         
             
                 
-                
-                
-            
-        
-            
-                
-                
-                
-            
-        
-            
-                
             
         
             
@@ -370,18 +358,6 @@
         
             
                 
-                
-                
-            
-        
-            
-                
-                
-                
-            
-        
-            
-                
             
         
             
@@ -408,6 +384,8 @@
         
 
         
+        
+            
         
             
         
@@ -454,14 +432,10 @@
           "Operation",
           "Machine-Learning",
           "Security",
-          "Arista",
-          "Cisco",
           "Data-Science",
           "Others"
         ],
         "selected": {
-          "Arista": true,
-          "Cisco": true,
           "Data-Science": true,
           "Deployment": true,
           "Machine-Learning": true,
@@ -475,7 +449,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 39
+            "value": 40
           },
           {
             "name": "Tricks",
@@ -502,14 +476,6 @@
             "value": 3
           },
           {
-            "name": "Arista",
-            "value": 2
-          },
-          {
-            "name": "Cisco",
-            "value": 2
-          },
-          {
             "name": "Data-Science",
             "value": 2
           },
@@ -530,7 +496,8 @@
         "2021-02": 3,
         "2021-03": 5,
         "2021-04": 2,
-        "2021-05": 1
+        "2021-05": 1,
+        "2021-08": 1
       },
       "tags_data": {
         "legend": [
@@ -542,19 +509,15 @@
           "Svelte",
           "Docker",
           "Flask",
-          "Prometheus",
-          "Hugo",
           "Others"
         ],
         "selected": {
           "Django": true,
           "Docker": true,
           "Flask": true,
-          "Hugo": true,
           "JavaScript": true,
           "Node.js": true,
           "Others": true,
-          "Prometheus": true,
           "Python": true,
           "Svelte": true,
           "Vue.js": true
@@ -566,7 +529,7 @@
           },
           {
             "name": "JavaScript",
-            "value": 12
+            "value": 13
           },
           {
             "name": "Django",
@@ -593,16 +556,8 @@
             "value": 5
           },
           {
-            "name": "Prometheus",
-            "value": 5
-          },
-          {
-            "name": "Hugo",
-            "value": 4
-          },
-          {
             "name": "Others",
-            "value": 92
+            "value": 100
           }
         ]
       }

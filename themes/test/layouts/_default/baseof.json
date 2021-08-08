@@ -38,7 +38,7 @@
         {{ $selected := dict }}
         {{ $count := 0 }}
         {{ range $i, $e := .Site.Taxonomies.tags.ByCount }}
-            {{ if (lt $i 10) }}
+            {{ if (lt $i 8) }}
                 {{ $legend = $legend | append $e.Name }}
                 {{ $series = $series | append (dict "name" .Name "value" .Count) }}
                 {{ $selected = $selected | merge (dict $e.Name true) }}
@@ -58,7 +58,7 @@
         {{ $selected := dict }}
         {{ $count := 0 }}
         {{ range $i, $e := .Site.Taxonomies.categories.ByCount }}
-            {{ if (lt $i 10) }}
+            {{ if (lt $i 8) }}
                 {{ $legend = $legend | append $e.Name }}
                 {{ $series = $series | append (dict "name" .Name "value" .Count) }}
                 {{ $selected = $selected | merge (dict $e.Name true) }}

@@ -6,4 +6,4 @@ demo_url: ""
 tags: [Django]
 date: 2020-12-15T10:44:10+08:00
 ---
-小架構的VNC Web UI，使用noVNC→proxy(websockify)→VNC Server操作遠端桌面，並包含錄影與回放功能，使用Django進行簡易分群控管
+使用Django製作的小架構的VNC管理平台，透過noVNC→proxy(websockify)→VNC Server操作遠端桌面，並包含錄影與回放功能

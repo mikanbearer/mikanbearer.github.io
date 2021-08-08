@@ -7,4 +7,4 @@ tags: [Vue.js, Vuetify]
 date: 2020-08-15T13:12:10+08:00
 ---
 
-靜態網站產生器Hugo的一個自製主題，同時也為本BLOG之前主題，使用Vue.js完成搜尋功能，並使用Vuetify導入Material Design，持續增加功能中
+靜態網站產生器Hugo的一個自製主題，同時也為本BLOG之前前主題，使用Vue.js完成搜尋功能，UI使用Vuetify，功能大概不會增加了

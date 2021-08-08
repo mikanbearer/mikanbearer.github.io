@@ -239,6 +239,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -253,6 +256,31 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202108090029",
+        "params": {
+          "categories": [
+            "Web Development"
+          ],
+          "date": "2021-08-09T00:29:16+08:00",
+          "draft": false,
+          "iscjklanguage": true,
+          "lastmod": "2021-08-09T00:29:16+08:00",
+          "publishdate": "2021-08-09T00:29:16+08:00",
+          "tags": [
+            "JavaScript",
+            "Svelte",
+            "Hugo"
+          ],
+          "title": "部落格主題再再更新"
+        },
+        "path": "posts/202108090029",
+        "permalink": "https://mikanbearer.github.io/posts/202108090029/index.json",
+        "summary": "\u003cp\u003e紀錄一下，算是新的里程碑\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 290
+      },
       {
         "kind": "page",
         "name": "202105250915",
@@ -895,7 +923,6 @@
         "name": "202011171536",
         "params": {
           "categories": [
-            "Cisco",
             "Operation"
           ],
           "date": "2020-11-17T15:36:33+08:00",
@@ -919,7 +946,6 @@
         "name": "202011161608",
         "params": {
           "categories": [
-            "Cisco",
             "Simulation"
           ],
           "date": "2020-11-16T16:08:45+08:00",
@@ -1445,7 +1471,6 @@
         "name": "202009101608",
         "params": {
           "categories": [
-            "Arista",
             "Provisioning"
           ],
           "date": "2020-09-10T16:08:09+08:00",
@@ -1935,7 +1960,6 @@
         "name": "202007241554",
         "params": {
           "categories": [
-            "Arista",
             "Simulation"
           ],
           "date": "2020-07-24T15:54:30+08:00",
@@ -1946,7 +1970,7 @@
           "tags": [
             "EVE-NG"
           ],
-          "title": "在EVE-NG上部屬vEOS LAB"
+          "title": "在EVE-NG上部屬Arista vEOS LAB"
         },
         "path": "posts/2020/07/202007241554",
         "permalink": "https://mikanbearer.github.io/posts/2020/07/202007241554/index.json",

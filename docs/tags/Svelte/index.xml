@@ -6,14 +6,14 @@
     <description>Recent content in Svelte on Unnamed Diary</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Apr 2021 10:44:10 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Svelte/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Aug 2021 00:29:16 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Svelte/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>snmp report</title>
-      <link>https://mikanbearer.github.io/works/snmp-report/index.json</link>
-      <pubDate>Sat, 17 Apr 2021 10:44:10 +0800</pubDate>
+      <title>部落格主題再再更新</title>
+      <link>https://mikanbearer.github.io/posts/202108090029/index.json</link>
+      <pubDate>Mon, 09 Aug 2021 00:29:16 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/works/snmp-report/index.json</guid>
-      <description>使用Spring Boot + Svelte製作的前後端分離小工具，分析SNMP取得的資料，依照設備類型繪製成圓餅圖，目前支援偵測Cisco Router/Switch、Fortinet Firewall、Linux、Windows</description>
+      <guid>https://mikanbearer.github.io/posts/202108090029/index.json</guid>
+      <description>&lt;p&gt;紀錄一下，算是新的里程碑&lt;/p&gt;</description>
     </item>
     
     <item>
