@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>vuego</title>
+      <link>https://mikanbearer.github.io/works/vuego/index.json</link>
+      <pubDate>Mon, 12 Oct 2020 08:34:19 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/works/vuego/index.json</guid>
+      <description>靜態網站產生器Hugo的一個自製主題，使用Vue.js + Vuetify製作成單頁式網站提升操作流暢度，貼文等使用Hugo產生JSON靜態檔案，並使用ECharts製作簡易統計圖表紀錄個人更新動態</description>
+    </item>
+    
+    <item>
       <title>主題更新</title>
       <link>https://mikanbearer.github.io/posts/2020/10/202010081713/index.json</link>
       <pubDate>Thu, 08 Oct 2020 17:13:00 +0800</pubDate>

@@ -503,9 +503,9 @@
         "legend": [
           "Python",
           "JavaScript",
+          "Vue.js",
           "Django",
           "Node.js",
-          "Vue.js",
           "Svelte",
           "Docker",
           "Flask",
@@ -532,15 +532,15 @@
             "value": 13
           },
           {
+            "name": "Vue.js",
+            "value": 9
+          },
+          {
             "name": "Django",
             "value": 8
           },
           {
             "name": "Node.js",
-            "value": 8
-          },
-          {
-            "name": "Vue.js",
             "value": 8
           },
           {
@@ -557,7 +557,7 @@
           },
           {
             "name": "Others",
-            "value": 100
+            "value": 101
           }
         ]
       }
