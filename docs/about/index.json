@@ -449,7 +449,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 40
+            "value": 39
           },
           {
             "name": "Tricks",
@@ -486,7 +486,7 @@
         ]
       },
       "monthly_count": {
-        "2020-07": 12,
+        "2020-07": 11,
         "2020-08": 11,
         "2020-09": 15,
         "2020-10": 8,
@@ -503,9 +503,9 @@
         "legend": [
           "Python",
           "JavaScript",
-          "Vue.js",
           "Django",
           "Node.js",
+          "Vue.js",
           "Svelte",
           "Docker",
           "Flask",
@@ -529,11 +529,7 @@
           },
           {
             "name": "JavaScript",
-            "value": 13
-          },
-          {
-            "name": "Vue.js",
-            "value": 9
+            "value": 12
           },
           {
             "name": "Django",
@@ -541,6 +537,10 @@
           },
           {
             "name": "Node.js",
+            "value": 8
+          },
+          {
+            "name": "Vue.js",
             "value": 8
           },
           {

@@ -359,15 +359,6 @@
     </item>
     
     <item>
-      <title>使用watch監控的一些寫法</title>
-      <link>https://mikanbearer.github.io/posts/2020/07/202007201139/index.json</link>
-      <pubDate>Mon, 20 Jul 2020 11:39:17 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/posts/2020/07/202007201139/index.json</guid>
-      <description>&lt;p&gt;想到要利用watch來監視複數data property，但寫出來都是重是又冗長，所以整理了一些比較彈性的寫法&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>【Django API實作-入門篇1】使用Django REST framework超高速製作RESTful API</title>
       <link>https://mikanbearer.github.io/posts/2020/07/202007161628/index.json</link>
       <pubDate>Thu, 16 Jul 2020 16:28:26 +0800</pubDate>

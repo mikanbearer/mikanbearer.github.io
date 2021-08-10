@@ -319,10 +319,6 @@
             
             
         
-            
-            
-            
-        
         
 
 
@@ -493,7 +489,6 @@
       "使用Django + Celery進行異步處理",
       "用VBA在Excel中使用nslookup",
       "【Django API實作-入門篇2】在Django REST framework上導入JWT驗證",
-      "使用watch監控的一些寫法",
       "【Django API實作-入門篇1】使用Django REST framework超高速製作RESTful API",
       "使用Django超高速部屬CRUD",
       "使用VBScript定期送出按鍵",

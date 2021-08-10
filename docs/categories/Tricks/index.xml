@@ -90,8 +90,7 @@
       <guid>https://mikanbearer.github.io/posts/2020/07/202007141604/index.json</guid>
       <description>&lt;p&gt;在客戶環境中操作，並需要客戶代為登入的情況下給自己用的小筆記，
 免得一不注意就被policy弄到進入省電模式/登出，到時候又要請客戶的人來幫忙key帳號密碼…
-在不變更任何設定的情況下，VBScript還是很好用的東西，&lt;br&gt;
-尤其是這個安全無害的method，&lt;strong&gt;SendKeys&lt;/strong&gt;&lt;/p&gt;</description>
+在不變更任何設定的情況下，VBScript還是很好用的東西&lt;/p&gt;</description>
     </item>
     
   </channel>
