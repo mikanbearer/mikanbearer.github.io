@@ -9,38 +9,38 @@
     <lastBuildDate>Tue, 25 May 2021 09:15:45 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/PowerShell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>透過WinRM遠端操作Windows</title>
-      <link>https://mikanbearer.github.io/posts/202105250915/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2021/05/202105250915/index.json</link>
       <pubDate>Tue, 25 May 2021 09:15:45 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202105250915/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2021/05/202105250915/index.json</guid>
       <description>&lt;p&gt;網路上撿來的，感覺會常用&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>建立簡單的Spring Boot RESTful並使用PowerShell測試</title>
-      <link>https://mikanbearer.github.io/posts/202103040927/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2021/03/202103040927/index.json</link>
       <pubDate>Thu, 04 Mar 2021 09:27:24 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202103040927/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2021/03/202103040927/index.json</guid>
       <description>&lt;p&gt;最近剛好接手維護一個使用Spring撰寫的MVC Project，一時興起就來接觸一下Java的MVC了，雖然Java對個人來說仍是陌生的語言…&lt;/p&gt;
 &lt;p&gt;這次練習不直接使用Spring，而是使用Spring Boot來構成Project，這次就以一個基礎的RESTful為目標，DB則用H2(In-Memory Database)，順便加碼練習使用Windows上的PowerShell來測試REST&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>透過PowerShell傳送JSON格式的UDP Message</title>
-      <link>https://mikanbearer.github.io/posts/202102201502/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2021/02/202102201502/index.json</link>
       <pubDate>Sat, 20 Feb 2021 15:02:08 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202102201502/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2021/02/202102201502/index.json</guid>
       <description>&lt;p&gt;看到大佬這篇&lt;a href=&#34;https://poshsecurity.com/blog/2014/7/1/sending-syslog-messages-from-powershell.html&#34; target=&#34;_blank&#34;&gt;BLOG&lt;/a&gt;，就突發奇想動手做看看，以後或許能從client取些便利的資料做報告之類的&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用command line操作7-Zip壓縮檔案</title>
-      <link>https://mikanbearer.github.io/posts/202102020936/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2021/02/202102020936/index.json</link>
       <pubDate>Tue, 02 Feb 2021 09:36:56 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202102020936/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2021/02/202102020936/index.json</guid>
       <description>&lt;p&gt;使用command line操作7-Zip壓縮檔案，工作上可能會用到所以紀錄一下，雖說是command line但這次用的不是Command Prompt，
 而是PowerShell，個人覺得好入門許多&lt;/p&gt;</description>
     </item>

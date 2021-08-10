@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 08 Feb 2021 09:13:28 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/IntelliJ-IDEA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初次使用IntelliJ IDEA</title>
-      <link>https://mikanbearer.github.io/posts/202102080913/index.json</link>
+      <link>https://mikanbearer.github.io/posts/2021/02/202102080913/index.json</link>
       <pubDate>Mon, 08 Feb 2021 09:13:28 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/posts/202102080913/index.json</guid>
+      <guid>https://mikanbearer.github.io/posts/2021/02/202102080913/index.json</guid>
       <description>&lt;p&gt;零經驗被逼著寫完全不會用的java…不知道怎麼用就從手動加個lib開始吧&lt;/p&gt;
 &lt;p&gt;從&lt;a href=&#34;https://akrad.hatenablog.com/entry/2018/04/14/091844&#34; target=&#34;_blank&#34;&gt;這裡&lt;/a&gt;看到使用snmpwalk的範例，基於工作會用到趕快拿來嘗試&lt;/p&gt;</description>
     </item>

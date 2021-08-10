@@ -1,0 +1,35 @@
+
+
+
+
+    
+        
+    
+
+
+
+
+{
+  "result": {
+    "content": "\u003cp\u003e網路上撿來的，感覺會常用\u003c/p\u003e\n\u003cp\u003e首先產生credential來，避免在shell script中無法自動使用prompt輸入資料\u003c/p\u003e\n\u003cp\u003e使用遠端WMI來測試是否成功\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\"\u003e\u003ccode class=\"language-text\" data-lang=\"text\"\u003ePS C:\\Users\\user\u0026gt; $PASSWORD = ConvertTo-SecureString \u0026#34;password\u0026#34; -AsPlainText -Force\nPS C:\\Users\\user\u0026gt; $UNPASSWORD = New-Object System.Management.Automation.PsCredential \u0026#34;username\u0026#34;, $PASSWORD\nPS C:\\Users\\user\u0026gt; Get-WmiObject Win32_OperatingSystem -ComputerName 192.168.1.123 -Credential $UNPASSWORD\n\nSystemDirectory : C:\\Windows\\system32\nOrganization    :\nBuildNumber     : 14393\nRegisteredUser  : Windows 使用者\n\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003cp\u003e\u003cbr\u003e\u003c/br\u003e\u003c/p\u003e\n\u003cp\u003e接著就是WinRM，從powershell建立一個遠端powershell session，若server端沒啟用WinRM會跳出以下訊息\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ePS C:\\Users\\zaq\u0026gt; Enter-PSSession -ComputerName 192.168.1.123 -Credential $UNPASSWORD\r\nEnter-PSSession : 連線到遠端伺服器 192.168.23.37 失敗，傳回下列錯誤訊息: WinRM 用戶端無法處理該要求。若驗證配置與 Kerbe\r\nros 不同，或是用戶端電腦沒有加入網域， 則必須使用 HTTPS 傳輸，或是將目標電腦新增到 TrustedHosts 組態設定中。 請使用 win\r\nrm.cmd 來設定 TrustedHosts。請注意，可能不會驗證在 TrustedHosts 清單中的電腦。 您可以執行下列命令，以取得相關的詳細資訊\r\n: winrm help config。 如需詳細資訊，請參閱 about_Remote_Troubleshooting 說明主題。\r\n位於 線路:1 字元:1\r\n+ Enter-PSSession -ComputerName 192.168.23.37 -Credential $UNPASSWORD\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : InvalidArgument: (192.168.1.123:String) [Enter-PSSession]，PSRemotingTransportException\r\n    + FullyQualifiedErrorId : CreateRemoteRunspaceFailed\r\n\u003c/code\u003e\u003c/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c/br\u003e\u003c/p\u003e\n\u003cp\u003e啟用WinRM\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ePS C:\\WINDOWS\\system32\u0026gt; winrm quickconfig\r\n\u003c/code\u003e\u003c/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c/br\u003e\u003c/p\u003e\n\u003cp\u003e將目標host加入信任清單\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ePS C:\\WINDOWS\\system32\u0026gt; Set-Item WSMan:\\localhost\\client\\trustedhosts -Value '*' -PassThru\r\n\u003c/code\u003e\u003c/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c/br\u003e\u003c/p\u003e\n\u003cp\u003e接下來就成功進入\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ePS C:\\Users\\user\u0026gt; Enter-PSSession -ComputerName 192.168.1.123 -Credential $UNPASSWORD\r\n[192.168.1.123]: PS C:\\Users\\Administrator\\Documents\u0026gt;\r\n\u003c/code\u003e\u003c/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c/br\u003e\u003c/p\u003e\n\u003cp\u003e測試用的指令，搜尋遠端pc的update\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e@(((New-Object -ComObject Microsoft.Update.Session).CreateupdateSearcher()).Search(\u0026quot;IsHidden=0 and IsInstalled=1\u0026quot;).Updates) | ForEach-Object {$_.Title} | Get-Unique\r\n\u003c/code\u003e\u003c/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c/br\u003e\u003c/p\u003e\n\u003cp\u003e操作範例，可使用Remove-PSSession來刪除session，可使用id，若有session使用變數的話可以用-Session這個option，隨手移除好習慣\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ePS C:\\Users\\user\u0026gt; $s = New-PSSession -ComputerName 192.168.1.123 -Credential $(New-Object System.Management.Automation.PsCredential \u0026quot;user\u0026quot;,$(ConvertTo-SecureString \u0026quot;password\u0026quot; -AsPlainText -Force))\r\nPS C:\\Users\\user\u0026gt; Invoke-Command -Session $s -ScriptBlock {@(((New-Object -ComObject Microsoft.Update.Session).CreateupdateSearcher()).Search(\u0026quot;IsHidden=0 and IsInstalled=1\u0026quot;).Updates) | ForEach-Object {$_.Title} | Get-Unique}\r\n\r\nFeatureOnDemandDotNet35 - Windows 10 Version 1607 for AMD64-based Server Systems - (KB3180030)\r\nLanguageFeatureOnDemand - Windows Server 2016 for AMD64-based Systems - (KB3193497) [zh-HK]\r\nLanguageFeatureOnDemand - Windows Server 2016 for AMD64-based Systems - (KB3193497) [zh-TW]\r\nLanguageFeatureOnDemand - Windows Server 2016 for AMD64-based Systems - (KB3193497) [zh-CN]\r\nFeatureOnDemandDotNet35 - Windows Server 2016 for AMD64-based Systems - (KB3193497)\r\n...\r\n\r\nPS C:\\Users\\user\u0026gt; Remove-PSSession -Session $s\r\n\u003c/code\u003e\u003c/pre\u003e",
+    "kind": "page",
+    "params": {
+      "categories": [
+        "Tricks"
+      ],
+      "date": "2021-05-25T09:15:45+08:00",
+      "draft": false,
+      "iscjklanguage": true,
+      "lastmod": "2021-05-25T09:15:45+08:00",
+      "publishdate": "2021-05-25T09:15:45+08:00",
+      "tags": [
+        "Powershell",
+        "Windows"
+      ],
+      "title": "透過WinRM遠端操作Windows"
+    },
+    "permalink": "https://mikanbearer.github.io/posts/2021/05/202105250915/index.json",
+    "type": "posts",
+    "wordcount": 684
+  }
+}

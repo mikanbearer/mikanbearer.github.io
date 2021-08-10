@@ -296,6 +296,10 @@
                 
             
         
+            
+                
+            
+        
         
             
             
@@ -449,7 +453,7 @@
         "series": [
           {
             "name": "Web-Development",
-            "value": 39
+            "value": 40
           },
           {
             "name": "Tricks",
@@ -497,7 +501,7 @@
         "2021-03": 5,
         "2021-04": 2,
         "2021-05": 1,
-        "2021-08": 1
+        "2021-08": 2
       },
       "tags_data": {
         "legend": [
@@ -529,7 +533,7 @@
           },
           {
             "name": "JavaScript",
-            "value": 12
+            "value": 13
           },
           {
             "name": "Django",
@@ -557,7 +561,7 @@
           },
           {
             "name": "Others",
-            "value": 101
+            "value": 103
           }
         ]
       }
