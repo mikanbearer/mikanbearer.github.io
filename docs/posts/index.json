@@ -242,6 +242,9 @@
             
             
         
+            
+            
+        
         
 
 
@@ -256,6 +259,30 @@
     "content": "",
     "kind": "section",
     "pages": [
+      {
+        "kind": "page",
+        "name": "202108100022",
+        "params": {
+          "categories": [
+            "Web Development"
+          ],
+          "date": "2021-08-10T00:22:31+08:00",
+          "draft": false,
+          "iscjklanguage": false,
+          "lastmod": "2021-08-10T00:22:31+08:00",
+          "publishdate": "2021-08-10T00:22:31+08:00",
+          "tags": [
+            "JavaScript",
+            "Ext JS"
+          ],
+          "title": "Ext JS的layout練習筆記"
+        },
+        "path": "posts/202108100022",
+        "permalink": "https://mikanbearer.github.io/posts/202108100022/index.json",
+        "summary": "\u003cp\u003e工作上用到的Ext JS，實在很不會用所以先勤勞點多多練習與多做筆記\u003c/p\u003e",
+        "type": "posts",
+        "wordcount": 337
+      },
       {
         "kind": "page",
         "name": "202108090029",

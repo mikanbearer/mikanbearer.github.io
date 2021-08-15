@@ -323,6 +323,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -365,6 +369,7 @@
       "Elasticsearch",
       "EVE-NG",
       "Excel",
+      "Ext JS",
       "Filebeat",
       "Flask",
       "Hugo",
@@ -420,6 +425,7 @@
       "ZTPServer"
     ],
     "titles": [
+      "Ext JS的layout練習筆記",
       "部落格主題再再更新",
       "在打包環境下使用ECharts的筆記",
       "透過WinRM遠端操作Windows",

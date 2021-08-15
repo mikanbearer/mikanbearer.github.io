@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ext JS on Unnamed Diary</title>
+    <link>https://mikanbearer.github.io/tags/Ext-JS/</link>
+    <description>Recent content in Ext JS on Unnamed Diary</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Aug 2021 00:22:31 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Ext-JS/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ext JS的layout練習筆記</title>
+      <link>https://mikanbearer.github.io/posts/202108100022/index.json</link>
+      <pubDate>Tue, 10 Aug 2021 00:22:31 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202108100022/index.json</guid>
+      <description>&lt;p&gt;工作上用到的Ext JS，實在很不會用所以先勤勞點多多練習與多做筆記&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
