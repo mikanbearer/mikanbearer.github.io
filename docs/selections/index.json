@@ -327,6 +327,10 @@
             
             
         
+            
+            
+            
+        
         
 
 
@@ -425,7 +429,8 @@
       "ZTPServer"
     ],
     "titles": [
-      "Ext JS的layout練習筆記",
+      "Ext JS零碎筆記 - 在grid中增加tip",
+      "Ext JS零碎筆記 - layout練習",
       "部落格主題再再更新",
       "在打包環境下使用ECharts的筆記",
       "透過WinRM遠端操作Windows",

@@ -6,9 +6,18 @@
     <description>Recent content in Ext JS on Unnamed Diary</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Aug 2021 00:22:31 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Ext-JS/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 Aug 2021 23:17:16 +0800</lastBuildDate><atom:link href="https://mikanbearer.github.io/tags/Ext-JS/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Ext JS的layout練習筆記</title>
+      <title>Ext JS零碎筆記 - 在grid中增加tip</title>
+      <link>https://mikanbearer.github.io/posts/202108312317/index.json</link>
+      <pubDate>Tue, 31 Aug 2021 23:17:16 +0800</pubDate>
+      
+      <guid>https://mikanbearer.github.io/posts/202108312317/index.json</guid>
+      <description>&lt;p&gt;在gridpanel中增加一個會隨著row資料變化的tooltip&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ext JS零碎筆記 - layout練習</title>
       <link>https://mikanbearer.github.io/posts/202108100022/index.json</link>
       <pubDate>Tue, 10 Aug 2021 00:22:31 +0800</pubDate>
       
