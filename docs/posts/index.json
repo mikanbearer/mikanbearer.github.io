@@ -261,9 +261,9 @@
         },
         "path": "posts/202008131707",
         "permalink": "https://mikanbearer.github.io/posts/202008131707/index.json",
-        "summary": "\u003cp\u003ePrometheus是最近非常流行的Pull-based monitoring，主要的角色是以下兩者：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ePrometheus：監控方，定期收集資料並存在資料庫\u003c/li\u003e\n\u003cli\u003eExporter：被監控方，回傳監控方需要的資料\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e為了往後學習方便，先來實作一遍這個方便利用的工具\u003c/p\u003e",
+        "summary": "\u003cp\u003ePrometheus是最近非常流行的Pull-based monitoring，為了往後學習，先來摸索一下這個方便的工具\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2441
+        "wordcount": 2375
       }
     ],
     "params": {
