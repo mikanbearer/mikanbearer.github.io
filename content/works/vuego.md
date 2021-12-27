@@ -7,4 +7,4 @@ tags: [Vue.js, Vuetify]
 date: 2020-10-12T08:34:19+08:00
 ---
 
-靜態網站產生器Hugo的一個自製主題，使用Vue.js + Vuetify製作成單頁式網站提升操作流暢度，貼文等使用Hugo產生JSON靜態檔案，並使用ECharts製作簡易統計圖表紀錄個人更新動態
+Pet Project，靜態網站產生器Hugo的一個自製主題，使用Vue.js + Vuetify製作成單頁式網站提升操作流暢度，貼文等使用Hugo產生JSON靜態檔案，並使用ECharts製作簡易統計圖表紀錄個人更新動態

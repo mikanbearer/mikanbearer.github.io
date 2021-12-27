@@ -6,4 +6,4 @@ demo_url: ""
 tags: [Django]
 date: 2020-12-15T10:44:10+08:00
 ---
-使用Django製作的小架構的VNC管理平台，透過noVNC→proxy(websockify)→VNC Server操作遠端桌面，並包含錄影與回放功能
+嘗試使用Django製作VNC管理平台的Pet Project，透過noVNC→proxy(websockify)→VNC Server操作遠端桌面，含簡易錄影與回放功能
