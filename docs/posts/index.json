@@ -32,9 +32,6 @@
             
             
         
-            
-            
-        
         
 
 
@@ -191,33 +188,7 @@
         "permalink": "https://mikanbearer.github.io/posts/202009101608/index.json",
         "summary": "\u003cp\u003e繼之前在架設lab的過程中被許許多多的狀況「折磨」過後，終於找到時間接續下去了，這次就來部屬\u003ca target=\"_blank\" href=\"https://github.com/arista-eosplus/ztpserver\"\u003eArista ZTP Server\u003c/a\u003e，並稍微驗證一下client與server之間的動作，以確定正常能用\n，畢竟就算是最新的1.5.0版也很久沒更新了\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 1872
-      },
-      {
-        "kind": "page",
-        "name": "202009091346",
-        "params": {
-          "categories": [
-            "Machine Learning"
-          ],
-          "date": "2020-09-09T13:46:26+08:00",
-          "draft": false,
-          "iscjklanguage": true,
-          "lastmod": "2020-09-09T13:46:26+08:00",
-          "publishdate": "2020-09-09T13:46:26+08:00",
-          "tags": [
-            "Python",
-            "pandas",
-            "scikit-learn",
-            "seaborn"
-          ],
-          "title": "【Python資料分析入門練習2】自然語言處理與機器學習"
-        },
-        "path": "posts/202009091346",
-        "permalink": "https://mikanbearer.github.io/posts/202009091346/index.json",
-        "summary": "\u003cp\u003e這次的練習就稍微複雜一點，使用的是機械學習常用的工具scikit-learn，一樣是朝著可視化的目標前進，所以也會做張圖…\u003c/p\u003e",
-        "type": "posts",
-        "wordcount": 2392
+        "wordcount": 1855
       },
       {
         "kind": "page",
@@ -232,17 +203,17 @@
           "lastmod": "2020-09-07T09:54:48+08:00",
           "publishdate": "2020-09-07T09:54:48+08:00",
           "tags": [
-            "Matplotlib",
             "Python",
-            "Scrapy"
+            "Scrapy",
+            "scikit-learn"
           ],
-          "title": "【Python資料分析入門練習1】使用Scrapy爬取PTT貼文"
+          "title": "Python資料分析入門練習"
         },
         "path": "posts/202009070954",
         "permalink": "https://mikanbearer.github.io/posts/202009070954/index.json",
-        "summary": "\u003cp\u003e從爬蟲開始的實作，分析資料前總得先有資料吧(;\u0026lsquo;∀\u0026rsquo;)\u003c/p\u003e\n\u003cp\u003e作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…\u003c/p\u003e",
+        "summary": "\u003cp\u003e從爬蟲開始的實作，分析資料前總得先有資料吧(;\u0026lsquo;∀\u0026rsquo;)，作為資料分析的前置作業，就來爬取媒體最愛的PTT，畢竟BBS類型的資料還蠻標準的，雖然本人不太逛PTT就是了…\u003c/p\u003e\n\u003cp\u003e後半段參考\u003ca target=\"_blank\" href=\"https://city.shaform.com/zh/2016/02/28/scrapy/\"\u003e這篇\u003c/a\u003e\u003c/p\u003e",
         "type": "posts",
-        "wordcount": 2246
+        "wordcount": 4556
       },
       {
         "kind": "page",

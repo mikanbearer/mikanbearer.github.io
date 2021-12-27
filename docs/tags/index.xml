@@ -134,18 +134,9 @@
     </item>
     
     <item>
-      <title>pandas</title>
-      <link>https://mikanbearer.github.io/tags/pandas/</link>
-      <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/tags/pandas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Python</title>
       <link>https://mikanbearer.github.io/tags/Python/</link>
-      <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
+      <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       
       <guid>https://mikanbearer.github.io/tags/Python/</guid>
       <description></description>
@@ -154,27 +145,9 @@
     <item>
       <title>scikit-learn</title>
       <link>https://mikanbearer.github.io/tags/scikit-learn/</link>
-      <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/tags/scikit-learn/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>seaborn</title>
-      <link>https://mikanbearer.github.io/tags/seaborn/</link>
-      <pubDate>Wed, 09 Sep 2020 13:46:26 +0800</pubDate>
-      
-      <guid>https://mikanbearer.github.io/tags/seaborn/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Matplotlib</title>
-      <link>https://mikanbearer.github.io/tags/Matplotlib/</link>
       <pubDate>Mon, 07 Sep 2020 09:54:48 +0800</pubDate>
       
-      <guid>https://mikanbearer.github.io/tags/Matplotlib/</guid>
+      <guid>https://mikanbearer.github.io/tags/scikit-learn/</guid>
       <description></description>
     </item>
     

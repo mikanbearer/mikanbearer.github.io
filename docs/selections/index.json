@@ -43,10 +43,6 @@
             
             
         
-            
-            
-            
-        
         
 
 
@@ -60,7 +56,6 @@
   "result": {
     "categories": [
       "Deployment",
-      "Machine Learning",
       "Monitoring",
       "Provisioning",
       "RPA",
@@ -77,14 +72,11 @@
       "JavaScript",
       "LINE",
       "Logstash",
-      "Matplotlib",
       "Node-RED",
-      "pandas",
       "Prometheus",
       "Python",
       "scikit-learn",
       "Scrapy",
-      "seaborn",
       "vCenter",
       "vEOS",
       "Vue.js",
@@ -98,8 +90,7 @@
       "使用cephadm部屬Ceph Cluster",
       "Hugo輸出JSON踩坑紀錄",
       "安裝並嘗試使用Arista ZTPServer",
-      "【Python資料分析入門練習2】自然語言處理與機器學習",
-      "【Python資料分析入門練習1】使用Scrapy爬取PTT貼文",
+      "Python資料分析入門練習",
       "使用Prometheus + Vue.js + Echarts進行簡易監控",
       "從零開始的Prometheus基本練習"
     ]

@@ -104,18 +104,6 @@
                 
             
         
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
         
             
             
@@ -127,12 +115,6 @@
         
         
         
-        
-            
-                
-                
-                
-            
         
             
                 
@@ -211,14 +193,12 @@
           "RPA",
           "Web-Development",
           "Deployment",
-          "Machine-Learning",
           "Provisioning",
           "Security",
           "Web-Crawler"
         ],
         "selected": {
           "Deployment": true,
-          "Machine-Learning": true,
           "Monitoring": true,
           "Provisioning": true,
           "RPA": true,
@@ -244,10 +224,6 @@
             "value": 1
           },
           {
-            "name": "Machine-Learning",
-            "value": 1
-          },
-          {
             "name": "Provisioning",
             "value": 1
           },
@@ -263,7 +239,7 @@
       },
       "monthly_count": {
         "2020-08": 2,
-        "2020-09": 4,
+        "2020-09": 3,
         "2020-11": 1,
         "2021-01": 2,
         "2021-04": 1
@@ -272,12 +248,12 @@
         "legend": [
           "Node-RED",
           "Prometheus",
-          "Python",
           "Vue.js",
           "Ceph",
           "Django",
           "ECharts",
           "EVE-NG",
+          "Filebeat",
           "Others"
         ],
         "selected": {
@@ -285,10 +261,10 @@
           "Django": true,
           "ECharts": true,
           "EVE-NG": true,
+          "Filebeat": true,
           "Node-RED": true,
           "Others": true,
           "Prometheus": true,
-          "Python": true,
           "Vue.js": true
         },
         "series": [
@@ -298,10 +274,6 @@
           },
           {
             "name": "Prometheus",
-            "value": 2
-          },
-          {
-            "name": "Python",
             "value": 2
           },
           {
@@ -325,8 +297,12 @@
             "value": 1
           },
           {
+            "name": "Filebeat",
+            "value": 1
+          },
+          {
             "name": "Others",
-            "value": 15
+            "value": 12
           }
         ]
       }
